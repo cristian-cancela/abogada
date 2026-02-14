@@ -663,75 +663,185 @@
         font-size: var(--font-size-base);
       }
 
-      /* ==========================================
-     NAVBAR - MOBILE TOGGLE
-     ========================================== */
-      .mobile-toggle {
-        display: none;
-        color: var(--text-white);
-        font-size: 24px;
-        cursor: pointer;
-        background: none;
-        border: none;
-      }
-
-      /* ==========================================
-     RESPONSIVE
-     ========================================== */
-      @media (max-width: 768px) {
-        .nav-menu {
-          display: none;
-        }
-
-        .mobile-toggle {
-          display: block;
-        }
-
-        .btn-premium span {
-          display: none;
-        }
-
-        .btn-premium {
-          padding: 10px;
-          min-width: 40px;
-          justify-content: center;
-        }
-
-        .navbar-card {
-          width: 90%;
-          min-width: auto;
-          justify-content: space-between;
-        }
-
-        body.scrolled .navbar-card {
-          width: 92%;
-          min-width: auto;
-        }
-
-        body.scrolled .brand-container {
-          width: auto;
-        }
-
-        body.scrolled .logo-text {
-          display: none;
-        }
-      }
-
-      /* ==========================================
-   HERO SECTION - MAIN CONTAINER
+    /* ==========================================
+   NAVBAR - MOBILE TOGGLE (Estilos base)
    ========================================== */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
 
-      main {
-        max-width: var(--container-max-width);
-        width: 100%;
-        margin: 0 auto;
-        padding: 0 60px;
-      }
+/* Icono de hamburguesa premium (3 rayitas que se vuelven X) */
+.hamburger-box {
+  width: 24px;
+  height: 18px;
+  display: inline-block;
+  position: relative;
+}
 
-      .hero-container {
-        width: 100%;
-      }
+.hamburger-inner, 
+.hamburger-inner::before, 
+.hamburger-inner::after {
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-white);
+  position: absolute;
+  transition: transform 0.3s var(--ease-smooth), opacity 0.3s ease;
+}
 
+.hamburger-inner { top: 50%; transform: translateY(-50%); }
+.hamburger-inner::before { content: ""; top: -8px; left: 0; }
+.hamburger-inner::after { content: ""; top: 8px; left: 0; }
+
+/* Transformación a X cuando está activo */
+.mobile-toggle.is-active .hamburger-inner { background-color: transparent; }
+.mobile-toggle.is-active .hamburger-inner::before { transform: rotate(45deg) translate(5px, 6px); }
+.mobile-toggle.is-active .hamburger-inner::after { transform: rotate(-45deg) translate(5px, -6px); }
+
+
+/* ==========================================
+   RESPONSIVE (Ajustes para Tablet y Celular)
+   ========================================== */
+@media (max-width: 768px) {
+  
+  /* 1. Ajuste de la tarjeta Navbar */
+  .navbar-card {
+    width: 92%;
+    padding: 0 15px;
+    /* Permitimos que el menú se vea cuando desborda */
+    overflow: visible; 
+  }
+
+  /* 2. El Menú se convierte en un desplegable */
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px); /* 10px abajo de la barra */
+    left: 0;
+    width: 100%;
+    
+    background: var(--gradient-primary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    padding: 20px;
+    gap: 10px;
+
+    /* Estado inicial: Oculto y arriba */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.4s var(--ease-smooth);
+    pointer-events: none;
+  }
+
+  /* Mostrar menú cuando está activo */
+  .nav-menu.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    box-shadow: var(--shadow-polaroid);
+  }
+
+  /* 3. Ajustes de links en móvil */
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-indicator {
+    display: none; /* Desactivamos el indicador magnético en móvil */
+  }
+
+  /* 4. Mostrar el botón de menú */
+  .mobile-toggle {
+    display: block;
+  }
+
+  /* 5. Otros ajustes visuales */
+  .btn-premium span {
+    display: none; /* Solo queda el icono de WhatsApp */
+  }
+
+  .btn-premium {
+    padding: 10px;
+  }
+
+  body.scrolled .logo-text {
+    display: none;
+  }
+}
+/* ==========================================
+   ESTADO SCROLLED - SOLO PARA DESKTOP
+   ========================================== */
+@media (min-width: 769px) {
+  body.scrolled .navbar-card {
+    top: var(--nav-top-scrolled);
+    width: auto;
+    min-width: 600px; /* Esto era lo que causaba el desborde en móvil */
+    max-width: var(--nav-width-collapsed);
+    height: var(--nav-height-scrolled);
+    padding: 0 20px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-light);
+    box-shadow: var(--shadow-navbar-scrolled);
+  }
+
+  body.scrolled .logo-icon {
+    width: 36px;
+    height: 36px;
+    transform: rotate(360deg);
+  }
+
+  body.scrolled .logo-text {
+    opacity: 0;
+    transform: translateX(-20px);
+    pointer-events: none;
+    width: 0;
+  }
+
+  body.scrolled .nav-link {
+    padding: 8px 12px;
+    font-size: var(--font-size-sm);
+  }
+
+  body.scrolled .btn-premium {
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ==========================================
+   AJUSTE PARA MÓVIL (Para que no se rompa)
+   ========================================== */
+@media (max-width: 768px) {
+  /* Forzamos que en móvil el ancho sea siempre coherente, 
+     esté escroleado o no */
+  .navbar-card {
+    width: 92% !important; 
+    min-width: unset !important;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Si quieres que en móvil también cambie un poco el color al bajar, 
+     pero sin encogerse: */
+  body.scrolled .navbar-card {
+    top: 10px;
+    height: 65px; /* Un poco más compacta pero sin cambiar el ancho */
+    background: var(--gradient-light);
+  }
+}
       /* ==========================================
    HERO - HEADER
    ========================================== */
@@ -1571,509 +1681,549 @@
    EXPERIENCES SECTION - POLAROID GALLERY
    ========================================== */
 
-      .experiences-section {
-        max-width: 1400px;
-        padding: 60px 0px;
-      }
+.experiences-section {
+  max-width: 1400px;
+  padding: 60px 0px;
+}
 
-      .experiences-header {
-        text-align: center;
-        margin-bottom: 80px;
-      }
+.experiences-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
 
-      .experiences-header h2 {
-        font-family: "Ananda Black Personal Use", serif;
-        font-size: 55px;
-        margin-bottom: 15px;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
+.experiences-header h2 {
+  font-family: "Ananda Black Personal Use", serif;
+  font-size: 55px;
+  margin-bottom: 15px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 
-      .experiences-intro {
-        font-size: 20px;
-        font-weight: 600;
-        margin: 0 auto;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-align: left;
-        line-height: 1.5;
-      }
+.experiences-intro {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 auto;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: left;
+  line-height: 1.5;
+}
 
-      /* ==========================================
-   GALLERY GRID - 3 FILAS
+/* ==========================================
+   GALLERY GRID - 3 FILAS (DESKTOP)
    ========================================== */
 
-      .experiences-gallery {
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-        padding: 0;
-        list-style: none;
-        position: relative;
-      }
+.experiences-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
 
-      /* ROW 1 - 3 Fotos */
-      .gallery-row-1 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        max-width: 1100px;
-        margin: 0 auto;
-        width: 100%;
-      }
+/* ROW 1 - 3 Fotos */
+.gallery-row-1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
 
-      /* ROW 2 - Foto + Texto + Foto */
-      .gallery-row-2 {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr 1fr;
-        gap: 50px;
-        align-items: center;
-        max-width: 1100px;
-        margin: 0 auto;
-        width: 100%;
-      }
+/* ROW 2 - Foto + Texto + Foto */
+.gallery-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
 
-      /* ROW 3 - 3 Fotos */
-      .gallery-row-3 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        max-width: 1100px;
-        margin: 0 auto;
-        width: 100%;
-      }
+/* ROW 3 - 3 Fotos */
+.gallery-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
 
-      /* ==========================================
+/* ==========================================
    POLAROID CARD - Estilo Foto Instantánea
    ========================================== */
 
-      .polaroid-card {
-        position: relative;
-        background: #fdfcfa;
-        padding: 15px 15px 55px 15px;
+.polaroid-card {
+  position: relative;
+  background: #fdfcfa;
+  padding: 15px 15px 55px 15px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.06),
+    0 16px 32px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+  border-radius: 2px;
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.5s ease;
+}
 
-        box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.04),
-          0 8px 16px rgba(0, 0, 0, 0.06),
-          0 16px 32px rgba(0, 0, 0, 0.08),
-          inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+/* Variaciones de tonos beige/crema por card */
+.gallery-row-1 .polaroid-item:nth-child(1) .polaroid-card {
+  background: #faf8f5;
+}
 
-        border-radius: 2px;
-        transition:
-          transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-          box-shadow 0.5s ease;
-      }
+.gallery-row-1 .polaroid-item:nth-child(2) .polaroid-card {
+  background: #f9f7f4;
+}
 
-      /* Variaciones de tonos beige/crema por card */
-      .gallery-row-1 .polaroid-item:nth-child(1) .polaroid-card {
-        background: #faf8f5;
-      }
+.gallery-row-1 .polaroid-item:nth-child(3) .polaroid-card {
+  background: #fdfcfa;
+}
 
-      .gallery-row-1 .polaroid-item:nth-child(2) .polaroid-card {
-        background: #f9f7f4;
-      }
+.gallery-row-2 .polaroid-item:nth-child(1) .polaroid-card {
+  background: #f8f6f3;
+}
 
-      .gallery-row-1 .polaroid-item:nth-child(3) .polaroid-card {
-        background: #fdfcfa;
-      }
+.gallery-row-2 .polaroid-item:nth-child(3) .polaroid-card {
+  background: #fbf9f6;
+}
 
-      .gallery-row-2 .polaroid-item:nth-child(1) .polaroid-card {
-        background: #f8f6f3;
-      }
+.gallery-row-3 .polaroid-item:nth-child(1) .polaroid-card {
+  background: #fdfcf9;
+}
 
-      .gallery-row-2 .polaroid-item:nth-child(3) .polaroid-card {
-        background: #fbf9f6;
-      }
+.gallery-row-3 .polaroid-item:nth-child(2) .polaroid-card {
+  background: #faf8f5;
+}
 
-      .gallery-row-3 .polaroid-item:nth-child(1) .polaroid-card {
-        background: #fdfcf9;
-      }
+.gallery-row-3 .polaroid-item:nth-child(3) .polaroid-card {
+  background: #f9f7f3;
+}
 
-      .gallery-row-3 .polaroid-item:nth-child(2) .polaroid-card {
-        background: #faf8f5;
-      }
+/* Hover effect (Desktop) */
+.polaroid-card:hover {
+  transform: rotate(0deg) translateY(-4px) scale(1.01);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.06),
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.12);
+}
 
-      .gallery-row-3 .polaroid-item:nth-child(3) .polaroid-card {
-        background: #f9f7f3;
-      }
-
-      /* Rotaciones levemente desordenadas */
-      /* .gallery-row-1 .polaroid-item:nth-child(1) .polaroid-card {
-        transform: rotate(-3deg);
-      }
-
-      .gallery-row-1 .polaroid-item:nth-child(2) .polaroid-card {
-        transform: rotate(2deg);
-      }
-
-      .gallery-row-1 .polaroid-item:nth-child(3) .polaroid-card {
-        transform: rotate(-1.5deg);
-      }
-
-      .gallery-row-2 .polaroid-item:nth-child(1) .polaroid-card {
-        transform: rotate(2.5deg);
-      }
-
-      .gallery-row-2 .polaroid-item:nth-child(3) .polaroid-card {
-        transform: rotate(-2deg);
-      }
-
-      .gallery-row-3 .polaroid-item:nth-child(1) .polaroid-card {
-        transform: rotate(-2.5deg);
-      }
-
-      .gallery-row-3 .polaroid-item:nth-child(2) .polaroid-card {
-        transform: rotate(3deg);
-      }
-
-      .gallery-row-3 .polaroid-item:nth-child(3) .polaroid-card {
-        transform: rotate(-1deg);
-      }
-
-      /* Hover effect */
-      .polaroid-card:hover {
-        transform: rotate(0deg) translateY(-4px) scale(1.01);
-        box-shadow:
-          0 4px 8px rgba(0, 0, 0, 0.06),
-          0 12px 24px rgba(0, 0, 0, 0.08),
-          0 24px 48px rgba(0, 0, 0, 0.12);
-        /* z-index: 10; */
-      }
-
-      /* ==========================================
+/* ==========================================
    CINTAS ADHESIVAS
    ========================================== */
 
-      .photo-tape {
-        position: absolute;
-        background: rgba(245, 240, 230, 0.7);
-        backdrop-filter: blur(1px);
-        box-shadow:
-          0 1px 2px rgba(0, 0, 0, 0.08),
-          inset 0 0 4px rgba(0, 0, 0, 0.02),
-          inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        z-index: 10;
-        pointer-events: none;
-      }
+.photo-tape {
+  position: absolute;
+  background: rgba(245, 240, 230, 0.7);
+  backdrop-filter: blur(1px);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    inset 0 0 4px rgba(0, 0, 0, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  z-index: 10;
+  pointer-events: none;
+}
 
-      .tape-top-left {
-        top: -10px;
-        left: 15%;
-        width: 75px;
-        height: 30px;
-        transform: rotate(-8deg);
-      }
+.tape-top-left {
+  top: -10px;
+  left: 15%;
+  width: 75px;
+  height: 30px;
+  transform: rotate(-8deg);
+}
 
-      .tape-top-right {
-        top: -10px;
-        right: 15%;
-        width: 75px;
-        height: 30px;
-        transform: rotate(6deg);
-      }
+.tape-top-right {
+  top: -10px;
+  right: 15%;
+  width: 75px;
+  height: 30px;
+  transform: rotate(6deg);
+}
 
-      /* ==========================================
+/* ==========================================
    CONTENIDO DE POLAROID - MINIMALISTA CON SCROLL
    ========================================== */
 
-      .polaroid-content {
-        position: relative;
-        width: 100%;
-        height: 320px;
-        background: linear-gradient(to bottom, #f5f4f1 0%, #eeece8 100%);
-        border-radius: 1px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 30px;
-        padding-right: 25px;
-        text-align: center;
-        gap: 8px;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.03);
-      }
+.polaroid-content {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(to bottom, #f5f4f1 0%, #eeece8 100%);
+  border-radius: 1px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px;
+  padding-right: 25px;
+  text-align: center;
+  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.03);
+}
 
-      /* Estilos para scrollbar en navegadores webkit (Chrome, Safari, Edge) */
-      .polaroid-content::-webkit-scrollbar {
-        width: 8px;
-      }
+/* Estilos para scrollbar en navegadores webkit (Chrome, Safari, Edge) */
+.polaroid-content::-webkit-scrollbar {
+  width: 8px;
+}
 
-      .polaroid-content::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.03);
-        border-radius: 10px;
-        margin: 8px 0;
-      }
+.polaroid-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+  margin: 8px 0;
+}
 
-      .polaroid-content::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.15);
-        border-radius: 10px;
-        border: 2px solid transparent;
-        background-clip: padding-box;
-        min-height: 40px;
-      }
+.polaroid-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  min-height: 40px;
+}
 
-      .polaroid-content::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(0, 0, 0, 0.25);
-      }
+.polaroid-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
 
-      .polaroid-content::-webkit-scrollbar-thumb:active {
-        background-color: rgba(0, 0, 0, 0.35);
-      }
+.polaroid-content::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.35);
+}
 
-      /* Variaciones sutiles de fondo por card */
-      .gallery-row-1 .polaroid-item:nth-child(1) .polaroid-content {
-        background: linear-gradient(to bottom, #f7f6f3 0%, #f0eee9 100%);
-      }
+/* Variaciones sutiles de fondo por card */
+.gallery-row-1 .polaroid-item:nth-child(1) .polaroid-content {
+  background: linear-gradient(to bottom, #f7f6f3 0%, #f0eee9 100%);
+}
 
-      .gallery-row-1 .polaroid-item:nth-child(2) .polaroid-content {
-        background: linear-gradient(to bottom, #f4f3f0 0%, #edebe6 100%);
-      }
+.gallery-row-1 .polaroid-item:nth-child(2) .polaroid-content {
+  background: linear-gradient(to bottom, #f4f3f0 0%, #edebe6 100%);
+}
 
-      .gallery-row-1 .polaroid-item:nth-child(3) .polaroid-content {
-        background: linear-gradient(to bottom, #f6f5f2 0%, #efede8 100%);
-      }
+.gallery-row-1 .polaroid-item:nth-child(3) .polaroid-content {
+  background: linear-gradient(to bottom, #f6f5f2 0%, #efede8 100%);
+}
 
-      .gallery-row-2 .polaroid-item:nth-child(1) .polaroid-content {
-        background: linear-gradient(to bottom, #f5f3f0 0%, #eeecea 100%);
-      }
+.gallery-row-2 .polaroid-item:nth-child(1) .polaroid-content {
+  background: linear-gradient(to bottom, #f5f3f0 0%, #eeecea 100%);
+}
 
-      .gallery-row-2 .polaroid-item:nth-child(3) .polaroid-content {
-        background: linear-gradient(to bottom, #f8f7f4 0%, #f1efe9 100%);
-      }
+.gallery-row-2 .polaroid-item:nth-child(3) .polaroid-content {
+  background: linear-gradient(to bottom, #f8f7f4 0%, #f1efe9 100%);
+}
 
-      .gallery-row-3 .polaroid-item:nth-child(1) .polaroid-content {
-        background: linear-gradient(to bottom, #f6f4f1 0%, #efeee9 100%);
-      }
+.gallery-row-3 .polaroid-item:nth-child(1) .polaroid-content {
+  background: linear-gradient(to bottom, #f6f4f1 0%, #efeee9 100%);
+}
 
-      .gallery-row-3 .polaroid-item:nth-child(2) .polaroid-content {
-        background: linear-gradient(to bottom, #f7f5f2 0%, #f0ede8 100%);
-      }
+.gallery-row-3 .polaroid-item:nth-child(2) .polaroid-content {
+  background: linear-gradient(to bottom, #f7f5f2 0%, #f0ede8 100%);
+}
 
-      .gallery-row-3 .polaroid-item:nth-child(3) .polaroid-content {
-        background: linear-gradient(to bottom, #f5f4f0 0%, #edecea 100%);
-      }
+.gallery-row-3 .polaroid-item:nth-child(3) .polaroid-content {
+  background: linear-gradient(to bottom, #f5f4f0 0%, #edecea 100%);
+}
 
-      .card-badge {
-        background: transparent;
-        color: #999;
-        padding: 0;
-        border-radius: 0;
-        font-size: 9px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        box-shadow: none;
-        margin-bottom: 20px;
-        position: relative;
-        flex-shrink: 0;
-      }
+.card-badge {
+  background: transparent;
+  color: #999;
+  padding: 0;
+  border-radius: 0;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: none;
+  margin-bottom: 20px;
+  position: relative;
+  flex-shrink: 0;
+}
 
-      /* Línea divisora sutil */
-      .card-badge::after {
-        content: "";
-        position: absolute;
-        bottom: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 30px;
-        height: 1px;
-        background: rgba(0, 0, 0, 0.15);
-      }
+/* Línea divisora sutil */
+.card-badge::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+}
 
-      .polaroid-content h3 {
-        display: none;
-        color: #2a2a2a;
-        font-size: 18px;
-        font-weight: 600;
-        margin: 0;
-        line-height: 1.4;
-        letter-spacing: -0.02em;
-      }
+.polaroid-content h3 {
+  display: none;
+  color: #2a2a2a;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
 
-      .polaroid-content p {
-        color: black;
-        font-style: italic;
-        font-size: 13px;
-        /* font-weight: 600; */
-        line-height: 1.5;
-        text-align: left;
-        flex-shrink: 0;
-      }
+.polaroid-content p {
+  color: black;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+  flex-shrink: 0;
+}
 
-      .polaroid-author {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        padding: 0;
-        border: none;
-        margin-top: 25px;
-        flex-shrink: 0;
-      }
+.polaroid-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  border: none;
+  margin-top: 25px;
+  flex-shrink: 0;
+}
 
-      .polaroid-author strong {
-        color: #1a1a1a;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-      }
+.polaroid-author strong {
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
 
-      .polaroid-author span {
-        color: #888;
-        font-size: 11px;
-        font-weight: 400;
-        letter-spacing: 0.5px;
-      }
+.polaroid-author span {
+  color: #888;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
 
-      .polaroid-caption {
-        position: absolute;
-        bottom: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: calc(100% - 30px);
-        text-align: center;
-        font-family: "Ananda Black Personal Use", serif;
-        font-size: 13px;
-        color: #666;
-        opacity: 0.8;
-        letter-spacing: 0.3px;
-      }
+.polaroid-caption {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 30px);
+  text-align: center;
+  font-family: "Ananda Black Personal Use", serif;
+  font-size: 13px;
+  color: #666;
+  opacity: 0.8;
+  letter-spacing: 0.3px;
+}
 
-      /* ==========================================
+/* ==========================================
    TEXTO CENTRAL (ROW 2)
    ========================================== */
 
-      .center-text-item {
-        text-align: center;
-        padding: 40px 30px;
-      }
+.center-text-item {
+  text-align: center;
+  padding: 40px 30px;
+}
 
-      .center-text {
-        font-family: var(--font-secondary);
-        font-size: 23px;
-        line-height: 1.6;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
+.center-text {
+  font-family: var(--font-secondary);
+  font-size: 23px;
+  line-height: 1.6;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 
-      /* ==========================================
-   RESPONSIVE
+/* ==========================================
+   RESPONSIVE - TABLET
    ========================================== */
 
-      @media (max-width: 1024px) {
-        .gallery-row-1,
-        .gallery-row-3 {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 30px;
-        }
+@media (max-width: 1024px) {
+  .gallery-row-1,
+  .gallery-row-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
 
-        .gallery-row-1 .polaroid-item:nth-child(3),
-        .gallery-row-3 .polaroid-item:nth-child(3) {
-          grid-column: span 2;
-          max-width: 400px;
-          margin: 0 auto;
-        }
+  .gallery-row-1 .polaroid-item:nth-child(3),
+  .gallery-row-3 .polaroid-item:nth-child(3) {
+    grid-column: span 2;
+    max-width: 400px;
+    margin: 0 auto;
+  }
 
-        .gallery-row-2 {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
+  .gallery-row-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 
-        .polaroid-content {
-          height: 280px;
-        }
+  .polaroid-content {
+    height: 280px;
+  }
 
-        .center-text {
-          font-size: 28px;
-        }
-      }
+  .center-text {
+    font-size: 28px;
+  }
+}
 
-      @media (max-width: 768px) {
-        .experiences-section {
-          padding: 50px 30px;
-        }
+/* ==========================================
+   RESPONSIVE - MOBILE CAROUSEL
+   ========================================== */
 
-        .experiences-header h2 {
-          font-size: 40px;
-        }
+@media (max-width: 768px) {
+  .experiences-section {
+    padding: 50px 0;
+    position: relative;
+    overflow: hidden;
+  }
 
-        .gallery-row-1,
-        .gallery-row-2,
-        .gallery-row-3 {
-          grid-template-columns: 1fr;
-          gap: 50px;
-        }
+  .experiences-header {
+    padding: 0 30px;
+    margin-bottom: 60px;
+  }
 
-        .gallery-row-1 .polaroid-item:nth-child(3),
-        .gallery-row-3 .polaroid-item:nth-child(3) {
-          grid-column: auto;
-          max-width: none;
-        }
+  .experiences-header h2 {
+    font-size: 40px;
+  }
 
-        .polaroid-card {
-          transform: rotate(0deg) !important;
-        }
+  /* Convertir gallery en carrusel horizontal infinito */
+  .experiences-gallery {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    white-space: nowrap;
+    overflow: visible;
+    width: max-content;
+    padding: 2rem 0;
+    gap: 0;
+    animation: polaroid-scroll 40s linear infinite;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
 
-        .polaroid-content {
-          height: 300px;
-        }
+  /* Contenedor único que agrupa todas las filas */
+  .gallery-row-1,
+  .gallery-row-2,
+  .gallery-row-3 {
+    display: inline-flex;
+    flex-direction: row;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    grid-template-columns: none;
+    gap: 0;
+  }
 
-        .center-text {
-          font-size: 24px;
-          padding: 30px 20px;
-        }
-      }
+  /* Todos los items de polaroid en línea */
+  .polaroid-item {
+    display: inline-block;
+    white-space: normal;
+    width: 280px;
+    margin: 0 1.5rem;
+    vertical-align: top;
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
 
-      @media (max-width: 480px) {
-        .experiences-header h2 {
-          font-size: 32px;
-        }
+  /* Item de texto central también en línea */
+  .center-text-item {
+    display: inline-block;
+    white-space: normal;
+    width: 280px;
+    margin: 0 1.5rem;
+    vertical-align: top;
+    flex-shrink: 0;
+    padding: 40px 30px;
+    text-align: center;
+  }
 
-        .experiences-gallery {
-          gap: 40px;
-        }
+  /* Resetear transform de las cards */
+  .polaroid-card {
+    transform: rotate(0deg) !important;
+  }
 
-        .polaroid-card {
-          padding: 12px 12px 45px 12px;
-        }
+  .polaroid-content {
+    height: 300px;
+    pointer-events: auto;
+    touch-action: pan-y;
+  }
 
-        .polaroid-content {
-          height: 280px;
-          padding: 20px;
-          padding-right: 15px;
-        }
+  .center-text {
+    font-size: 24px;
+  }
 
-        .polaroid-content h3 {
-          font-size: 20px;
-        }
+  /* Animación de scroll infinito */
+  @keyframes polaroid-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 
-        .polaroid-content p {
-          font-size: 13px;
-        }
+  /* Pausar animación al hover o touch */
+  .experiences-gallery:hover {
+    animation-play-state: paused;
+  }
+}
 
-        .center-text {
-          font-size: 22px;
-        }
+@media (max-width: 480px) {
+  .experiences-header {
+    padding: 0 20px;
+  }
 
-        .photo-tape {
-          height: 25px;
-        }
+  .experiences-header h2 {
+    font-size: 32px;
+  }
 
-        .tape-top-left,
-        .tape-top-right {
-          width: 60px;
-        }
-      }
+  /* Ajustar tamaño de polaroids en mobile pequeño */
+  .polaroid-item {
+    width: 260px;
+    margin: 0 1rem;
+  }
+
+  .polaroid-card {
+    padding: 12px 12px 45px 12px;
+  }
+
+  .polaroid-content {
+    height: 280px;
+    padding: 20px;
+    padding-right: 15px;
+  }
+
+  .polaroid-content h3 {
+    font-size: 20px;
+  }
+
+  .polaroid-content p {
+    font-size: 13px;
+  }
+
+  .photo-tape {
+    height: 25px;
+  }
+
+  .tape-top-left,
+  .tape-top-right {
+    width: 60px;
+  }
+
+  /* Gradientes más suaves en pantallas pequeñas */
+  .experiences-section::before,
+  .experiences-section::after {
+    width: 12%;
+  }
+}
       /*----------------------- SERVICES SECTION--------------------------------------- */
 .services-section {
   max-width: 1200px;
@@ -2849,7 +2999,6 @@
   }
 
   .travels-image img {
-    height: 350px;
     width: 100%;
     object-fit: cover;
   }
@@ -3556,7 +3705,7 @@
     </style>
   </head>
   <body>
-    <header class="header">
+      <header class="header">
       <div class="cursor-spotlight" aria-hidden="true"></div>
 
       <div class="stage">
@@ -3611,15 +3760,11 @@
               <span class="sr-only">WhatsApp</span>
             </a>
 
-            <button
-              class="mobile-toggle"
-              id="mobile-toggle"
-              aria-label="Abrir menú de navegación"
-              aria-expanded="false"
-              aria-controls="nav-menu"
-            >
-              <span aria-hidden="true">☰</span>
-            </button>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
           </div>
         </nav>
       </div>
@@ -4683,7 +4828,7 @@
   </div>
 </footer>
     <script>
-      // --- NAVBAR EFFECTS ---
+     // --- NAVBAR EFFECTS ---
       const navbar = document.getElementById("navbar");
       const root = document.documentElement;
       const body = document.body;
@@ -4761,6 +4906,40 @@
           }
         });
       });
+      const mobileToggle = document.getElementById("mobile-toggle");
+const navbarCard = document.querySelector(".navbar-card");
+
+// --- 4. MOBILE MENU LOGIC ---
+if (mobileToggle) {
+  mobileToggle.addEventListener("click", () => {
+    const isOpen = navMenu.classList.toggle("is-active");
+    mobileToggle.classList.toggle("is-active");
+    navbarCard.classList.toggle("is-mobile-open");
+    
+    // Cambiar accesibilidad
+    mobileToggle.setAttribute("aria-expanded", isOpen);
+  });
+}
+
+// Cerrar menú al hacer clic en un link (importante para SPAs)
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    if (navMenu.classList.contains("is-active")) {
+      navMenu.classList.remove("is-active");
+      mobileToggle.classList.remove("is-active");
+      navbarCard.classList.remove("is-mobile-open");
+    }
+  });
+});
+
+// Cerrar si se hace scroll fuerte (opcional)
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100 && navMenu.classList.contains("is-active")) {
+    navMenu.classList.remove("is-active");
+    mobileToggle.classList.remove("is-active");
+    navbarCard.classList.remove("is-mobile-open");
+  }
+});
 
       // --- 4. FAQ ACCORDION ---
       document.querySelectorAll(".faq-item").forEach((item) => {
@@ -4939,6 +5118,252 @@
           });
         }
       });
+
+
+// ==========================================
+// INFINITE CAROUSEL PARA EXPERIENCES SECTION
+// ==========================================
+
+function initExperiencesCarousel() {
+  // Solo ejecutar en mobile
+  if (window.innerWidth > 768) return;
+
+  const gallery = document.querySelector('.experiences-gallery');
+  if (!gallery) return;
+
+  // Clonar todo el contenido de la galería para loop infinito
+  const galleryContent = gallery.innerHTML;
+  gallery.innerHTML = galleryContent + galleryContent;
+
+  // Variables para el control del carrusel
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let scrollLeft = 0;
+  let isHorizontalScroll = false;
+  let isVerticalScroll = false;
+  let animationFrame;
+  let targetElement = null;
+  let pauseTimeout = null;
+  let isPaused = false;
+
+  // Remover la animación CSS y controlarla con JS
+  gallery.style.animation = 'none';
+  
+  // Posición inicial
+  let currentX = 0;
+  const galleryWidth = gallery.scrollWidth / 2; // Dividido por 2 porque duplicamos
+
+  // Iniciar auto-scroll
+  function autoScroll() {
+    if (!isDragging && !isPaused) {
+      currentX -= 0.5; // Velocidad del auto-scroll
+      
+      // Loop infinito
+      if (Math.abs(currentX) >= galleryWidth) {
+        currentX = 0;
+      }
+      
+      gallery.style.transform = `translateX(${currentX}px)`;
+    }
+    animationFrame = requestAnimationFrame(autoScroll);
+  }
+  
+  autoScroll();
+
+  // Pausar animación temporalmente
+  function pauseAnimation(duration = 3000) {
+    isPaused = true;
+    
+    // Limpiar timeout anterior si existe
+    if (pauseTimeout) {
+      clearTimeout(pauseTimeout);
+    }
+    
+    // Reanudar después del tiempo especificado
+    pauseTimeout = setTimeout(() => {
+      isPaused = false;
+    }, duration);
+  }
+
+  // Verificar si el elemento tiene scroll vertical
+  function hasVerticalScroll(element) {
+    return element.scrollHeight > element.clientHeight;
+  }
+
+  // Verificar si el elemento es scrolleable o está dentro de uno
+  function isInsideScrollableElement(element) {
+    let current = element;
+    while (current && current !== gallery) {
+      if (current.classList && current.classList.contains('polaroid-content')) {
+        return hasVerticalScroll(current) ? current : null;
+      }
+      current = current.parentElement;
+    }
+    return null;
+  }
+
+  // Verificar si el toque es dentro de una card
+  function isInsideCard(element) {
+    let current = element;
+    while (current && current !== gallery) {
+      if (current.classList && (current.classList.contains('polaroid-card') || current.classList.contains('center-text-item'))) {
+        return true;
+      }
+      current = current.parentElement;
+    }
+    return false;
+  }
+
+  // TOUCH/MOUSE START
+  function handleStart(e) {
+    const touch = e.type.includes('mouse') ? e : e.touches[0];
+    startX = touch.pageX;
+    startY = touch.pageY;
+    
+    // Pausar animación cuando se toca una card
+    if (isInsideCard(e.target)) {
+      pauseAnimation(5000); // Pausar por 3 segundos
+    }
+    
+    // Detectar si el toque es dentro de un elemento scrolleable
+    targetElement = isInsideScrollableElement(e.target);
+    
+    // Guardar la posición actual del scroll
+    const transform = gallery.style.transform;
+    const matrix = new DOMMatrix(transform);
+    scrollLeft = matrix.m41;
+    
+    isHorizontalScroll = false;
+    isVerticalScroll = false;
+    isDragging = false;
+  }
+
+  // TOUCH/MOUSE MOVE
+  function handleMove(e) {
+    // Si ya determinamos que es scroll vertical, no hacer nada más
+    if (isVerticalScroll) return;
+    
+    if (!isDragging && !isHorizontalScroll) {
+      const touch = e.type.includes('mouse') ? e : e.touches[0];
+      const x = touch.pageX;
+      const y = touch.pageY;
+      
+      const deltaX = Math.abs(x - startX);
+      const deltaY = Math.abs(y - startY);
+      
+      // Esperar un movimiento mínimo para determinar dirección
+      if (deltaX < 5 && deltaY < 5) {
+        return;
+      }
+      
+      // Si estamos dentro de un elemento scrolleable y el movimiento es vertical
+      if (targetElement && deltaY > deltaX) {
+        // Permitir scroll vertical dentro del elemento
+        isVerticalScroll = true;
+        return;
+      }
+      
+      // Si el movimiento es más horizontal que vertical
+      if (deltaX > deltaY) {
+        isDragging = true;
+        isHorizontalScroll = true;
+        gallery.style.cursor = 'grabbing';
+        
+        // Solo prevenir si podemos
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+      } else {
+        // Es scroll vertical de la página
+        isVerticalScroll = true;
+        return;
+      }
+    }
+    
+    if (!isDragging) return;
+    
+    // Solo prevenir default si el evento es cancelable
+    if (e.cancelable) {
+      e.preventDefault();
+    }
+    
+    const touch = e.type.includes('mouse') ? e : e.touches[0];
+    const x = touch.pageX;
+    const walk = x - startX;
+    
+    // Aplicar movimiento
+    currentX = scrollLeft + walk;
+    gallery.style.transform = `translateX(${currentX}px)`;
+    checkBounds();
+  }
+
+  // TOUCH/MOUSE END
+  function handleEnd() {
+    isDragging = false;
+    isHorizontalScroll = false;
+    isVerticalScroll = false;
+    targetElement = null;
+    gallery.style.cursor = 'grab';
+    
+    checkBounds();
+  }
+
+  // Verificar límites para loop infinito
+  function checkBounds() {
+    // Si nos pasamos del final, volver al inicio
+    if (currentX <= -galleryWidth) {
+      currentX += galleryWidth;
+      gallery.style.transform = `translateX(${currentX}px)`;
+    }
+    
+    // Si retrocedemos más allá del inicio, ir al final
+    if (currentX > 0) {
+      currentX -= galleryWidth;
+      gallery.style.transform = `translateX(${currentX}px)`;
+    }
+  }
+
+  // Event Listeners - TOUCH
+  gallery.addEventListener('touchstart', handleStart, { passive: true });
+  gallery.addEventListener('touchmove', handleMove, { passive: false });
+  gallery.addEventListener('touchend', handleEnd, { passive: true });
+  gallery.addEventListener('touchcancel', handleEnd, { passive: true });
+
+  // Event Listeners - MOUSE
+  gallery.addEventListener('mousedown', handleStart);
+  gallery.addEventListener('mousemove', handleMove);
+  gallery.addEventListener('mouseup', handleEnd);
+  gallery.addEventListener('mouseleave', handleEnd);
+
+  // Prevenir selección de texto solo en elementos no scrolleables
+  gallery.style.cursor = 'grab';
+  gallery.addEventListener('dragstart', (e) => {
+    if (!isInsideScrollableElement(e.target)) {
+      e.preventDefault();
+    }
+  });
+  
+  // Cleanup
+  return () => {
+    cancelAnimationFrame(animationFrame);
+    if (pauseTimeout) {
+      clearTimeout(pauseTimeout);
+    }
+  };
+}
+
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', initExperiencesCarousel);
+
+// Re-ejecutar si se cambia el tamaño de ventana
+let resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    location.reload();
+  }, 250);
+});
     </script>
   </body>
 </html>
