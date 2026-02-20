@@ -1412,187 +1412,80 @@
         }
       }
 
-      @media (max-width: 768px) {
-        main {
-          padding: 7.5rem 1.25rem 3.75rem;
-        }
+    /* ==========================================
+   RESPONSIVE MÓVIL - PHOTO STACK
+   ========================================== */
 
-        .hero-header {
-          margin-bottom: 3rem;
-        }
+@media (max-width: 768px) {
+  main {
+    padding: 7.5rem 1.25rem 3.75rem;
+  }
 
-        /* Stack móvil: sin overflow, se ve completo */
-        .hero-photo-stack {
-          height: auto;
-          min-height: 22rem;
-          cursor: pointer;
-          /* Transición suave al expandirse */
-          transition: min-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
+  .hero-header {
+    margin-bottom: 3rem;
+  }
 
-        /* Posición base móvil: offsets reducidos */
-        .photo-layer-3 {
-          transform: rotate(-5deg) translate(-30px, 15px);
-        }
+  /* El stack en móvil: altura fija base */
+  .hero-photo-stack {
+    height: 22rem;
+    cursor: pointer;
+    /* Sin transition CSS — GSAP lo controla todo */
+  }
 
-        .photo-layer-2 {
-          transform: rotate(2deg) translate(20px, -5px);
-        }
+  /* Posición base móvil: GSAP setea esto al init */
+  /* NO pongas transform acá, GSAP los maneja */
 
-        .photo-layer-1 {
-          transform: rotate(-1deg) translate(-10px, 5px);
-        }
+  /* Desactivar hover desktop en móvil */
+  .hero-photo-stack:hover .photo-layer-3,
+  .hero-photo-stack:hover .photo-layer-2,
+  .hero-photo-stack:hover .photo-layer-1 {
+    transform: none; /* GSAP lo sobreescribe */
+  }
 
-        /* Desactivar hover desktop en móvil */
-        .hero-photo-stack:not(.expanded):hover .photo-layer-3 {
-          transform: rotate(-5deg) translate(-30px, 15px);
-        }
+  /* Hint visual */
+  .hero-photo-stack::after {
+    content: "Toca para ver las fotos";
+    position: absolute;
+    bottom: -1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(5, 40, 87, 0.45);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+    font-family: var(--font-primary);
+    transition: opacity 0.3s ease;
+  }
 
-        .hero-photo-stack:not(.expanded):hover .photo-layer-2 {
-          transform: rotate(2deg) translate(20px, -5px);
-        }
+  .hero-photo-stack.expanded::after {
+    content: "Toca para cerrar";
+  }
 
-        .hero-photo-stack:not(.expanded):hover .photo-layer-1 {
-          transform: rotate(-1deg) translate(-10px, 5px);
-        }
+  .hero-quote-card { padding: 2rem 1.5rem; }
+  .mini-card-photo { height: 200px; }
 
-        /* Estado expandido: fotos en columna vertical */
-        .hero-photo-stack.expanded {
-          min-height: 62rem;
-        }
+  .polaroid-stack-card {
+    height: auto;
+    min-height: 18rem;
+  }
 
-        .hero-photo-stack.expanded .photo-layer-3 {
-          transform: rotate(0deg) translate(0px, -320px);
-          z-index: 1;
-          opacity: 1;
-          transition-delay: 0.2s;
-        }
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.625rem;
+  }
+}
 
-        .hero-photo-stack.expanded .photo-layer-2 {
-          transform: rotate(0deg) translate(0px, 0px);
-          z-index: 2;
-          opacity: 1;
-          transition-delay: 0.07s;
-        }
-
-        .hero-photo-stack.expanded .photo-layer-1 {
-          transform: rotate(0deg) translate(0px, 320px);
-          z-index: 3;
-          transition-delay: 0s;
-        }
-
-        /* Hint visual */
-        .hero-photo-stack::after {
-          content: "Toca para ver las fotos";
-          position: absolute;
-          bottom: -1.75rem;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.75rem;
-          font-weight: 500;
-          color: rgba(5, 40, 87, 0.45);
-          letter-spacing: 0.05em;
-          white-space: nowrap;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
-          font-family: var(--font-primary);
-        }
-
-        .hero-photo-stack.expanded::after {
-          content: "Toca para cerrar";
-        }
-
-        /* Quote card */
-        .hero-quote-card {
-          padding: 2rem 1.5rem;
-        }
-
-        /* Mini cards */
-        .mini-card-photo {
-          height: 200px;
-        }
-
-        /* Polaroid stack */
-        .polaroid-stack-card {
-          height: auto;
-          min-height: 18rem;
-        }
-
-        .polaroid-1 {
-          transform: rotate(-5deg) translate(-20px, -10px);
-        }
-
-        .polaroid-2 {
-          transform: rotate(3deg) translate(8px, 8px);
-        }
-
-        .polaroid-3 {
-          transform: rotate(-2deg) translate(28px, -6px);
-        }
-
-        .polaroid-stack-card:hover .polaroid-1 {
-          transform: rotate(-8deg) translate(-35px, -18px);
-        }
-
-        .polaroid-stack-card:hover .polaroid-2 {
-          transform: rotate(6deg) translate(10px, 10px) scale(1.04);
-        }
-
-        .polaroid-stack-card:hover .polaroid-3 {
-          transform: rotate(-4deg) translate(42px, -10px);
-        }
-
-        .stats-grid {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0.625rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        main {
-          padding: 7.5rem 1rem 2.5rem;
-        }
-
-        .hero-header {
-          margin-bottom: 2rem;
-        }
-
-        .hero-photo-stack {
-          min-height: 20rem;
-        }
-
-        .hero-photo-stack.expanded {
-          min-height: 56rem;
-        }
-
-        .hero-photo-stack.expanded .photo-layer-3 {
-          transform: rotate(0deg) translate(0px, -280px);
-        }
-
-        .hero-photo-stack.expanded .photo-layer-2 {
-          transform: rotate(0deg) translate(0px, 0px);
-        }
-
-        .hero-photo-stack.expanded .photo-layer-1 {
-          transform: rotate(0deg) translate(0px, 280px);
-        }
-
-        .hero-quote-card {
-          padding: 1.875rem 1.5rem;
-        }
-
-        .stats-grid {
-          gap: 0.5rem;
-        }
-
-        .stat-item {
-          padding: 0.625rem;
-        }
-
-        .polaroid-stack-card {
-          min-height: 15rem;
-        }
-      }
+@media (max-width: 480px) {
+  main { padding: 7.5rem 1rem 2.5rem; }
+  .hero-header { margin-bottom: 2rem; }
+  .hero-photo-stack { height: 20rem; }
+  .hero-quote-card { padding: 1.875rem 1.5rem; }
+  .stats-grid { gap: 0.5rem; }
+  .stat-item { padding: 0.625rem; }
+  .polaroid-stack-card { min-height: 15rem; }
+}
       /* ==========================================
    EXPERIENCES SECTION - POLAROID GALLERY
    ========================================== */
@@ -5528,19 +5421,111 @@
       document.addEventListener("click", () => select.classList.remove("open"));
     }
 
-    // --- 7. HERO PHOTO STACK (Responsive) ---
-    const stack = document.querySelector(".hero-photo-stack");
-    if (stack) {
-      const isMobile = () => window.innerWidth <= 768;
+    // --- 7. HERO PHOTO STACK (GSAP en móvil) ---
+const stack = document.querySelector(".hero-photo-stack");
+if (stack) {
+  const layer1 = stack.querySelector(".photo-layer-1");
+  const layer2 = stack.querySelector(".photo-layer-2");
+  const layer3 = stack.querySelector(".photo-layer-3");
 
-      stack.addEventListener("click", () => {
-        if (isMobile()) stack.classList.toggle("expanded");
-      });
+  const isMobile = () => window.innerWidth <= 768;
+  const isSmall  = () => window.innerWidth <= 480;
+  let isExpanded = false;
+  let stackTl = null; // timeline reutilizable
 
-      window.addEventListener("resize", () => {
-        if (!isMobile()) stack.classList.remove("expanded");
-      });
+  // Setea posición base según pantalla
+  function setBasePositions() {
+    if (isMobile()) {
+      gsap.set(layer3, { rotation: -5,  x: -30, y: 15, zIndex: 1, opacity: 0.9 });
+      gsap.set(layer2, { rotation:  2,  x:  20, y: -5, zIndex: 2, opacity: 0.95 });
+      gsap.set(layer1, { rotation: -1,  x: -10, y:  5, zIndex: 3, opacity: 1 });
+    } else {
+      gsap.set(layer3, { rotation: -8,  x: -60, y: 20, zIndex: 1, opacity: 0.9 });
+      gsap.set(layer2, { rotation:  3,  x:  40, y:-10, zIndex: 2, opacity: 0.95 });
+      gsap.set(layer1, { rotation: -2,  x: -20, y: 10, zIndex: 3, opacity: 1 });
     }
+  }
+
+  function expandStack() {
+    const offset = isSmall() ? 280 : 320;
+    isExpanded = true;
+    stack.classList.add("expanded");
+
+    // Matar timeline anterior si existe
+    if (stackTl) stackTl.kill();
+
+    // Expandir altura del stack con GSAP
+    gsap.to(stack, {
+      height: offset * 2 + 180,
+      duration: 0.5,
+      ease: "power3.out"
+    });
+
+    stackTl = gsap.timeline();
+    stackTl
+      .to(layer2, {
+        rotation: 0, x: 0, y: 0,
+        duration: 0.45, ease: "back.out(1.4)"
+      }, 0)
+      .to(layer3, {
+        rotation: 0, x: 0, y: -offset,
+        duration: 0.45, ease: "back.out(1.4)"
+      }, 0.07)
+      .to(layer1, {
+        rotation: 0, x: 0, y: offset,
+        duration: 0.45, ease: "back.out(1.4)"
+      }, 0.14);
+  }
+
+  function collapseStack() {
+    isExpanded = false;
+    stack.classList.remove("expanded");
+
+    if (stackTl) stackTl.kill();
+
+    // Volver altura original
+    gsap.to(stack, {
+      height: isMobile() ? (isSmall() ? "20rem" : "22rem") : "34.375rem",
+      duration: 0.4,
+      ease: "power2.inOut"
+    });
+
+    stackTl = gsap.timeline({ onComplete: setBasePositions });
+    stackTl
+      .to(layer1, {
+        rotation: -1, x: -10, y:  5,
+        duration: 0.35, ease: "power2.inOut"
+      }, 0)
+      .to(layer2, {
+        rotation:  2, x:  20, y: -5,
+        duration: 0.35, ease: "power2.inOut"
+      }, 0.04)
+      .to(layer3, {
+        rotation: -5, x: -30, y: 15,
+        duration: 0.35, ease: "power2.inOut"
+      }, 0.08);
+  }
+
+  // Init
+  setBasePositions();
+
+  // Click solo en móvil
+  stack.addEventListener("click", () => {
+    if (!isMobile()) return;
+    isExpanded ? collapseStack() : expandStack();
+  });
+
+  // Reset al cambiar tamaño
+  window.addEventListener("resize", () => {
+    if (!isMobile()) {
+      if (stackTl) stackTl.kill();
+      stack.classList.remove("expanded");
+      isExpanded = false;
+      setBasePositions();
+      gsap.set(stack, { height: "34.375rem" });
+    }
+  });
+}
 
   }); // fin DOMContentLoaded
 </script>
