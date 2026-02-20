@@ -5432,14 +5432,14 @@ if (stack) {
     }
   }
 
-  // --- Desktop: hover open ---
+  // --- Desktop: hover open --- cada capa con ease y duración distinta
   function desktopOpen() {
     if (stackTl) stackTl.kill();
     stackTl = gsap.timeline();
     stackTl
-      .to(layer3, { rotation: -15, x: -120, y: 40,  duration: 0.45, ease: "power3.out" }, 0)
-      .to(layer2, { rotation:   8, x:   90, y: -20, duration: 0.45, ease: "power3.out" }, 0)
-      .to(layer1, { rotation:  -1, x:  -30, y:   5, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0);
+      .to(layer3, { rotation: -15, x: -120, y: 40,            duration: 0.9,  ease: "power1.out" }, 0)
+      .to(layer2, { rotation:   8, x:   90, y: -20,           duration: 1.0,  ease: "power1.out" }, 0.12)
+      .to(layer1, { rotation:  -1, x:  -30, y:   5, scale: 1.02, duration: 1.1, ease: "power1.out" }, 0.24);
   }
 
   // --- Desktop: hover close ---
@@ -5447,25 +5447,25 @@ if (stack) {
     if (stackTl) stackTl.kill();
     stackTl = gsap.timeline();
     stackTl
-      .to(layer3, { rotation: -8, x: -60, y:  20, scale: 1,    duration: 0.4, ease: "power2.inOut" }, 0)
-      .to(layer2, { rotation:  3, x:  40, y: -10, scale: 1,    duration: 0.4, ease: "power2.inOut" }, 0)
-      .to(layer1, { rotation: -2, x: -20, y:  10, scale: 1,    duration: 0.4, ease: "power2.inOut" }, 0);
+      .to(layer1, { rotation: -2, x: -20, y:  10, scale: 1, duration: 0.9,  ease: "power1.inOut" }, 0)
+      .to(layer2, { rotation:  3, x:  40, y: -10, scale: 1, duration: 1.0,  ease: "power1.inOut" }, 0.10)
+      .to(layer3, { rotation: -8, x: -60, y:  20, scale: 1, duration: 1.1,  ease: "power1.inOut" }, 0.20);
   }
 
   // --- Móvil: expandir en columna ---
   function expandStack() {
-    const offset = isSmall() ? 280 : 320;
+    const offset = isSmall() ? 290 : 330;
     isExpanded = true;
     stack.classList.add("expanded");
     if (stackTl) stackTl.kill();
 
-    gsap.to(stack, { height: offset * 2 + 180, duration: 0.5, ease: "power3.out" });
+    gsap.to(stack, { height: offset * 2 + 180, duration: 1.2, ease: "power1.out" });
 
     stackTl = gsap.timeline();
     stackTl
-      .to(layer2, { rotation: 0, x: 0, y:       0, duration: 0.45, ease: "back.out(1.4)" }, 0)
-      .to(layer3, { rotation: 0, x: 0, y: -offset, duration: 0.45, ease: "back.out(1.4)" }, 0.07)
-      .to(layer1, { rotation: 0, x: 0, y:  offset, duration: 0.45, ease: "back.out(1.4)" }, 0.14);
+      .to(layer2, { rotation: 0, x: 0, y:        0, duration: 0.9,  ease: "power1.out" }, 0)
+      .to(layer3, { rotation: 0, x: 0, y: -offset,  duration: 1.0,  ease: "power1.out" }, 0.15)
+      .to(layer1, { rotation: 0, x: 0, y:  offset,  duration: 1.1,  ease: "power1.out" }, 0.30);
   }
 
   // --- Móvil: colapsar ---
@@ -5476,15 +5476,15 @@ if (stack) {
 
     gsap.to(stack, {
       height: isSmall() ? "20rem" : "22rem",
-      duration: 0.4,
-      ease: "power2.inOut"
+      duration: 1.0,
+      ease: "power1.inOut"
     });
 
     stackTl = gsap.timeline({ onComplete: setBasePositions });
     stackTl
-      .to(layer1, { rotation: -1, x: -10, y:   5, duration: 0.4, ease: "power2.inOut" }, 0)
-      .to(layer2, { rotation:  2, x:  20, y:  -5, duration: 0.4, ease: "power2.inOut" }, 0.04)
-      .to(layer3, { rotation: -5, x: -30, y:  15, duration: 0.4, ease: "power2.inOut" }, 0.08);
+      .to(layer1, { rotation: -1, x: -10, y:   5, duration: 0.9,  ease: "power1.inOut" }, 0)
+      .to(layer2, { rotation:  2, x:  20, y:  -5, duration: 1.0,  ease: "power1.inOut" }, 0.12)
+      .to(layer3, { rotation: -5, x: -30, y:  15, duration: 1.1,  ease: "power1.inOut" }, 0.24);
   }
 
   // --- Init ---
@@ -5504,19 +5504,6 @@ if (stack) {
     if (!isMobile()) return;
     isExpanded ? collapseStack() : expandStack();
   });
-
-  // --- Colapsar suave al salir del viewport (scroll) ---
-  const stackObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting && isExpanded) {
-          collapseStack();
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  stackObserver.observe(stack);
 
   // --- Reset al resize ---
   window.addEventListener("resize", () => {
@@ -5552,14 +5539,14 @@ if (polaroidCard) {
     }
   }
 
-  // --- Desktop: hover open ---
+  // --- Desktop: hover open --- cada polaroid con timing distinto
   function polaroidOpen() {
     if (polaroidTl) polaroidTl.kill();
     polaroidTl = gsap.timeline();
     polaroidTl
-      .to(p1, { rotation: -12, x: -50, y: -30, scale: 1,    duration: 0.45, ease: "power3.out" }, 0)
-      .to(p2, { rotation:   8, x:  15, y:  15, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0.07)
-      .to(p3, { rotation:  -5, x:  60, y: -15, scale: 1,    duration: 0.45, ease: "power3.out" }, 0.14);
+      .to(p1, { rotation: -12, x: -55, y: -35, scale: 1,    duration: 0.9,  ease: "power1.out" }, 0)
+      .to(p2, { rotation:   8, x:  18, y:  18, scale: 1.02, duration: 1.0,  ease: "power1.out" }, 0.10)
+      .to(p3, { rotation:  -5, x:  65, y: -18, scale: 1,    duration: 1.1,  ease: "power1.out" }, 0.20);
   }
 
   // --- Desktop: hover close ---
@@ -5567,9 +5554,9 @@ if (polaroidCard) {
     if (polaroidTl) polaroidTl.kill();
     polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
     polaroidTl
-      .to(p1, { rotation: -8, x: -30, y: -20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-      .to(p2, { rotation:  5, x:  10, y:  10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.04)
-      .to(p3, { rotation: -3, x:  40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.08);
+      .to(p2, { rotation:  5, x:  10, y:  10, scale: 1, duration: 0.9,  ease: "power1.inOut" }, 0)
+      .to(p1, { rotation: -8, x: -30, y: -20, scale: 1, duration: 1.0,  ease: "power1.inOut" }, 0.10)
+      .to(p3, { rotation: -3, x:  40, y: -10, scale: 1, duration: 1.1,  ease: "power1.inOut" }, 0.20);
   }
 
   // --- Móvil: expandir en columna vertical ---
@@ -5577,16 +5564,16 @@ if (polaroidCard) {
     polaroidExpanded = true;
     if (polaroidTl) polaroidTl.kill();
 
-    const offset = window.innerWidth <= 480 ? 230 : 270;
-    const offset3 = window.innerWidth <= 480 ? 160 : 190;
+    const offset  = window.innerWidth <= 480 ? 220 : 255;
+    const offset3 = window.innerWidth <= 480 ? 215 : 250;
 
-    gsap.to(polaroidCard, { height: offset * 2 + 120, duration: 1.1, ease: "power1.out" });
+    gsap.to(polaroidCard, { height: offset * 2 + 140, duration: 1.2, ease: "power1.out" });
 
     polaroidTl = gsap.timeline();
     polaroidTl
-      .to(p2, { rotation: 0, x: 0, y:       0, duration: 0.9, ease: "power1.out" }, 0)
-      .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.9, ease: "power1.out" }, 0.15)
-      .to(p3, { rotation: 0, x: 0, y:  offset3, duration: 0.9, ease: "power1.out" }, 0.30);
+      .to(p2, { rotation: 0, x: 0, y:        0, duration: 0.9,  ease: "power1.out" }, 0)
+      .to(p1, { rotation: 0, x: 0, y: -offset,  duration: 1.0,  ease: "power1.out" }, 0.15)
+      .to(p3, { rotation: 0, x: 0, y:  offset3, duration: 1.1,  ease: "power1.out" }, 0.30);
   }
 
   // --- Móvil: colapsar ---
@@ -5595,13 +5582,13 @@ if (polaroidCard) {
     if (polaroidTl) polaroidTl.kill();
 
     const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
-    gsap.to(polaroidCard, { height: baseHeight, duration: 0.9, ease: "power1.inOut" });
+    gsap.to(polaroidCard, { height: baseHeight, duration: 1.0, ease: "power1.inOut" });
 
     polaroidTl = gsap.timeline();
     polaroidTl
-      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.8, ease: "power1.inOut" }, 0)
-      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.8, ease: "power1.inOut" }, 0.15)
-      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.8, ease: "power1.inOut" }, 0.30);
+      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.9,  ease: "power1.inOut" }, 0)
+      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 1.0,  ease: "power1.inOut" }, 0.15)
+      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 1.1,  ease: "power1.inOut" }, 0.30);
   }
 
   // --- Init ---
