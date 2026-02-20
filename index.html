@@ -5544,6 +5544,19 @@ if (stack) {
     isExpanded ? collapseStack() : expandStack();
   });
 
+  // --- Colapsar suave al salir del viewport (scroll) ---
+  const stackObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && isExpanded) {
+          collapseStack();
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  stackObserver.observe(stack);
+
   // --- Reset al resize ---
   window.addEventListener("resize", () => {
     if (stackTl) stackTl.kill();
@@ -5603,16 +5616,16 @@ if (polaroidCard) {
     polaroidExpanded = true;
     if (polaroidTl) polaroidTl.kill();
 
-    const offset = window.innerWidth <= 480 ? 200 : 240;
-    const offset3 = window.innerWidth <= 480 ? 140 : 170;
+    const offset = window.innerWidth <= 480 ? 230 : 270;
+    const offset3 = window.innerWidth <= 480 ? 160 : 190;
 
-    gsap.to(polaroidCard, { height: offset * 2 + 100, duration: 0.9, ease: "power2.out" });
+    gsap.to(polaroidCard, { height: offset * 2 + 120, duration: 1.1, ease: "power1.out" });
 
     polaroidTl = gsap.timeline();
     polaroidTl
-      .to(p2, { rotation: 0, x: 0, y:       0, duration: 0.7, ease: "power2.out" }, 0)
-      .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.7, ease: "power2.out" }, 0.12)
-      .to(p3, { rotation: 0, x: 0, y:  offset3, duration: 0.7, ease: "power2.out" }, 0.24);
+      .to(p2, { rotation: 0, x: 0, y:       0, duration: 0.9, ease: "power1.out" }, 0)
+      .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.9, ease: "power1.out" }, 0.15)
+      .to(p3, { rotation: 0, x: 0, y:  offset3, duration: 0.9, ease: "power1.out" }, 0.30);
   }
 
   // --- Móvil: colapsar ---
@@ -5621,13 +5634,13 @@ if (polaroidCard) {
     if (polaroidTl) polaroidTl.kill();
 
     const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
-    gsap.to(polaroidCard, { height: baseHeight, duration: 0.7, ease: "power2.inOut" });
+    gsap.to(polaroidCard, { height: baseHeight, duration: 0.9, ease: "power1.inOut" });
 
     polaroidTl = gsap.timeline();
     polaroidTl
-      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.6, ease: "power2.inOut" }, 0)
-      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.6, ease: "power2.inOut" }, 0.12)
-      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.6, ease: "power2.inOut" }, 0.24);
+      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.8, ease: "power1.inOut" }, 0)
+      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.8, ease: "power1.inOut" }, 0.15)
+      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.8, ease: "power1.inOut" }, 0.30);
   }
 
   // --- Init ---
