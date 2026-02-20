@@ -5605,13 +5605,13 @@ if (polaroidCard) {
 
     const offset = window.innerWidth <= 480 ? 220 : 260;
 
-    gsap.to(polaroidCard, { height: offset * 2 + 100, duration: 0.5, ease: "power3.out" });
+    gsap.to(polaroidCard, { height: offset * 2 + 100, duration: 0.9, ease: "power3.out" });
 
     polaroidTl = gsap.timeline();
     polaroidTl
       .to(p2, { rotation: 0, x: 0, y:       0, duration: 0.7, ease: "power3.out" }, 0)
-      .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.7, ease: "power3.out" }, 0.15)
-      .to(p3, { rotation: 0, x: 0, y:  offset, duration: 0.7, ease: "power3.out" }, 0.30);
+      .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.7, ease: "power3.out" }, 0.10)
+      .to(p3, { rotation: 0, x: 0, y:  offset, duration: 0.7, ease: "power3.out" }, 0.20);
   }
 
   // --- Móvil: colapsar ---
@@ -5620,13 +5620,13 @@ if (polaroidCard) {
     if (polaroidTl) polaroidTl.kill();
 
     const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
-    gsap.to(polaroidCard, { height: baseHeight, duration: 0.4, ease: "power2.inOut" });
+    gsap.to(polaroidCard, { height: baseHeight, duration: 0.6, ease: "power3.inOut" });
 
-    polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
+    polaroidTl = gsap.timeline();
     polaroidTl
-      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.04)
-      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.08);
+      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.65, ease: "power2.inOut" }, 0)
+      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.65, ease: "power2.inOut" }, 0)
+      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.8,  ease: "power1.inOut" }, 0);
   }
 
   // --- Init ---
