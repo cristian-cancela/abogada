@@ -760,7 +760,7 @@
         width: 100%;
       }
 
-      /* ==========================================
+     /* ==========================================
    HERO - HEADER
    ========================================== */
 
@@ -1469,6 +1469,31 @@
   .polaroid-stack-card {
     height: auto;
     min-height: 18rem;
+    cursor: pointer;
+  }
+
+  /* Desactivar hover desktop en móvil para polaroid */
+  .polaroid-stack-card:hover .polaroid-1,
+  .polaroid-stack-card:hover .polaroid-2,
+  .polaroid-stack-card:hover .polaroid-3 {
+    transform: none; /* GSAP lo sobreescribe */
+  }
+
+  /* Hint visual polaroid */
+  .polaroid-stack-card::after {
+    content: "Toca para ver las fotos";
+    position: absolute;
+    bottom: -1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(5, 40, 87, 0.45);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+    font-family: var(--font-primary);
+    transition: opacity 0.3s ease;
   }
 
   .stats-grid {
@@ -5421,7 +5446,7 @@
       document.addEventListener("click", () => select.classList.remove("open"));
     }
 
-    // --- 7. HERO PHOTO STACK (GSAP en móvil) ---
+  // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
 const stack = document.querySelector(".hero-photo-stack");
 if (stack) {
   const layer1 = stack.querySelector(".photo-layer-1");
@@ -5431,102 +5456,205 @@ if (stack) {
   const isMobile = () => window.innerWidth <= 768;
   const isSmall  = () => window.innerWidth <= 480;
   let isExpanded = false;
-  let stackTl = null; // timeline reutilizable
+  let stackTl = null;
 
-  // Setea posición base según pantalla
+  // --- Posiciones base ---
   function setBasePositions() {
     if (isMobile()) {
-      gsap.set(layer3, { rotation: -5,  x: -30, y: 15, zIndex: 1, opacity: 0.9 });
-      gsap.set(layer2, { rotation:  2,  x:  20, y: -5, zIndex: 2, opacity: 0.95 });
-      gsap.set(layer1, { rotation: -1,  x: -10, y:  5, zIndex: 3, opacity: 1 });
+      gsap.set(layer3, { rotation: -5, x: -30, y:  15, zIndex: 1, opacity: 0.9  });
+      gsap.set(layer2, { rotation:  2, x:  20, y:  -5, zIndex: 2, opacity: 0.95 });
+      gsap.set(layer1, { rotation: -1, x: -10, y:   5, zIndex: 3, opacity: 1    });
     } else {
-      gsap.set(layer3, { rotation: -8,  x: -60, y: 20, zIndex: 1, opacity: 0.9 });
-      gsap.set(layer2, { rotation:  3,  x:  40, y:-10, zIndex: 2, opacity: 0.95 });
-      gsap.set(layer1, { rotation: -2,  x: -20, y: 10, zIndex: 3, opacity: 1 });
+      gsap.set(layer3, { rotation: -8, x: -60, y:  20, zIndex: 1, opacity: 0.9  });
+      gsap.set(layer2, { rotation:  3, x:  40, y: -10, zIndex: 2, opacity: 0.95 });
+      gsap.set(layer1, { rotation: -2, x: -20, y:  10, zIndex: 3, opacity: 1    });
     }
   }
 
+  // --- Desktop: hover open ---
+  function desktopOpen() {
+    if (stackTl) stackTl.kill();
+    stackTl = gsap.timeline();
+    stackTl
+      .to(layer3, { rotation: -15, x: -120, y: 40,  duration: 0.45, ease: "power3.out" }, 0)
+      .to(layer2, { rotation:   8, x:   90, y: -20, duration: 0.45, ease: "power3.out" }, 0)
+      .to(layer1, { rotation:  -1, x:  -30, y:   5, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0);
+  }
+
+  // --- Desktop: hover close ---
+  function desktopClose() {
+    if (stackTl) stackTl.kill();
+    stackTl = gsap.timeline();
+    stackTl
+      .to(layer3, { rotation: -8, x: -60, y:  20, scale: 1,    duration: 0.4, ease: "power2.inOut" }, 0)
+      .to(layer2, { rotation:  3, x:  40, y: -10, scale: 1,    duration: 0.4, ease: "power2.inOut" }, 0)
+      .to(layer1, { rotation: -2, x: -20, y:  10, scale: 1,    duration: 0.4, ease: "power2.inOut" }, 0);
+  }
+
+  // --- Móvil: expandir en columna ---
   function expandStack() {
     const offset = isSmall() ? 280 : 320;
     isExpanded = true;
     stack.classList.add("expanded");
-
-    // Matar timeline anterior si existe
     if (stackTl) stackTl.kill();
 
-    // Expandir altura del stack con GSAP
-    gsap.to(stack, {
-      height: offset * 2 + 180,
-      duration: 0.5,
-      ease: "power3.out"
-    });
+    gsap.to(stack, { height: offset * 2 + 180, duration: 0.5, ease: "power3.out" });
 
     stackTl = gsap.timeline();
     stackTl
-      .to(layer2, {
-        rotation: 0, x: 0, y: 0,
-        duration: 0.45, ease: "back.out(1.4)"
-      }, 0)
-      .to(layer3, {
-        rotation: 0, x: 0, y: -offset,
-        duration: 0.45, ease: "back.out(1.4)"
-      }, 0.07)
-      .to(layer1, {
-        rotation: 0, x: 0, y: offset,
-        duration: 0.45, ease: "back.out(1.4)"
-      }, 0.14);
+      .to(layer2, { rotation: 0, x: 0, y:       0, duration: 0.45, ease: "back.out(1.4)" }, 0)
+      .to(layer3, { rotation: 0, x: 0, y: -offset, duration: 0.45, ease: "back.out(1.4)" }, 0.07)
+      .to(layer1, { rotation: 0, x: 0, y:  offset, duration: 0.45, ease: "back.out(1.4)" }, 0.14);
   }
 
+  // --- Móvil: colapsar ---
   function collapseStack() {
     isExpanded = false;
     stack.classList.remove("expanded");
-
     if (stackTl) stackTl.kill();
 
-    // Volver altura original
     gsap.to(stack, {
-      height: isMobile() ? (isSmall() ? "20rem" : "22rem") : "34.375rem",
+      height: isSmall() ? "20rem" : "22rem",
       duration: 0.4,
       ease: "power2.inOut"
     });
 
     stackTl = gsap.timeline({ onComplete: setBasePositions });
     stackTl
-      .to(layer1, {
-        rotation: -1, x: -10, y:  5,
-        duration: 0.35, ease: "power2.inOut"
-      }, 0)
-      .to(layer2, {
-        rotation:  2, x:  20, y: -5,
-        duration: 0.35, ease: "power2.inOut"
-      }, 0.04)
-      .to(layer3, {
-        rotation: -5, x: -30, y: 15,
-        duration: 0.35, ease: "power2.inOut"
-      }, 0.08);
+      .to(layer1, { rotation: -1, x: -10, y:   5, duration: 0.4, ease: "power2.inOut" }, 0)
+      .to(layer2, { rotation:  2, x:  20, y:  -5, duration: 0.4, ease: "power2.inOut" }, 0.04)
+      .to(layer3, { rotation: -5, x: -30, y:  15, duration: 0.4, ease: "power2.inOut" }, 0.08);
   }
 
-  // Init
+  // --- Init ---
   setBasePositions();
 
-  // Click solo en móvil
+  // --- Eventos desktop (hover con GSAP) ---
+  stack.addEventListener("mouseenter", () => {
+    if (!isMobile()) desktopOpen();
+  });
+
+  stack.addEventListener("mouseleave", () => {
+    if (!isMobile()) desktopClose();
+  });
+
+  // --- Eventos móvil (click) ---
   stack.addEventListener("click", () => {
     if (!isMobile()) return;
     isExpanded ? collapseStack() : expandStack();
   });
 
-  // Reset al cambiar tamaño
+  // --- Reset al resize ---
   window.addEventListener("resize", () => {
-    if (!isMobile()) {
-      if (stackTl) stackTl.kill();
-      stack.classList.remove("expanded");
-      isExpanded = false;
-      setBasePositions();
-      gsap.set(stack, { height: "34.375rem" });
-    }
+    if (stackTl) stackTl.kill();
+    stack.classList.remove("expanded");
+    isExpanded = false;
+    setBasePositions();
+    gsap.set(stack, { height: isMobile() ? (isSmall() ? "20rem" : "22rem") : "34.375rem" });
   });
 }
 
+// --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
+const polaroidCard = document.querySelector(".polaroid-stack-card");
+if (polaroidCard) {
+  const p1 = polaroidCard.querySelector(".polaroid-1");
+  const p2 = polaroidCard.querySelector(".polaroid-2");
+  const p3 = polaroidCard.querySelector(".polaroid-3");
+
+  const isMobile = () => window.innerWidth <= 768;
+  let polaroidTl = null;
+  let polaroidExpanded = false;
+
+  // --- Posiciones base ---
+  function setPolaroidBase() {
+    if (isMobile()) {
+      gsap.set(p1, { rotation: -5, x: -20, y: -10, zIndex: 1 });
+      gsap.set(p2, { rotation:  3, x:   8, y:   8, zIndex: 2 });
+      gsap.set(p3, { rotation: -2, x:  28, y:  -6, zIndex: 3 });
+    } else {
+      gsap.set(p1, { rotation: -8, x: -30, y: -20, zIndex: 1 });
+      gsap.set(p2, { rotation:  5, x:  10, y:  10, zIndex: 2 });
+      gsap.set(p3, { rotation: -3, x:  40, y: -10, zIndex: 3 });
+    }
+  }
+
+  // --- Desktop: hover open ---
+  function polaroidOpen() {
+    if (polaroidTl) polaroidTl.kill();
+    polaroidTl = gsap.timeline();
+    polaroidTl
+      .to(p1, { rotation: -12, x: -50, y: -30, scale: 1,    duration: 0.45, ease: "power3.out" }, 0)
+      .to(p2, { rotation:   8, x:  15, y:  15, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0.07)
+      .to(p3, { rotation:  -5, x:  60, y: -15, scale: 1,    duration: 0.45, ease: "power3.out" }, 0.14);
+  }
+
+  // --- Desktop: hover close ---
+  function polaroidClose() {
+    if (polaroidTl) polaroidTl.kill();
+    polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
+    polaroidTl
+      .to(p1, { rotation: -8, x: -30, y: -20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+      .to(p2, { rotation:  5, x:  10, y:  10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.04)
+      .to(p3, { rotation: -3, x:  40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.08);
+  }
+
+  // --- Móvil: expandir en columna vertical ---
+  function polaroidExpand() {
+    polaroidExpanded = true;
+    if (polaroidTl) polaroidTl.kill();
+
+    const offset = window.innerWidth <= 480 ? 220 : 260;
+
+    gsap.to(polaroidCard, { height: offset * 2 + 100, duration: 0.5, ease: "power3.out" });
+
+    polaroidTl = gsap.timeline();
+    polaroidTl
+      .to(p2, { rotation: 0, x: 0, y:       0, duration: 0.7, ease: "power3.out" }, 0)
+      .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.7, ease: "power3.out" }, 0.15)
+      .to(p3, { rotation: 0, x: 0, y:  offset, duration: 0.7, ease: "power3.out" }, 0.30);
+  }
+
+  // --- Móvil: colapsar ---
+  function polaroidCollapse() {
+    polaroidExpanded = false;
+    if (polaroidTl) polaroidTl.kill();
+
+    const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
+    gsap.to(polaroidCard, { height: baseHeight, duration: 0.4, ease: "power2.inOut" });
+
+    polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
+    polaroidTl
+      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.04)
+      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0.08);
+  }
+
+  // --- Init ---
+  setPolaroidBase();
+
+  // --- Eventos desktop ---
+  polaroidCard.addEventListener("mouseenter", () => {
+    if (!isMobile()) polaroidOpen();
+  });
+
+  polaroidCard.addEventListener("mouseleave", () => {
+    if (!isMobile()) polaroidClose();
+  });
+
+  // --- Eventos móvil ---
+  polaroidCard.addEventListener("click", () => {
+    if (!isMobile()) return;
+    polaroidExpanded ? polaroidCollapse() : polaroidExpand();
+  });
+
+  // --- Reset al resize ---
+  window.addEventListener("resize", () => {
+    if (polaroidTl) polaroidTl.kill();
+    polaroidExpanded = false;
+    setPolaroidBase();
+    gsap.set(polaroidCard, { height: isMobile() ? (window.innerWidth <= 480 ? "15rem" : "18rem") : "25rem" });
+  });
+}
   }); // fin DOMContentLoaded
 </script>
   </body>
