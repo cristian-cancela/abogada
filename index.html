@@ -5544,19 +5544,6 @@ if (stack) {
     isExpanded ? collapseStack() : expandStack();
   });
 
-  // --- Colapsar suave al salir del viewport (scroll) ---
-  const stackObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting && isExpanded) {
-          collapseStack();
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-  stackObserver.observe(stack);
-
   // --- Reset al resize ---
   window.addEventListener("resize", () => {
     if (stackTl) stackTl.kill();
