@@ -5462,38 +5462,37 @@ document.addEventListener("DOMContentLoaded", () => {
         .to(layer1, { rotation: -2, x: -20, y:  10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
     }
 
-    function expandStack() {
-      const offset = isSmall() ? 280 : 320;
-      isExpanded = true;
-      stack.classList.add("expanded");
-      if (stackTl) stackTl.kill();
+  function expandStack() {
+    const offset = isSmall() ? 290 : 330;
+    isExpanded = true;
+    stack.classList.add("expanded");
+    if (stackTl) stackTl.kill();
 
-      gsap.to(stack, { height: offset * 2 + 180, duration: 0.5, ease: "power3.out" });
+    gsap.to(stack, { height: offset * 2 + 180, duration: 0.7, ease: "power2.out" });
 
-      stackTl = gsap.timeline();
-      stackTl
-        .to(layer2, { rotation: 0, x: 0, y:       0, duration: 0.5, ease: "power3.out" }, 0)
-        .to(layer3, { rotation: 0, x: 0, y: -offset, duration: 0.5, ease: "power3.out" }, 0.07)
-        .to(layer1, { rotation: 0, x: 0, y:  offset, duration: 0.5, ease: "power3.out" }, 0.14);
-    }
+    stackTl = gsap.timeline();
+    stackTl
+      .to(layer2, { rotation: 0, x: 0, y:       0, duration: 0.6, ease: "power2.out" }, 0)
+      .to(layer3, { rotation: 0, x: 0, y: -offset, duration: 0.65, ease: "power2.out" }, 0.1)
+      .to(layer1, { rotation: 0, x: 0, y:  offset, duration: 0.7,  ease: "power2.out" }, 0.2);
+  }
 
-    function collapseStack() {
-      isExpanded = false;
-      stack.classList.remove("expanded");
-      if (stackTl) stackTl.kill();
+  function collapseStack() {
+    isExpanded = false;
+    stack.classList.remove("expanded");
+    if (stackTl) stackTl.kill();
 
-      gsap.to(stack, {
-        height: isSmall() ? "20rem" : "22rem",
-        duration: 0.4,
-        ease: "power2.inOut"
-      });
+    gsap.to(stack, {
+      height: isSmall() ? "20rem" : "22rem",
+      duration: 0.6, ease: "power2.inOut"
+    });
 
-      stackTl = gsap.timeline({ onComplete: setBasePositions });
-      stackTl
-        .to(layer1, { rotation: -1, x: -10, y:   5, duration: 0.35, ease: "power2.inOut" }, 0)
-        .to(layer2, { rotation:  2, x:  20, y:  -5, duration: 0.35, ease: "power2.inOut" }, 0.04)
-        .to(layer3, { rotation: -5, x: -30, y:  15, duration: 0.35, ease: "power2.inOut" }, 0.08);
-    }
+    stackTl = gsap.timeline({ onComplete: setBasePositions });
+    stackTl
+      .to(layer1, { rotation: -1, x: -10, y:   5, duration: 0.6,  ease: "power2.inOut" }, 0)
+      .to(layer2, { rotation:  2, x:  20, y:  -5, duration: 0.65, ease: "power2.inOut" }, 0.08)
+      .to(layer3, { rotation: -5, x: -30, y:  15, duration: 0.7,  ease: "power2.inOut" }, 0.16);
+  }
 
     setBasePositions();
 
@@ -5559,35 +5558,35 @@ document.addEventListener("DOMContentLoaded", () => {
         .to(p3, { rotation: -3, x:  40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
     }
 
-    function polaroidExpand() {
-      polaroidExpanded = true;
-      polaroidCard.classList.add("expanded");
-      if (polaroidTl) polaroidTl.kill();
+   function polaroidExpand() {
+    polaroidExpanded = true;
+    if (polaroidTl) polaroidTl.kill();
 
-      const offset = window.innerWidth <= 480 ? 220 : 260;
-      gsap.to(polaroidCard, { height: offset * 2 + 100, duration: 0.5, ease: "power3.out" });
+    const offset  = window.innerWidth <= 480 ? 220 : 255;
+    const offset3 = window.innerWidth <= 480 ? 215 : 250;
 
-      polaroidTl = gsap.timeline();
-      polaroidTl
-        .to(p2, { rotation: 0, x: 0, y:       0, duration: 0.5, ease: "power3.out" }, 0)
-        .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.5, ease: "power3.out" }, 0.07)
-        .to(p3, { rotation: 0, x: 0, y:  offset, duration: 0.5, ease: "power3.out" }, 0.14);
-    }
+    gsap.to(polaroidCard, { height: offset * 2 + 140, duration: 0.7, ease: "power2.out" });
 
-    function polaroidCollapse() {
-      polaroidExpanded = false;
-      polaroidCard.classList.remove("expanded");
-      if (polaroidTl) polaroidTl.kill();
+    polaroidTl = gsap.timeline();
+    polaroidTl
+      .to(p2, { rotation: 0, x: 0, y:        0, duration: 0.6,  ease: "power2.out" }, 0)
+      .to(p1, { rotation: 0, x: 0, y: -offset,  duration: 0.65, ease: "power2.out" }, 0.1)
+      .to(p3, { rotation: 0, x: 0, y:  offset3, duration: 0.7,  ease: "power2.out" }, 0.2);
+  }
 
-      const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
-      gsap.to(polaroidCard, { height: baseHeight, duration: 0.4, ease: "power2.inOut" });
+  function polaroidCollapse() {
+    polaroidExpanded = false;
+    if (polaroidTl) polaroidTl.kill();
 
-      polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
-      polaroidTl
-        .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.35, ease: "power2.inOut" }, 0)
-        .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.35, ease: "power2.inOut" }, 0.04)
-        .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.35, ease: "power2.inOut" }, 0.08);
-    }
+    const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
+    gsap.to(polaroidCard, { height: baseHeight, duration: 0.6, ease: "power2.inOut" });
+
+    polaroidTl = gsap.timeline();
+    polaroidTl
+      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.6,  ease: "power2.inOut" }, 0)
+      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.65, ease: "power2.inOut" }, 0.08)
+      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.7,  ease: "power2.inOut" }, 0.16);
+  }
 
     setPolaroidBase();
 
