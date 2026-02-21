@@ -685,158 +685,253 @@
         white-space: nowrap;
       }
 
-      /* ==========================================
-   NAVBAR - MOBILE TOGGLE
+     /* ==========================================
+   RESPONSIVE NAVBAR - MOBILE
    ========================================== */
-      .mobile-toggle {
-        display: none;
-        color: var(--text-white);
-        font-size: 24px;
-        cursor: pointer;
-        background: none;
-        border: none;
-      }
-
-      /* ==========================================
-   RESPONSIVE NAVBAR
-   ========================================== */
-      @media (max-width: 768px) {
-        /* Estilos para el Menú Lateral / Overlay */
-.nav-overlay {
-  position: fixed;
-  top: 0;
-  right: -100%; /* Escondido por defecto */
-  width: 100%;
-  height: 100vh;
-  background: var(--gradient-primary); /* O un color sólido con blur */
-  backdrop-filter: blur(20px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  transition: right 0.5s var(--ease-smooth);
-}
-
-.nav-overlay.active {
-  right: 0;
-}
-
-.nav-overlay .nav-link-mobile {
-  font-size: 2rem;
-  color: white;
-  text-decoration: none;
-  margin: 15px 0;
-  font-weight: 700;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* El botón de cerrar dentro del overlay */
-.close-menu {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-/* Ajuste al toggle existente para que se vea bien */
 @media (max-width: 768px) {
- 
-  /* Forzamos que la navbar ignore el estado expandido */
+  .header {
+    min-height: unset;
+  }
+  /* Stage se ancla al fondo */
+  .stage {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  /* Navbar fija abajo */
   .navbar-card {
-    top: var(--nav-top-scrolled) !important;
-    width: 85% !important; /* Un ancho equilibrado para móvil */
+    top: auto !important;
+    bottom: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    width: 85% !important;
     min-width: auto !important;
     max-width: 90% !important;
     height: var(--nav-height-scrolled) !important;
     padding: 0 16px !important;
     border-radius: var(--radius-full) !important;
     background: var(--gradient-light) !important;
-    /* Mantenemos la sombra del estado scrolled */
     box-shadow: var(--shadow-navbar-scrolled) !important;
-  
-  /* Aseguramos que el logo texto no aparezca nunca en móvil */
+
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  /* Logo text nunca visible en móvil */
   .logo-text {
     display: none !important;
   }
 
-  /* Ajustamos el icono del logo a su tamaño pequeño permanentemente */
+  /* Logo icon tamaño compacto */
   .logo-icon {
     width: 32px !important;
     height: 32px !important;
   }
+
+  /* Nav menu de escritorio oculto */
+  .nav-menu {
+    display: none !important;
+  }
+
+  /* Toggle visible */
+ /* ==========================================
+   MOBILE TOGGLE - HAMBURGER ANIMADO
+   ========================================== */
+.mobile-toggle {
+  display: none; /* se muestra solo en mobile via media query */
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1001;
 }
 
+.mobile-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-toggle:active {
+  transform: scale(0.92);
+}
+
+/* Las 3 líneas del hamburger */
+.mobile-toggle .bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.4s var(--ease-smooth),
+              opacity 0.3s ease,
+              width 0.3s ease;
+  transform-origin: center;
+}
+
+/* Estado abierto: se convierte en X */
+.mobile-toggle.active .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.mobile-toggle.active .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
   .mobile-toggle {
-    display: block;
-    z-index: 1001;
+    display: flex;
   }
 }
-        .nav-menu {
-          display: none;
-        }
 
-        .mobile-toggle {
-          display: block;
-        }
+  /* Texto del botón oculto, solo ícono */
+  .btn-label {
+    display: none;
+  }
 
-        .btn-label {
-          display: none;
-        }
+  .btn-premium {
+    padding: 10px !important;
+    min-width: 40px;
+    justify-content: center;
+  }
 
-        .btn-premium {
-          padding: 10px !important;
-          min-width: 40px;
-          justify-content: center;
-        }
+  /* Overlay: abre desde abajo hacia arriba */
+.nav-overlay {
+  position: fixed;
+  top: auto;
+  bottom: -100%;
+  right: auto;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--gradient-primary);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 120px 0;
+  z-index: 2000;
+  transition: bottom 0.5s var(--ease-smooth);
+}
 
-        .navbar-card {
-          width: 90%;
-          min-width: auto;
-          justify-content: space-between;
-          gap: 12px;
-        }
+.nav-overlay.active {
+  bottom: 0;
+}
 
-        body.scrolled .navbar-card {
-          max-width: 75%;
-          min-width: auto;
-        }
+/* Contenedor de links */
+.nav-overlay nav.mobile-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 32px;
+}
 
-        body.scrolled .brand-container {
-          width: auto;
-        }
+/* Links del overlay - base */
+.nav-link-mobile {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(20px);
+}
 
-        body.scrolled .logo-text {
-          display: none;
-        }
-      }
+/* Distribución irregular */
+.nav-link-mobile:nth-child(1) {
+  font-size: 2.8rem;
+  margin-bottom: 28px;
+  align-self: flex-start;
+  padding-left: 8px;
+}
 
-      @media (max-width: 380px) {
-        .btn-label {
-          display: none;
-        }
-      }
-      main {
-        margin: 0 auto;
-        padding: 0 5%;
-      }
+.nav-link-mobile:nth-child(2) {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  align-self: flex-end;
+  padding-right: 24px;
+}
 
-      @media (max-width: 768px) {
-        main {
-          padding: 0 3%;
-        }
-      }
+.nav-link-mobile:nth-child(3) {
+  font-size: 3rem;
+  margin-bottom: 32px;
+  align-self: center;
+  padding-left: 40px;
+}
 
-      @media (max-width: 480px) {
-        main {
-          padding: 0;
-        }
-      }
+.nav-link-mobile:nth-child(4) {
+  font-size: 2rem;
+  margin-bottom: 22px;
+  align-self: flex-start;
+  padding-left: 20px;
+}
+
+.nav-link-mobile:nth-child(5) {
+  font-size: 1.6rem;
+  margin-bottom: 0;
+  align-self: flex-end;
+  padding-right: 16px;
+}
+
+/* Botón cerrar overlay */
+.close-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.close-menu:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(-50%) scale(1.1);
+}
+  /* Ajuste del main para que no quede tapado por la navbar de abajo */
+  main {
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0 0 100px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .btn-label {
+    display: none;
+  }
+}
       /* ==========================================
    HERO - HEADER
    ========================================== */
@@ -3801,15 +3896,17 @@
               <span class="btn-label">Conversemos</span>
             </a>
 
-            <button
-              class="mobile-toggle"
-              id="mobile-toggle"
-              aria-label="Abrir menú de navegación"
-              aria-expanded="false"
-              aria-controls="nav-menu"
-            >
-              <span aria-hidden="true">☰</span>
-            </button>
+        <button
+  class="mobile-toggle"
+  id="mobile-toggle"
+  aria-label="Abrir menú de navegación"
+  aria-expanded="false"
+  aria-controls="nav-menu"
+>
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
           </div>
         </nav>
       </div>
@@ -5193,956 +5290,648 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- VARIABLES GLOBALES ---
-        const navbar = document.getElementById("navbar");
-        const indicator = document.getElementById("nav-indicator");
-        const navLinks = document.querySelectorAll(".nav-link");
-        const navMenu = document.querySelector(".nav-menu");
-        const body = document.body;
+   <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // --- VARIABLES GLOBALES ---
+    const navbar = document.getElementById("navbar");
+    const indicator = document.getElementById("nav-indicator");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const navMenu = document.querySelector(".nav-menu");
+    const body = document.body;
 
-        // --- 1. LENIS (SMOOTH SCROLL GLOBAL) ---
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-        });
+    // --- 1. LENIS (SMOOTH SCROLL GLOBAL) ---
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
 
-        lenis.on("scroll", ScrollTrigger.update);
+    lenis.on("scroll", ScrollTrigger.update);
 
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
-        });
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
 
-        gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(0);
 
-        // --- 2. SCROLL & NAVBAR STATE ---
-        window.addEventListener(
-          "scroll",
-          () => {
-            if (window.scrollY > 50) {
-              body.classList.add("scrolled");
-            } else {
-              body.classList.remove("scrolled");
-            }
-          },
-          { passive: true },
-        );
-
-        // --- 3. MAGNETIC INDICATOR ---
-        function moveIndicator(el) {
-          const menuRect = navMenu.getBoundingClientRect();
-          const elRect = el.getBoundingClientRect();
-          const menuStyles = getComputedStyle(navMenu);
-          const paddingLeft = parseFloat(menuStyles.paddingLeft);
-          const left = elRect.left - menuRect.left - paddingLeft;
-
-          gsap.to(indicator, {
-            width: elRect.width,
-            x: left,
-            opacity: 1,
-            duration: 0.3,
-            ease: "power2.out",
-          });
+    // --- 2. SCROLL & NAVBAR STATE ---
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (window.innerWidth > 768) {
+          if (window.scrollY > 50) {
+            body.classList.add("scrolled");
+          } else {
+            body.classList.remove("scrolled");
+          }
         }
+        // En móvil no tocamos la clase: el CSS con !important maneja todo
+      },
+      { passive: true }
+    );
 
-        if (navLinks && indicator) {
-          navLinks.forEach((link) => {
-            link.addEventListener("mouseenter", (e) => moveIndicator(e.target));
-          });
-
-          navMenu.addEventListener("mouseleave", () => {
-            gsap.to(indicator, { opacity: 0, duration: 0.3 });
-          });
-        }
-
-        // --- 4. SMOOTH SCROLL PARA ENLACES (con Lenis) ---
-        document.querySelectorAll('a[href^="#"]').forEach((link) => {
-          link.addEventListener("click", function (e) {
-            const targetId = this.getAttribute("href");
-            if (targetId !== "#" && document.querySelector(targetId)) {
-              e.preventDefault();
-              const offset = navbar ? navbar.offsetHeight + 20 : 80;
-              lenis.scrollTo(targetId, {
-                offset: -offset,
-                duration: 1.2,
-              });
-            }
-          });
-        });
-
-        // --- 5. FAQ ACCORDION ---
-        function openFaq(item) {
-          item.setAttribute("open", "");
-          gsap.fromTo(
-            item,
-            { height: item.querySelector("summary").offsetHeight },
-            {
-              height: "auto",
-              duration: 0.5,
-              ease: "power2.out",
-              onComplete: () => (item.style.height = "auto"),
-            },
-          );
-        }
-
-        function shrinkFaq(item) {
-          gsap.to(item, {
-            height: item.querySelector("summary").offsetHeight,
-            duration: 0.4,
-            ease: "power2.inOut",
-            onComplete: () => {
-              item.removeAttribute("open");
-              item.style.height = "auto";
-            },
-          });
-        }
-
-        document.querySelectorAll(".faq-item").forEach((item) => {
-          item.addEventListener("click", (e) => {
-            e.preventDefault();
-            const isOpen = item.hasAttribute("open");
-
-            document.querySelectorAll(".faq-item[open]").forEach((openItem) => {
-              if (openItem !== item) shrinkFaq(openItem);
-            });
-
-            isOpen ? shrinkFaq(item) : openFaq(item);
-          });
-        });
-
-        // --- 6. FORM VALIDATION & PHONE SELECT ---
-        const emailInput = document.getElementById("email");
-        const phoneInput = document.getElementById("telefono");
-
-        if (emailInput) {
-          const validateEmail = () => {
-            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-              emailInput.value.trim(),
-            );
-            emailInput.classList.toggle(
-              "invalid",
-              !isValid && emailInput.value !== "",
-            );
-            const emailError = document.getElementById("emailError");
-            if (emailError) {
-              emailError.style.display =
-                !isValid && emailInput.value !== "" ? "block" : "none";
-            }
-            return isValid;
-          };
-          emailInput.addEventListener("input", validateEmail);
-        }
-
-        if (phoneInput) {
-          phoneInput.addEventListener("input", (e) => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, "");
-          });
-        }
-
-        const select = document.getElementById("customPhoneSelect");
-        const trigger = document.getElementById("selectTrigger");
-        const hiddenInput = document.getElementById("phoneCode");
-
-        if (trigger && select) {
-          trigger.addEventListener("click", (e) => {
-            e.stopPropagation();
-            select.classList.toggle("open");
-          });
-
-          document.querySelectorAll(".dropdown-option").forEach((opt) => {
-            opt.addEventListener("click", function () {
-              trigger.querySelector(".select-flag").src =
-                `https://flagcdn.com/w40/${this.dataset.flag}.png`;
-              trigger.querySelector(".select-code").textContent =
-                this.dataset.value;
-              if (hiddenInput) hiddenInput.value = this.dataset.value;
-              select.classList.remove("open");
-            });
-          });
-
-          document.addEventListener("click", () =>
-            select.classList.remove("open"),
-          );
-        }
-
-        // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
-        const stack = document.querySelector(".hero-photo-stack");
-        if (stack) {
-          const layer1 = stack.querySelector(".photo-layer-1");
-          const layer2 = stack.querySelector(".photo-layer-2");
-          const layer3 = stack.querySelector(".photo-layer-3");
-
-          const isMobile = () => window.innerWidth <= 768;
-          const isSmall = () => window.innerWidth <= 480;
-          let isExpanded = false;
-          let stackTl = null;
-
-          function setBasePositions() {
-            if (isMobile()) {
-              gsap.set(layer3, {
-                rotation: -5,
-                x: -30,
-                y: 15,
-                zIndex: 1,
-                opacity: 0.9,
-              });
-              gsap.set(layer2, {
-                rotation: 2,
-                x: 20,
-                y: -5,
-                zIndex: 2,
-                opacity: 0.95,
-              });
-              gsap.set(layer1, {
-                rotation: -1,
-                x: -10,
-                y: 5,
-                zIndex: 3,
-                opacity: 1,
-              });
-            } else {
-              gsap.set(layer3, {
-                rotation: -8,
-                x: -60,
-                y: 20,
-                zIndex: 1,
-                opacity: 0.9,
-              });
-              gsap.set(layer2, {
-                rotation: 3,
-                x: 40,
-                y: -10,
-                zIndex: 2,
-                opacity: 0.95,
-              });
-              gsap.set(layer1, {
-                rotation: -2,
-                x: -20,
-                y: 10,
-                zIndex: 3,
-                opacity: 1,
-              });
-            }
-          }
-
-          function desktopOpen() {
-            if (stackTl) stackTl.kill();
-            stackTl = gsap.timeline();
-            stackTl
-              .to(
-                layer3,
-                {
-                  rotation: -15,
-                  x: -120,
-                  y: 40,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              )
-              .to(
-                layer2,
-                {
-                  rotation: 8,
-                  x: 90,
-                  y: -20,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              )
-              .to(
-                layer1,
-                {
-                  rotation: -1,
-                  x: -30,
-                  y: 5,
-                  scale: 1.02,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              );
-          }
-
-          function desktopClose() {
-            if (stackTl) stackTl.kill();
-            stackTl = gsap.timeline({ onComplete: setBasePositions });
-            stackTl
-              .to(
-                layer3,
-                {
-                  rotation: -8,
-                  x: -60,
-                  y: 20,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                layer2,
-                {
-                  rotation: 3,
-                  x: 40,
-                  y: -10,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                layer1,
-                {
-                  rotation: -2,
-                  x: -20,
-                  y: 10,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              );
-          }
-
-          function expandStack() {
-            const offset = isSmall() ? 290 : 330;
-            isExpanded = true;
-            stack.classList.add("expanded");
-            if (stackTl) stackTl.kill();
-
-            gsap.to(stack, {
-              height: offset * 2 + 180,
-              duration: 0.7,
-              ease: "power2.out",
-            });
-
-            stackTl = gsap.timeline();
-            stackTl
-              .to(
-                layer2,
-                { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" },
-                0,
-              )
-              .to(
-                layer3,
-                {
-                  rotation: 0,
-                  x: 0,
-                  y: -offset,
-                  duration: 0.65,
-                  ease: "power2.out",
-                },
-                0.1,
-              )
-              .to(
-                layer1,
-                {
-                  rotation: 0,
-                  x: 0,
-                  y: offset,
-                  duration: 0.7,
-                  ease: "power2.out",
-                },
-                0.2,
-              );
-          }
-
-          function collapseStack() {
-            isExpanded = false;
-            stack.classList.remove("expanded");
-            if (stackTl) stackTl.kill();
-
-            gsap.to(stack, {
-              height: isSmall() ? "20rem" : "22rem",
-              duration: 0.6,
-              ease: "power2.inOut",
-            });
-
-            stackTl = gsap.timeline({ onComplete: setBasePositions });
-            stackTl
-              .to(
-                layer1,
-                {
-                  rotation: -1,
-                  x: -10,
-                  y: 5,
-                  duration: 0.6,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                layer2,
-                {
-                  rotation: 2,
-                  x: 20,
-                  y: -5,
-                  duration: 0.65,
-                  ease: "power2.inOut",
-                },
-                0.08,
-              )
-              .to(
-                layer3,
-                {
-                  rotation: -5,
-                  x: -30,
-                  y: 15,
-                  duration: 0.7,
-                  ease: "power2.inOut",
-                },
-                0.16,
-              );
-          }
-
-          setBasePositions();
-
-          stack.addEventListener("mouseenter", () => {
-            if (!isMobile()) desktopOpen();
-          });
-          stack.addEventListener("mouseleave", () => {
-            if (!isMobile()) desktopClose();
-          });
-          stack.addEventListener("click", () => {
-            if (!isMobile()) return;
-            isExpanded ? collapseStack() : expandStack();
-          });
-
-          let lastWidthStack = window.innerWidth;
-          window.addEventListener("resize", () => {
-            const currentWidth = window.innerWidth;
-            if (currentWidth === lastWidthStack) return;
-            lastWidthStack = currentWidth;
-
-            if (stackTl) stackTl.kill();
-            stack.classList.remove("expanded");
-            isExpanded = false;
-            setBasePositions();
-            gsap.set(stack, {
-              height: isMobile()
-                ? isSmall()
-                  ? "20rem"
-                  : "22rem"
-                : "34.375rem",
-            });
-          });
-        }
-
-        // --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
-        const polaroidCard = document.querySelector(".polaroid-stack-card");
-        if (polaroidCard) {
-          const p1 = polaroidCard.querySelector(".polaroid-1");
-          const p2 = polaroidCard.querySelector(".polaroid-2");
-          const p3 = polaroidCard.querySelector(".polaroid-3");
-
-          const isMobile = () => window.innerWidth <= 768;
-          let polaroidTl = null;
-          let polaroidExpanded = false;
-
-          function setPolaroidBase() {
-            if (isMobile()) {
-              gsap.set(p1, { rotation: -5, x: -20, y: -10, zIndex: 1 });
-              gsap.set(p2, { rotation: 3, x: 8, y: 8, zIndex: 2 });
-              gsap.set(p3, { rotation: -2, x: 28, y: -6, zIndex: 3 });
-            } else {
-              gsap.set(p1, { rotation: -8, x: -30, y: -20, zIndex: 1 });
-              gsap.set(p2, { rotation: 5, x: 10, y: 10, zIndex: 2 });
-              gsap.set(p3, { rotation: -3, x: 40, y: -10, zIndex: 3 });
-            }
-          }
-
-          function polaroidOpen() {
-            if (polaroidTl) polaroidTl.kill();
-            polaroidTl = gsap.timeline();
-            polaroidTl
-              .to(
-                p1,
-                {
-                  rotation: -12,
-                  x: -50,
-                  y: -30,
-                  scale: 1,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              )
-              .to(
-                p2,
-                {
-                  rotation: 8,
-                  x: 15,
-                  y: 15,
-                  scale: 1.02,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              )
-              .to(
-                p3,
-                {
-                  rotation: -5,
-                  x: 60,
-                  y: -15,
-                  scale: 1,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              );
-          }
-
-          function polaroidClose() {
-            if (polaroidTl) polaroidTl.kill();
-            polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
-            polaroidTl
-              .to(
-                p1,
-                {
-                  rotation: -8,
-                  x: -30,
-                  y: -20,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                p2,
-                {
-                  rotation: 5,
-                  x: 10,
-                  y: 10,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                p3,
-                {
-                  rotation: -3,
-                  x: 40,
-                  y: -10,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              );
-          }
-
-          function polaroidExpand() {
-            polaroidExpanded = true;
-            if (polaroidTl) polaroidTl.kill();
-
-            const offset = window.innerWidth <= 480 ? 220 : 255;
-            const offset3 = window.innerWidth <= 480 ? 215 : 250;
-
-            gsap.to(polaroidCard, {
-              height: offset * 2 + 140,
-              duration: 0.7,
-              ease: "power2.out",
-            });
-
-            polaroidTl = gsap.timeline();
-            polaroidTl
-              .to(
-                p2,
-                { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" },
-                0,
-              )
-              .to(
-                p1,
-                {
-                  rotation: 0,
-                  x: 0,
-                  y: -offset,
-                  duration: 0.65,
-                  ease: "power2.out",
-                },
-                0.1,
-              )
-              .to(
-                p3,
-                {
-                  rotation: 0,
-                  x: 0,
-                  y: offset3,
-                  duration: 0.7,
-                  ease: "power2.out",
-                },
-                0.2,
-              );
-          }
-
-          function polaroidCollapse() {
-            polaroidExpanded = false;
-            if (polaroidTl) polaroidTl.kill();
-
-            const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
-            gsap.to(polaroidCard, {
-              height: baseHeight,
-              duration: 0.6,
-              ease: "power2.inOut",
-            });
-
-            polaroidTl = gsap.timeline();
-            polaroidTl
-              .to(
-                p3,
-                {
-                  rotation: -2,
-                  x: 28,
-                  y: -6,
-                  scale: 1,
-                  duration: 0.6,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                p2,
-                {
-                  rotation: 3,
-                  x: 8,
-                  y: 8,
-                  scale: 1,
-                  duration: 0.65,
-                  ease: "power2.inOut",
-                },
-                0.08,
-              )
-              .to(
-                p1,
-                {
-                  rotation: -5,
-                  x: -20,
-                  y: -10,
-                  scale: 1,
-                  duration: 0.7,
-                  ease: "power2.inOut",
-                },
-                0.16,
-              );
-          }
-
-          setPolaroidBase();
-
-          polaroidCard.addEventListener("mouseenter", () => {
-            if (!isMobile()) polaroidOpen();
-          });
-          polaroidCard.addEventListener("mouseleave", () => {
-            if (!isMobile()) polaroidClose();
-          });
-          polaroidCard.addEventListener("click", () => {
-            if (!isMobile()) return;
-            polaroidExpanded ? polaroidCollapse() : polaroidExpand();
-          });
-
-          let lastWidthP = window.innerWidth;
-          window.addEventListener("resize", () => {
-            const currentWidth = window.innerWidth;
-            if (currentWidth === lastWidthP) return;
-            lastWidthP = currentWidth;
-
-            if (polaroidTl) polaroidTl.kill();
-            polaroidExpanded = false;
-            polaroidCard.classList.remove("expanded");
-            setPolaroidBase();
-            gsap.set(polaroidCard, {
-              height: isMobile()
-                ? window.innerWidth <= 480
-                  ? "15rem"
-                  : "18rem"
-                : "25rem",
-            });
-          });
-        }
-// --- 9. EXPERIENCES CAROUSEL - Infinito continuo ---
-const gallery = document.querySelector(".experiences-gallery");
-if (gallery) {
-  const isMobile = () => window.innerWidth <= 768;
-
-  let xPos = 0;
-  let xVelocity = 0;        // inercia del drag
-  let speed = 0.5;
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let dragStartPos = 0;
-  let lastDragX = 0;        // para calcular velocidad
-  let isPaused = false;
-  let resumeTimeout = null;
-  let rafId = null;
-  let totalWidth = 0;
-  let touchDirLocked = null;
-
-  function getOriginalSlides() {
-    return Array.from(gallery.querySelectorAll(
-      ".polaroid-item:not(.carousel-clone), .center-text-item:not(.carousel-clone)"
-    ));
-  }
-
-  function setupInfinite() {
-    if (!isMobile()) {
-      cancelAnimationFrame(rafId);
-      gsap.set(gallery, { x: 0 });
-      gallery.querySelectorAll(".carousel-clone").forEach(el => el.remove());
-      gallery.style.flexDirection = "";
-      gallery.style.flexWrap = "";
-      return;
+    // Estado inicial correcto según viewport
+    if (window.innerWidth <= 768) {
+      body.classList.remove("scrolled");
+    } else if (window.scrollY > 50) {
+      body.classList.add("scrolled");
     }
 
-    gallery.querySelectorAll(".carousel-clone").forEach(el => el.remove());
+    // --- 3. MAGNETIC INDICATOR ---
+    function moveIndicator(el) {
+      const menuRect = navMenu.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const menuStyles = getComputedStyle(navMenu);
+      const paddingLeft = parseFloat(menuStyles.paddingLeft);
+      const left = elRect.left - menuRect.left - paddingLeft;
 
-    const slides = getOriginalSlides();
+      gsap.to(indicator, {
+        width: elRect.width,
+        x: left,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
 
-    // Clonar 2 veces para que nunca haya espacio vacío
-    [1, 2].forEach(() => {
-      slides.forEach(slide => {
-        const clone = slide.cloneNode(true);
-        clone.classList.add("carousel-clone");
-        gallery.appendChild(clone);
+    if (navLinks && indicator) {
+      navLinks.forEach((link) => {
+        link.addEventListener("mouseenter", (e) => moveIndicator(e.target));
+      });
+
+      navMenu.addEventListener("mouseleave", () => {
+        gsap.to(indicator, { opacity: 0, duration: 0.3 });
+      });
+    }
+
+    // --- 4. SMOOTH SCROLL PARA ENLACES (con Lenis) ---
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href");
+        if (targetId !== "#" && document.querySelector(targetId)) {
+          e.preventDefault();
+          const offset = navbar ? navbar.offsetHeight + 20 : 80;
+          lenis.scrollTo(targetId, {
+            offset: -offset,
+            duration: 1.2,
+          });
+        }
       });
     });
 
-    setTimeout(() => {
-      // Calcular ancho del set original (sin clones)
-      const originals = getOriginalSlides();
-      totalWidth = originals.reduce((acc, el) => {
-        const style = window.getComputedStyle(el);
-        const margin = parseFloat(style.marginRight) || 0;
-        return acc + el.getBoundingClientRect().width + 16 + margin;
-      }, 0);
+    // --- 5. FAQ ACCORDION ---
+    function openFaq(item) {
+      item.setAttribute("open", "");
+      gsap.fromTo(
+        item,
+        { height: item.querySelector("summary").offsetHeight },
+        {
+          height: "auto",
+          duration: 0.5,
+          ease: "power2.out",
+          onComplete: () => (item.style.height = "auto"),
+        }
+      );
+    }
 
-      xPos = 0;
-      xVelocity = 0;
-      gsap.set(gallery, { x: 0 });
-      startLoop();
-    }, 150);
-  }
+    function shrinkFaq(item) {
+      gsap.to(item, {
+        height: item.querySelector("summary").offsetHeight,
+        duration: 0.4,
+        ease: "power2.inOut",
+        onComplete: () => {
+          item.removeAttribute("open");
+          item.style.height = "auto";
+        },
+      });
+    }
 
-  function startLoop() {
-    cancelAnimationFrame(rafId);
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isOpen = item.hasAttribute("open");
 
-    function tick() {
-      if (!isDragging) {
-        if (isPaused) {
-          // Desacelerar inercia suavemente
-          xVelocity *= 0.88;
-          if (Math.abs(xVelocity) > 0.1) {
-            xPos += xVelocity;
-          } else {
-            xVelocity = 0;
-          }
+        document.querySelectorAll(".faq-item[open]").forEach((openItem) => {
+          if (openItem !== item) shrinkFaq(openItem);
+        });
+
+        isOpen ? shrinkFaq(item) : openFaq(item);
+      });
+    });
+
+    // --- 6. FORM VALIDATION & PHONE SELECT ---
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("telefono");
+
+    if (emailInput) {
+      const validateEmail = () => {
+        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+          emailInput.value.trim()
+        );
+        emailInput.classList.toggle(
+          "invalid",
+          !isValid && emailInput.value !== ""
+        );
+        const emailError = document.getElementById("emailError");
+        if (emailError) {
+          emailError.style.display =
+            !isValid && emailInput.value !== "" ? "block" : "none";
+        }
+        return isValid;
+      };
+      emailInput.addEventListener("input", validateEmail);
+    }
+
+    if (phoneInput) {
+      phoneInput.addEventListener("input", (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+      });
+    }
+
+    const select = document.getElementById("customPhoneSelect");
+    const trigger = document.getElementById("selectTrigger");
+    const hiddenInput = document.getElementById("phoneCode");
+
+    if (trigger && select) {
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        select.classList.toggle("open");
+      });
+
+      document.querySelectorAll(".dropdown-option").forEach((opt) => {
+        opt.addEventListener("click", function () {
+          trigger.querySelector(".select-flag").src =
+            `https://flagcdn.com/w40/${this.dataset.flag}.png`;
+          trigger.querySelector(".select-code").textContent = this.dataset.value;
+          if (hiddenInput) hiddenInput.value = this.dataset.value;
+          select.classList.remove("open");
+        });
+      });
+
+      document.addEventListener("click", () =>
+        select.classList.remove("open")
+      );
+    }
+
+    // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
+    const stack = document.querySelector(".hero-photo-stack");
+    if (stack) {
+      const layer1 = stack.querySelector(".photo-layer-1");
+      const layer2 = stack.querySelector(".photo-layer-2");
+      const layer3 = stack.querySelector(".photo-layer-3");
+
+      const isMobile = () => window.innerWidth <= 768;
+      const isSmall = () => window.innerWidth <= 480;
+      let isExpanded = false;
+      let stackTl = null;
+
+      function setBasePositions() {
+        if (isMobile()) {
+          gsap.set(layer3, { rotation: -5, x: -30, y: 15, zIndex: 1, opacity: 0.9 });
+          gsap.set(layer2, { rotation: 2, x: 20, y: -5, zIndex: 2, opacity: 0.95 });
+          gsap.set(layer1, { rotation: -1, x: -10, y: 5, zIndex: 3, opacity: 1 });
         } else {
-          // Autoplay: absorber inercia residual hacia velocidad normal
-          xVelocity *= 0.92;
-          xPos -= speed + Math.max(0, -xVelocity);
+          gsap.set(layer3, { rotation: -8, x: -60, y: 20, zIndex: 1, opacity: 0.9 });
+          gsap.set(layer2, { rotation: 3, x: 40, y: -10, zIndex: 2, opacity: 0.95 });
+          gsap.set(layer1, { rotation: -2, x: -20, y: 10, zIndex: 3, opacity: 1 });
+        }
+      }
+
+      function desktopOpen() {
+        if (stackTl) stackTl.kill();
+        stackTl = gsap.timeline();
+        stackTl
+          .to(layer3, { rotation: -15, x: -120, y: 40, duration: 0.45, ease: "power3.out" }, 0)
+          .to(layer2, { rotation: 8, x: 90, y: -20, duration: 0.45, ease: "power3.out" }, 0)
+          .to(layer1, { rotation: -1, x: -30, y: 5, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0);
+      }
+
+      function desktopClose() {
+        if (stackTl) stackTl.kill();
+        stackTl = gsap.timeline({ onComplete: setBasePositions });
+        stackTl
+          .to(layer3, { rotation: -8, x: -60, y: 20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+          .to(layer2, { rotation: 3, x: 40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+          .to(layer1, { rotation: -2, x: -20, y: 10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
+      }
+
+      function expandStack() {
+        const offset = isSmall() ? 290 : 330;
+        isExpanded = true;
+        stack.classList.add("expanded");
+        if (stackTl) stackTl.kill();
+
+        gsap.to(stack, { height: offset * 2 + 180, duration: 0.7, ease: "power2.out" });
+
+        stackTl = gsap.timeline();
+        stackTl
+          .to(layer2, { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" }, 0)
+          .to(layer3, { rotation: 0, x: 0, y: -offset, duration: 0.65, ease: "power2.out" }, 0.1)
+          .to(layer1, { rotation: 0, x: 0, y: offset, duration: 0.7, ease: "power2.out" }, 0.2);
+      }
+
+      function collapseStack() {
+        isExpanded = false;
+        stack.classList.remove("expanded");
+        if (stackTl) stackTl.kill();
+
+        gsap.to(stack, { height: isSmall() ? "20rem" : "22rem", duration: 0.6, ease: "power2.inOut" });
+
+        stackTl = gsap.timeline({ onComplete: setBasePositions });
+        stackTl
+          .to(layer1, { rotation: -1, x: -10, y: 5, duration: 0.6, ease: "power2.inOut" }, 0)
+          .to(layer2, { rotation: 2, x: 20, y: -5, duration: 0.65, ease: "power2.inOut" }, 0.08)
+          .to(layer3, { rotation: -5, x: -30, y: 15, duration: 0.7, ease: "power2.inOut" }, 0.16);
+      }
+
+      setBasePositions();
+
+      stack.addEventListener("mouseenter", () => { if (!isMobile()) desktopOpen(); });
+      stack.addEventListener("mouseleave", () => { if (!isMobile()) desktopClose(); });
+      stack.addEventListener("click", () => {
+        if (!isMobile()) return;
+        isExpanded ? collapseStack() : expandStack();
+      });
+
+      let lastWidthStack = window.innerWidth;
+      window.addEventListener("resize", () => {
+        const currentWidth = window.innerWidth;
+        if (currentWidth === lastWidthStack) return;
+        lastWidthStack = currentWidth;
+
+        if (stackTl) stackTl.kill();
+        stack.classList.remove("expanded");
+        isExpanded = false;
+        setBasePositions();
+        gsap.set(stack, { height: isMobile() ? (isSmall() ? "20rem" : "22rem") : "34.375rem" });
+      });
+    }
+
+    // --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
+    const polaroidCard = document.querySelector(".polaroid-stack-card");
+    if (polaroidCard) {
+      const p1 = polaroidCard.querySelector(".polaroid-1");
+      const p2 = polaroidCard.querySelector(".polaroid-2");
+      const p3 = polaroidCard.querySelector(".polaroid-3");
+
+      const isMobile = () => window.innerWidth <= 768;
+      let polaroidTl = null;
+      let polaroidExpanded = false;
+
+      function setPolaroidBase() {
+        if (isMobile()) {
+          gsap.set(p1, { rotation: -5, x: -20, y: -10, zIndex: 1 });
+          gsap.set(p2, { rotation: 3, x: 8, y: 8, zIndex: 2 });
+          gsap.set(p3, { rotation: -2, x: 28, y: -6, zIndex: 3 });
+        } else {
+          gsap.set(p1, { rotation: -8, x: -30, y: -20, zIndex: 1 });
+          gsap.set(p2, { rotation: 5, x: 10, y: 10, zIndex: 2 });
+          gsap.set(p3, { rotation: -3, x: 40, y: -10, zIndex: 3 });
+        }
+      }
+
+      function polaroidOpen() {
+        if (polaroidTl) polaroidTl.kill();
+        polaroidTl = gsap.timeline();
+        polaroidTl
+          .to(p1, { rotation: -12, x: -50, y: -30, scale: 1, duration: 0.45, ease: "power3.out" }, 0)
+          .to(p2, { rotation: 8, x: 15, y: 15, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0)
+          .to(p3, { rotation: -5, x: 60, y: -15, scale: 1, duration: 0.45, ease: "power3.out" }, 0);
+      }
+
+      function polaroidClose() {
+        if (polaroidTl) polaroidTl.kill();
+        polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
+        polaroidTl
+          .to(p1, { rotation: -8, x: -30, y: -20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+          .to(p2, { rotation: 5, x: 10, y: 10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+          .to(p3, { rotation: -3, x: 40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
+      }
+
+      function polaroidExpand() {
+        polaroidExpanded = true;
+        if (polaroidTl) polaroidTl.kill();
+
+        const offset = window.innerWidth <= 480 ? 220 : 255;
+        const offset3 = window.innerWidth <= 480 ? 215 : 250;
+
+        gsap.to(polaroidCard, { height: offset * 2 + 140, duration: 0.7, ease: "power2.out" });
+
+        polaroidTl = gsap.timeline();
+        polaroidTl
+          .to(p2, { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" }, 0)
+          .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.65, ease: "power2.out" }, 0.1)
+          .to(p3, { rotation: 0, x: 0, y: offset3, duration: 0.7, ease: "power2.out" }, 0.2);
+      }
+
+      function polaroidCollapse() {
+        polaroidExpanded = false;
+        if (polaroidTl) polaroidTl.kill();
+
+        const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
+        gsap.to(polaroidCard, { height: baseHeight, duration: 0.6, ease: "power2.inOut" });
+
+        polaroidTl = gsap.timeline();
+        polaroidTl
+          .to(p3, { rotation: -2, x: 28, y: -6, scale: 1, duration: 0.6, ease: "power2.inOut" }, 0)
+          .to(p2, { rotation: 3, x: 8, y: 8, scale: 1, duration: 0.65, ease: "power2.inOut" }, 0.08)
+          .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.7, ease: "power2.inOut" }, 0.16);
+      }
+
+      setPolaroidBase();
+
+      polaroidCard.addEventListener("mouseenter", () => { if (!isMobile()) polaroidOpen(); });
+      polaroidCard.addEventListener("mouseleave", () => { if (!isMobile()) polaroidClose(); });
+      polaroidCard.addEventListener("click", () => {
+        if (!isMobile()) return;
+        polaroidExpanded ? polaroidCollapse() : polaroidExpand();
+      });
+
+      let lastWidthP = window.innerWidth;
+      window.addEventListener("resize", () => {
+        const currentWidth = window.innerWidth;
+        if (currentWidth === lastWidthP) return;
+        lastWidthP = currentWidth;
+
+        if (polaroidTl) polaroidTl.kill();
+        polaroidExpanded = false;
+        polaroidCard.classList.remove("expanded");
+        setPolaroidBase();
+        gsap.set(polaroidCard, {
+          height: isMobile() ? (window.innerWidth <= 480 ? "15rem" : "18rem") : "25rem",
+        });
+      });
+    }
+
+    // --- 9. EXPERIENCES CAROUSEL - Infinito continuo ---
+    const gallery = document.querySelector(".experiences-gallery");
+    if (gallery) {
+      const isMobile = () => window.innerWidth <= 768;
+
+      let xPos = 0;
+      let xVelocity = 0;
+      let speed = 0.5;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let dragStartPos = 0;
+      let lastDragX = 0;
+      let isPaused = false;
+      let resumeTimeout = null;
+      let rafId = null;
+      let totalWidth = 0;
+      let touchDirLocked = null;
+
+      function getOriginalSlides() {
+        return Array.from(
+          gallery.querySelectorAll(
+            ".polaroid-item:not(.carousel-clone), .center-text-item:not(.carousel-clone)"
+          )
+        );
+      }
+
+      function setupInfinite() {
+        if (!isMobile()) {
+          cancelAnimationFrame(rafId);
+          gsap.set(gallery, { x: 0 });
+          gallery.querySelectorAll(".carousel-clone").forEach((el) => el.remove());
+          gallery.style.flexDirection = "";
+          gallery.style.flexWrap = "";
+          return;
         }
 
-        // Loop infinito: wrap cuando supera el set original
+        gallery.querySelectorAll(".carousel-clone").forEach((el) => el.remove());
+
+        const slides = getOriginalSlides();
+
+        [1, 2].forEach(() => {
+          slides.forEach((slide) => {
+            const clone = slide.cloneNode(true);
+            clone.classList.add("carousel-clone");
+            gallery.appendChild(clone);
+          });
+        });
+
+        setTimeout(() => {
+          const originals = getOriginalSlides();
+          totalWidth = originals.reduce((acc, el) => {
+            const style = window.getComputedStyle(el);
+            const margin = parseFloat(style.marginRight) || 0;
+            return acc + el.getBoundingClientRect().width + 16 + margin;
+          }, 0);
+
+          xPos = 0;
+          xVelocity = 0;
+          gsap.set(gallery, { x: 0 });
+          startLoop();
+        }, 150);
+      }
+
+      function startLoop() {
+        cancelAnimationFrame(rafId);
+
+        function tick() {
+          if (!isDragging) {
+            if (isPaused) {
+              xVelocity *= 0.88;
+              if (Math.abs(xVelocity) > 0.1) {
+                xPos += xVelocity;
+              } else {
+                xVelocity = 0;
+              }
+            } else {
+              xVelocity *= 0.92;
+              xPos -= speed + Math.max(0, -xVelocity);
+            }
+
+            if (xPos < -totalWidth) xPos += totalWidth;
+            if (xPos > 0) xPos -= totalWidth;
+
+            gsap.set(gallery, { x: xPos });
+          }
+
+          rafId = requestAnimationFrame(tick);
+        }
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function pauseCarousel() {
+        isPaused = true;
+        if (resumeTimeout) clearTimeout(resumeTimeout);
+      }
+
+      function resumeCarousel() {
+        if (resumeTimeout) clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(() => {
+          isPaused = false;
+          xVelocity = 0;
+        }, 3000);
+      }
+
+      gallery.addEventListener("touchstart", (e) => {
+        if (!isMobile()) return;
+        isDragging = false;
+        touchDirLocked = null;
+        dragStartX = e.touches[0].clientX;
+        dragStartY = e.touches[0].clientY;
+        lastDragX = dragStartX;
+        dragStartPos = xPos;
+        xVelocity = 0;
+        pauseCarousel();
+      }, { passive: true });
+
+      gallery.addEventListener("touchmove", (e) => {
+        if (!isMobile()) return;
+
+        const dx = e.touches[0].clientX - dragStartX;
+        const dy = e.touches[0].clientY - dragStartY;
+
+        if (!touchDirLocked) {
+          if (Math.abs(dx) > Math.abs(dy) + 4) touchDirLocked = "horizontal";
+          else if (Math.abs(dy) > Math.abs(dx) + 4) touchDirLocked = "vertical";
+        }
+
+        if (touchDirLocked === "vertical") return;
+
+        if (touchDirLocked === "horizontal") {
+          isDragging = true;
+          xVelocity = (e.touches[0].clientX - lastDragX) * 0.6;
+          lastDragX = e.touches[0].clientX;
+          xPos = dragStartPos + dx;
+          if (xPos < -totalWidth) xPos += totalWidth;
+          if (xPos > 0) xPos -= totalWidth;
+          gsap.set(gallery, { x: xPos });
+        }
+      }, { passive: true });
+
+      gallery.addEventListener("touchend", () => {
+        if (!isMobile()) return;
+        isDragging = false;
+        touchDirLocked = null;
+        resumeCarousel();
+      }, { passive: true });
+
+      gallery.addEventListener("mousedown", (e) => {
+        if (!isMobile()) return;
+        isDragging = true;
+        dragStartX = e.clientX;
+        lastDragX = e.clientX;
+        dragStartPos = xPos;
+        xVelocity = 0;
+        pauseCarousel();
+        gallery.style.cursor = "grabbing";
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (!isMobile() || !isDragging) return;
+        const dx = e.clientX - dragStartX;
+        xVelocity = (e.clientX - lastDragX) * 0.6;
+        lastDragX = e.clientX;
+        xPos = dragStartPos + dx;
         if (xPos < -totalWidth) xPos += totalWidth;
         if (xPos > 0) xPos -= totalWidth;
-
         gsap.set(gallery, { x: xPos });
+      });
+
+      window.addEventListener("mouseup", () => {
+        if (!isMobile() || !isDragging) return;
+        isDragging = false;
+        gallery.style.cursor = "grab";
+        resumeCarousel();
+      });
+
+      setupInfinite();
+
+      let lastW = window.innerWidth;
+      window.addEventListener("resize", () => {
+        const cw = window.innerWidth;
+        if (cw === lastW) return;
+        lastW = cw;
+        cancelAnimationFrame(rafId);
+        setupInfinite();
+      });
+    }
+
+    // --- 10. MOBILE MENU LOGIC ---
+    const mobileToggle = document.getElementById("mobile-toggle");
+    const closeMenu = document.getElementById("close-menu");
+    const navOverlay = document.getElementById("nav-overlay");
+    const mobileLinks = document.querySelectorAll(".nav-link-mobile");
+
+    // Construye el timeline según el dispositivo actual
+    const buildMenuTimeline = () => {
+      menuTL.clear();
+
+      if (window.innerWidth <= 768) {
+        // Mobile: desliza desde abajo
+        menuTL
+          .to(navOverlay, { bottom: 0, duration: 0.6, ease: "expo.inOut" })
+          .to(".nav-link-mobile", {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: "back.out(1.7)",
+          });
+      } else {
+        // Desktop: desliza desde la derecha (fallback)
+        menuTL
+          .to(navOverlay, { right: 0, duration: 0.6, ease: "expo.inOut" })
+          .to(".nav-link-mobile", {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: "back.out(1.7)",
+          });
       }
+    };
 
-      rafId = requestAnimationFrame(tick);
-    }
+    const menuTL = gsap.timeline({ paused: true });
+    buildMenuTimeline();
 
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function pauseCarousel() {
-    isPaused = true;
-    if (resumeTimeout) clearTimeout(resumeTimeout);
-  }
-
-  function resumeCarousel() {
-    if (resumeTimeout) clearTimeout(resumeTimeout);
-    resumeTimeout = setTimeout(() => {
-      isPaused = false;
-      xVelocity = 0;
-    }, 3000);
-  }
-
-  // --- Touch ---
-  gallery.addEventListener("touchstart", (e) => {
-    if (!isMobile()) return;
-    isDragging = false;
-    touchDirLocked = null;
-    dragStartX = e.touches[0].clientX;
-    dragStartY = e.touches[0].clientY;
-    lastDragX = dragStartX;
-    dragStartPos = xPos;
-    xVelocity = 0;
-    pauseCarousel();
-  }, { passive: true });
-
-  gallery.addEventListener("touchmove", (e) => {
-    if (!isMobile()) return;
-
-    const dx = e.touches[0].clientX - dragStartX;
-    const dy = e.touches[0].clientY - dragStartY;
-
-    if (!touchDirLocked) {
-      if (Math.abs(dx) > Math.abs(dy) + 4) {
-        touchDirLocked = "horizontal";
-      } else if (Math.abs(dy) > Math.abs(dx) + 4) {
-        touchDirLocked = "vertical";
-      }
-    }
-
-    if (touchDirLocked === "vertical") return;
-
-    if (touchDirLocked === "horizontal") {
-      isDragging = true;
-      // Velocidad para inercia post-drag
-      xVelocity = (e.touches[0].clientX - lastDragX) * 0.6;
-      lastDragX = e.touches[0].clientX;
-
-      xPos = dragStartPos + dx;
-      if (xPos < -totalWidth) xPos += totalWidth;
-      if (xPos > 0) xPos -= totalWidth;
-      gsap.set(gallery, { x: xPos });
-    }
-  }, { passive: true });
-
-  gallery.addEventListener("touchend", () => {
-    if (!isMobile()) return;
-    isDragging = false;
-    touchDirLocked = null;
-    // La inercia sigue en el loop hasta que se frena
-    resumeCarousel();
-  }, { passive: true });
-
-  // --- Mouse ---
-  gallery.addEventListener("mousedown", (e) => {
-    if (!isMobile()) return;
-    isDragging = true;
-    dragStartX = e.clientX;
-    lastDragX = e.clientX;
-    dragStartPos = xPos;
-    xVelocity = 0;
-    pauseCarousel();
-    gallery.style.cursor = "grabbing";
-  });
-
-  window.addEventListener("mousemove", (e) => {
-    if (!isMobile() || !isDragging) return;
-    const dx = e.clientX - dragStartX;
-    xVelocity = (e.clientX - lastDragX) * 0.6;
-    lastDragX = e.clientX;
-    xPos = dragStartPos + dx;
-    if (xPos < -totalWidth) xPos += totalWidth;
-    if (xPos > 0) xPos -= totalWidth;
-    gsap.set(gallery, { x: xPos });
-  });
-
-  window.addEventListener("mouseup", () => {
-    if (!isMobile() || !isDragging) return;
-    isDragging = false;
-    gallery.style.cursor = "grab";
-    resumeCarousel();
-  });
-
-  // --- Init ---
-  setupInfinite();
-
-  // --- Resize ---
-  let lastW = window.innerWidth;
-  window.addEventListener("resize", () => {
-    const cw = window.innerWidth;
-    if (cw === lastW) return;
-    lastW = cw;
-    cancelAnimationFrame(rafId);
-    setupInfinite();
-  });
-}
-// --- 10. MOBILE MENU LOGIC ---
-const mobileToggle = document.getElementById("mobile-toggle");
-const closeMenu = document.getElementById("close-menu");
-const navOverlay = document.getElementById("nav-overlay");
-const mobileLinks = document.querySelectorAll(".nav-link-mobile");
-
-// Creamos un Timeline de GSAP para la apertura
-const menuTL = gsap.timeline({ paused: true });
-
-menuTL.to(navOverlay, {
-  right: 0,
-  duration: 0.6,
-  ease: "expo.inOut"
-})
-.to(".nav-link-mobile", {
-  opacity: 1,
-  y: 0,
-  duration: 0.4,
-  stagger: 0.1, // Aparecen uno tras otro
-  ease: "back.out(1.7)"
-});
+    // Reconstruir al rotar pantalla
+    window.addEventListener("resize", () => {
+      if (!menuTL.isActive()) buildMenuTimeline();
+    });
 
 // Abrir
 mobileToggle.addEventListener("click", () => {
+  mobileToggle.setAttribute("aria-expanded", "true");
+  mobileToggle.classList.add("active"); // ← agregar
   menuTL.play();
-  lenis.stop(); // Pausa el scroll suave
+  lenis.stop();
 });
 
-// Cerrar (Funciones para reutilizar)
+// Cerrar
 const closeAll = () => {
+  mobileToggle.setAttribute("aria-expanded", "false");
+  mobileToggle.classList.remove("active"); // ← agregar
   menuTL.reverse();
-  lenis.start(); // Reactiva el scroll suave
+  lenis.start();
 };
 
-closeMenu.addEventListener("click", closeAll);
+    closeMenu.addEventListener("click", closeAll);
 
-// Cerrar automáticamente al hacer click en un link
-mobileLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const targetId = link.getAttribute("href");
-    
-    closeAll();
-    
-    // Usamos Lenis para ir a la sección después de cerrar
-    setTimeout(() => {
-      lenis.scrollTo(targetId, {
-        offset: -80,
-        duration: 1.5
+    // Cerrar con Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuTL.progress() > 0) closeAll();
+    });
+
+    // Links del overlay → scroll a sección
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href");
+        closeAll();
+        setTimeout(() => {
+          lenis.scrollTo(targetId, { offset: -80, duration: 1.5 });
+        }, 700);
       });
-    }, 600);
-  });
-});
-window.addEventListener(
-  "scroll",
-  () => {
-    // Solo aplicamos la lógica de expansión/contracción si es escritorio (+768px)
-    if (window.innerWidth > 768) {
-      if (window.scrollY > 50) {
-        body.classList.add("scrolled");
-      } else {
-        body.classList.remove("scrolled");
-      }
-    } else {
-      // En móvil, siempre nos aseguramos que tenga la clase para estilos coherentes
-      body.classList.add("scrolled");
-    }
-  },
-  { passive: true }
-);
+    });
 
-// También ejecutar al cargar para definir el estado inicial
-if (window.innerWidth <= 768) body.classList.add("scrolled");
-      }); // fin DOMContentLoaded
-    </script>
+  }); // fin DOMContentLoaded
+</script>
   </body>
 </html>
