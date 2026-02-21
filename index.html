@@ -817,7 +817,6 @@
   position: fixed;
   top: auto;
   bottom: -100%;
-  right: auto;
   left: 0;
   width: 100%;
   height: 100vh;
@@ -831,10 +830,15 @@
   padding: 0 0 120px 0;
   z-index: 2000;
   transition: bottom 0.5s var(--ease-smooth);
+
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .nav-overlay.active {
   bottom: 0;
+  visibility: visible;     
+  pointer-events: auto;    
 }
 
 /* Contenedor de links */
@@ -3841,6 +3845,7 @@
     </style>
   </head>
   <body>
+    
     <header class="header" id="inicio">
       <div class="cursor-spotlight" aria-hidden="true"></div>
 
@@ -5860,33 +5865,33 @@
     const mobileLinks = document.querySelectorAll(".nav-link-mobile");
 
     // Construye el timeline según el dispositivo actual
-    const buildMenuTimeline = () => {
-      menuTL.clear();
+   const buildMenuTimeline = () => {
+  menuTL.clear();
 
-      if (window.innerWidth <= 768) {
-        // Mobile: desliza desde abajo
-        menuTL
-          .to(navOverlay, { bottom: 0, duration: 0.6, ease: "expo.inOut" })
-          .to(".nav-link-mobile", {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.1,
-            ease: "back.out(1.7)",
-          });
-      } else {
-        // Desktop: desliza desde la derecha (fallback)
-        menuTL
-          .to(navOverlay, { right: 0, duration: 0.6, ease: "expo.inOut" })
-          .to(".nav-link-mobile", {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.1,
-            ease: "back.out(1.7)",
-          });
-      }
-    };
+  if (window.innerWidth <= 768) {
+    menuTL
+      .set(navOverlay, { visibility: "visible", pointerEvents: "auto" }) // ✅ antes de animar
+      .to(navOverlay, { bottom: 0, duration: 0.6, ease: "expo.inOut" })
+      .to(".nav-link-mobile", {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+      });
+  } else {
+    menuTL
+      .set(navOverlay, { visibility: "visible", pointerEvents: "auto" }) // ✅
+      .to(navOverlay, { right: 0, duration: 0.6, ease: "expo.inOut" })
+      .to(".nav-link-mobile", {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+      });
+  }
+};
 
     const menuTL = gsap.timeline({ paused: true });
     buildMenuTimeline();
@@ -5907,8 +5912,11 @@ mobileToggle.addEventListener("click", () => {
 // Cerrar
 const closeAll = () => {
   mobileToggle.setAttribute("aria-expanded", "false");
-  mobileToggle.classList.remove("active"); // ← agregar
-  menuTL.reverse();
+  mobileToggle.classList.remove("active");
+  menuTL.reverse().then(() => {
+    // Ocultar completamente al terminar la animación de cierre
+    gsap.set(navOverlay, { visibility: "hidden", pointerEvents: "none" });
+  });
   lenis.start();
 };
 
