@@ -203,21 +203,22 @@
         padding: 0;
         box-sizing: border-box;
       }
-      html.lenis, html.lenis body {
-  height: auto;
-}
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
 
       /* ==========================================
    ROOT - DESIGN TOKENS
@@ -322,11 +323,11 @@
         border-width: 0;
       }
 
-   body {
-  font-family: var(--font-primary);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-}
+      body {
+        font-family: var(--font-primary);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+      }
 
       .header {
         min-height: 130px;
@@ -745,21 +746,21 @@
         }
       }
       main {
-  margin: 0 auto;
-  padding: 0 5%;
-}
+        margin: 0 auto;
+        padding: 0 5%;
+      }
 
-@media (max-width: 768px) {
-  main {
-    padding: 0 3%;
-  }
-}
+      @media (max-width: 768px) {
+        main {
+          padding: 0 3%;
+        }
+      }
 
-@media (max-width: 480px) {
-  main {
-    padding: 0;
-  }
-}
+      @media (max-width: 480px) {
+        main {
+          padding: 0;
+        }
+      }
       /* ==========================================
    HERO - HEADER
    ========================================== */
@@ -1388,105 +1389,123 @@
         }
       }
 
-    /* ==========================================
+      /* ==========================================
    RESPONSIVE MÓVIL - PHOTO STACK
    ========================================== */
 
-@media (max-width: 768px) {
-  main {
-    padding: 7.5rem 1.25rem 3.75rem;
-  }
+      @media (max-width: 768px) {
+        main {
+          padding: 7.5rem 1.25rem 3.75rem;
+        }
 
-  .hero-header {
-    margin-bottom: 3rem;
-  }
+        .hero-header {
+          margin-bottom: 3rem;
+        }
 
-  /* El stack en móvil: altura fija base */
-  .hero-photo-stack {
-    height: 22rem;
-    cursor: pointer;
-    /* Sin transition CSS — GSAP lo controla todo */
-  }
+        /* El stack en móvil: altura fija base */
+        .hero-photo-stack {
+          height: 22rem;
+          cursor: pointer;
+          /* Sin transition CSS — GSAP lo controla todo */
+        }
 
-  /* Posición base móvil: GSAP setea esto al init */
-  /* NO pongas transform acá, GSAP los maneja */
+        /* Posición base móvil: GSAP setea esto al init */
+        /* NO pongas transform acá, GSAP los maneja */
 
-  /* Desactivar hover desktop en móvil */
-  .hero-photo-stack:hover .photo-layer-3,
-  .hero-photo-stack:hover .photo-layer-2,
-  .hero-photo-stack:hover .photo-layer-1 {
-    transform: none; /* GSAP lo sobreescribe */
-  }
+        /* Desactivar hover desktop en móvil */
+        .hero-photo-stack:hover .photo-layer-3,
+        .hero-photo-stack:hover .photo-layer-2,
+        .hero-photo-stack:hover .photo-layer-1 {
+          transform: none; /* GSAP lo sobreescribe */
+        }
 
-  /* Hint visual */
-  .hero-photo-stack::after {
-    content: "Toca para ver las fotos";
-    position: absolute;
-    bottom: -1.75rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: rgba(5, 40, 87, 0.45);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-    pointer-events: none;
-    font-family: var(--font-primary);
-    transition: opacity 0.3s ease;
-  }
+        /* Hint visual */
+        .hero-photo-stack::after {
+          content: "Toca para ver las fotos";
+          position: absolute;
+          bottom: -1.75rem;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: rgba(5, 40, 87, 0.45);
+          letter-spacing: 0.05em;
+          white-space: nowrap;
+          pointer-events: none;
+          font-family: var(--font-primary);
+          transition: opacity 0.3s ease;
+        }
 
-  .hero-photo-stack.expanded::after {
-    content: "Toca para cerrar";
-  }
+        .hero-photo-stack.expanded::after {
+          content: "Toca para cerrar";
+        }
 
-  .hero-quote-card { padding: 2rem 1.5rem; }
-  .mini-card-photo { height: 200px; }
+        .hero-quote-card {
+          padding: 2rem 1.5rem;
+        }
+        .mini-card-photo {
+          height: 200px;
+        }
 
-  .polaroid-stack-card {
-    height: auto;
-    min-height: 18rem;
-    cursor: pointer;
-  }
+        .polaroid-stack-card {
+          height: auto;
+          min-height: 18rem;
+          cursor: pointer;
+        }
 
-  /* Desactivar hover desktop en móvil para polaroid */
-  .polaroid-stack-card:hover .polaroid-1,
-  .polaroid-stack-card:hover .polaroid-2,
-  .polaroid-stack-card:hover .polaroid-3 {
-    transform: none; /* GSAP lo sobreescribe */
-  }
+        /* Desactivar hover desktop en móvil para polaroid */
+        .polaroid-stack-card:hover .polaroid-1,
+        .polaroid-stack-card:hover .polaroid-2,
+        .polaroid-stack-card:hover .polaroid-3 {
+          transform: none; /* GSAP lo sobreescribe */
+        }
 
-  /* Hint visual polaroid */
-  .polaroid-stack-card::after {
-    content: "Toca para ver las fotos";
-    position: absolute;
-    bottom: -1.75rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: rgba(5, 40, 87, 0.45);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-    pointer-events: none;
-    font-family: var(--font-primary);
-    transition: opacity 0.3s ease;
-  }
+        /* Hint visual polaroid */
+        .polaroid-stack-card::after {
+          content: "Toca para ver las fotos";
+          position: absolute;
+          bottom: -1.75rem;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: rgba(5, 40, 87, 0.45);
+          letter-spacing: 0.05em;
+          white-space: nowrap;
+          pointer-events: none;
+          font-family: var(--font-primary);
+          transition: opacity 0.3s ease;
+        }
 
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.625rem;
-  }
-}
+        .stats-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.625rem;
+        }
+      }
 
-@media (max-width: 480px) {
-  main { padding: 7.5rem 1rem 2.5rem; }
-  .hero-header { margin-bottom: 2rem; }
-  .hero-photo-stack { height: 20rem; }
-  .hero-quote-card { padding: 1.875rem 1.5rem; }
-  .stats-grid { gap: 0.5rem; }
-  .stat-item { padding: 0.625rem; }
-  .polaroid-stack-card { min-height: 15rem; }
-}
+      @media (max-width: 480px) {
+        main {
+          padding: 7.5rem 1rem 2.5rem;
+        }
+        .hero-header {
+          margin-bottom: 2rem;
+        }
+        .hero-photo-stack {
+          height: 20rem;
+        }
+        .hero-quote-card {
+          padding: 1.875rem 1.5rem;
+        }
+        .stats-grid {
+          gap: 0.5rem;
+        }
+        .stat-item {
+          padding: 0.625rem;
+        }
+        .polaroid-stack-card {
+          min-height: 15rem;
+        }
+      }
       /* ==========================================
    EXPERIENCES SECTION - POLAROID GALLERY
    ========================================== */
@@ -1881,9 +1900,7 @@
       }
 
       @media (max-width: 768px) {
-        .experiences-section {
-          padding: 50px 30px;
-        }
+       
 
         .experiences-header h2 {
           font-size: 40px;
@@ -1956,6 +1973,73 @@
           width: 60px;
         }
       }
+/* ==========================================
+   EXPERIENCES CAROUSEL - MÓVIL
+   ========================================== */
+
+@media (max-width: 768px) {
+  .hanging-line-container {
+    overflow: hidden;
+  }
+
+  .experiences-gallery {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 16px !important;
+    overflow: visible !important;
+    cursor: grab;
+    will-change: transform;
+    width: max-content !important;
+    align-items: stretch;
+  }
+
+  .experiences-gallery:active {
+    cursor: grabbing;
+  }
+
+  .gallery-row-1,
+  .gallery-row-2,
+  .gallery-row-3 {
+    display: contents !important;
+  }
+
+  .polaroid-item,
+  .center-text-item {
+    min-width: 75vw;
+    width: 75vw;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .center-text-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60vw;
+    width: 60vw;
+  }
+
+  .polaroid-card {
+    transform: none !important;
+    width: 100%;
+  }
+
+  .polaroid-content {
+    height: 300px;
+  }
+
+  /* Ocultar dots en modo carousel continuo */
+  .carousel-dots {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .polaroid-item {
+    min-width: 82vw;
+    width: 82vw;
+  }
+}
       /*----------------------- SERVICES SECTION--------------------------------------- */
       .services-section {
         margin: 120px auto;
@@ -2207,320 +2291,266 @@
           grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
         }
       }
-     /* ==========================================================================
+      /* ==========================================================================
    FAQ SECTION - OPTIMIZED SEMANTIC VERSION
    ========================================================================== */
 
-.faq-section { margin-top: 60px; }
-.faq-header { text-align: center; margin-bottom: 60px; }
-
-.faq-section h2 {
-  font-family: var(--font-secondary);
-  font-size: 55px;
-  margin-bottom: 15px;
-  line-height: 1.6;
-  padding-top: 0.2em;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.faq-intro {
-  font-weight: 500;
-  color: #052857;
-  text-align: left;
-  margin: 0 auto;
-  line-height: 1.6;
-  font-size: 20px;
-}
-
-.faq-intro a {
-  font-weight: 600;
-  text-decoration: none;
-  background-color: #198b91;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: transform 0.4s ease, background-color 0.4s ease;
-  display: inline-block;
-}
-
-.faq-intro a:hover {
-  background-color: #266d72;
-  transform: scale(1.01);
-}
-
-.faq-container {
-  margin-top: 40px;
-  padding: 0px 80px;
-}
-
-.faq-item {
-  overflow: hidden;
-  /* CORRECCIÓN: Quitamos el "all" para que no pelee con GSAP en la altura */
-  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
-.faq-item:hover {
-  background: linear-gradient(90deg, rgba(228, 219, 203, 0.2) 0%, rgba(228, 219, 203, 0.08) 100%);
-  border-bottom-color: rgba(69, 137, 136, 0.25);
-  box-shadow: 0 2px 12px rgba(5, 40, 87, 0.06);
-  transform: translateX(4px);
-}
-
-.faq-item summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 32px 24px;
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
-  transition: padding 0.3s ease;
-}
-
-.faq-item summary:hover { padding-left: 32px; }
-.faq-item summary::-webkit-details-marker { display: none; }
-
-.faq-question {
-  background: linear-gradient(135deg, #052857 0%, #0a4a8f 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 500;
-  font-size: 20px;
-  letter-spacing: 0.01em;
-  flex: 1;
-  pointer-events: none;
-  line-height: 1.5;
-}
-
-.faq-arrow {
-  background: linear-gradient(135deg, #458988 0%, #6bc5c3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 28px;
-  font-weight: bold;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(69, 137, 136, 0.2));
-}
-
-.faq-item[open] {
-  background: linear-gradient(243deg, rgba(177, 166, 147, 0.25) 0%, rgba(228, 219, 203, 0.08) 100%);
-  border-bottom-color: rgba(69, 137, 136, 0.35);
-  box-shadow: 0 6px 16px rgba(5, 40, 87, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  transform: translateX(0);
-}
-
-.faq-item[open] .faq-arrow {
-  transform: rotate(180deg) scale(1.1);
-  background: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 6px rgba(139, 69, 19, 0.3));
-}
-
-.faq-item[open] .faq-question {
-  background: linear-gradient(135deg, #052857 0%, #458988 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.faq-answer {
-  line-height: 1.9;
-  padding: 0 60px 40px 32px;
-  opacity: 1;
-}
-
-.faq-answer p {
-  color: #1a3a54;
-  font-weight: 500;
-  font-size: 16px;
-  margin-bottom: 13px;
-  letter-spacing: 0.01em;
-}
-
-.faq-answer p:last-child { margin-bottom: 0; }
-
-  /* Ajustes Responsive */
-
-      @media (max-width: 1024px) {
-
-        .faq-section {
-
-          padding: 50px 30px;
-
-        }
-
-
-
-        .faq-container {
-
-          padding: 40px 0px;
-
-        }
-
-
-
-        .faq-question {
-
-          font-size: 18px;
-
-        }
-
-
-
-        .faq-answer p {
-
-          font-size: 15.5px;
-
-        }
-
+      .faq-section {
+        margin-top: 60px;
+      }
+      .faq-header {
+        text-align: center;
+        margin-bottom: 60px;
       }
 
+      .faq-section h2 {
+        font-family: var(--font-secondary);
+        font-size: 55px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+        padding-top: 0.2em;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
+      .faq-intro {
+        font-weight: 500;
+        color: #052857;
+        text-align: left;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-size: 20px;
+      }
 
-      @media (max-width: 768px) {
+      .faq-intro a {
+        font-weight: 600;
+        text-decoration: none;
+        background-color: #198b91;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transition:
+          transform 0.4s ease,
+          background-color 0.4s ease;
+        display: inline-block;
+      }
 
-        .faq-section h2 {
+      .faq-intro a:hover {
+        background-color: #266d72;
+        transform: scale(1.01);
+      }
 
-          font-size: 40px;
+      .faq-container {
+        margin-top: 40px;
+        padding: 0px 80px;
+      }
 
+      .faq-item {
+        overflow: hidden;
+        /* CORRECCIÓN: Quitamos el "all" para que no pelee con GSAP en la altura */
+        transition:
+          background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+
+      .faq-item:hover {
+        background: linear-gradient(
+          90deg,
+          rgba(228, 219, 203, 0.2) 0%,
+          rgba(228, 219, 203, 0.08) 100%
+        );
+        border-bottom-color: rgba(69, 137, 136, 0.25);
+        box-shadow: 0 2px 12px rgba(5, 40, 87, 0.06);
+        transform: translateX(4px);
+      }
+
+      .faq-item summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 32px 24px;
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+        transition: padding 0.3s ease;
+      }
+
+      .faq-item summary:hover {
+        padding-left: 32px;
+      }
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-question {
+        background: linear-gradient(135deg, #052857 0%, #0a4a8f 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 0.01em;
+        flex: 1;
+        pointer-events: none;
+        line-height: 1.5;
+      }
+
+      .faq-arrow {
+        background: linear-gradient(135deg, #458988 0%, #6bc5c3 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 28px;
+        font-weight: bold;
+        transition:
+          transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+          filter 0.6s ease;
+        flex-shrink: 0;
+        filter: drop-shadow(0 2px 4px rgba(69, 137, 136, 0.2));
+      }
+
+      .faq-item[open] {
+        background: linear-gradient(
+          243deg,
+          rgba(177, 166, 147, 0.25) 0%,
+          rgba(228, 219, 203, 0.08) 100%
+        );
+        border-bottom-color: rgba(69, 137, 136, 0.35);
+        box-shadow:
+          0 6px 16px rgba(5, 40, 87, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        transform: translateX(0);
+      }
+
+      .faq-item[open] .faq-arrow {
+        transform: rotate(180deg) scale(1.1);
+        background: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 2px 6px rgba(139, 69, 19, 0.3));
+      }
+
+      .faq-item[open] .faq-question {
+        background: linear-gradient(135deg, #052857 0%, #458988 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .faq-answer {
+        line-height: 1.9;
+        padding: 0 60px 40px 32px;
+        opacity: 1;
+      }
+
+      .faq-answer p {
+        color: #1a3a54;
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 13px;
+        letter-spacing: 0.01em;
+      }
+
+      .faq-answer p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Ajustes Responsive */
+
+      @media (max-width: 1024px) {
+        .faq-section {
+          padding: 50px 30px;
         }
 
+        .faq-container {
+          padding: 40px 0px;
+        }
 
+        .faq-question {
+          font-size: 18px;
+        }
+
+        .faq-answer p {
+          font-size: 15.5px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .faq-section h2 {
+          font-size: 40px;
+        }
 
         .faq-intro {
-
           font-size: 17px;
 
           line-height: 1.6;
-
         }
-
-
 
         .faq-question {
-
           font-size: 17px;
-
         }
-
-
 
         .faq-item summary {
-
           padding: 28px 18px;
-
         }
-
-
 
         .faq-item summary:hover {
-
           padding-left: 24px;
-
         }
-
-
 
         .faq-answer {
-
           padding: 0 18px 30px 24px;
-
         }
 
-
-
         .faq-answer p {
-
           font-size: 15px;
 
           line-height: 1.8;
-
         }
-
       }
 
-
-
       @media (max-width: 480px) {
-
         .faq-section h2 {
-
           font-size: 32px;
-
         }
-
-
 
         .faq-intro {
-
           font-size: 16px;
-
         }
-
-
 
         .faq-question {
-
           font-size: 16px;
-
         }
-
-
 
         .faq-item summary {
-
           padding: 24px 16px;
-
         }
-
-
 
         .faq-item summary:hover {
-
           padding-left: 20px;
-
         }
-
-
 
         .faq-answer {
-
           padding: 0 16px 28px 20px;
-
         }
 
-
-
         .faq-answer p {
-
           font-size: 14.5px;
 
           line-height: 1.75;
-
         }
-
-
 
         .faq-arrow {
-
           font-size: 24px;
-
         }
-
       }
       /* ==========================================================================
           SOBRE MI ---- SECTION
@@ -3869,351 +3899,162 @@
           </div>
         </div>
       </section>
-      <!-- PROJECTS SECTION ----PROXIMAMENTE----- -->
-      <!-- <section class="projects-section" id="servicios">
-        <header class="projects-header">
-          <h2>Conocé nuestras historias</h2>
-          <p>
-            Muy pronto vas a poder descubrir una serie de videos donde las voces
-            son las protagonistas. Historias reales, charlas sinceras y
-            experiencias que inspiran, contadas por personas comunes que tienen
-            mucho para decir.
-          </p>
-          <p>
-            Un espacio para escuchar, aprender y conectar. Historias que dejan
-            huella.
-          </p>
-        </header>
+     <!-- EXPERIENCES SECTION -->
+<section class="experiences-section" id="experiencias">
+  <header class="experiences-header">
+    <h2>Experiencias que transforman vidas</h2>
+    <p class="experiences-intro">
+      Cada camino migratorio es único. Estas son algunas de las
+      experiencias de quienes confiaron en mi acompañamiento:
+    </p>
+  </header>
 
-        <ul class="projects-grid">
-          <li class="project-card">
-            <figure>
-              <img
-                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
-                alt="Oficina legal moderna"
-              />
-            </figure>
-          </li>
-          <li class="project-card">
-            <figure>
-              <img
-                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
-                alt="Oficina legal moderna"
-              />
-            </figure>
-          </li>
-          <li class="project-card">
-            <figure>
-              <img
-                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
-                alt="Oficina legal moderna"
-              />
-            </figure>
-          </li>
-          <li class="project-card">
-            <figure>
-              <img
-                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80"
-                alt="Consulta legal profesional"
-              />
-            </figure>
-          </li>
-        </ul>
-      </section> -->
+  <div class="hanging-line-container">
 
-      <!-- EXPERIENCES SECTION -->
+    <div class="experiences-gallery">
 
-      <section class="experiences-section" id="experiencias">
-        <header class="experiences-header">
-          <h2>Experiencias que transforman vidas</h2>
-          <p class="experiences-intro">
-            Cada camino migratorio es único. Estas son algunas de las
-            experiencias de quienes confiaron en mi acompañamiento:
-          </p>
-        </header>
-
-        <div class="hanging-line-container">
-          <!-- Línea de hilo para colgar -->
-          <div class="experiences-gallery">
-            <!-- ========== ROW 1 - 3 FOTOS ========== -->
-            <div class="gallery-row-1">
-              <!-- Foto 1 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-
-                  <div class="polaroid-content">
-                    <span class="card-badge"
-                      >Encontrar partidas en Argentina e Italia más el armado de
-                      la carpeta.
-                    </span>
-
-                    <h3>De Italia a Argentina</h3>
-                    <p>
-                      "Contacté a Marina a través de un amigo en común, le
-                      comenté mi situación y enseguida comenzamos a trabajar en
-                      la carpeta. En muy poco tiempo pudo conseguir todas las
-                      partidas, incluso las que eran más difíciles de encontrar
-                      por ser muy antiguas y por estar en una comuna muy pequeña
-                      del norte de Italia. Además de eso, ella me puso en
-                      contacto con diferentes personas para que me ayuden
-                      propiamente con el trámite de la ciudadanía una vez que yo
-                      viaje a Italia. Durante todo el proceso, ella fue muy
-                      clara en lo que necesitábamos, en los tiempos y me
-                      transmitió seguridad de que todo se iba a poder resolver.
-                      Creo que la comunicación es fundamental en este tipo de
-                      trabajos y ella demostró ser súper clara y profesional.
-                      Muy agradecido porque gracias a ella y a su gran trabajo
-                      pude cumplir con el objetivo que era obtener la ciudadanía
-                      italiana."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Alejandro.</strong>
-                      <!-- <span>Empresario</span> -->
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">Un sueño hecho realidad</p>
-                </div>
-              </div>
-
-              <!-- Foto 2 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-                  <div class="polaroid-content">
-                    <span class="card-badge"
-                      >Armado de carpeta para Ciudadanía Española.</span
-                    >
-
-                    <h3>Reconectando con mis raíces</h3>
-                    <p>
-                      "La recomiendo 100%, de hecho lo hice con conocidos. El
-                      motivo es la claridad y eficiencia en la
-                      comunicación/información, la predisposición, el nivel de
-                      atención al detalle respecto a recordatorios y turnos, y
-                      la prolijidad en el armado de carpetas realizado."
-                    </p>
-                    <p>
-                      "Mi experiencia fue súper buena, 10/10. Profesionalismo,
-                      eficiencia y prolijidad son cualidades que de seguro vas a
-                      encontrar en el servicio brindado por Marina."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Evelin.</strong>
-                      <!-- <span>Diseñadora</span> -->
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">Nuestras raíces nos definen</p>
-                </div>
-              </div>
-
-              <!-- Foto 3 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-                  <div class="polaroid-content">
-                    <span class="card-badge"
-                      >Obtención de mi ciudadanía italiana en Italia con mi
-                      familia.</span
-                    >
-
-                    <h3>Todo en orden</h3>
-                    <p>
-                      "He conocido a la Dra. Martinis por unas publicaciones en
-                      redes sociales que me llamaron la atención por lo claras y
-                      precisas que eran."
-                    </p>
-                    <p>
-                      "¡¡¡Absolutamente SÍ la recomiendo!!! Por el compromiso,
-                      la claridad, la paciencia y porque constantemente está en
-                      formación para actualizar sus conocimientos y leyes."
-                    </p>
-                    <p>
-                      "Desde que contacté a la Dra. Martinis, su atención fue
-                      constante. Cada duda que me surgía me la supo responder
-                      con conocimiento y su acompañamiento fue permanente sin
-                      estar persiguiéndome con información que no era
-                      trascendente. Jamás dejó de atender mis dudas y todo el
-                      proceso fue exitoso. Es evidente la formación y el
-                      conocimiento que tiene."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Alicia.</strong>
-                      <!-- <span>Arquitecto</span> -->
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">Eficiencia y confianza</p>
-                </div>
-              </div>
+      <!-- ========== ROW 1 - 3 FOTOS ========== -->
+      <div class="gallery-row-1">
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">Encontrar partidas en Argentina e Italia más el armado de la carpeta.</span>
+              <h3>De Italia a Argentina</h3>
+              <p>"Contacté a Marina a través de un amigo en común, le comenté mi situación y enseguida comenzamos a trabajar en la carpeta. En muy poco tiempo pudo conseguir todas las partidas, incluso las que eran más difíciles de encontrar por ser muy antiguas y por estar en una comuna muy pequeña del norte de Italia. Además de eso, ella me puso en contacto con diferentes personas para que me ayuden propiamente con el trámite de la ciudadanía una vez que yo viaje a Italia. Durante todo el proceso, ella fue muy clara en lo que necesitábamos, en los tiempos y me transmitió seguridad de que todo se iba a poder resolver. Creo que la comunicación es fundamental en este tipo de trabajos y ella demostró ser súper clara y profesional. Muy agradecido porque gracias a ella y a su gran trabajo pude cumplir con el objetivo que era obtener la ciudadanía italiana."</p>
+              <cite class="polaroid-author"><strong>Alejandro.</strong></cite>
             </div>
-
-            <!-- ========== ROW 2 - FOTO + TEXTO + FOTO ========== -->
-            <div class="gallery-row-2">
-              <!-- Foto 4 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-
-                  <div class="polaroid-content">
-                    <span class="card-badge">Obtención de ciudadanía</span>
-
-                    <h3>Libre para viajar</h3>
-                    <p>
-                      "A la Dra. Marina la conocí por un familiar. Fue una
-                      experiencia muy buena, después de haber tenido varias
-                      entrevistas con distintas personas que se dedican a
-                      tramitar ciudadanías, con la Dra. Marina pude lograr
-                      obtener la ciudadanía mía y de mi hijo gracias a su
-                      experiencia y rapidez para obtener todo lo que necesitaba.
-                      Es una persona muy capaz y responsable, la recomiendo."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Marcelo.</strong>
-                      <!-- <span>Profesora</span> -->
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">El mundo te espera</p>
-                </div>
-              </div>
-
-              <!-- Texto Central -->
-              <div class="center-text-item">
-                <p class="center-text">
-                  "Relatos únicos, destinos compartidos."
-                </p>
-              </div>
-
-              <!-- Foto 5 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-
-                  <div class="polaroid-content">
-                    <span class="card-badge">FALTA ESTA INFO</span>
-
-                    <h3>Sin barreras de idioma</h3>
-                    <p>
-                      "Conocí sus servicios a través de una pareja que tuve y
-                      desde el primer momento la experiencia fue excelente.
-                      Siempre trabajó con la mejor actitud, rapidez y
-                      profesionalismo. Es una persona súper responsable con su
-                      carrera y muy confiable. De hecho, ya recomendé sus
-                      servicios a varios amigos sin dudarlo. Sin dudas, la
-                      recomiendo siempre."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Mauro.</strong>
-                      <!-- <span>Ingeniero</span> -->
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">Precisión garantizada</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- ========== ROW 3 - 3 FOTOS ========== -->
-            <div class="gallery-row-3">
-              <!-- Foto 6 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-
-                  <div class="polaroid-content">
-                    <span class="card-badge">FALTA ESTA INFO</span>
-
-                    <h3>Todos juntos</h3>
-                    <p>
-                      "Conocí sus servicios por Facebook y la experiencia fue
-                      muy satisfactoria. Destaco su gran responsabilidad, su
-                      ahínco en el trabajo y su compromiso en cada detalle. Es
-                      una persona persistente, tenaz y muy amable, lo que genera
-                      mucha confianza. Sin dudas, recomiendo sus servicios."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Nilda.</strong>
-                      <!-- <span>Contadora</span> -->
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">La familia es todo</p>
-                </div>
-              </div>
-
-              <!-- Foto 7 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-
-                  <div class="polaroid-content">
-                    <span class="card-badge">Ciudadanía Española</span>
-
-                    <h3>Claridad total</h3>
-                    <p>
-                      "Fui su alumna y siempre estuve en contacto con ella a
-                      través de mi papá. Mi experiencia fue muy positiva:
-                      destaco su compromiso, el asesoramiento constante, el
-                      acompañamiento y la eficiencia en cada etapa. Siempre
-                      estuvo atenta a mis consultas e inquietudes, respondió
-                      rápidamente y me mantuvo informada sobre cada avance. Sin
-                      dudas, la recomiendo por su dedicación y profesionalismo."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Nelida.</strong>
-                      <!-- <span>Abogado</span> -->
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">Información es poder</p>
-                </div>
-              </div>
-
-              <!-- Foto 8 -->
-              <div class="polaroid-item">
-                <div class="polaroid-card">
-                  <div class="photo-tape tape-top-left"></div>
-                  <div class="photo-tape tape-top-right"></div>
-
-                  <div class="polaroid-content">
-                    <span class="card-badge">DNI</span>
-
-                    <h3>Identidad argentina</h3>
-                    <p>
-                      "Obtuve mi DNI argentino gracias a la gestión impecable de
-                      Marina."
-                    </p>
-
-                    <cite class="polaroid-author">
-                      <strong>Sofía L.</strong>
-                      <span>Médica</span>
-                    </cite>
-                  </div>
-
-                  <p class="polaroid-caption">Nueva vida, nueva identidad</p>
-                </div>
-              </div>
-            </div>
+            <p class="polaroid-caption">Un sueño hecho realidad</p>
           </div>
         </div>
-      </section>
+
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">Armado de carpeta para Ciudadanía Española.</span>
+              <h3>Reconectando con mis raíces</h3>
+              <p>"La recomiendo 100%, de hecho lo hice con conocidos. El motivo es la claridad y eficiencia en la comunicación/información, la predisposición, el nivel de atención al detalle respecto a recordatorios y turnos, y la prolijidad en el armado de carpetas realizado."</p>
+              <p>"Mi experiencia fue súper buena, 10/10. Profesionalismo, eficiencia y prolijidad son cualidades que de seguro vas a encontrar en el servicio brindado por Marina."</p>
+              <cite class="polaroid-author"><strong>Evelin.</strong></cite>
+            </div>
+            <p class="polaroid-caption">Nuestras raíces nos definen</p>
+          </div>
+        </div>
+
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">Obtención de mi ciudadanía italiana en Italia con mi familia.</span>
+              <h3>Todo en orden</h3>
+              <p>"He conocido a la Dra. Martinis por unas publicaciones en redes sociales que me llamaron la atención por lo claras y precisas que eran."</p>
+              <p>"¡¡¡Absolutamente SÍ la recomiendo!!! Por el compromiso, la claridad, la paciencia y porque constantemente está en formación para actualizar sus conocimientos y leyes."</p>
+              <p>"Desde que contacté a la Dra. Martinis, su atención fue constante. Cada duda que me surgía me la supo responder con conocimiento y su acompañamiento fue permanente sin estar persiguiéndome con información que no era trascendente. Jamás dejó de atender mis dudas y todo el proceso fue exitoso. Es evidente la formación y el conocimiento que tiene."</p>
+              <cite class="polaroid-author"><strong>Alicia.</strong></cite>
+            </div>
+            <p class="polaroid-caption">Eficiencia y confianza</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== ROW 2 - FOTO + TEXTO + FOTO ========== -->
+      <div class="gallery-row-2">
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">Obtención de ciudadanía</span>
+              <h3>Libre para viajar</h3>
+              <p>"A la Dra. Marina la conocí por un familiar. Fue una experiencia muy buena, después de haber tenido varias entrevistas con distintas personas que se dedican a tramitar ciudadanías, con la Dra. Marina pude lograr obtener la ciudadanía mía y de mi hijo gracias a su experiencia y rapidez para obtener todo lo que necesitaba. Es una persona muy capaz y responsable, la recomiendo."</p>
+              <cite class="polaroid-author"><strong>Marcelo.</strong></cite>
+            </div>
+            <p class="polaroid-caption">El mundo te espera</p>
+          </div>
+        </div>
+
+        <div class="center-text-item">
+          <p class="center-text">"Relatos únicos, destinos compartidos."</p>
+        </div>
+
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">FALTA ESTA INFO</span>
+              <h3>Sin barreras de idioma</h3>
+              <p>"Conocí sus servicios a través de una pareja que tuve y desde el primer momento la experiencia fue excelente. Siempre trabajó con la mejor actitud, rapidez y profesionalismo. Es una persona súper responsable con su carrera y muy confiable. De hecho, ya recomendé sus servicios a varios amigos sin dudarlo. Sin dudas, la recomiendo siempre."</p>
+              <cite class="polaroid-author"><strong>Mauro.</strong></cite>
+            </div>
+            <p class="polaroid-caption">Precisión garantizada</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== ROW 3 - 3 FOTOS ========== -->
+      <div class="gallery-row-3">
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">FALTA ESTA INFO</span>
+              <h3>Todos juntos</h3>
+              <p>"Conocí sus servicios por Facebook y la experiencia fue muy satisfactoria. Destaco su gran responsabilidad, su ahínco en el trabajo y su compromiso en cada detalle. Es una persona persistente, tenaz y muy amable, lo que genera mucha confianza. Sin dudas, recomiendo sus servicios."</p>
+              <cite class="polaroid-author"><strong>Nilda.</strong></cite>
+            </div>
+            <p class="polaroid-caption">La familia es todo</p>
+          </div>
+        </div>
+
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">Ciudadanía Española</span>
+              <h3>Claridad total</h3>
+              <p>"Fui su alumna y siempre estuve en contacto con ella a través de mi papá. Mi experiencia fue muy positiva: destaco su compromiso, el asesoramiento constante, el acompañamiento y la eficiencia en cada etapa. Siempre estuvo atenta a mis consultas e inquietudes, respondió rápidamente y me mantuvo informada sobre cada avance. Sin dudas, la recomiendo por su dedicación y profesionalismo."</p>
+              <cite class="polaroid-author"><strong>Nelida.</strong></cite>
+            </div>
+            <p class="polaroid-caption">Información es poder</p>
+          </div>
+        </div>
+
+        <div class="polaroid-item">
+          <div class="polaroid-card">
+            <div class="photo-tape tape-top-left"></div>
+            <div class="photo-tape tape-top-right"></div>
+            <div class="polaroid-content">
+              <span class="card-badge">DNI</span>
+              <h3>Identidad argentina</h3>
+              <p>"Obtuve mi DNI argentino gracias a la gestión impecable de Marina."</p>
+              <cite class="polaroid-author">
+                <strong>Sofía L.</strong>
+                <span>Médica</span>
+              </cite>
+            </div>
+            <p class="polaroid-caption">Nueva vida, nueva identidad</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- fin .experiences-gallery -->
+
+    <!-- Dots FUERA del gallery para que no se muevan con el carousel -->
+    <div class="carousel-dots">
+      <div class="carousel-dot active"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+    </div>
+
+  </div><!-- fin .hanging-line-container -->
+</section>
       <!-- ========== SERVICIOS ========== -->
       <section class="services-section" id="servicios">
         <div class="services-container">
@@ -5256,362 +5097,849 @@
         <p>SitebyCristian</p>
       </div>
     </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- VARIABLES GLOBALES ---
+        const navbar = document.getElementById("navbar");
+        const indicator = document.getElementById("nav-indicator");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const navMenu = document.querySelector(".nav-menu");
+        const body = document.body;
 
-  // --- VARIABLES GLOBALES ---
-  const navbar = document.getElementById("navbar");
-  const indicator = document.getElementById("nav-indicator");
-  const navLinks = document.querySelectorAll(".nav-link");
-  const navMenu = document.querySelector(".nav-menu");
-  const body = document.body;
+        // --- 1. LENIS (SMOOTH SCROLL GLOBAL) ---
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
 
-  // --- 1. LENIS (SMOOTH SCROLL GLOBAL) ---
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-  });
+        lenis.on("scroll", ScrollTrigger.update);
 
-  lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
 
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+        gsap.ticker.lagSmoothing(0);
 
-  gsap.ticker.lagSmoothing(0);
+        // --- 2. SCROLL & NAVBAR STATE ---
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.scrollY > 50) {
+              body.classList.add("scrolled");
+            } else {
+              body.classList.remove("scrolled");
+            }
+          },
+          { passive: true },
+        );
 
-  // --- 2. SCROLL & NAVBAR STATE ---
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      body.classList.add("scrolled");
-    } else {
-      body.classList.remove("scrolled");
+        // --- 3. MAGNETIC INDICATOR ---
+        function moveIndicator(el) {
+          const menuRect = navMenu.getBoundingClientRect();
+          const elRect = el.getBoundingClientRect();
+          const menuStyles = getComputedStyle(navMenu);
+          const paddingLeft = parseFloat(menuStyles.paddingLeft);
+          const left = elRect.left - menuRect.left - paddingLeft;
+
+          gsap.to(indicator, {
+            width: elRect.width,
+            x: left,
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+
+        if (navLinks && indicator) {
+          navLinks.forEach((link) => {
+            link.addEventListener("mouseenter", (e) => moveIndicator(e.target));
+          });
+
+          navMenu.addEventListener("mouseleave", () => {
+            gsap.to(indicator, { opacity: 0, duration: 0.3 });
+          });
+        }
+
+        // --- 4. SMOOTH SCROLL PARA ENLACES (con Lenis) ---
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#" && document.querySelector(targetId)) {
+              e.preventDefault();
+              const offset = navbar ? navbar.offsetHeight + 20 : 80;
+              lenis.scrollTo(targetId, {
+                offset: -offset,
+                duration: 1.2,
+              });
+            }
+          });
+        });
+
+        // --- 5. FAQ ACCORDION ---
+        function openFaq(item) {
+          item.setAttribute("open", "");
+          gsap.fromTo(
+            item,
+            { height: item.querySelector("summary").offsetHeight },
+            {
+              height: "auto",
+              duration: 0.5,
+              ease: "power2.out",
+              onComplete: () => (item.style.height = "auto"),
+            },
+          );
+        }
+
+        function shrinkFaq(item) {
+          gsap.to(item, {
+            height: item.querySelector("summary").offsetHeight,
+            duration: 0.4,
+            ease: "power2.inOut",
+            onComplete: () => {
+              item.removeAttribute("open");
+              item.style.height = "auto";
+            },
+          });
+        }
+
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            const isOpen = item.hasAttribute("open");
+
+            document.querySelectorAll(".faq-item[open]").forEach((openItem) => {
+              if (openItem !== item) shrinkFaq(openItem);
+            });
+
+            isOpen ? shrinkFaq(item) : openFaq(item);
+          });
+        });
+
+        // --- 6. FORM VALIDATION & PHONE SELECT ---
+        const emailInput = document.getElementById("email");
+        const phoneInput = document.getElementById("telefono");
+
+        if (emailInput) {
+          const validateEmail = () => {
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+              emailInput.value.trim(),
+            );
+            emailInput.classList.toggle(
+              "invalid",
+              !isValid && emailInput.value !== "",
+            );
+            const emailError = document.getElementById("emailError");
+            if (emailError) {
+              emailError.style.display =
+                !isValid && emailInput.value !== "" ? "block" : "none";
+            }
+            return isValid;
+          };
+          emailInput.addEventListener("input", validateEmail);
+        }
+
+        if (phoneInput) {
+          phoneInput.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, "");
+          });
+        }
+
+        const select = document.getElementById("customPhoneSelect");
+        const trigger = document.getElementById("selectTrigger");
+        const hiddenInput = document.getElementById("phoneCode");
+
+        if (trigger && select) {
+          trigger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            select.classList.toggle("open");
+          });
+
+          document.querySelectorAll(".dropdown-option").forEach((opt) => {
+            opt.addEventListener("click", function () {
+              trigger.querySelector(".select-flag").src =
+                `https://flagcdn.com/w40/${this.dataset.flag}.png`;
+              trigger.querySelector(".select-code").textContent =
+                this.dataset.value;
+              if (hiddenInput) hiddenInput.value = this.dataset.value;
+              select.classList.remove("open");
+            });
+          });
+
+          document.addEventListener("click", () =>
+            select.classList.remove("open"),
+          );
+        }
+
+        // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
+        const stack = document.querySelector(".hero-photo-stack");
+        if (stack) {
+          const layer1 = stack.querySelector(".photo-layer-1");
+          const layer2 = stack.querySelector(".photo-layer-2");
+          const layer3 = stack.querySelector(".photo-layer-3");
+
+          const isMobile = () => window.innerWidth <= 768;
+          const isSmall = () => window.innerWidth <= 480;
+          let isExpanded = false;
+          let stackTl = null;
+
+          function setBasePositions() {
+            if (isMobile()) {
+              gsap.set(layer3, {
+                rotation: -5,
+                x: -30,
+                y: 15,
+                zIndex: 1,
+                opacity: 0.9,
+              });
+              gsap.set(layer2, {
+                rotation: 2,
+                x: 20,
+                y: -5,
+                zIndex: 2,
+                opacity: 0.95,
+              });
+              gsap.set(layer1, {
+                rotation: -1,
+                x: -10,
+                y: 5,
+                zIndex: 3,
+                opacity: 1,
+              });
+            } else {
+              gsap.set(layer3, {
+                rotation: -8,
+                x: -60,
+                y: 20,
+                zIndex: 1,
+                opacity: 0.9,
+              });
+              gsap.set(layer2, {
+                rotation: 3,
+                x: 40,
+                y: -10,
+                zIndex: 2,
+                opacity: 0.95,
+              });
+              gsap.set(layer1, {
+                rotation: -2,
+                x: -20,
+                y: 10,
+                zIndex: 3,
+                opacity: 1,
+              });
+            }
+          }
+
+          function desktopOpen() {
+            if (stackTl) stackTl.kill();
+            stackTl = gsap.timeline();
+            stackTl
+              .to(
+                layer3,
+                {
+                  rotation: -15,
+                  x: -120,
+                  y: 40,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                layer2,
+                {
+                  rotation: 8,
+                  x: 90,
+                  y: -20,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                layer1,
+                {
+                  rotation: -1,
+                  x: -30,
+                  y: 5,
+                  scale: 1.02,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              );
+          }
+
+          function desktopClose() {
+            if (stackTl) stackTl.kill();
+            stackTl = gsap.timeline({ onComplete: setBasePositions });
+            stackTl
+              .to(
+                layer3,
+                {
+                  rotation: -8,
+                  x: -60,
+                  y: 20,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                layer2,
+                {
+                  rotation: 3,
+                  x: 40,
+                  y: -10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                layer1,
+                {
+                  rotation: -2,
+                  x: -20,
+                  y: 10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              );
+          }
+
+          function expandStack() {
+            const offset = isSmall() ? 290 : 330;
+            isExpanded = true;
+            stack.classList.add("expanded");
+            if (stackTl) stackTl.kill();
+
+            gsap.to(stack, {
+              height: offset * 2 + 180,
+              duration: 0.7,
+              ease: "power2.out",
+            });
+
+            stackTl = gsap.timeline();
+            stackTl
+              .to(
+                layer2,
+                { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" },
+                0,
+              )
+              .to(
+                layer3,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: -offset,
+                  duration: 0.65,
+                  ease: "power2.out",
+                },
+                0.1,
+              )
+              .to(
+                layer1,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: offset,
+                  duration: 0.7,
+                  ease: "power2.out",
+                },
+                0.2,
+              );
+          }
+
+          function collapseStack() {
+            isExpanded = false;
+            stack.classList.remove("expanded");
+            if (stackTl) stackTl.kill();
+
+            gsap.to(stack, {
+              height: isSmall() ? "20rem" : "22rem",
+              duration: 0.6,
+              ease: "power2.inOut",
+            });
+
+            stackTl = gsap.timeline({ onComplete: setBasePositions });
+            stackTl
+              .to(
+                layer1,
+                {
+                  rotation: -1,
+                  x: -10,
+                  y: 5,
+                  duration: 0.6,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                layer2,
+                {
+                  rotation: 2,
+                  x: 20,
+                  y: -5,
+                  duration: 0.65,
+                  ease: "power2.inOut",
+                },
+                0.08,
+              )
+              .to(
+                layer3,
+                {
+                  rotation: -5,
+                  x: -30,
+                  y: 15,
+                  duration: 0.7,
+                  ease: "power2.inOut",
+                },
+                0.16,
+              );
+          }
+
+          setBasePositions();
+
+          stack.addEventListener("mouseenter", () => {
+            if (!isMobile()) desktopOpen();
+          });
+          stack.addEventListener("mouseleave", () => {
+            if (!isMobile()) desktopClose();
+          });
+          stack.addEventListener("click", () => {
+            if (!isMobile()) return;
+            isExpanded ? collapseStack() : expandStack();
+          });
+
+          let lastWidthStack = window.innerWidth;
+          window.addEventListener("resize", () => {
+            const currentWidth = window.innerWidth;
+            if (currentWidth === lastWidthStack) return;
+            lastWidthStack = currentWidth;
+
+            if (stackTl) stackTl.kill();
+            stack.classList.remove("expanded");
+            isExpanded = false;
+            setBasePositions();
+            gsap.set(stack, {
+              height: isMobile()
+                ? isSmall()
+                  ? "20rem"
+                  : "22rem"
+                : "34.375rem",
+            });
+          });
+        }
+
+        // --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
+        const polaroidCard = document.querySelector(".polaroid-stack-card");
+        if (polaroidCard) {
+          const p1 = polaroidCard.querySelector(".polaroid-1");
+          const p2 = polaroidCard.querySelector(".polaroid-2");
+          const p3 = polaroidCard.querySelector(".polaroid-3");
+
+          const isMobile = () => window.innerWidth <= 768;
+          let polaroidTl = null;
+          let polaroidExpanded = false;
+
+          function setPolaroidBase() {
+            if (isMobile()) {
+              gsap.set(p1, { rotation: -5, x: -20, y: -10, zIndex: 1 });
+              gsap.set(p2, { rotation: 3, x: 8, y: 8, zIndex: 2 });
+              gsap.set(p3, { rotation: -2, x: 28, y: -6, zIndex: 3 });
+            } else {
+              gsap.set(p1, { rotation: -8, x: -30, y: -20, zIndex: 1 });
+              gsap.set(p2, { rotation: 5, x: 10, y: 10, zIndex: 2 });
+              gsap.set(p3, { rotation: -3, x: 40, y: -10, zIndex: 3 });
+            }
+          }
+
+          function polaroidOpen() {
+            if (polaroidTl) polaroidTl.kill();
+            polaroidTl = gsap.timeline();
+            polaroidTl
+              .to(
+                p1,
+                {
+                  rotation: -12,
+                  x: -50,
+                  y: -30,
+                  scale: 1,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                p2,
+                {
+                  rotation: 8,
+                  x: 15,
+                  y: 15,
+                  scale: 1.02,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                p3,
+                {
+                  rotation: -5,
+                  x: 60,
+                  y: -15,
+                  scale: 1,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              );
+          }
+
+          function polaroidClose() {
+            if (polaroidTl) polaroidTl.kill();
+            polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
+            polaroidTl
+              .to(
+                p1,
+                {
+                  rotation: -8,
+                  x: -30,
+                  y: -20,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                p2,
+                {
+                  rotation: 5,
+                  x: 10,
+                  y: 10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                p3,
+                {
+                  rotation: -3,
+                  x: 40,
+                  y: -10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              );
+          }
+
+          function polaroidExpand() {
+            polaroidExpanded = true;
+            if (polaroidTl) polaroidTl.kill();
+
+            const offset = window.innerWidth <= 480 ? 220 : 255;
+            const offset3 = window.innerWidth <= 480 ? 215 : 250;
+
+            gsap.to(polaroidCard, {
+              height: offset * 2 + 140,
+              duration: 0.7,
+              ease: "power2.out",
+            });
+
+            polaroidTl = gsap.timeline();
+            polaroidTl
+              .to(
+                p2,
+                { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" },
+                0,
+              )
+              .to(
+                p1,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: -offset,
+                  duration: 0.65,
+                  ease: "power2.out",
+                },
+                0.1,
+              )
+              .to(
+                p3,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: offset3,
+                  duration: 0.7,
+                  ease: "power2.out",
+                },
+                0.2,
+              );
+          }
+
+          function polaroidCollapse() {
+            polaroidExpanded = false;
+            if (polaroidTl) polaroidTl.kill();
+
+            const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
+            gsap.to(polaroidCard, {
+              height: baseHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            });
+
+            polaroidTl = gsap.timeline();
+            polaroidTl
+              .to(
+                p3,
+                {
+                  rotation: -2,
+                  x: 28,
+                  y: -6,
+                  scale: 1,
+                  duration: 0.6,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                p2,
+                {
+                  rotation: 3,
+                  x: 8,
+                  y: 8,
+                  scale: 1,
+                  duration: 0.65,
+                  ease: "power2.inOut",
+                },
+                0.08,
+              )
+              .to(
+                p1,
+                {
+                  rotation: -5,
+                  x: -20,
+                  y: -10,
+                  scale: 1,
+                  duration: 0.7,
+                  ease: "power2.inOut",
+                },
+                0.16,
+              );
+          }
+
+          setPolaroidBase();
+
+          polaroidCard.addEventListener("mouseenter", () => {
+            if (!isMobile()) polaroidOpen();
+          });
+          polaroidCard.addEventListener("mouseleave", () => {
+            if (!isMobile()) polaroidClose();
+          });
+          polaroidCard.addEventListener("click", () => {
+            if (!isMobile()) return;
+            polaroidExpanded ? polaroidCollapse() : polaroidExpand();
+          });
+
+          let lastWidthP = window.innerWidth;
+          window.addEventListener("resize", () => {
+            const currentWidth = window.innerWidth;
+            if (currentWidth === lastWidthP) return;
+            lastWidthP = currentWidth;
+
+            if (polaroidTl) polaroidTl.kill();
+            polaroidExpanded = false;
+            polaroidCard.classList.remove("expanded");
+            setPolaroidBase();
+            gsap.set(polaroidCard, {
+              height: isMobile()
+                ? window.innerWidth <= 480
+                  ? "15rem"
+                  : "18rem"
+                : "25rem",
+            });
+          });
+        }
+// --- 9. EXPERIENCES CAROUSEL - Infinito continuo ---
+const gallery = document.querySelector(".experiences-gallery");
+if (gallery) {
+  const isMobile = () => window.innerWidth <= 768;
+
+  let xPos = 0;
+  let speed = 0.5;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStartPos = 0;
+  let isPaused = false;
+  let resumeTimeout = null;
+  let rafId = null;
+  let totalWidth = 0;
+  let touchDirLocked = null;
+
+  function getSlides() {
+    return Array.from(gallery.querySelectorAll(".polaroid-item, .center-text-item"));
+  }
+
+  function setupInfinite() {
+    if (!isMobile()) {
+      cancelAnimationFrame(rafId);
+      gsap.set(gallery, { x: 0 });
+      gallery.querySelectorAll(".carousel-clone").forEach(el => el.remove());
+      gallery.style.flexDirection = "";
+      gallery.style.flexWrap = "";
+      return;
+    }
+
+    gallery.querySelectorAll(".carousel-clone").forEach(el => el.remove());
+
+    const slides = getSlides();
+
+    slides.forEach(slide => {
+      const clone = slide.cloneNode(true);
+      clone.classList.add("carousel-clone");
+      gallery.appendChild(clone);
+    });
+
+    setTimeout(() => {
+      const allSlides = getSlides();
+      totalWidth = allSlides.reduce((acc, el) => {
+        return acc + el.getBoundingClientRect().width + 16;
+      }, 0);
+
+      xPos = 0;
+      gsap.set(gallery, { x: 0 });
+      startLoop();
+    }, 100);
+  }
+
+  function startLoop() {
+    cancelAnimationFrame(rafId);
+
+    function tick() {
+      if (!isPaused && !isDragging) {
+        xPos -= speed;
+        if (Math.abs(xPos) >= totalWidth) {
+          xPos += totalWidth;
+        }
+        gsap.set(gallery, { x: xPos });
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function pauseCarousel() {
+    isPaused = true;
+    if (resumeTimeout) clearTimeout(resumeTimeout);
+  }
+
+  function resumeCarousel() {
+    if (resumeTimeout) clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(() => {
+      isPaused = false;
+    }, 3000);
+  }
+
+  // --- Touch ---
+  gallery.addEventListener("touchstart", (e) => {
+    if (!isMobile()) return;
+    isDragging = false;
+    touchDirLocked = null;
+    dragStartX = e.touches[0].clientX;
+    dragStartY = e.touches[0].clientY;
+    dragStartPos = xPos;
+  }, { passive: true });
+
+  gallery.addEventListener("touchmove", (e) => {
+    if (!isMobile()) return;
+
+    const dx = e.touches[0].clientX - dragStartX;
+    const dy = e.touches[0].clientY - dragStartY;
+
+    if (!touchDirLocked) {
+      if (Math.abs(dx) > Math.abs(dy) + 5) {
+        touchDirLocked = "horizontal";
+      } else if (Math.abs(dy) > Math.abs(dx) + 5) {
+        touchDirLocked = "vertical";
+      }
+    }
+
+    if (touchDirLocked === "vertical") return;
+
+    if (touchDirLocked === "horizontal") {
+      isDragging = true;
+      pauseCarousel();
+      xPos = dragStartPos + dx;
+      if (xPos > 0) xPos -= totalWidth;
+      if (Math.abs(xPos) >= totalWidth) xPos += totalWidth;
+      gsap.set(gallery, { x: xPos });
     }
   }, { passive: true });
 
-  // --- 3. MAGNETIC INDICATOR ---
-  function moveIndicator(el) {
-    const menuRect = navMenu.getBoundingClientRect();
-    const elRect = el.getBoundingClientRect();
-    const menuStyles = getComputedStyle(navMenu);
-    const paddingLeft = parseFloat(menuStyles.paddingLeft);
-    const left = elRect.left - menuRect.left - paddingLeft;
+  gallery.addEventListener("touchend", () => {
+    if (!isMobile()) return;
+    isDragging = false;
+    touchDirLocked = null;
+    if (isPaused) resumeCarousel();
+  }, { passive: true });
 
-    gsap.to(indicator, {
-      width: elRect.width,
-      x: left,
-      opacity: 1,
-      duration: 0.3,
-      ease: "power2.out"
-    });
-  }
-
-  if (navLinks && indicator) {
-    navLinks.forEach(link => {
-      link.addEventListener("mouseenter", (e) => moveIndicator(e.target));
-    });
-
-    navMenu.addEventListener("mouseleave", () => {
-      gsap.to(indicator, { opacity: 0, duration: 0.3 });
-    });
-  }
-
-  // --- 4. SMOOTH SCROLL PARA ENLACES (con Lenis) ---
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", function(e) {
-      const targetId = this.getAttribute("href");
-      if (targetId !== "#" && document.querySelector(targetId)) {
-        e.preventDefault();
-        const offset = navbar ? navbar.offsetHeight + 20 : 80;
-        lenis.scrollTo(targetId, {
-          offset: -offset,
-          duration: 1.2
-        });
-      }
-    });
+  // --- Mouse ---
+  gallery.addEventListener("mousedown", (e) => {
+    if (!isMobile()) return;
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartPos = xPos;
+    pauseCarousel();
+    gallery.style.cursor = "grabbing";
   });
 
-  // --- 5. FAQ ACCORDION ---
-  function openFaq(item) {
-    item.setAttribute("open", "");
-    gsap.fromTo(item,
-      { height: item.querySelector("summary").offsetHeight },
-      {
-        height: "auto",
-        duration: 0.5,
-        ease: "power2.out",
-        onComplete: () => item.style.height = "auto"
-      }
-    );
-  }
-
-  function shrinkFaq(item) {
-    gsap.to(item, {
-      height: item.querySelector("summary").offsetHeight,
-      duration: 0.4,
-      ease: "power2.inOut",
-      onComplete: () => {
-        item.removeAttribute("open");
-        item.style.height = "auto";
-      }
-    });
-  }
-
-  document.querySelectorAll(".faq-item").forEach(item => {
-    item.addEventListener("click", (e) => {
-      e.preventDefault();
-      const isOpen = item.hasAttribute("open");
-
-      document.querySelectorAll(".faq-item[open]").forEach(openItem => {
-        if (openItem !== item) shrinkFaq(openItem);
-      });
-
-      isOpen ? shrinkFaq(item) : openFaq(item);
-    });
+  window.addEventListener("mousemove", (e) => {
+    if (!isMobile() || !isDragging) return;
+    const dx = e.clientX - dragStartX;
+    xPos = dragStartPos + dx;
+    if (xPos > 0) xPos -= totalWidth;
+    if (Math.abs(xPos) >= totalWidth) xPos += totalWidth;
+    gsap.set(gallery, { x: xPos });
   });
 
-  // --- 6. FORM VALIDATION & PHONE SELECT ---
-  const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("telefono");
+  window.addEventListener("mouseup", () => {
+    if (!isMobile() || !isDragging) return;
+    isDragging = false;
+    gallery.style.cursor = "grab";
+    resumeCarousel();
+  });
 
-  if (emailInput) {
-    const validateEmail = () => {
-      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
-      emailInput.classList.toggle("invalid", !isValid && emailInput.value !== "");
-      const emailError = document.getElementById("emailError");
-      if (emailError) {
-        emailError.style.display = (!isValid && emailInput.value !== "") ? "block" : "none";
-      }
-      return isValid;
-    };
-    emailInput.addEventListener("input", validateEmail);
-  }
+  // --- Init ---
+  setupInfinite();
 
-  if (phoneInput) {
-    phoneInput.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/[^0-9]/g, "");
-    });
-  }
-
-  const select = document.getElementById("customPhoneSelect");
-  const trigger = document.getElementById("selectTrigger");
-  const hiddenInput = document.getElementById("phoneCode");
-
-  if (trigger && select) {
-    trigger.addEventListener("click", (e) => {
-      e.stopPropagation();
-      select.classList.toggle("open");
-    });
-
-    document.querySelectorAll(".dropdown-option").forEach(opt => {
-      opt.addEventListener("click", function() {
-        trigger.querySelector(".select-flag").src = `https://flagcdn.com/w40/${this.dataset.flag}.png`;
-        trigger.querySelector(".select-code").textContent = this.dataset.value;
-        if (hiddenInput) hiddenInput.value = this.dataset.value;
-        select.classList.remove("open");
-      });
-    });
-
-    document.addEventListener("click", () => select.classList.remove("open"));
-  }
-
-  // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
-  const stack = document.querySelector(".hero-photo-stack");
-  if (stack) {
-    const layer1 = stack.querySelector(".photo-layer-1");
-    const layer2 = stack.querySelector(".photo-layer-2");
-    const layer3 = stack.querySelector(".photo-layer-3");
-
-    const isMobile = () => window.innerWidth <= 768;
-    const isSmall  = () => window.innerWidth <= 480;
-    let isExpanded = false;
-    let stackTl = null;
-
-    function setBasePositions() {
-      if (isMobile()) {
-        gsap.set(layer3, { rotation: -5, x: -30, y:  15, zIndex: 1, opacity: 0.9  });
-        gsap.set(layer2, { rotation:  2, x:  20, y:  -5, zIndex: 2, opacity: 0.95 });
-        gsap.set(layer1, { rotation: -1, x: -10, y:   5, zIndex: 3, opacity: 1    });
-      } else {
-        gsap.set(layer3, { rotation: -8, x: -60, y:  20, zIndex: 1, opacity: 0.9  });
-        gsap.set(layer2, { rotation:  3, x:  40, y: -10, zIndex: 2, opacity: 0.95 });
-        gsap.set(layer1, { rotation: -2, x: -20, y:  10, zIndex: 3, opacity: 1    });
-      }
-    }
-
-    function desktopOpen() {
-      if (stackTl) stackTl.kill();
-      stackTl = gsap.timeline();
-      stackTl
-        .to(layer3, { rotation: -15, x: -120, y:  40, duration: 0.45, ease: "power3.out" }, 0)
-        .to(layer2, { rotation:   8, x:   90, y: -20, duration: 0.45, ease: "power3.out" }, 0)
-        .to(layer1, { rotation:  -1, x:  -30, y:   5, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0);
-    }
-
-    function desktopClose() {
-      if (stackTl) stackTl.kill();
-      stackTl = gsap.timeline({ onComplete: setBasePositions });
-      stackTl
-        .to(layer3, { rotation: -8, x: -60, y:  20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-        .to(layer2, { rotation:  3, x:  40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-        .to(layer1, { rotation: -2, x: -20, y:  10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
-    }
-
-  function expandStack() {
-    const offset = isSmall() ? 290 : 330;
-    isExpanded = true;
-    stack.classList.add("expanded");
-    if (stackTl) stackTl.kill();
-
-    gsap.to(stack, { height: offset * 2 + 180, duration: 0.7, ease: "power2.out" });
-
-    stackTl = gsap.timeline();
-    stackTl
-      .to(layer2, { rotation: 0, x: 0, y:       0, duration: 0.6, ease: "power2.out" }, 0)
-      .to(layer3, { rotation: 0, x: 0, y: -offset, duration: 0.65, ease: "power2.out" }, 0.1)
-      .to(layer1, { rotation: 0, x: 0, y:  offset, duration: 0.7,  ease: "power2.out" }, 0.2);
-  }
-
-  function collapseStack() {
-    isExpanded = false;
-    stack.classList.remove("expanded");
-    if (stackTl) stackTl.kill();
-
-    gsap.to(stack, {
-      height: isSmall() ? "20rem" : "22rem",
-      duration: 0.6, ease: "power2.inOut"
-    });
-
-    stackTl = gsap.timeline({ onComplete: setBasePositions });
-    stackTl
-      .to(layer1, { rotation: -1, x: -10, y:   5, duration: 0.6,  ease: "power2.inOut" }, 0)
-      .to(layer2, { rotation:  2, x:  20, y:  -5, duration: 0.65, ease: "power2.inOut" }, 0.08)
-      .to(layer3, { rotation: -5, x: -30, y:  15, duration: 0.7,  ease: "power2.inOut" }, 0.16);
-  }
-
-    setBasePositions();
-
-    stack.addEventListener("mouseenter", () => { if (!isMobile()) desktopOpen();  });
-    stack.addEventListener("mouseleave", () => { if (!isMobile()) desktopClose(); });
-    stack.addEventListener("click",      () => {
-      if (!isMobile()) return;
-      isExpanded ? collapseStack() : expandStack();
-    });
-
-    let lastWidthStack = window.innerWidth;
-    window.addEventListener("resize", () => {
-      const currentWidth = window.innerWidth;
-      if (currentWidth === lastWidthStack) return;
-      lastWidthStack = currentWidth;
-
-      if (stackTl) stackTl.kill();
-      stack.classList.remove("expanded");
-      isExpanded = false;
-      setBasePositions();
-      gsap.set(stack, { height: isMobile() ? (isSmall() ? "20rem" : "22rem") : "34.375rem" });
-    });
-  }
-
-  // --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
-  const polaroidCard = document.querySelector(".polaroid-stack-card");
-  if (polaroidCard) {
-    const p1 = polaroidCard.querySelector(".polaroid-1");
-    const p2 = polaroidCard.querySelector(".polaroid-2");
-    const p3 = polaroidCard.querySelector(".polaroid-3");
-
-    const isMobile = () => window.innerWidth <= 768;
-    let polaroidTl = null;
-    let polaroidExpanded = false;
-
-    function setPolaroidBase() {
-      if (isMobile()) {
-        gsap.set(p1, { rotation: -5, x: -20, y: -10, zIndex: 1 });
-        gsap.set(p2, { rotation:  3, x:   8, y:   8, zIndex: 2 });
-        gsap.set(p3, { rotation: -2, x:  28, y:  -6, zIndex: 3 });
-      } else {
-        gsap.set(p1, { rotation: -8, x: -30, y: -20, zIndex: 1 });
-        gsap.set(p2, { rotation:  5, x:  10, y:  10, zIndex: 2 });
-        gsap.set(p3, { rotation: -3, x:  40, y: -10, zIndex: 3 });
-      }
-    }
-
-    function polaroidOpen() {
-      if (polaroidTl) polaroidTl.kill();
-      polaroidTl = gsap.timeline();
-      polaroidTl
-        .to(p1, { rotation: -12, x: -50, y: -30, scale: 1,    duration: 0.45, ease: "power3.out" }, 0)
-        .to(p2, { rotation:   8, x:  15, y:  15, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0)
-        .to(p3, { rotation:  -5, x:  60, y: -15, scale: 1,    duration: 0.45, ease: "power3.out" }, 0);
-    }
-
-    function polaroidClose() {
-      if (polaroidTl) polaroidTl.kill();
-      polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
-      polaroidTl
-        .to(p1, { rotation: -8, x: -30, y: -20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-        .to(p2, { rotation:  5, x:  10, y:  10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-        .to(p3, { rotation: -3, x:  40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
-    }
-
-   function polaroidExpand() {
-    polaroidExpanded = true;
-    if (polaroidTl) polaroidTl.kill();
-
-    const offset  = window.innerWidth <= 480 ? 220 : 255;
-    const offset3 = window.innerWidth <= 480 ? 215 : 250;
-
-    gsap.to(polaroidCard, { height: offset * 2 + 140, duration: 0.7, ease: "power2.out" });
-
-    polaroidTl = gsap.timeline();
-    polaroidTl
-      .to(p2, { rotation: 0, x: 0, y:        0, duration: 0.6,  ease: "power2.out" }, 0)
-      .to(p1, { rotation: 0, x: 0, y: -offset,  duration: 0.65, ease: "power2.out" }, 0.1)
-      .to(p3, { rotation: 0, x: 0, y:  offset3, duration: 0.7,  ease: "power2.out" }, 0.2);
-  }
-
-  function polaroidCollapse() {
-    polaroidExpanded = false;
-    if (polaroidTl) polaroidTl.kill();
-
-    const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
-    gsap.to(polaroidCard, { height: baseHeight, duration: 0.6, ease: "power2.inOut" });
-
-    polaroidTl = gsap.timeline();
-    polaroidTl
-      .to(p3, { rotation: -2, x:  28, y:  -6, scale: 1, duration: 0.6,  ease: "power2.inOut" }, 0)
-      .to(p2, { rotation:  3, x:   8, y:   8, scale: 1, duration: 0.65, ease: "power2.inOut" }, 0.08)
-      .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.7,  ease: "power2.inOut" }, 0.16);
-  }
-
-    setPolaroidBase();
-
-    polaroidCard.addEventListener("mouseenter", () => { if (!isMobile()) polaroidOpen();  });
-    polaroidCard.addEventListener("mouseleave", () => { if (!isMobile()) polaroidClose(); });
-    polaroidCard.addEventListener("click",      () => {
-      if (!isMobile()) return;
-      polaroidExpanded ? polaroidCollapse() : polaroidExpand();
-    });
-
-    let lastWidthP = window.innerWidth;
-    window.addEventListener("resize", () => {
-      const currentWidth = window.innerWidth;
-      if (currentWidth === lastWidthP) return;
-      lastWidthP = currentWidth;
-
-      if (polaroidTl) polaroidTl.kill();
-      polaroidExpanded = false;
-      polaroidCard.classList.remove("expanded");
-      setPolaroidBase();
-      gsap.set(polaroidCard, { height: isMobile() ? (window.innerWidth <= 480 ? "15rem" : "18rem") : "25rem" });
-    });
-  }
-
-}); // fin DOMContentLoaded
-</script>
+  // --- Resize ---
+  let lastW = window.innerWidth;
+  window.addEventListener("resize", () => {
+    const cw = window.innerWidth;
+    if (cw === lastW) return;
+    lastW = cw;
+    cancelAnimationFrame(rafId);
+    setupInfinite();
+  });
+}
+      }); // fin DOMContentLoaded
+    </script>
   </body>
 </html>
