@@ -5781,19 +5781,23 @@ if (gallery) {
   const isMobile = () => window.innerWidth <= 768;
 
   let xPos = 0;
+  let xVelocity = 0;        // inercia del drag
   let speed = 0.5;
   let isDragging = false;
   let dragStartX = 0;
   let dragStartY = 0;
   let dragStartPos = 0;
+  let lastDragX = 0;        // para calcular velocidad
   let isPaused = false;
   let resumeTimeout = null;
   let rafId = null;
   let totalWidth = 0;
   let touchDirLocked = null;
 
-  function getSlides() {
-    return Array.from(gallery.querySelectorAll(".polaroid-item, .center-text-item"));
+  function getOriginalSlides() {
+    return Array.from(gallery.querySelectorAll(
+      ".polaroid-item:not(.carousel-clone), .center-text-item:not(.carousel-clone)"
+    ));
   }
 
   function setupInfinite() {
@@ -5808,37 +5812,59 @@ if (gallery) {
 
     gallery.querySelectorAll(".carousel-clone").forEach(el => el.remove());
 
-    const slides = getSlides();
+    const slides = getOriginalSlides();
 
-    slides.forEach(slide => {
-      const clone = slide.cloneNode(true);
-      clone.classList.add("carousel-clone");
-      gallery.appendChild(clone);
+    // Clonar 2 veces para que nunca haya espacio vacío
+    [1, 2].forEach(() => {
+      slides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        clone.classList.add("carousel-clone");
+        gallery.appendChild(clone);
+      });
     });
 
     setTimeout(() => {
-      const allSlides = getSlides();
-      totalWidth = allSlides.reduce((acc, el) => {
-        return acc + el.getBoundingClientRect().width + 16;
+      // Calcular ancho del set original (sin clones)
+      const originals = getOriginalSlides();
+      totalWidth = originals.reduce((acc, el) => {
+        const style = window.getComputedStyle(el);
+        const margin = parseFloat(style.marginRight) || 0;
+        return acc + el.getBoundingClientRect().width + 16 + margin;
       }, 0);
 
       xPos = 0;
+      xVelocity = 0;
       gsap.set(gallery, { x: 0 });
       startLoop();
-    }, 100);
+    }, 150);
   }
 
   function startLoop() {
     cancelAnimationFrame(rafId);
 
     function tick() {
-      if (!isPaused && !isDragging) {
-        xPos -= speed;
-        if (Math.abs(xPos) >= totalWidth) {
-          xPos += totalWidth;
+      if (!isDragging) {
+        if (isPaused) {
+          // Desacelerar inercia suavemente
+          xVelocity *= 0.88;
+          if (Math.abs(xVelocity) > 0.1) {
+            xPos += xVelocity;
+          } else {
+            xVelocity = 0;
+          }
+        } else {
+          // Autoplay: absorber inercia residual hacia velocidad normal
+          xVelocity *= 0.92;
+          xPos -= speed + Math.max(0, -xVelocity);
         }
+
+        // Loop infinito: wrap cuando supera el set original
+        if (xPos < -totalWidth) xPos += totalWidth;
+        if (xPos > 0) xPos -= totalWidth;
+
         gsap.set(gallery, { x: xPos });
       }
+
       rafId = requestAnimationFrame(tick);
     }
 
@@ -5854,6 +5880,7 @@ if (gallery) {
     if (resumeTimeout) clearTimeout(resumeTimeout);
     resumeTimeout = setTimeout(() => {
       isPaused = false;
+      xVelocity = 0;
     }, 3000);
   }
 
@@ -5864,7 +5891,10 @@ if (gallery) {
     touchDirLocked = null;
     dragStartX = e.touches[0].clientX;
     dragStartY = e.touches[0].clientY;
+    lastDragX = dragStartX;
     dragStartPos = xPos;
+    xVelocity = 0;
+    pauseCarousel();
   }, { passive: true });
 
   gallery.addEventListener("touchmove", (e) => {
@@ -5874,9 +5904,9 @@ if (gallery) {
     const dy = e.touches[0].clientY - dragStartY;
 
     if (!touchDirLocked) {
-      if (Math.abs(dx) > Math.abs(dy) + 5) {
+      if (Math.abs(dx) > Math.abs(dy) + 4) {
         touchDirLocked = "horizontal";
-      } else if (Math.abs(dy) > Math.abs(dx) + 5) {
+      } else if (Math.abs(dy) > Math.abs(dx) + 4) {
         touchDirLocked = "vertical";
       }
     }
@@ -5885,10 +5915,13 @@ if (gallery) {
 
     if (touchDirLocked === "horizontal") {
       isDragging = true;
-      pauseCarousel();
+      // Velocidad para inercia post-drag
+      xVelocity = (e.touches[0].clientX - lastDragX) * 0.6;
+      lastDragX = e.touches[0].clientX;
+
       xPos = dragStartPos + dx;
+      if (xPos < -totalWidth) xPos += totalWidth;
       if (xPos > 0) xPos -= totalWidth;
-      if (Math.abs(xPos) >= totalWidth) xPos += totalWidth;
       gsap.set(gallery, { x: xPos });
     }
   }, { passive: true });
@@ -5897,7 +5930,8 @@ if (gallery) {
     if (!isMobile()) return;
     isDragging = false;
     touchDirLocked = null;
-    if (isPaused) resumeCarousel();
+    // La inercia sigue en el loop hasta que se frena
+    resumeCarousel();
   }, { passive: true });
 
   // --- Mouse ---
@@ -5905,7 +5939,9 @@ if (gallery) {
     if (!isMobile()) return;
     isDragging = true;
     dragStartX = e.clientX;
+    lastDragX = e.clientX;
     dragStartPos = xPos;
+    xVelocity = 0;
     pauseCarousel();
     gallery.style.cursor = "grabbing";
   });
@@ -5913,9 +5949,11 @@ if (gallery) {
   window.addEventListener("mousemove", (e) => {
     if (!isMobile() || !isDragging) return;
     const dx = e.clientX - dragStartX;
+    xVelocity = (e.clientX - lastDragX) * 0.6;
+    lastDragX = e.clientX;
     xPos = dragStartPos + dx;
+    if (xPos < -totalWidth) xPos += totalWidth;
     if (xPos > 0) xPos -= totalWidth;
-    if (Math.abs(xPos) >= totalWidth) xPos += totalWidth;
     gsap.set(gallery, { x: xPos });
   });
 
