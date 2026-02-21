@@ -336,6 +336,12 @@
       /* ==========================================
    NAVBAR - ESTRUCTURA
    ========================================== */
+ .mobile-toggle {
+  display: none; /* lo oculto en escritorio */
+}
+.nav-overlay {
+  display: none; /* oculto por defecto en desktop */
+}
       .stage {
         perspective: 1000px;
         position: fixed;
@@ -736,7 +742,7 @@
     display: none !important;
   }
 
-  /* Toggle visible */
+
  /* ==========================================
    MOBILE TOGGLE - HAMBURGER ANIMADO
    ========================================== */
@@ -794,6 +800,7 @@
 .mobile-toggle.active .bar:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
+
 
 @media (max-width: 768px) {
   .mobile-toggle {
@@ -936,6 +943,17 @@
     display: none;
   }
 }
+/* ---esto ajusta el main para escritorio y responsivo */
+main{
+  padding: 0px 65px;
+}
+@media (max-width: 768px) {
+  main{
+    padding: 0;
+  }
+}
+
+
       /* ==========================================
    HERO - HEADER
    ========================================== */
