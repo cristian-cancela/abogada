@@ -701,6 +701,82 @@
    RESPONSIVE NAVBAR
    ========================================== */
       @media (max-width: 768px) {
+        /* Estilos para el Menú Lateral / Overlay */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Escondido por defecto */
+  width: 100%;
+  height: 100vh;
+  background: var(--gradient-primary); /* O un color sólido con blur */
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: right 0.5s var(--ease-smooth);
+}
+
+.nav-overlay.active {
+  right: 0;
+}
+
+.nav-overlay .nav-link-mobile {
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  margin: 15px 0;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* El botón de cerrar dentro del overlay */
+.close-menu {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Ajuste al toggle existente para que se vea bien */
+@media (max-width: 768px) {
+ 
+  /* Forzamos que la navbar ignore el estado expandido */
+  .navbar-card {
+    top: var(--nav-top-scrolled) !important;
+    width: 85% !important; /* Un ancho equilibrado para móvil */
+    min-width: auto !important;
+    max-width: 90% !important;
+    height: var(--nav-height-scrolled) !important;
+    padding: 0 16px !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--gradient-light) !important;
+    /* Mantenemos la sombra del estado scrolled */
+    box-shadow: var(--shadow-navbar-scrolled) !important;
+  
+  /* Aseguramos que el logo texto no aparezca nunca en móvil */
+  .logo-text {
+    display: none !important;
+  }
+
+  /* Ajustamos el icono del logo a su tamaño pequeño permanentemente */
+  .logo-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+  .mobile-toggle {
+    display: block;
+    z-index: 1001;
+  }
+}
         .nav-menu {
           display: none;
         }
@@ -3737,6 +3813,16 @@
           </div>
         </nav>
       </div>
+      <div class="nav-overlay" id="nav-overlay">
+  <button class="close-menu" id="close-menu">&times;</button>
+  <nav class="mobile-links">
+    <a href="#sobre-mi" class="nav-link-mobile">Sobre mí</a>
+    <a href="#servicios" class="nav-link-mobile">Servicios</a>
+    <a href="#contacto" class="nav-link-mobile">Contacto</a>
+    <a href="#experiencias" class="nav-link-mobile">Experiencias</a>
+    <a href="#faqs" class="nav-link-mobile">Preguntas frecuentes</a>
+  </nav>
+</div>
     </header>
 
     <main class="main">
@@ -5983,6 +6069,79 @@ if (gallery) {
     setupInfinite();
   });
 }
+// --- 10. MOBILE MENU LOGIC ---
+const mobileToggle = document.getElementById("mobile-toggle");
+const closeMenu = document.getElementById("close-menu");
+const navOverlay = document.getElementById("nav-overlay");
+const mobileLinks = document.querySelectorAll(".nav-link-mobile");
+
+// Creamos un Timeline de GSAP para la apertura
+const menuTL = gsap.timeline({ paused: true });
+
+menuTL.to(navOverlay, {
+  right: 0,
+  duration: 0.6,
+  ease: "expo.inOut"
+})
+.to(".nav-link-mobile", {
+  opacity: 1,
+  y: 0,
+  duration: 0.4,
+  stagger: 0.1, // Aparecen uno tras otro
+  ease: "back.out(1.7)"
+});
+
+// Abrir
+mobileToggle.addEventListener("click", () => {
+  menuTL.play();
+  lenis.stop(); // Pausa el scroll suave
+});
+
+// Cerrar (Funciones para reutilizar)
+const closeAll = () => {
+  menuTL.reverse();
+  lenis.start(); // Reactiva el scroll suave
+};
+
+closeMenu.addEventListener("click", closeAll);
+
+// Cerrar automáticamente al hacer click en un link
+mobileLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute("href");
+    
+    closeAll();
+    
+    // Usamos Lenis para ir a la sección después de cerrar
+    setTimeout(() => {
+      lenis.scrollTo(targetId, {
+        offset: -80,
+        duration: 1.5
+      });
+    }, 600);
+  });
+});
+window.addEventListener(
+  "scroll",
+  () => {
+    // Solo aplicamos la lógica de expansión/contracción si es escritorio (+768px)
+    if (window.innerWidth > 768) {
+      if (window.scrollY > 50) {
+        body.classList.add("scrolled");
+      } else {
+        body.classList.remove("scrolled");
+      }
+    } else {
+      // En móvil, siempre nos aseguramos que tenga la clase para estilos coherentes
+      body.classList.add("scrolled");
+    }
+  },
+  { passive: true }
+);
+
+// También ejecutar al cargar para definir el estado inicial
+if (window.innerWidth <= 768) body.classList.add("scrolled");
       }); // fin DOMContentLoaded
     </script>
   </body>
