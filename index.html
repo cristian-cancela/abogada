@@ -690,13 +690,37 @@
         font-weight: 600;
         white-space: nowrap;
       }
-
+/* Oculto en desktop por defecto */
+.btn-icon-circle {
+  display: none;
+}
      /* ==========================================
    RESPONSIVE NAVBAR - MOBILE
    ========================================== */
 @media (max-width: 768px) {
   .header {
     min-height: unset;
+  }
+  .btn-icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-icon-circle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
   }
   /* Stage se ancla al fondo */
   .stage {
@@ -746,187 +770,237 @@
  /* ==========================================
    MOBILE TOGGLE - HAMBURGER ANIMADO
    ========================================== */
+
+/* Base: oculto en desktop */
 .mobile-toggle {
-  display: none; /* se muestra solo en mobile via media query */
-  position: relative;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  cursor: pointer;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 0;
-  backdrop-filter: blur(10px);
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1001;
+  display: none;
 }
 
-.mobile-toggle:hover {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.btn-icon-circle {
+  display: none;
 }
 
-.mobile-toggle:active {
-  transform: scale(0.92);
+.nav-overlay {
+  display: none;
 }
 
-/* Las 3 líneas del hamburger */
-.mobile-toggle .bar {
-  display: block;
-  width: 18px;
-  height: 2px;
-  background: white;
-  border-radius: 2px;
-  transition: transform 0.4s var(--ease-smooth),
-              opacity 0.3s ease,
-              width 0.3s ease;
-  transform-origin: center;
-}
-
-/* Estado abierto: se convierte en X */
-.mobile-toggle.active .bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.mobile-toggle.active .bar:nth-child(2) {
-  opacity: 0;
-  width: 0;
-}
-
-.mobile-toggle.active .bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-
+/* ==========================================
+   RESPONSIVE NAVBAR - MOBILE
+   ========================================== */
 @media (max-width: 768px) {
-  .mobile-toggle {
-    display: flex;
+  .header {
+    min-height: unset;
   }
-}
 
-  /* Texto del botón oculto, solo ícono */
+  /* Stage se ancla al fondo */
+  .stage {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  /* Navbar fija abajo - distribución equilibrada con justify-content: space-between */
+  .navbar-card {
+    top: auto !important;
+    bottom: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    width: 92% !important;
+    min-width: auto !important;
+    max-width: 92% !important;
+    height: var(--nav-height-scrolled) !important;
+    padding: 0 20px !important;
+    border-radius: var(--radius-full) !important;
+    background: var(--gradient-light) !important;
+    box-shadow: var(--shadow-navbar-scrolled) !important;
+
+    justify-content: space-between !important;
+    gap: 0 !important; /* sin gap: el space-between distribuye solo */
+  }
+
+  /* Logo text nunca visible en móvil */
+  .logo-text {
+    display: none !important;
+  }
+
+  /* Logo icon tamaño compacto */
+  .logo-icon {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Nav menu de escritorio oculto */
+  .nav-menu {
+    display: none !important;
+  }
+
+  /* ==========================================
+     ESTILO UNIFICADO PARA TODOS LOS BOTONES
+     (logo-icon, btn-premium, btn-icon-circle, mobile-toggle)
+     ========================================== */
+
+  /* Estilo base compartido — aplica a todos los círculos */
+  .logo-icon,
+  .btn-premium,
+  .btn-icon-circle,
+  .mobile-toggle {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .logo-icon:hover,
+  .btn-premium:hover,
+  .btn-icon-circle:hover,
+  .mobile-toggle:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  .mobile-toggle:active,
+  .btn-icon-circle:active,
+  .btn-premium:active {
+    transform: scale(0.92) !important;
+  }
+
+  /* Ocultar texto del botón WhatsApp, solo ícono */
   .btn-label {
+    display: none !important;
+  }
+
+  /* Shine effect del btn-premium: desactivar en mobile para no romper el círculo */
+  .btn-premium::before {
     display: none;
   }
 
-  .btn-premium {
-    padding: 10px !important;
-    min-width: 40px;
-    justify-content: center;
+
+  /* ==========================================
+     HAMBURGER BARS
+     ========================================== */
+  .mobile-toggle {
+    flex-direction: column !important;
+    gap: 5px !important;
   }
 
-  /* Overlay: abre desde abajo hacia arriba */
-.nav-overlay {
-  position: fixed;
-  top: auto;
-  bottom: -100%;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--gradient-primary);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 0 120px 0;
-  z-index: 2000;
-  transition: bottom 0.5s var(--ease-smooth);
+  .mobile-toggle .bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.4s var(--ease-smooth),
+                opacity 0.3s ease,
+                width 0.3s ease;
+    transform-origin: center;
+  }
 
-  visibility: hidden;
-  pointer-events: none;
-}
+  .mobile-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
 
-.nav-overlay.active {
-  bottom: 0;
-  visibility: visible;     
-  pointer-events: auto;    
-}
+  .mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+    width: 0;
+  }
 
-/* Contenedor de links */
-.nav-overlay nav.mobile-links {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0 32px;
-}
+  .mobile-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
-/* Links del overlay - base */
-.nav-link-mobile {
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-  line-height: 1;
-  opacity: 0;
-  transform: translateY(20px);
-}
+  /* ==========================================
+     NAV OVERLAY
+     ========================================== */
+  .nav-overlay {
+    position: fixed;
+    top: auto;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--gradient-primary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 0 120px 0;
+    z-index: 2000;
+    transition: bottom 0.5s var(--ease-smooth);
+    visibility: hidden;
+    pointer-events: none;
+  }
 
-/* Distribución irregular */
-.nav-link-mobile:nth-child(1) {
-  font-size: 2.8rem;
-  margin-bottom: 28px;
-  align-self: flex-start;
-  padding-left: 8px;
-}
+  .nav-overlay.active {
+    bottom: 0;
+    visibility: visible;
+    pointer-events: auto;
+  }
 
-.nav-link-mobile:nth-child(2) {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  align-self: flex-end;
-  padding-right: 24px;
-}
+  .nav-overlay nav.mobile-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 32px;
+  }
 
-.nav-link-mobile:nth-child(3) {
-  font-size: 3rem;
-  margin-bottom: 32px;
-  align-self: center;
-  padding-left: 40px;
-}
+  .nav-link-mobile {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
-.nav-link-mobile:nth-child(4) {
-  font-size: 2rem;
-  margin-bottom: 22px;
-  align-self: flex-start;
-  padding-left: 20px;
-}
+  .nav-link-mobile:nth-child(1) { font-size: 2.8rem; margin-bottom: 28px; align-self: flex-start; padding-left: 8px; }
+  .nav-link-mobile:nth-child(2) { font-size: 2.2rem; margin-bottom: 20px; align-self: flex-end; padding-right: 24px; }
+  .nav-link-mobile:nth-child(3) { font-size: 3rem;   margin-bottom: 32px; align-self: center; padding-left: 40px; }
+  .nav-link-mobile:nth-child(4) { font-size: 2rem;   margin-bottom: 22px; align-self: flex-start; padding-left: 20px; }
+  .nav-link-mobile:nth-child(5) { font-size: 1.6rem; margin-bottom: 0;    align-self: flex-end; padding-right: 16px; }
 
-.nav-link-mobile:nth-child(5) {
-  font-size: 1.6rem;
-  margin-bottom: 0;
-  align-self: flex-end;
-  padding-right: 16px;
-}
+  .close-menu {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(10px);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
 
-/* Botón cerrar overlay */
-.close-menu {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  backdrop-filter: blur(10px);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
+  .close-menu:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateX(-50%) scale(1.1);
+  }
 
-.close-menu:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateX(-50%) scale(1.1);
-}
-  /* Ajuste del main para que no quede tapado por la navbar de abajo */
   main {
     padding-bottom: 100px;
   }
@@ -937,27 +1011,16 @@
     padding: 0 0 100px 0;
   }
 }
-
-@media (max-width: 380px) {
-  .btn-label {
-    display: none;
-  }
 }
-/* ---esto ajusta el main para escritorio y responsivo */
-main{
-  padding: 0px 65px;
-}
-@media (max-width: 768px) {
-  main{
-    padding: 0;
-  }
-}
-
-
       /* ==========================================
    HERO - HEADER
    ========================================== */
-
+main {
+padding: 0px 65px;
+}
+@media (max-width: 768px) {
+  main {padding: 0px;}
+}
       .hero-header {
         text-align: center;
         margin-bottom: 5rem;
@@ -3864,86 +3927,113 @@ main{
   </head>
   <body>
     
-    <header class="header" id="inicio">
-      <div class="cursor-spotlight" aria-hidden="true"></div>
+   <header class="header" id="inicio">
+  <div class="cursor-spotlight" aria-hidden="true"></div>
 
-      <div class="stage">
-        <nav class="navbar-card" id="navbar" aria-label="Navegación principal">
-          <a
-            href="#inicio"
-            class="brand-container"
-            aria-label="Marina Martinis - Inicio"
-          >
-            <div class="logo-icon">
-              <img
-                src="./logos/logo-blanco-sin-fondo.PNG"
-                alt="Marina Martinis - Abogada en Derecho Migratorio"
-                width="120"
-                height="40"
-              />
-            </div>
-          </a>
+  <div class="stage">
+    <nav class="navbar-card" id="navbar" aria-label="Navegación principal">
+      <a
+        href="#inicio"
+        class="brand-container"
+        aria-label="Marina Martinis - Inicio"
+      >
+        <div class="logo-icon">
+          <img
+            src="./logos/logo-blanco-sin-fondo.PNG"
+            alt="Marina Martinis - Abogada en Derecho Migratorio"
+            width="120"
+            height="40"
+          />
+        </div>
+      </a>
 
-          <div class="nav-menu" id="nav-menu">
-            <div
-              class="nav-indicator"
-              id="nav-indicator"
-              aria-hidden="true"
-            ></div>
-            <a href="#sobre-mi" class="nav-link">Sobre mí</a>
-            <a href="#servicios" class="nav-link">Servicios</a>
-            <a href="#contacto" class="nav-link">Contacto</a>
-            <a href="#experiencias" class="nav-link">Experiencias</a>
-            <a href="#faqs" class="nav-link">Preguntas frecuentes</a>
-          </div>
-
-          <div class="actions-container">
-            <a
-              href="https://wa.me/5491112345678"
-              class="btn-premium"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Contactar por WhatsApp"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                />
-              </svg>
-              <span class="btn-label">Conversemos</span>
-            </a>
-
-        <button
-  class="mobile-toggle"
-  id="mobile-toggle"
-  aria-label="Abrir menú de navegación"
-  aria-expanded="false"
-  aria-controls="nav-menu"
->
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-</button>
-          </div>
-        </nav>
+      <div class="nav-menu" id="nav-menu">
+        <div
+          class="nav-indicator"
+          id="nav-indicator"
+          aria-hidden="true"
+        ></div>
+        <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+        <a href="#experiencias" class="nav-link">Experiencias</a>
+        <a href="#faqs" class="nav-link">Preguntas frecuentes</a>
       </div>
-      <div class="nav-overlay" id="nav-overlay">
-  <button class="close-menu" id="close-menu">&times;</button>
-  <nav class="mobile-links">
-    <a href="#sobre-mi" class="nav-link-mobile">Sobre mí</a>
-    <a href="#servicios" class="nav-link-mobile">Servicios</a>
-    <a href="#contacto" class="nav-link-mobile">Contacto</a>
-    <a href="#experiencias" class="nav-link-mobile">Experiencias</a>
-    <a href="#faqs" class="nav-link-mobile">Preguntas frecuentes</a>
-  </nav>
-</div>
-    </header>
+
+      <div class="actions-container">
+        <!-- Botón WhatsApp (visible en desktop y mobile) -->
+        <a
+          href="https://wa.me/5491112345678"
+          class="btn-premium"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contactar por WhatsApp"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+            />
+          </svg>
+          <span class="btn-label">Conversemos</span>
+        </a>
+
+        <!-- Instagram (solo mobile) -->
+        <a
+          href="https://instagram.com/TU_USUARIO"
+          class="btn-icon-circle"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+
+        <!-- Gmail (solo mobile) -->
+        <a
+          href="mailto:TU_EMAIL@gmail.com"
+          class="btn-icon-circle"
+          aria-label="Email"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </a>
+
+        <!-- Mobile toggle (solo mobile) -->
+        <button
+          class="mobile-toggle"
+          id="mobile-toggle"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="nav-overlay" id="nav-overlay">
+    <button class="close-menu" id="close-menu">&times;</button>
+    <nav class="mobile-links">
+      <a href="#sobre-mi" class="nav-link-mobile">Sobre mí</a>
+      <a href="#servicios" class="nav-link-mobile">Servicios</a>
+      <a href="#contacto" class="nav-link-mobile">Contacto</a>
+      <a href="#experiencias" class="nav-link-mobile">Experiencias</a>
+      <a href="#faqs" class="nav-link-mobile">Preguntas frecuentes</a>
+    </nav>
+  </div>
+</header>
 
     <main class="main">
       <section
@@ -5693,7 +5783,7 @@ main{
 
       let xPos = 0;
       let xVelocity = 0;
-      let speed = 0.5;
+      let speed = 1;
       let isDragging = false;
       let dragStartX = 0;
       let dragStartY = 0;
@@ -5789,7 +5879,7 @@ main{
         resumeTimeout = setTimeout(() => {
           isPaused = false;
           xVelocity = 0;
-        }, 3000);
+        }, 2000);
       }
 
       gallery.addEventListener("touchstart", (e) => {
