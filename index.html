@@ -336,12 +336,7 @@
       /* ==========================================
    NAVBAR - ESTRUCTURA
    ========================================== */
- .mobile-toggle {
-  display: none; /* lo oculto en escritorio */
-}
-.nav-overlay {
-  display: none; /* oculto por defecto en desktop */
-}
+
       .stage {
         perspective: 1000px;
         position: fixed;
@@ -690,39 +685,100 @@
         font-weight: 600;
         white-space: nowrap;
       }
-/* Oculto en desktop por defecto */
+/* ==========================================
+   MOBILE / HAMBURGER — BASE (oculto en desktop)
+   ========================================== */
+.mobile-toggle,
 .btn-icon-circle {
   display: none;
 }
-     /* ==========================================
+
+/* ==========================================
+   NAV OVERLAY — siempre en DOM, nunca display:none
+   ========================================== */
+.nav-overlay {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 130px 0;
+  z-index: 2000;
+  background: linear-gradient(160deg, #052857 0%, #1a3a6b 40%, #458988 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.nav-overlay.active {
+  bottom: 0;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav-overlay nav.mobile-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 32px;
+}
+
+.nav-link-mobile {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.nav-link-mobile:nth-child(1) { font-size: 2.8rem; margin-bottom: 28px; align-self: flex-start; padding-left: 8px; }
+.nav-link-mobile:nth-child(2) { font-size: 2.2rem; margin-bottom: 20px; align-self: flex-end;   padding-right: 24px; }
+.nav-link-mobile:nth-child(3) { font-size: 3rem;   margin-bottom: 32px; align-self: center;     padding-left: 40px; }
+.nav-link-mobile:nth-child(4) { font-size: 2rem;   margin-bottom: 22px; align-self: flex-start; padding-left: 20px; }
+.nav-link-mobile:nth-child(5) { font-size: 1.6rem; margin-bottom: 0;    align-self: flex-end;   padding-right: 16px; }
+
+.close-menu {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.close-menu:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* ==========================================
    RESPONSIVE NAVBAR - MOBILE
    ========================================== */
+
 @media (max-width: 768px) {
+ 
   .header {
     min-height: unset;
   }
-  .btn-icon-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    flex-shrink: 0;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
 
-  .btn-icon-circle:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.08);
-  }
-  /* Stage se ancla al fondo */
+  /* Stage pegado al fondo */
   .stage {
     top: auto;
     bottom: 0;
@@ -731,76 +787,6 @@
   }
 
   /* Navbar fija abajo */
-  .navbar-card {
-    top: auto !important;
-    bottom: 12px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-
-    width: 85% !important;
-    min-width: auto !important;
-    max-width: 90% !important;
-    height: var(--nav-height-scrolled) !important;
-    padding: 0 16px !important;
-    border-radius: var(--radius-full) !important;
-    background: var(--gradient-light) !important;
-    box-shadow: var(--shadow-navbar-scrolled) !important;
-
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  /* Logo text nunca visible en móvil */
-  .logo-text {
-    display: none !important;
-  }
-
-  /* Logo icon tamaño compacto */
-  .logo-icon {
-    width: 32px !important;
-    height: 32px !important;
-  }
-
-  /* Nav menu de escritorio oculto */
-  .nav-menu {
-    display: none !important;
-  }
-
-
- /* ==========================================
-   MOBILE TOGGLE - HAMBURGER ANIMADO
-   ========================================== */
-
-/* Base: oculto en desktop */
-.mobile-toggle {
-  display: none;
-}
-
-.btn-icon-circle {
-  display: none;
-}
-
-.nav-overlay {
-  display: none;
-}
-
-/* ==========================================
-   RESPONSIVE NAVBAR - MOBILE
-   ========================================== */
-@media (max-width: 768px) {
-  .header {
-    min-height: unset;
-  }
-
-  /* Stage se ancla al fondo */
-  .stage {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  /* Navbar fija abajo - distribución equilibrada con justify-content: space-between */
   .navbar-card {
     top: auto !important;
     bottom: 12px !important;
@@ -817,31 +803,17 @@
     box-shadow: var(--shadow-navbar-scrolled) !important;
 
     justify-content: space-between !important;
-    gap: 0 !important; /* sin gap: el space-between distribuye solo */
+    gap: 0 !important;
+    overflow: visible !important;
   }
 
-  /* Logo text nunca visible en móvil */
-  .logo-text {
-    display: none !important;
-  }
-
-  /* Logo icon tamaño compacto */
-  .logo-icon {
-    width: 36px !important;
-    height: 36px !important;
-  }
-
-  /* Nav menu de escritorio oculto */
-  .nav-menu {
-    display: none !important;
-  }
+  /* Ocultar elementos desktop */
+  .logo-text { display: none !important; }
+  .nav-menu  { display: none !important; }
 
   /* ==========================================
      ESTILO UNIFICADO PARA TODOS LOS BOTONES
-     (logo-icon, btn-premium, btn-icon-circle, mobile-toggle)
      ========================================== */
-
-  /* Estilo base compartido — aplica a todos los círculos */
   .logo-icon,
   .btn-premium,
   .btn-icon-circle,
@@ -853,8 +825,9 @@
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.15) !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.2) !important;
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.2) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     display: flex !important;
@@ -881,16 +854,9 @@
     transform: scale(0.92) !important;
   }
 
-  /* Ocultar texto del botón WhatsApp, solo ícono */
-  .btn-label {
-    display: none !important;
-  }
-
-  /* Shine effect del btn-premium: desactivar en mobile para no romper el círculo */
-  .btn-premium::before {
-    display: none;
-  }
-
+  /* Ocultar texto del botón WhatsApp */
+  .btn-label { display: none !important; }
+  .btn-premium::before { display: none; }
 
   /* ==========================================
      HAMBURGER BARS
@@ -925,82 +891,6 @@
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* ==========================================
-     NAV OVERLAY
-     ========================================== */
-  .nav-overlay {
-    position: fixed;
-    top: auto;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--gradient-primary);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    display: flex !important;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 0 0 120px 0;
-    z-index: 2000;
-    transition: bottom 0.5s var(--ease-smooth);
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .nav-overlay.active {
-    bottom: 0;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .nav-overlay nav.mobile-links {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0 32px;
-  }
-
-  .nav-link-mobile {
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    line-height: 1;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  .nav-link-mobile:nth-child(1) { font-size: 2.8rem; margin-bottom: 28px; align-self: flex-start; padding-left: 8px; }
-  .nav-link-mobile:nth-child(2) { font-size: 2.2rem; margin-bottom: 20px; align-self: flex-end; padding-right: 24px; }
-  .nav-link-mobile:nth-child(3) { font-size: 3rem;   margin-bottom: 32px; align-self: center; padding-left: 40px; }
-  .nav-link-mobile:nth-child(4) { font-size: 2rem;   margin-bottom: 22px; align-self: flex-start; padding-left: 20px; }
-  .nav-link-mobile:nth-child(5) { font-size: 1.6rem; margin-bottom: 0;    align-self: flex-end; padding-right: 16px; }
-
-  .close-menu {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    backdrop-filter: blur(10px);
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  .close-menu:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateX(-50%) scale(1.1);
-  }
-
   main {
     padding-bottom: 100px;
   }
@@ -1011,9 +901,8 @@
     padding: 0 0 100px 0;
   }
 }
-}
       /* ==========================================
-   HERO - HEADER
+   HERO - HEADER---------------------------------------------------------------------------------------------------------
    ========================================== */
 main {
 padding: 0px 65px;
@@ -1029,7 +918,7 @@ padding: 0px 65px;
       }
 
       h1 {
-        font-size: clamp(2.25rem, 6vw, 4.375rem);
+      font-size:clamp(2.2rem, 6vw, 3.5rem);
         font-family: var(--font-secondary);
         margin-bottom: 1rem;
         text-align: center;
@@ -1304,7 +1193,7 @@ padding: 0px 65px;
       }
 
       /* ==========================================
-   STATS GRID - EXPERIENCIA
+   STATS GRID - EXPERIENCIA 
    ========================================== */
 
       .card-experiencia {
@@ -1616,10 +1505,10 @@ padding: 0px 65px;
       /* ==========================================
    RESPONSIVE
    ========================================== */
-
+           
       @media (max-width: 1024px) {
         main {
-          padding: 0 40px;
+          padding: 0 15px;
         }
 
         .bento-row-principal {
@@ -1633,7 +1522,7 @@ padding: 0px 65px;
 
         .bento-row-secondary {
           grid-template-columns: 1fr;
-          gap: 1.875rem;
+          gap: 1.880rem;
         }
 
         .polaroid-stack-card {
@@ -1645,125 +1534,109 @@ padding: 0px 65px;
         }
       }
 
-      /* ==========================================
+/* ==========================================
    RESPONSIVE MÓVIL - PHOTO STACK
    ========================================== */
 
-      @media (max-width: 768px) {
-        main {
-          padding: 7.5rem 1.25rem 3.75rem;
-        }
+@media (max-width: 768px) {
 
-        .hero-header {
-          margin-bottom: 3rem;
-        }
 
-        /* El stack en móvil: altura fija base */
-        .hero-photo-stack {
-          height: 22rem;
-          cursor: pointer;
-          /* Sin transition CSS — GSAP lo controla todo */
-        }
+  .hero-header {
+    margin-bottom: 3rem;
+  }
 
-        /* Posición base móvil: GSAP setea esto al init */
-        /* NO pongas transform acá, GSAP los maneja */
+  .hero-photo-stack {
+    height: 22rem;
+    cursor: pointer;
+  }
 
-        /* Desactivar hover desktop en móvil */
-        .hero-photo-stack:hover .photo-layer-3,
-        .hero-photo-stack:hover .photo-layer-2,
-        .hero-photo-stack:hover .photo-layer-1 {
-          transform: none; /* GSAP lo sobreescribe */
-        }
+  /* Desactivar hover desktop en móvil */
+  .hero-photo-stack:hover .photo-layer-3,
+  .hero-photo-stack:hover .photo-layer-2,
+  .hero-photo-stack:hover .photo-layer-1 {
+    transform: none;
+  }
 
-        /* Hint visual */
-        .hero-photo-stack::after {
-          content: "Toca para ver las fotos";
-          position: absolute;
-          bottom: -1.75rem;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.75rem;
-          font-weight: 500;
-          color: rgba(5, 40, 87, 0.45);
-          letter-spacing: 0.05em;
-          white-space: nowrap;
-          pointer-events: none;
-          font-family: var(--font-primary);
-          transition: opacity 0.3s ease;
-        }
+  .polaroid-stack-card {
+    height: auto;
+    min-height: 18rem;
+    cursor: pointer;
+  }
 
-        .hero-photo-stack.expanded::after {
-          content: "Toca para cerrar";
-        }
+  /* Desactivar hover desktop en móvil para polaroid */
+  .polaroid-stack-card:hover .polaroid-1,
+  .polaroid-stack-card:hover .polaroid-2,
+  .polaroid-stack-card:hover .polaroid-3 {
+    transform: none;
+  }
 
-        .hero-quote-card {
-          padding: 2rem 1.5rem;
-        }
-        .mini-card-photo {
-          height: 200px;
-        }
+  /* ==========================================
+     HINT VISUAL — unificado para ambos stacks
+     ========================================== */
+  .hero-photo-stack::after,
+  .polaroid-stack-card::after {
+    content: "Toca para ver las fotos";
+    position: absolute;
+    bottom: -1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(5, 40, 87, 0.45);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+    font-family: var(--font-primary);
+    transition: opacity 0.3s ease;
+  }
 
-        .polaroid-stack-card {
-          height: auto;
-          min-height: 18rem;
-          cursor: pointer;
-        }
+  .hero-photo-stack.expanded::after,
+  .polaroid-stack-card.expanded::after {
+    content: "Toca para cerrar";
+  }
 
-        /* Desactivar hover desktop en móvil para polaroid */
-        .polaroid-stack-card:hover .polaroid-1,
-        .polaroid-stack-card:hover .polaroid-2,
-        .polaroid-stack-card:hover .polaroid-3 {
-          transform: none; /* GSAP lo sobreescribe */
-        }
+  .hero-quote-card {
+    padding: 2rem 1.5rem;
+  }
 
-        /* Hint visual polaroid */
-        .polaroid-stack-card::after {
-          content: "Toca para ver las fotos";
-          position: absolute;
-          bottom: -1.75rem;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.75rem;
-          font-weight: 500;
-          color: rgba(5, 40, 87, 0.45);
-          letter-spacing: 0.05em;
-          white-space: nowrap;
-          pointer-events: none;
-          font-family: var(--font-primary);
-          transition: opacity 0.3s ease;
-        }
+  .mini-card-photo {
+    height: 200px;
+  }
 
-        .stats-grid {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0.625rem;
-        }
-      }
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.625rem;
+  }
+}
 
-      @media (max-width: 480px) {
-        main {
-          padding: 7.5rem 1rem 2.5rem;
-        }
-        .hero-header {
-          margin-bottom: 2rem;
-        }
-        .hero-photo-stack {
-          height: 20rem;
-        }
-        .hero-quote-card {
-          padding: 1.875rem 1.5rem;
-        }
-        .stats-grid {
-          gap: 0.5rem;
-        }
-        .stat-item {
-          padding: 0.625rem;
-        }
-        .polaroid-stack-card {
-          min-height: 15rem;
-        }
-      }
+@media (max-width: 480px) {
+
+  .hero-header {
+    margin-bottom: 2rem;
+  }
+
+  .hero-photo-stack {
+    height: 20rem;
+  }
+
+  .hero-quote-card {
+    padding: 1.875rem 1.5rem;
+  }
+
+  .stats-grid {
+    gap: 0.5rem;
+  }
+
+  .stat-item {
+    padding: 0.625rem;
+  }
+
+  .polaroid-stack-card {
+    min-height: 15rem;
+  }
+}
       /* ==========================================
-   EXPERIENCES SECTION - POLAROID GALLERY
+   EXPERIENCES SECTION - POLAROID GALLERY---------------------------------------------------------------------------------
    ========================================== */
 
       .experiences-section {
@@ -2123,127 +1996,59 @@ padding: 0px 65px;
         background-clip: text;
       }
 
-      /* ==========================================
-   RESPONSIVE
+     /* ==========================================
+   EXPERIENCES - RESPONSIVE
    ========================================== */
 
-      @media (max-width: 1024px) {
-        .gallery-row-1,
-        .gallery-row-3 {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 30px;
-        }
-
-        .gallery-row-1 .polaroid-item:nth-child(3),
-        .gallery-row-3 .polaroid-item:nth-child(3) {
-          grid-column: span 2;
-          max-width: 400px;
-          margin: 0 auto;
-        }
-
-        .gallery-row-2 {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-
-        .polaroid-content {
-          height: 280px;
-        }
-
-        .center-text {
-          font-size: 28px;
-        }
-      }
-
-      @media (max-width: 768px) {
-       
-
-        .experiences-header h2 {
-          font-size: 40px;
-        }
-
-        .gallery-row-1,
-        .gallery-row-2,
-        .gallery-row-3 {
-          grid-template-columns: 1fr;
-          gap: 50px;
-        }
-
-        .gallery-row-1 .polaroid-item:nth-child(3),
-        .gallery-row-3 .polaroid-item:nth-child(3) {
-          grid-column: auto;
-          max-width: none;
-        }
-
-        .polaroid-card {
-          transform: rotate(0deg) !important;
-        }
-
-        .polaroid-content {
-          height: 300px;
-        }
-
-        .center-text {
-          font-size: 24px;
-          padding: 30px 20px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .experiences-header h2 {
-          font-size: 32px;
-        margin: 60px 0px;
-        }
-
-        .experiences-gallery {
-          gap: 40px;
-        }
-
-        .polaroid-card {
-          padding: 12px 12px 45px 12px;
-        }
-
-        .polaroid-content {
-          height: 280px;
-          padding: 20px;
-          padding-right: 15px;
-        }
-
-        .polaroid-content h3 {
-          font-size: 20px;
-        }
-
-        .polaroid-content p {
-          font-size: 13px;
-        }
-
-        .center-text {
-          font-size: 22px;
-        }
-
-        .photo-tape {
-          height: 25px;
-        }
-
-        .tape-top-left,
-        .tape-top-right {
-          width: 60px;
-        }
-      }
-/* ==========================================
-   EXPERIENCES CAROUSEL - MÓVIL
-   ========================================== */
-
-@media (max-width: 768px) {
-  .hanging-line-container {
-    overflow: hidden;
-     padding: 20px 0 50px 0;
-  margin: -20px 0 -20px 0;
+@media (max-width: 1024px) {
+  .gallery-row-1,
+  .gallery-row-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
+
+  .gallery-row-1 .polaroid-item:nth-child(3),
+  .gallery-row-3 .polaroid-item:nth-child(3) {
+    grid-column: span 2;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .gallery-row-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .polaroid-content {
+    height: 280px;
+  }
+
+  .center-text {
+    font-size: 28px;
+  }
+}
+
+/* ==========================================
+   EXPERIENCES - MOBILE (768px)
+   Unifica grid + carousel en un solo bloque
+   ========================================== */
+@media (max-width: 768px) {
+
+  .experiences-header h2 {
+    font-size: 40px;
+  }
+
   .experiences-section {
     padding: 0;
   }
 
+  .hanging-line-container {
+    overflow: hidden;
+    padding: 20px 0 50px 0;
+    margin: -20px 0 -20px 0;
+  }
+
+  /* Carousel horizontal infinito */
   .experiences-gallery {
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -2259,12 +2064,14 @@ padding: 0px 65px;
     cursor: grabbing;
   }
 
+  /* Las rows desaparecen como contenedores grid */
   .gallery-row-1,
   .gallery-row-2,
   .gallery-row-3 {
     display: contents !important;
   }
 
+  /* Cards individuales como slides */
   .polaroid-item,
   .center-text-item {
     min-width: 75vw;
@@ -2290,23 +2097,69 @@ padding: 0px 65px;
     height: 300px;
   }
 
+  .center-text {
+    font-size: 24px;
+    padding: 30px 20px;
+  }
+
   /* Ocultar dots en modo carousel continuo */
   .carousel-dots {
     display: none;
   }
 }
 
+/* ==========================================
+   EXPERIENCES - MOBILE SMALL (480px)
+   ========================================== */
 @media (max-width: 480px) {
+
+  .experiences-header h2 {
+    font-size: 32px;
+    margin: 60px 0;
+  }
+
   .polaroid-item {
     min-width: 82vw;
     width: 82vw;
   }
+
+  .polaroid-card {
+    padding: 12px 12px 45px 12px;
+  }
+
+  .polaroid-content {
+    height: 280px;
+    padding: 20px;
+    padding-right: 15px;
+  }
+
+  .polaroid-content h3 {
+    font-size: 20px;
+  }
+
+  .polaroid-content p {
+    font-size: 13px;
+  }
+
+  .center-text {
+    font-size: 22px;
+  }
+
+  .photo-tape {
+    height: 25px;
+  }
+
+  .tape-top-left,
+  .tape-top-right {
+    width: 60px;
+  }
 }
-      /*----------------------- SERVICES SECTION--------------------------------------- */
+    /* ==========================================
+   SERVICES-----SECTION-----------------------------------------------------------------------------------------------
+   ========================================== */
       .services-section {
         margin: 120px auto;
       }
-
       .services-header {
         text-align: center;
         margin-bottom: 70px;
@@ -2531,16 +2384,9 @@ padding: 0px 65px;
           gap: 15px;
         }
 
-        .international-network {
-          padding: 40px 25px;
-        }
       }
 
       @media (max-width: 480px) {
-        .services-section {
-          padding: 0 15px;
-        }
-
         .services-header h2 {
           font-size: 32px;
         }
@@ -2727,93 +2573,101 @@ padding: 0px 65px;
 
       /* Ajustes Responsive */
 
-      @media (max-width: 1024px) {
-        .faq-section {
-          padding: 50px 30px;
-        }
+     
+      /* ==========================================
+   FAQ - RESPONSIVE
+   ========================================== */
 
-        .faq-container {
-          padding: 40px 0px;
-        }
+@media (max-width: 1024px) {
+  .faq-section {
+    padding: 50px 0px;
+  }
 
-        .faq-question {
-          font-size: 18px;
-        }
+  .faq-container {
+    padding: 40px 0;
+  }
 
-        .faq-answer p {
-          font-size: 15.5px;
-        }
-      }
+  .faq-question {
+    font-size: 18px;
+  }
 
-      @media (max-width: 768px) {
-        .faq-section h2 {
-          font-size: 40px;
-        }
+  .faq-answer p {
+    font-size: 15.5px;
+  }
+}
 
-        .faq-intro {
-          font-size: 17px;
+@media (max-width: 768px) {
+  .faq-section h2 {
+    font-size: 40px;
+  }
 
-          line-height: 1.6;
-        }
+  .faq-intro {
+    font-size: 17px;
+    line-height: 1.6;
+  }
 
-        .faq-question {
-          font-size: 17px;
-        }
+  .faq-question {
+    font-size: 17px;
+  }
 
-        .faq-item summary {
-          padding: 28px 18px;
-        }
+  .faq-item summary {
+    padding: 28px 18px;
+  }
 
-        .faq-item summary:hover {
-          padding-left: 24px;
-        }
+  .faq-item summary:hover {
+    padding-left: 24px;
+  }
 
-        .faq-answer {
-          padding: 0 18px 30px 24px;
-        }
+  .faq-answer {
+    padding: 0 18px 30px 24px;
+  }
 
-        .faq-answer p {
-          font-size: 15px;
+  .faq-answer p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
 
-          line-height: 1.8;
-        }
-      }
+@media (max-width: 480px) {
+  .faq-section {
+    padding: 30px 0px;
+  }
 
-      @media (max-width: 480px) {
-        .faq-section h2 {
-          font-size: 32px;
-        }
+  .faq-section h2 {
+    font-size: 32px;
+  }
 
-        .faq-intro {
-          font-size: 16px;
-        }
+  .faq-intro {
+    font-size: 16px;
+  }
 
-        .faq-question {
-          font-size: 16px;
-        }
+  .faq-question {
+    font-size: 16px;
+  }
 
-        .faq-item summary {
-          padding: 24px 16px;
-        }
+  .faq-item summary {
+    padding: 24px 16px;
+  }
 
-        .faq-item summary:hover {
-          padding-left: 20px;
-        }
+  .faq-item summary:hover {
+    padding-left: 20px;
+  }
 
-        .faq-answer {
-          padding: 0 16px 28px 20px;
-        }
+  .faq-answer {
+    padding: 0 16px 28px 20px;
+  }
 
-        .faq-answer p {
-          font-size: 14.5px;
+  .faq-answer p {
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
 
-          line-height: 1.75;
-        }
+  .faq-arrow {
+    font-size: 24px;
+  }
+}
 
-        .faq-arrow {
-          font-size: 24px;
-        }
-      }
+
       /* ==========================================================================
           SOBRE MI ---- SECTION
    ========================================================================== */
@@ -3138,7 +2992,7 @@ padding: 0px 65px;
       }
 
       /* ==========================================================================
-                                    CONTACT SECTION - 
+                                    CONTACT SECTION - ------------------------------------------------------------------------
    ========================================================================== */
       .contact-section {
         max-width: 900px;
@@ -3567,7 +3421,7 @@ padding: 0px 65px;
           font-size: 28px;
         }
       }
-      /* --------SECTION----------------------------------------------------- */
+      /* --------SECTION FOOTER---------------------------------------------------- */
       /* FOOTER CARD */
       .footer-card {
         max-width: 900px;
@@ -3705,238 +3559,85 @@ padding: 0px 65px;
       .accent {
         color: #458988;
       }
+      /* ==========================================
+   FOOTER - RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .footer-card {
+    margin: 40px 16px;
+    padding: 25px 20px;
+  }
+
+  .footer-top-nav ul {
+    gap: 25px;
+  }
+
+  .footer-top-nav ul li a {
+    font-size: 14px;
+  }
+
+  .footer-main {
+    padding: 20px;
+  }
+
+  .footer-main h2 {
+    font-size: 42px;
+  }
+
+  .footer-bottom-info {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-card {
+    margin: 20px 12px;
+    padding: 20px 15px;
+  }
+
+  .footer-top-nav ul {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-top-nav ul li a {
+    font-size: 13px;
+  }
+
+  .footer-main h2 {
+    font-size: 32px;
+  }
+
+  .footer-social {
+    gap: 20px;
+  }
+
+  .footer-social svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer-bottom-info p {
+    font-size: 12px;
+  }
+}
       /* FIN DEL FOOTER */
-      /* RESPONSIVE */
-      @media (max-width: 1024px) {
-        main {
-          padding: 60px 30px;
-        }
-
-        h2 {
-          font-size: 56px;
-        }
-
-        .subtitle {
-          font-size: 18px;
-        }
-
-        .bento-row-1 {
-          grid-template-columns: 1fr;
-          height: auto;
-        }
-
-        .bento-row-2 {
-          grid-template-columns: 1fr;
-          height: auto;
-        }
-
-        .bento-item {
-          min-height: 250px;
-        }
-
-        .projects-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-card {
-          max-width: calc(100% - 40px);
-          margin: 40px 20px;
-        }
-
-        .footer-main h2 {
-          font-size: 56px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        nav ul {
-          gap: 30px;
-        }
-
-        nav ul li a {
-          font-size: 15px;
-        }
-
-        h1 {
-          font-size: 42px;
-        }
-
-        .subtitle {
-          font-size: 16px;
-          margin-bottom: 50px;
-        }
-
-        .bento-item {
-          padding: 30px;
-        }
-
-        .bento-item h3 {
-          font-size: 22px;
-        }
-
-        .bento-item .highlight {
-          font-size: 48px;
-        }
-
-        .projects-header h2 {
-          font-size: 48px;
-        }
-
-        .projects-header h2 span {
-          font-size: 24px;
-        }
-
-        .faq-section {
-          padding: 40px 30px;
-        }
-
-        .faq-section h2 {
-          font-size: 36px;
-        }
-
-        .faq-question {
-          font-size: 18px;
-        }
-
-        .footer-top-nav ul {
-          gap: 25px;
-        }
-
-        .footer-top-nav ul li a {
-          font-size: 14px;
-        }
-
-        .footer-main h2 {
-          font-size: 42px;
-        }
-
-        .footer-bottom-info {
-          flex-direction: column;
-          gap: 10px;
-          text-align: center;
-        }
-      }
-
-      @media (max-width: 480px) {
-        nav {
-          padding: 20px;
-        }
-
-        nav ul {
-          gap: 20px;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        main {
-          padding: 40px 20px;
-        }
-
-        h1 {
-          font-size: 32px;
-        }
-
-        .subtitle {
-          font-size: 14px;
-        }
-
-        .bento-item {
-          padding: 25px;
-        }
-
-        .bento-item h3 {
-          font-size: 20px;
-        }
-
-        .bento-item .highlight {
-          font-size: 36px;
-        }
-
-        .bento-item p {
-          font-size: 14px;
-        }
-
-        .tag {
-          font-size: 12px;
-          padding: 8px 15px;
-        }
-
-        .projects-header h2 {
-          font-size: 36px;
-        }
-
-        .projects-header h2 span {
-          font-size: 20px;
-        }
-
-        .projects-header p {
-          font-size: 15px;
-        }
-
-        .faq-section {
-          padding: 30px 20px;
-        }
-
-        .faq-section h2 {
-          font-size: 28px;
-        }
-
-        .faq-question {
-          font-size: 16px;
-        }
-
-        .faq-answer {
-          font-size: 14px;
-        }
-
-        .footer-card {
-          padding: 20px 15px;
-        }
-
-        .footer-top-nav ul {
-          gap: 15px;
-          flex-wrap: wrap;
-        }
-
-        .footer-top-nav ul li a {
-          font-size: 13px;
-        }
-
-        .footer-main {
-          padding: 20px;
-        }
-
-        .footer-main h1 {
-          font-size: 32px;
-        }
-
-        .footer-social {
-          gap: 20px;
-        }
-
-        .footer-social svg {
-          width: 20px;
-          height: 20px;
-        }
-
-        .footer-bottom-info p {
-          font-size: 12px;
-        }
-      }
+     
     </style>
   </head>
   <body>
     
-   <header class="header" id="inicio">
+ <header class="header" id="inicio">
   <div class="cursor-spotlight" aria-hidden="true"></div>
 
   <div class="stage">
     <nav class="navbar-card" id="navbar" aria-label="Navegación principal">
-      <a
-        href="#inicio"
-        class="brand-container"
-        aria-label="Marina Martinis - Inicio"
-      >
+
+      <a href="#inicio" class="brand-container" aria-label="Marina Martinis - Inicio">
         <div class="logo-icon">
           <img
             src="./logos/logo-blanco-sin-fondo.PNG"
@@ -3948,20 +3649,16 @@ padding: 0px 65px;
       </a>
 
       <div class="nav-menu" id="nav-menu">
-        <div
-          class="nav-indicator"
-          id="nav-indicator"
-          aria-hidden="true"
-        ></div>
-        <a href="#sobre-mi" class="nav-link">Sobre mí</a>
-        <a href="#servicios" class="nav-link">Servicios</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
+        <div class="nav-indicator" id="nav-indicator" aria-hidden="true"></div>
+        <a href="#sobre-mi"     class="nav-link">Sobre mí</a>
+        <a href="#servicios"    class="nav-link">Servicios</a>
+        <a href="#contacto"     class="nav-link">Contacto</a>
         <a href="#experiencias" class="nav-link">Experiencias</a>
-        <a href="#faqs" class="nav-link">Preguntas frecuentes</a>
+        <a href="#faqs"         class="nav-link">Preguntas frecuentes</a>
       </div>
 
       <div class="actions-container">
-        <!-- Botón WhatsApp (visible en desktop y mobile) -->
+        <!-- WhatsApp (desktop y mobile) -->
         <a
           href="https://wa.me/5491112345678"
           class="btn-premium"
@@ -3969,16 +3666,8 @@ padding: 0px 65px;
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-            />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
           </svg>
           <span class="btn-label">Conversemos</span>
         </a>
@@ -4007,7 +3696,7 @@ padding: 0px 65px;
           </svg>
         </a>
 
-        <!-- Mobile toggle (solo mobile) -->
+        <!-- Hamburger toggle (solo mobile) -->
         <button
           class="mobile-toggle"
           id="mobile-toggle"
@@ -4020,17 +3709,19 @@ padding: 0px 65px;
           <span class="bar"></span>
         </button>
       </div>
+
     </nav>
   </div>
 
+  <!-- Overlay menú completo -->
   <div class="nav-overlay" id="nav-overlay">
     <button class="close-menu" id="close-menu">&times;</button>
     <nav class="mobile-links">
-      <a href="#sobre-mi" class="nav-link-mobile">Sobre mí</a>
-      <a href="#servicios" class="nav-link-mobile">Servicios</a>
-      <a href="#contacto" class="nav-link-mobile">Contacto</a>
+      <a href="#sobre-mi"     class="nav-link-mobile">Sobre mí</a>
+      <a href="#servicios"    class="nav-link-mobile">Servicios</a>
+      <a href="#contacto"     class="nav-link-mobile">Contacto</a>
       <a href="#experiencias" class="nav-link-mobile">Experiencias</a>
-      <a href="#faqs" class="nav-link-mobile">Preguntas frecuentes</a>
+      <a href="#faqs"         class="nav-link-mobile">Preguntas frecuentes</a>
     </nav>
   </div>
 </header>
@@ -5966,87 +5657,91 @@ padding: 0px 65px;
       });
     }
 
-    // --- 10. MOBILE MENU LOGIC ---
+  // --- 10. MOBILE MENU LOGIC ---
     const mobileToggle = document.getElementById("mobile-toggle");
-    const closeMenu = document.getElementById("close-menu");
-    const navOverlay = document.getElementById("nav-overlay");
-    const mobileLinks = document.querySelectorAll(".nav-link-mobile");
+    const closeMenu    = document.getElementById("close-menu");
+    const navOverlay   = document.getElementById("nav-overlay");
+    const mobileLinks  = document.querySelectorAll(".nav-link-mobile");
 
-    // Construye el timeline según el dispositivo actual
-   const buildMenuTimeline = () => {
-  menuTL.clear();
+    if (mobileToggle && navOverlay) {
 
-  if (window.innerWidth <= 768) {
-    menuTL
-      .set(navOverlay, { visibility: "visible", pointerEvents: "auto" }) // ✅ antes de animar
-      .to(navOverlay, { bottom: 0, duration: 0.6, ease: "expo.inOut" })
-      .to(".nav-link-mobile", {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
+      // Forzar estado inicial del overlay via GSAP
+      gsap.set(navOverlay, {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-end",
+        bottom: "-100%",
+        visibility: "hidden",
+        pointerEvents: "none",
       });
-  } else {
-    menuTL
-      .set(navOverlay, { visibility: "visible", pointerEvents: "auto" }) // ✅
-      .to(navOverlay, { right: 0, duration: 0.6, ease: "expo.inOut" })
-      .to(".nav-link-mobile", {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
+
+      gsap.set(".nav-link-mobile", { opacity: 0, y: 20 });
+
+      const menuTL = gsap.timeline({ paused: true });
+
+      const buildMenuTimeline = () => {
+        menuTL.clear();
+        gsap.set(".nav-link-mobile", { opacity: 0, y: 20 });
+        menuTL
+          .set(navOverlay, { visibility: "visible", pointerEvents: "auto" })
+          .to(navOverlay, { bottom: 0, duration: 0.55, ease: "expo.inOut" })
+          .to(".nav-link-mobile", {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.08,
+            ease: "back.out(1.7)",
+          });
+      };
+
+      buildMenuTimeline();
+
+      window.addEventListener("resize", () => {
+        if (!menuTL.isActive()) buildMenuTimeline();
       });
-  }
-};
 
-    const menuTL = gsap.timeline({ paused: true });
-    buildMenuTimeline();
+      const closeAll = () => {
+        mobileToggle.setAttribute("aria-expanded", "false");
+        mobileToggle.classList.remove("active");
+        menuTL.reverse().then(() => {
+          gsap.set(navOverlay, { visibility: "hidden", pointerEvents: "none" });
+        });
+        lenis.start();
+      };
 
-    // Reconstruir al rotar pantalla
-    window.addEventListener("resize", () => {
-      if (!menuTL.isActive()) buildMenuTimeline();
-    });
-
-// Abrir
-mobileToggle.addEventListener("click", () => {
-  mobileToggle.setAttribute("aria-expanded", "true");
-  mobileToggle.classList.add("active"); // ← agregar
-  menuTL.play();
-  lenis.stop();
-});
-
-// Cerrar
-const closeAll = () => {
-  mobileToggle.setAttribute("aria-expanded", "false");
-  mobileToggle.classList.remove("active");
-  menuTL.reverse().then(() => {
-    // Ocultar completamente al terminar la animación de cierre
-    gsap.set(navOverlay, { visibility: "hidden", pointerEvents: "none" });
-  });
-  lenis.start();
-};
-
-    closeMenu.addEventListener("click", closeAll);
-
-    // Cerrar con Escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && menuTL.progress() > 0) closeAll();
-    });
-
-    // Links del overlay → scroll a sección
-    mobileLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute("href");
-        closeAll();
-        setTimeout(() => {
-          lenis.scrollTo(targetId, { offset: -80, duration: 1.5 });
-        }, 700);
+      // Abrir
+      mobileToggle.addEventListener("click", () => {
+        const isOpen = mobileToggle.classList.contains("active");
+        if (isOpen) {
+          closeAll();
+        } else {
+          mobileToggle.setAttribute("aria-expanded", "true");
+          mobileToggle.classList.add("active");
+          menuTL.play();
+          lenis.stop();
+        }
       });
-    });
 
+      closeMenu.addEventListener("click", closeAll);
+
+      // Cerrar con Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && menuTL.progress() > 0) closeAll();
+      });
+
+      // Links del overlay → scroll a sección
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href");
+          closeAll();
+          setTimeout(() => {
+            lenis.scrollTo(targetId, { offset: -80, duration: 1.5 });
+          }, 700);
+        });
+      });
+    } // fin guarda mobileToggle
   }); // fin DOMContentLoaded
 </script>
   </body>
