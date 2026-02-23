@@ -1651,10 +1651,10 @@ padding: 0px 65px;
 
       .experiences-header h2 {
         font-family: "Ananda Black Personal Use", serif;
-        font-size: 55px;
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
         margin-bottom: 15px;
         line-height: 1.6;
-        padding-top: 0.2em;
+        padding-top: 1.5em;
         background: var(--gradient-primary);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -1662,7 +1662,7 @@ padding: 0px 65px;
       }
 
       .experiences-intro {
-        font-size: 20px;
+       font-size: clamp(1rem, 2vw, 1.25rem);
         font-weight: 500;
         color: #052857;
         line-height: 1.5;
@@ -2034,10 +2034,6 @@ padding: 0px 65px;
    ========================================== */
 @media (max-width: 768px) {
 
-  .experiences-header h2 {
-    font-size: 40px;
-  }
-
   .experiences-section {
     padding: 0;
   }
@@ -2114,8 +2110,8 @@ padding: 0px 65px;
 @media (max-width: 480px) {
 
   .experiences-header h2 {
-    font-size: 32px;
-    margin: 60px 0;
+   
+    margin: 30px 0;
   }
 
   .polaroid-item {
@@ -2158,7 +2154,7 @@ padding: 0px 65px;
    SERVICES-----SECTION-----------------------------------------------------------------------------------------------
    ========================================== */
       .services-section {
-        margin: 120px auto;
+        margin: 90px auto;
       }
       .services-header {
         text-align: center;
@@ -2167,7 +2163,7 @@ padding: 0px 65px;
 
       .services-header h2 {
         font-family: "Ananda Black Personal Use", serif;
-        font-size: 55px;
+       font-size: clamp(2.2rem, 6vw, 3.5rem);
         line-height: 1.6;
         padding-top: 0.2em;
         margin-bottom: 15px;
@@ -2178,13 +2174,13 @@ padding: 0px 65px;
       }
 
       .services-header p {
-        font-size: 20px;
+        font-size: clamp(1rem, 2vw, 1.25rem);;
         font-weight: 500;
         color: #052857;
         text-align: left;
         /* max-width: 700px; */
         margin: 0 auto;
-        line-height: 1.6;
+        line-height: 1.5;
       }
 
       /* Services Grid */
@@ -2413,7 +2409,7 @@ padding: 0px 65px;
 
       .faq-section h2 {
         font-family: var(--font-secondary);
-        font-size: 55px;
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
         margin-bottom: 15px;
         line-height: 1.6;
         padding-top: 0.2em;
@@ -2429,7 +2425,7 @@ padding: 0px 65px;
         text-align: left;
         margin: 0 auto;
         line-height: 1.6;
-        font-size: 20px;
+       font-size: clamp(1rem, 2vw, 1.25rem);
       }
 
       .faq-intro a {
@@ -2597,14 +2593,7 @@ padding: 0px 65px;
 }
 
 @media (max-width: 768px) {
-  .faq-section h2 {
-    font-size: 40px;
-  }
 
-  .faq-intro {
-    font-size: 17px;
-    line-height: 1.6;
-  }
 
   .faq-question {
     font-size: 17px;
@@ -2631,14 +2620,6 @@ padding: 0px 65px;
 @media (max-width: 480px) {
   .faq-section {
     padding: 30px 0px;
-  }
-
-  .faq-section h2 {
-    font-size: 32px;
-  }
-
-  .faq-intro {
-    font-size: 16px;
   }
 
   .faq-question {
@@ -2683,10 +2664,10 @@ padding: 0px 65px;
       /* ---------- TÍTULO ---------- */
 
       .about-title h2 {
-        font-family: "Ananda Black Personal Use", serif;
-        font-size: 55px;
+        font-family: "Ananda Black Personal Use", serif;  
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
         text-align: center;
-        line-height: 1.6;
+        line-height: 1.5;
         padding-top: 0.2em;
         margin: 15px 0px;
         background: var(--gradient-primary);
@@ -2698,7 +2679,7 @@ padding: 0px 65px;
       .about-paragraph-header {
         /* Espacio para que la foto de atrás (-67px) no lo pise en desktop */
         margin-bottom: 80px;
-        font-size: 20px;
+       font-size: clamp(1rem, 2vw, 1.25rem);
         font-weight: 500;
         color: #052857;
         text-align: left;
@@ -2854,12 +2835,9 @@ padding: 0px 65px;
           overflow: hidden;
         }
 
-        .about-title h2 {
-          font-size: 44px;
-        }
+  
 
         .about-paragraph-header {
-          font-size: 18px;
           padding: 0 40px;
           /* Generamos espacio para que el translateY(-30px) no lo tape */
           margin-bottom: 60px;
@@ -2952,12 +2930,8 @@ padding: 0px 65px;
       }
 
       @media (max-width: 480px) {
-        .about-title h2 {
-          font-size: 36px;
-        }
 
-        .about-paragraph-header {
-          font-size: 16px;
+        .about-paragraph-header {  
           /* Reducimos padding para que no se vea tan angosto en móviles chicos */
           padding: 0 20px;
           /* Agregamos margen inferior para no ser tapado por el translateY(-600px) */
@@ -3431,7 +3405,6 @@ padding: 0px 65px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        min-height: 40vh;
         /* box-shadow: rgba(5, 40, 87, 0.15) 0px 0px 20px -3px; */
         gap: 30px;
         background: linear-gradient(180deg, #f3efe9 0%, #e6ded2 100%);
@@ -3499,12 +3472,12 @@ padding: 0px 65px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+       justify-content: space-between;
         padding: 30px 40px;
       }
 
       .footer-main h2 {
-        font-size: 70px;
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
         line-height: 1.6;
         padding-top: 0.2em;
         font-family: var(--font-secondary);
@@ -3581,10 +3554,6 @@ padding: 0px 65px;
     padding: 20px;
   }
 
-  .footer-main h2 {
-    font-size: 42px;
-  }
-
   .footer-bottom-info {
     flex-direction: column;
     gap: 10px;
@@ -3606,10 +3575,6 @@ padding: 0px 65px;
 
   .footer-top-nav ul li a {
     font-size: 13px;
-  }
-
-  .footer-main h2 {
-    font-size: 32px;
   }
 
   .footer-social {
