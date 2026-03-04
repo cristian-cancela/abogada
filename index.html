@@ -767,6 +767,24 @@
   background: rgba(255, 255, 255, 0.25);
   transform: translateX(-50%) scale(1.1);
 }
+/* ==========================================
+   ELIMINAR TAP HIGHLIGHT MÓVIL
+   ========================================== */
+
+.hero-photo-stack,
+.polaroid-stack-card,
+.hero-photo-stack *,
+.polaroid-stack-card * {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.hero-photo-stack:focus,
+.hero-photo-stack:focus-visible,
+.polaroid-stack-card:focus,
+.polaroid-stack-card:focus-visible {
+  outline: none;
+}
 
 /* ==========================================
    RESPONSIVE NAVBAR - MOBILE
@@ -1022,46 +1040,9 @@ padding: 0px 65px;
    
 
       /* --- Cintas adhesivas decorativas --- */
-      .photo-tape {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(2px);
-        box-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.1),
-          inset 0 0 2px rgba(0, 0, 0, 0.05);
-      }
+ 
 
-      .tape-top-left {
-        top: -10px;
-        left: 20%;
-        width: 80px;
-        height: 30px;
-        transform: rotate(-5deg);
-      }
-
-      .tape-top-right {
-        top: -10px;
-        right: 20%;
-        width: 80px;
-        height: 30px;
-        transform: rotate(5deg);
-      }
-
-      .tape-corner {
-        top: 10px;
-        right: 10px;
-        width: 60px;
-        height: 60px;
-        transform: rotate(45deg);
-      }
-
-      .tape-diagonal {
-        top: -5px;
-        right: -5px;
-        width: 100px;
-        height: 25px;
-        transform: rotate(35deg);
-      }
+   
 
       /* ==========================================
    QUOTE CARD
@@ -1780,33 +1761,7 @@ padding: 0px 65px;
    CINTAS ADHESIVAS
    ========================================== */
 
-      .photo-tape {
-        position: absolute;
-        background: rgba(245, 240, 230, 0.7);
-        backdrop-filter: blur(1px);
-        box-shadow:
-          0 1px 2px rgba(0, 0, 0, 0.08),
-          inset 0 0 4px rgba(0, 0, 0, 0.02),
-          inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        z-index: 10;
-        pointer-events: none;
-      }
-
-      .tape-top-left {
-        top: -10px;
-        left: 15%;
-        width: 75px;
-        height: 30px;
-        transform: rotate(-8deg);
-      }
-
-      .tape-top-right {
-        top: -10px;
-        right: 15%;
-        width: 75px;
-        height: 30px;
-        transform: rotate(6deg);
-      }
+    
 
       /* ==========================================
    CONTENIDO DE POLAROID - MINIMALISTA CON SCROLL
@@ -2139,15 +2094,6 @@ padding: 0px 65px;
 
   .center-text {
     font-size: 22px;
-  }
-
-  .photo-tape {
-    height: 25px;
-  }
-
-  .tape-top-left,
-  .tape-top-right {
-    width: 60px;
   }
 }
     /* ==========================================
@@ -3721,7 +3667,7 @@ padding: 0px 65px;
                   src="./imagenes/foto-07-abogada-panoramica-puertas-fondo.jpg"
                   alt="Marina Martinis en ceremonia de graduación"
                 />
-                <div class="photo-tape tape-corner" aria-hidden="true"></div>
+               
               </div>
               <div class="hero-stack-photo photo-layer-3">
                 <img
@@ -3732,7 +3678,6 @@ padding: 0px 65px;
             </figure>
 
             <blockquote class="hero-quote-card">
-              <div class="quote-tape" aria-hidden="true"></div>
               <p class="hero-quote-text">
                 "Te acompaño en tu camino migratorio, combinando experiencia
                 legal con una mirada humana, para que puedas avanzar con
@@ -3872,8 +3817,6 @@ padding: 0px 65px;
       <div class="gallery-row-1">
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
             <div class="polaroid-content">
               <span class="card-badge">Encontrar partidas en Argentina e Italia más el armado de la carpeta.</span>
               <h3>De Italia a Argentina</h3>
