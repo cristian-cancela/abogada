@@ -685,249 +685,294 @@
         font-weight: 600;
         white-space: nowrap;
       }
-/* ==========================================
+      /* ==========================================
    MOBILE / HAMBURGER — BASE (oculto en desktop)
    ========================================== */
-.mobile-toggle,
-.btn-icon-circle {
-  display: none;
-}
+      .mobile-toggle,
+      .btn-icon-circle {
+        display: none;
+      }
 
-/* ==========================================
+      /* ==========================================
    NAV OVERLAY — siempre en DOM, nunca display:none
    ========================================== */
-.nav-overlay {
-  position: fixed;
-  bottom: -100%;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 0 0 130px 0;
-  z-index: 2000;
-  background: linear-gradient(160deg, #052857 0%, #1a3a6b 40%, #458988 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  visibility: hidden;
-  pointer-events: none;
-}
+      .nav-overlay {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 0 0 130px 0;
+        z-index: 2000;
+        background: linear-gradient(
+          160deg,
+          #052857 0%,
+          #1a3a6b 40%,
+          #458988 100%
+        );
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        transition: bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        visibility: hidden;
+        pointer-events: none;
+      }
 
-.nav-overlay.active {
-  bottom: 0;
-  visibility: visible;
-  pointer-events: auto;
-}
+      .nav-overlay.active {
+        bottom: 0;
+        visibility: visible;
+        pointer-events: auto;
+      }
 
-.nav-overlay nav.mobile-links {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0 32px;
-}
+      .nav-overlay nav.mobile-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 32px;
+      }
 
-.nav-link-mobile {
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-  line-height: 1;
-  opacity: 0;
-  transform: translateY(20px);
-}
+      .nav-link-mobile {
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        line-height: 1;
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-.nav-link-mobile:nth-child(1) { font-size: 2.8rem; margin-bottom: 28px; align-self: flex-start; padding-left: 8px; }
-.nav-link-mobile:nth-child(2) { font-size: 2.2rem; margin-bottom: 20px; align-self: flex-end;   padding-right: 24px; }
-.nav-link-mobile:nth-child(3) { font-size: 3rem;   margin-bottom: 32px; align-self: center;     padding-left: 40px; }
-.nav-link-mobile:nth-child(4) { font-size: 2rem;   margin-bottom: 22px; align-self: flex-start; padding-left: 20px; }
-.nav-link-mobile:nth-child(5) { font-size: 1.6rem; margin-bottom: 0;    align-self: flex-end;   padding-right: 16px; }
+      .nav-link-mobile:nth-child(1) {
+        font-size: 2.8rem;
+        margin-bottom: 28px;
+        align-self: flex-start;
+        padding-left: 8px;
+      }
+      .nav-link-mobile:nth-child(2) {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        align-self: flex-end;
+        padding-right: 24px;
+      }
+      .nav-link-mobile:nth-child(3) {
+        font-size: 3rem;
+        margin-bottom: 32px;
+        align-self: center;
+        padding-left: 40px;
+      }
+      .nav-link-mobile:nth-child(4) {
+        font-size: 2rem;
+        margin-bottom: 22px;
+        align-self: flex-start;
+        padding-left: 20px;
+      }
+      .nav-link-mobile:nth-child(5) {
+        font-size: 1.6rem;
+        margin-bottom: 0;
+        align-self: flex-end;
+        padding-right: 16px;
+      }
 
-.close-menu {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  backdrop-filter: blur(10px);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
+      .close-menu {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        backdrop-filter: blur(10px);
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
 
-.close-menu:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateX(-50%) scale(1.1);
-}
-/* ==========================================
+      .close-menu:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateX(-50%) scale(1.1);
+      }
+      /* ==========================================
    ELIMINAR TAP HIGHLIGHT MÓVIL
    ========================================== */
 
-.hero-photo-stack,
-.polaroid-stack-card,
-.hero-photo-stack *,
-.polaroid-stack-card * {
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-}
+      .hero-photo-stack,
+      .polaroid-stack-card,
+      .hero-photo-stack *,
+      .polaroid-stack-card * {
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+      }
 
-.hero-photo-stack:focus,
-.hero-photo-stack:focus-visible,
-.polaroid-stack-card:focus,
-.polaroid-stack-card:focus-visible {
-  outline: none;
-}
+      .hero-photo-stack:focus,
+      .hero-photo-stack:focus-visible,
+      .polaroid-stack-card:focus,
+      .polaroid-stack-card:focus-visible {
+        outline: none;
+      }
 
-/* ==========================================
+      /* ==========================================
    RESPONSIVE NAVBAR - MOBILE
    ========================================== */
 
-@media (max-width: 768px) {
- 
-  .header {
-    min-height: unset;
-  }
+      @media (max-width: 768px) {
+        .header {
+          min-height: unset;
+        }
 
-  /* Stage pegado al fondo */
-  .stage {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  }
+        /* Stage pegado al fondo */
+        .stage {
+          top: auto;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+        }
 
-  /* Navbar fija abajo */
-  .navbar-card {
-    top: auto !important;
-    bottom: 12px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+        /* Navbar fija abajo */
+        .navbar-card {
+          top: auto !important;
+          bottom: 12px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
 
-    width: 92% !important;
-    min-width: auto !important;
-    max-width: 92% !important;
-    height: var(--nav-height-scrolled) !important;
-    padding: 0 20px !important;
-    border-radius: var(--radius-full) !important;
-    background: var(--gradient-light) !important;
-    box-shadow: var(--shadow-navbar-scrolled) !important;
+          width: 92% !important;
+          min-width: auto !important;
+          max-width: 92% !important;
+          height: var(--nav-height-scrolled) !important;
+          padding: 0 20px !important;
+          border-radius: var(--radius-full) !important;
+          background: var(--gradient-light) !important;
+          box-shadow: var(--shadow-navbar-scrolled) !important;
 
-    justify-content: space-between !important;
-    gap: 0 !important;
-    overflow: visible !important;
-  }
+          justify-content: space-between !important;
+          gap: 0 !important;
+          overflow: visible !important;
+        }
 
-  /* Ocultar elementos desktop */
-  .logo-text { display: none !important; }
-  .nav-menu  { display: none !important; }
+        /* Ocultar elementos desktop */
+        .logo-text {
+          display: none !important;
+        }
+        .nav-menu {
+          display: none !important;
+        }
 
-  /* ==========================================
+        /* ==========================================
      ESTILO UNIFICADO PARA TODOS LOS BOTONES
      ========================================== */
-  .logo-icon,
-  .btn-premium,
-  .btn-icon-circle,
-  .mobile-toggle {
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px;
-    padding: 0 !important;
-    border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    box-shadow:
-      0 4px 15px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-shrink: 0;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
-  }
+        .logo-icon,
+        .btn-premium,
+        .btn-icon-circle,
+        .mobile-toggle {
+          width: 40px !important;
+          height: 40px !important;
+          min-width: 40px;
+          padding: 0 !important;
+          border-radius: 50% !important;
+          background: rgba(255, 255, 255, 0.15) !important;
+          border: 1px solid rgba(255, 255, 255, 0.25) !important;
+          box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.2) !important;
+          backdrop-filter: blur(10px) !important;
+          -webkit-backdrop-filter: blur(10px) !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          flex-shrink: 0;
+          transition:
+            background 0.2s ease,
+            transform 0.2s ease,
+            box-shadow 0.2s ease !important;
+          color: white;
+          cursor: pointer;
+          text-decoration: none;
+        }
 
-  .logo-icon:hover,
-  .btn-premium:hover,
-  .btn-icon-circle:hover,
-  .mobile-toggle:hover {
-    background: rgba(255, 255, 255, 0.25) !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
-  }
+        .logo-icon:hover,
+        .btn-premium:hover,
+        .btn-icon-circle:hover,
+        .mobile-toggle:hover {
+          background: rgba(255, 255, 255, 0.25) !important;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+        }
 
-  .mobile-toggle:active,
-  .btn-icon-circle:active,
-  .btn-premium:active {
-    transform: scale(0.92) !important;
-  }
+        .mobile-toggle:active,
+        .btn-icon-circle:active,
+        .btn-premium:active {
+          transform: scale(0.92) !important;
+        }
 
-  /* Ocultar texto del botón WhatsApp */
-  .btn-label { display: none !important; }
-  .btn-premium::before { display: none; }
+        /* Ocultar texto del botón WhatsApp */
+        .btn-label {
+          display: none !important;
+        }
+        .btn-premium::before {
+          display: none;
+        }
 
-  /* ==========================================
+        /* ==========================================
      HAMBURGER BARS
      ========================================== */
-  .mobile-toggle {
-    flex-direction: column !important;
-    gap: 5px !important;
-  }
+        .mobile-toggle {
+          flex-direction: column !important;
+          gap: 5px !important;
+        }
 
-  .mobile-toggle .bar {
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: white;
-    border-radius: 2px;
-    transition: transform 0.4s var(--ease-smooth),
-                opacity 0.3s ease,
-                width 0.3s ease;
-    transform-origin: center;
-  }
+        .mobile-toggle .bar {
+          display: block;
+          width: 18px;
+          height: 2px;
+          background: white;
+          border-radius: 2px;
+          transition:
+            transform 0.4s var(--ease-smooth),
+            opacity 0.3s ease,
+            width 0.3s ease;
+          transform-origin: center;
+        }
 
-  .mobile-toggle.active .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
+        .mobile-toggle.active .bar:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
 
-  .mobile-toggle.active .bar:nth-child(2) {
-    opacity: 0;
-    width: 0;
-  }
+        .mobile-toggle.active .bar:nth-child(2) {
+          opacity: 0;
+          width: 0;
+        }
 
-  .mobile-toggle.active .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
+        .mobile-toggle.active .bar:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
 
-  main {
-    padding-bottom: 100px;
-  }
-}
+        main {
+          padding-bottom: 100px;
+        }
+      }
 
-@media (max-width: 480px) {
-  main {
-    padding: 0 0 100px 0;
-  }
-}
+      @media (max-width: 480px) {
+        main {
+          padding: 0 0 100px 0;
+        }
+      }
       /* ==========================================
    HERO - HEADER---------------------------------------------------------------------------------------------------------
    ========================================== */
-main {
-padding: 0px 65px;
-}
-@media (max-width: 768px) {
-  main {padding: 0px;}
-}
+      main {
+        padding: 0px 65px;
+      }
+      @media (max-width: 768px) {
+        main {
+          padding: 0px;
+        }
+      }
       .hero-header {
         text-align: center;
         margin-bottom: 5rem;
@@ -936,7 +981,7 @@ padding: 0px 65px;
       }
 
       h1 {
-      font-size:clamp(2.2rem, 6vw, 3.5rem);
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
         font-family: var(--font-secondary);
         margin-bottom: 1rem;
         text-align: center;
@@ -1037,12 +1082,7 @@ padding: 0px 65px;
         /* GSAP maneja el timing */
       }
 
-   
-
       /* --- Cintas adhesivas decorativas --- */
- 
-
-   
 
       /* ==========================================
    QUOTE CARD
@@ -1486,7 +1526,7 @@ padding: 0px 65px;
       /* ==========================================
    RESPONSIVE
    ========================================== */
-           
+
       @media (max-width: 1024px) {
         main {
           padding: 0 15px;
@@ -1503,7 +1543,7 @@ padding: 0px 65px;
 
         .bento-row-secondary {
           grid-template-columns: 1fr;
-          gap: 1.880rem;
+          gap: 1.88rem;
         }
 
         .polaroid-stack-card {
@@ -1515,107 +1555,104 @@ padding: 0px 65px;
         }
       }
 
-/* ==========================================
+      /* ==========================================
    RESPONSIVE MÓVIL - PHOTO STACK
    ========================================== */
 
-@media (max-width: 768px) {
+      @media (max-width: 768px) {
+        .hero-header {
+          margin-bottom: 3rem;
+        }
 
+        .hero-photo-stack {
+          height: 22rem;
+          cursor: pointer;
+        }
 
-  .hero-header {
-    margin-bottom: 3rem;
-  }
+        /* Desactivar hover desktop en móvil */
+        .hero-photo-stack:hover .photo-layer-3,
+        .hero-photo-stack:hover .photo-layer-2,
+        .hero-photo-stack:hover .photo-layer-1 {
+          transform: none;
+        }
 
-  .hero-photo-stack {
-    height: 22rem;
-    cursor: pointer;
-  }
+        .polaroid-stack-card {
+          height: auto;
+          min-height: 18rem;
+          cursor: pointer;
+        }
 
-  /* Desactivar hover desktop en móvil */
-  .hero-photo-stack:hover .photo-layer-3,
-  .hero-photo-stack:hover .photo-layer-2,
-  .hero-photo-stack:hover .photo-layer-1 {
-    transform: none;
-  }
+        /* Desactivar hover desktop en móvil para polaroid */
+        .polaroid-stack-card:hover .polaroid-1,
+        .polaroid-stack-card:hover .polaroid-2,
+        .polaroid-stack-card:hover .polaroid-3 {
+          transform: none;
+        }
 
-  .polaroid-stack-card {
-    height: auto;
-    min-height: 18rem;
-    cursor: pointer;
-  }
-
-  /* Desactivar hover desktop en móvil para polaroid */
-  .polaroid-stack-card:hover .polaroid-1,
-  .polaroid-stack-card:hover .polaroid-2,
-  .polaroid-stack-card:hover .polaroid-3 {
-    transform: none;
-  }
-
-  /* ==========================================
+        /* ==========================================
      HINT VISUAL — unificado para ambos stacks
      ========================================== */
-  .hero-photo-stack::after,
-  .polaroid-stack-card::after {
-    content: "Toca para ver las fotos";
-    position: absolute;
-    bottom: -1.75rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: rgba(5, 40, 87, 0.45);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-    pointer-events: none;
-    font-family: var(--font-primary);
-    transition: opacity 0.3s ease;
-  }
+        .hero-photo-stack::after,
+        .polaroid-stack-card::after {
+          content: "Toca para ver las fotos";
+          position: absolute;
+          bottom: -1.75rem;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: rgba(5, 40, 87, 0.45);
+          letter-spacing: 0.05em;
+          white-space: nowrap;
+          pointer-events: none;
+          font-family: var(--font-primary);
+          transition: opacity 0.3s ease;
+        }
 
-  .hero-photo-stack.expanded::after,
-  .polaroid-stack-card.expanded::after {
-    content: "Toca para cerrar";
-  }
+        .hero-photo-stack.expanded::after,
+        .polaroid-stack-card.expanded::after {
+          content: "Toca para cerrar";
+        }
 
-  .hero-quote-card {
-    padding: 2rem 1.5rem;
-  }
+        .hero-quote-card {
+          padding: 2rem 1.5rem;
+        }
 
-  .mini-card-photo {
-    height: 200px;
-  }
+        .mini-card-photo {
+          height: 200px;
+        }
 
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.625rem;
-  }
-}
+        .stats-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.625rem;
+        }
+      }
 
-@media (max-width: 480px) {
+      @media (max-width: 480px) {
+        .hero-header {
+          margin-bottom: 2rem;
+        }
 
-  .hero-header {
-    margin-bottom: 2rem;
-  }
+        .hero-photo-stack {
+          height: 20rem;
+        }
 
-  .hero-photo-stack {
-    height: 20rem;
-  }
+        .hero-quote-card {
+          padding: 1.875rem 1.5rem;
+        }
 
-  .hero-quote-card {
-    padding: 1.875rem 1.5rem;
-  }
+        .stats-grid {
+          gap: 0.5rem;
+        }
 
-  .stats-grid {
-    gap: 0.5rem;
-  }
+        .stat-item {
+          padding: 0.625rem;
+        }
 
-  .stat-item {
-    padding: 0.625rem;
-  }
-
-  .polaroid-stack-card {
-    min-height: 15rem;
-  }
-}
+        .polaroid-stack-card {
+          min-height: 15rem;
+        }
+      }
       /* ==========================================
    EXPERIENCES SECTION - POLAROID GALLERY---------------------------------------------------------------------------------
    ========================================== */
@@ -1643,11 +1680,12 @@ padding: 0px 65px;
       }
 
       .experiences-intro {
-       font-size: clamp(1rem, 2vw, 1.25rem);
+        font-size: clamp(1rem, 2vw, 1.25rem);
         font-weight: 500;
         color: #052857;
         line-height: 1.5;
       }
+
 
       /* ==========================================
    GALLERY GRID - 3 FILAS
@@ -1758,11 +1796,29 @@ padding: 0px 65px;
       }
 
       /* ==========================================
-   CINTAS ADHESIVAS
+   CHINCHES
    ========================================== */
+.photo-tape {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  background: none;
+  box-shadow: none;
+  width: 38px;
+  height: 52px;
+  filter: drop-shadow(2px 3px 5px rgba(0,0,0,0.3));
+}
 
-    
+.photo-tape svg {
+  width: 100%;
+  height: 100%;
+}
 
+.tape-top-center {
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
       /* ==========================================
    CONTENIDO DE POLAROID - MINIMALISTA CON SCROLL
    ========================================== */
@@ -1951,152 +2007,149 @@ padding: 0px 65px;
         background-clip: text;
       }
 
-     /* ==========================================
+      /* ==========================================
    EXPERIENCES - RESPONSIVE
    ========================================== */
 
-@media (max-width: 1024px) {
-  .gallery-row-1,
-  .gallery-row-3 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
+      @media (max-width: 1024px) {
+        .gallery-row-1,
+        .gallery-row-3 {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+        }
 
-  .gallery-row-1 .polaroid-item:nth-child(3),
-  .gallery-row-3 .polaroid-item:nth-child(3) {
-    grid-column: span 2;
-    max-width: 400px;
-    margin: 0 auto;
-  }
+        .gallery-row-1 .polaroid-item:nth-child(3),
+        .gallery-row-3 .polaroid-item:nth-child(3) {
+          grid-column: span 2;
+          max-width: 400px;
+          margin: 0 auto;
+        }
 
-  .gallery-row-2 {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+        .gallery-row-2 {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
 
-  .polaroid-content {
-    height: 280px;
-  }
+        .polaroid-content {
+          height: 280px;
+        }
 
-  .center-text {
-    font-size: 28px;
-  }
-}
+        .center-text {
+          font-size: 28px;
+        }
+      }
 
-/* ==========================================
+      /* ==========================================
    EXPERIENCES - MOBILE (768px)
    Unifica grid + carousel en un solo bloque
    ========================================== */
-@media (max-width: 768px) {
+      @media (max-width: 768px) {
+        .experiences-section {
+          padding: 0;
+        }
 
-  .experiences-section {
-    padding: 0;
-  }
+        .hanging-line-container {
+          overflow: hidden;
+          padding: 20px 0 50px 0;
+          margin: -20px 0 -20px 0;
+        }
 
-  .hanging-line-container {
-    overflow: hidden;
-    padding: 20px 0 50px 0;
-    margin: -20px 0 -20px 0;
-  }
+        /* Carousel horizontal infinito */
+        .experiences-gallery {
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          gap: 16px !important;
+          overflow: visible !important;
+          cursor: grab;
+          will-change: transform;
+          width: max-content !important;
+          align-items: stretch;
+        }
 
-  /* Carousel horizontal infinito */
-  .experiences-gallery {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 16px !important;
-    overflow: visible !important;
-    cursor: grab;
-    will-change: transform;
-    width: max-content !important;
-    align-items: stretch;
-  }
+        .experiences-gallery:active {
+          cursor: grabbing;
+        }
 
-  .experiences-gallery:active {
-    cursor: grabbing;
-  }
+        /* Las rows desaparecen como contenedores grid */
+        .gallery-row-1,
+        .gallery-row-2,
+        .gallery-row-3 {
+          display: contents !important;
+        }
 
-  /* Las rows desaparecen como contenedores grid */
-  .gallery-row-1,
-  .gallery-row-2,
-  .gallery-row-3 {
-    display: contents !important;
-  }
+        /* Cards individuales como slides */
+        .polaroid-item,
+        .center-text-item {
+          min-width: 75vw;
+          width: 75vw;
+          flex-shrink: 0;
+          box-sizing: border-box;
+        }
 
-  /* Cards individuales como slides */
-  .polaroid-item,
-  .center-text-item {
-    min-width: 75vw;
-    width: 75vw;
-    flex-shrink: 0;
-    box-sizing: border-box;
-  }
+        .center-text-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 60vw;
+          width: 60vw;
+        }
 
-  .center-text-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 60vw;
-    width: 60vw;
-  }
+        .polaroid-card {
+          transform: none !important;
+          width: 92%;
+        }
 
-  .polaroid-card {
-    transform: none !important;
-    width: 92%;
-  }
+        .polaroid-content {
+          height: 300px;
+        }
 
-  .polaroid-content {
-    height: 300px;
-  }
+        .center-text {
+          font-size: 24px;
+          padding: 30px 20px;
+        }
 
-  .center-text {
-    font-size: 24px;
-    padding: 30px 20px;
-  }
+        /* Ocultar dots en modo carousel continuo */
+        .carousel-dots {
+          display: none;
+        }
+      }
 
-  /* Ocultar dots en modo carousel continuo */
-  .carousel-dots {
-    display: none;
-  }
-}
-
-/* ==========================================
+      /* ==========================================
    EXPERIENCES - MOBILE SMALL (480px)
    ========================================== */
-@media (max-width: 480px) {
+      @media (max-width: 480px) {
+        .experiences-header h2 {
+          margin: 30px 0;
+        }
 
-  .experiences-header h2 {
-   
-    margin: 30px 0;
-  }
+        .polaroid-item {
+          min-width: 82vw;
+          width: 82vw;
+        }
 
-  .polaroid-item {
-    min-width: 82vw;
-    width: 82vw;
-  }
+        .polaroid-card {
+          padding: 12px 12px 45px 12px;
+        }
 
-  .polaroid-card {
-    padding: 12px 12px 45px 12px;
-  }
+        .polaroid-content {
+          height: 280px;
+          padding: 20px;
+          padding-right: 15px;
+        }
 
-  .polaroid-content {
-    height: 280px;
-    padding: 20px;
-    padding-right: 15px;
-  }
+        .polaroid-content h3 {
+          font-size: 20px;
+        }
 
-  .polaroid-content h3 {
-    font-size: 20px;
-  }
+        .polaroid-content p {
+          font-size: 13px;
+        }
 
-  .polaroid-content p {
-    font-size: 13px;
-  }
-
-  .center-text {
-    font-size: 22px;
-  }
-}
-    /* ==========================================
+        .center-text {
+          font-size: 22px;
+        }
+      }
+      /* ==========================================
    SERVICES-----SECTION-----------------------------------------------------------------------------------------------
    ========================================== */
       .services-section {
@@ -2109,7 +2162,7 @@ padding: 0px 65px;
 
       .services-header h2 {
         font-family: "Ananda Black Personal Use", serif;
-       font-size: clamp(2.2rem, 6vw, 3.5rem);
+        font-size: clamp(2.2rem, 6vw, 3.5rem);
         line-height: 1.6;
         padding-top: 0.2em;
         margin-bottom: 15px;
@@ -2120,7 +2173,7 @@ padding: 0px 65px;
       }
 
       .services-header p {
-        font-size: clamp(1rem, 2vw, 1.25rem);;
+        font-size: clamp(1rem, 2vw, 1.25rem);
         font-weight: 500;
         color: #052857;
         text-align: left;
@@ -2310,7 +2363,6 @@ padding: 0px 65px;
         margin: 0 auto;
         line-height: 1.6;
         text-align: center;
-        font-size: 18px;
         font-weight: 500;
         margin-bottom: 40px;
       }
@@ -2325,7 +2377,6 @@ padding: 0px 65px;
           grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
           gap: 15px;
         }
-
       }
 
       @media (max-width: 480px) {
@@ -2371,7 +2422,7 @@ padding: 0px 65px;
         text-align: left;
         margin: 0 auto;
         line-height: 1.6;
-       font-size: clamp(1rem, 2vw, 1.25rem);
+        font-size: clamp(1rem, 2vw, 1.25rem);
       }
 
       .faq-intro a {
@@ -2515,85 +2566,81 @@ padding: 0px 65px;
 
       /* Ajustes Responsive */
 
-     
       /* ==========================================
    FAQ - RESPONSIVE
    ========================================== */
 
-@media (max-width: 1024px) {
-  .faq-section {
-    padding: 50px 0px;
-  }
+      @media (max-width: 1024px) {
+        .faq-section {
+          padding: 50px 0px;
+        }
 
-  .faq-container {
-    padding: 40px 0;
-  }
+        .faq-container {
+          padding: 40px 0;
+        }
 
-  .faq-question {
-    font-size: 18px;
-  }
+        .faq-question {
+          font-size: 18px;
+        }
 
-  .faq-answer p {
-    font-size: 15.5px;
-  }
-}
+        .faq-answer p {
+          font-size: 15.5px;
+        }
+      }
 
-@media (max-width: 768px) {
+      @media (max-width: 768px) {
+        .faq-question {
+          font-size: 17px;
+        }
 
+        .faq-item summary {
+          padding: 28px 18px;
+        }
 
-  .faq-question {
-    font-size: 17px;
-  }
+        .faq-item summary:hover {
+          padding-left: 24px;
+        }
 
-  .faq-item summary {
-    padding: 28px 18px;
-  }
+        .faq-answer {
+          padding: 0 18px 30px 24px;
+        }
 
-  .faq-item summary:hover {
-    padding-left: 24px;
-  }
+        .faq-answer p {
+          font-size: 15px;
+          line-height: 1.8;
+        }
+      }
 
-  .faq-answer {
-    padding: 0 18px 30px 24px;
-  }
+      @media (max-width: 480px) {
+        .faq-section {
+          padding: 30px 0px;
+        }
 
-  .faq-answer p {
-    font-size: 15px;
-    line-height: 1.8;
-  }
-}
+        .faq-question {
+          font-size: 16px;
+        }
 
-@media (max-width: 480px) {
-  .faq-section {
-    padding: 30px 0px;
-  }
+        .faq-item summary {
+          padding: 24px 16px;
+        }
 
-  .faq-question {
-    font-size: 16px;
-  }
+        .faq-item summary:hover {
+          padding-left: 20px;
+        }
 
-  .faq-item summary {
-    padding: 24px 16px;
-  }
+        .faq-answer {
+          padding: 0 16px 28px 20px;
+        }
 
-  .faq-item summary:hover {
-    padding-left: 20px;
-  }
+        .faq-answer p {
+          font-size: 14.5px;
+          line-height: 1.75;
+        }
 
-  .faq-answer {
-    padding: 0 16px 28px 20px;
-  }
-
-  .faq-answer p {
-    font-size: 14.5px;
-    line-height: 1.75;
-  }
-
-  .faq-arrow {
-    font-size: 24px;
-  }
-}
-
+        .faq-arrow {
+          font-size: 24px;
+        }
+      }
 
       /* ==========================================================================
           SOBRE MI ---- SECTION
@@ -2610,7 +2657,7 @@ padding: 0px 65px;
       /* ---------- TÍTULO ---------- */
 
       .about-title h2 {
-        font-family: "Ananda Black Personal Use", serif;  
+        font-family: "Ananda Black Personal Use", serif;
         font-size: clamp(2.2rem, 6vw, 3.5rem);
         text-align: center;
         line-height: 1.5;
@@ -2625,7 +2672,7 @@ padding: 0px 65px;
       .about-paragraph-header {
         /* Espacio para que la foto de atrás (-67px) no lo pise en desktop */
         margin-bottom: 80px;
-       font-size: clamp(1rem, 2vw, 1.25rem);
+        font-size: clamp(1rem, 2vw, 1.25rem);
         font-weight: 500;
         color: #052857;
         text-align: left;
@@ -2779,13 +2826,10 @@ padding: 0px 65px;
           overflow: hidden;
         }
 
-  
-
         .about-paragraph-header {
           padding: 0 40px;
           /* Generamos espacio para que el translateY(-30px) no lo tape */
           margin-bottom: 60px;
-          text-align: center;
         }
 
         /* EXPERIENCIA - Mobile */
@@ -2873,8 +2917,7 @@ padding: 0px 65px;
       }
 
       @media (max-width: 480px) {
-
-        .about-paragraph-header {  
+        .about-paragraph-header {
           /* Reducimos padding para que no se vea tan angosto en móviles chicos */
           padding: 0 20px;
           /* Agregamos margen inferior para no ser tapado por el translateY(-600px) */
@@ -3415,7 +3458,7 @@ padding: 0px 65px;
         display: flex;
         flex-direction: column;
         align-items: center;
-       justify-content: space-between;
+        justify-content: space-between;
         padding: 30px 40px;
       }
 
@@ -3479,160 +3522,188 @@ padding: 0px 65px;
    FOOTER - RESPONSIVE
    ========================================== */
 
-@media (max-width: 768px) {
-  .footer-card {
-    margin: 40px 16px;
-    padding: 25px 20px;
-  }
+      @media (max-width: 768px) {
+        .footer-card {
+          margin: 40px 16px;
+          padding: 25px 20px;
+        }
 
-  .footer-top-nav ul {
-    gap: 25px;
-  }
+        .footer-top-nav ul {
+          gap: 25px;
+        }
 
-  .footer-top-nav ul li a {
-    font-size: 14px;
-  }
+        .footer-top-nav ul li a {
+          font-size: 14px;
+        }
 
-  .footer-main {
-    padding: 20px;
-  }
+        .footer-main {
+          padding: 20px;
+        }
 
-  .footer-bottom-info {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-}
+        .footer-bottom-info {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+        }
+      }
 
-@media (max-width: 480px) {
-  .footer-card {
-    margin: 20px 12px;
-    padding: 20px 15px;
-  }
+      @media (max-width: 480px) {
+        .footer-card {
+          margin: 20px 12px;
+          padding: 20px 15px;
+        }
 
-  .footer-top-nav ul {
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+        .footer-top-nav ul {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
 
-  .footer-top-nav ul li a {
-    font-size: 13px;
-  }
+        .footer-top-nav ul li a {
+          font-size: 13px;
+        }
 
-  .footer-social {
-    gap: 20px;
-  }
+        .footer-social {
+          gap: 20px;
+        }
 
-  .footer-social svg {
-    width: 20px;
-    height: 20px;
-  }
+        .footer-social svg {
+          width: 20px;
+          height: 20px;
+        }
 
-  .footer-bottom-info p {
-    font-size: 12px;
-  }
-}
+        .footer-bottom-info p {
+          font-size: 12px;
+        }
+      }
       /* FIN DEL FOOTER */
-     
     </style>
   </head>
   <body>
-    
- <header class="header" id="inicio">
-  <div class="cursor-spotlight" aria-hidden="true"></div>
+    <header class="header" id="inicio">
+      <div class="cursor-spotlight" aria-hidden="true"></div>
 
-  <div class="stage">
-    <nav class="navbar-card" id="navbar" aria-label="Navegación principal">
+      <div class="stage">
+        <nav class="navbar-card" id="navbar" aria-label="Navegación principal">
+          <a
+            href="#inicio"
+            class="brand-container"
+            aria-label="Marina Martinis - Inicio"
+          >
+            <div class="logo-icon">
+              <img
+                src="./logos/logo-blanco-sin-fondo.PNG"
+                alt="Marina Martinis - Abogada en Derecho Migratorio"
+                width="120"
+                height="40"
+              />
+            </div>
+          </a>
 
-      <a href="#inicio" class="brand-container" aria-label="Marina Martinis - Inicio">
-        <div class="logo-icon">
-          <img
-            src="./logos/logo-blanco-sin-fondo.PNG"
-            alt="Marina Martinis - Abogada en Derecho Migratorio"
-            width="120"
-            height="40"
-          />
-        </div>
-      </a>
+          <div class="nav-menu" id="nav-menu">
+            <div
+              class="nav-indicator"
+              id="nav-indicator"
+              aria-hidden="true"
+            ></div>
+            <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+            <a href="#servicios" class="nav-link">Servicios</a>
+            <a href="#contacto" class="nav-link">Contacto</a>
+            <a href="#experiencias" class="nav-link">Experiencias</a>
+            <a href="#faqs" class="nav-link">Preguntas frecuentes</a>
+          </div>
 
-      <div class="nav-menu" id="nav-menu">
-        <div class="nav-indicator" id="nav-indicator" aria-hidden="true"></div>
-        <a href="#sobre-mi"     class="nav-link">Sobre mí</a>
-        <a href="#servicios"    class="nav-link">Servicios</a>
-        <a href="#contacto"     class="nav-link">Contacto</a>
-        <a href="#experiencias" class="nav-link">Experiencias</a>
-        <a href="#faqs"         class="nav-link">Preguntas frecuentes</a>
+          <div class="actions-container">
+            <!-- WhatsApp (desktop y mobile) -->
+            <a
+              href="https://wa.me/5491112345678"
+              class="btn-premium"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contactar por WhatsApp"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                />
+              </svg>
+              <span class="btn-label">Conversemos</span>
+            </a>
+
+            <!-- Instagram (solo mobile) -->
+            <a
+              href="https://instagram.com/TU_USUARIO"
+              class="btn-icon-circle"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </a>
+
+            <!-- Gmail (solo mobile) -->
+            <a
+              href="mailto:TU_EMAIL@gmail.com"
+              class="btn-icon-circle"
+              aria-label="Email"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                />
+              </svg>
+            </a>
+
+            <!-- Hamburger toggle (solo mobile) -->
+            <button
+              class="mobile-toggle"
+              id="mobile-toggle"
+              aria-label="Abrir menú de navegación"
+              aria-expanded="false"
+              aria-controls="nav-menu"
+            >
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </button>
+          </div>
+        </nav>
       </div>
 
-      <div class="actions-container">
-        <!-- WhatsApp (desktop y mobile) -->
-        <a
-          href="https://wa.me/5491112345678"
-          class="btn-premium"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Contactar por WhatsApp"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-          <span class="btn-label">Conversemos</span>
-        </a>
-
-        <!-- Instagram (solo mobile) -->
-        <a
-          href="https://instagram.com/TU_USUARIO"
-          class="btn-icon-circle"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-
-        <!-- Gmail (solo mobile) -->
-        <a
-          href="mailto:TU_EMAIL@gmail.com"
-          class="btn-icon-circle"
-          aria-label="Email"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-        </a>
-
-        <!-- Hamburger toggle (solo mobile) -->
-        <button
-          class="mobile-toggle"
-          id="mobile-toggle"
-          aria-label="Abrir menú de navegación"
-          aria-expanded="false"
-          aria-controls="nav-menu"
-        >
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+      <!-- Overlay menú completo -->
+      <div class="nav-overlay" id="nav-overlay">
+        <button class="close-menu" id="close-menu">&times;</button>
+        <nav class="mobile-links">
+          <a href="#sobre-mi" class="nav-link-mobile">Sobre mí</a>
+          <a href="#servicios" class="nav-link-mobile">Servicios</a>
+          <a href="#contacto" class="nav-link-mobile">Contacto</a>
+          <a href="#experiencias" class="nav-link-mobile">Experiencias</a>
+          <a href="#faqs" class="nav-link-mobile">Preguntas frecuentes</a>
+        </nav>
       </div>
-
-    </nav>
-  </div>
-
-  <!-- Overlay menú completo -->
-  <div class="nav-overlay" id="nav-overlay">
-    <button class="close-menu" id="close-menu">&times;</button>
-    <nav class="mobile-links">
-      <a href="#sobre-mi"     class="nav-link-mobile">Sobre mí</a>
-      <a href="#servicios"    class="nav-link-mobile">Servicios</a>
-      <a href="#contacto"     class="nav-link-mobile">Contacto</a>
-      <a href="#experiencias" class="nav-link-mobile">Experiencias</a>
-      <a href="#faqs"         class="nav-link-mobile">Preguntas frecuentes</a>
-    </nav>
-  </div>
-</header>
+    </header>
 
     <main class="main">
       <section
@@ -3659,15 +3730,12 @@ padding: 0px 65px;
                   alt="Marina Martinis sosteniendo pasaporte"
                   itemprop="image"
                 />
-                <div class="photo-tape tape-top-left" aria-hidden="true"></div>
-                <div class="photo-tape tape-top-right" aria-hidden="true"></div>
               </div>
               <div class="hero-stack-photo photo-layer-2">
                 <img
                   src="./imagenes/foto-07-abogada-panoramica-puertas-fondo.jpg"
                   alt="Marina Martinis en ceremonia de graduación"
                 />
-               
               </div>
               <div class="hero-stack-photo photo-layer-3">
                 <img
@@ -3799,7 +3867,7 @@ padding: 0px 65px;
           </div>
         </div>
       </section>
-     <!-- EXPERIENCES SECTION -->
+      <!-- EXPERIENCES SECTION -->
 <section class="experiences-section" id="experiencias">
   <header class="experiences-header">
     <h2>Experiencias que transforman vidas</h2>
@@ -3810,13 +3878,48 @@ padding: 0px 65px;
   </header>
 
   <div class="hanging-line-container">
-
     <div class="experiences-gallery">
 
       <!-- ========== ROW 1 - 3 FOTOS ========== -->
       <div class="gallery-row-1">
+
         <div class="polaroid-item">
           <div class="polaroid-card">
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="headGrad" cx="40%" cy="35%" r="60%">
+                    <stop offset="0%" stop-color="#ff6b6b"/>
+                    <stop offset="40%" stop-color="#e02020"/>
+                    <stop offset="100%" stop-color="#8b0000"/>
+                  </radialGradient>
+                  <radialGradient id="baseGrad" cx="40%" cy="30%" r="65%">
+                    <stop offset="0%" stop-color="#e03030"/>
+                    <stop offset="50%" stop-color="#b01010"/>
+                    <stop offset="100%" stop-color="#700000"/>
+                  </radialGradient>
+                  <linearGradient id="neckGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#900000"/>
+                    <stop offset="40%" stop-color="#cc2020"/>
+                    <stop offset="100%" stop-color="#800000"/>
+                  </linearGradient>
+                  <linearGradient id="pinGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#888"/>
+                    <stop offset="45%" stop-color="#eee"/>
+                    <stop offset="100%" stop-color="#777"/>
+                  </linearGradient>
+                </defs>
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">Encontrar partidas en Argentina e Italia más el armado de la carpeta.</span>
               <h3>De Italia a Argentina</h3>
@@ -3829,8 +3932,19 @@ padding: 0px 65px;
 
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">Armado de carpeta para Ciudadanía Española.</span>
               <h3>Reconectando con mis raíces</h3>
@@ -3844,8 +3958,19 @@ padding: 0px 65px;
 
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">Obtención de mi ciudadanía italiana en Italia con mi familia.</span>
               <h3>Todo en orden</h3>
@@ -3857,14 +3982,27 @@ padding: 0px 65px;
             <p class="polaroid-caption">Eficiencia y confianza</p>
           </div>
         </div>
-      </div>
+
+      </div><!-- fin gallery-row-1 -->
 
       <!-- ========== ROW 2 - FOTO + TEXTO + FOTO ========== -->
       <div class="gallery-row-2">
+
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">Obtención de ciudadanía</span>
               <h3>Libre para viajar</h3>
@@ -3881,8 +4019,19 @@ padding: 0px 65px;
 
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">FALTA ESTA INFO</span>
               <h3>Sin barreras de idioma</h3>
@@ -3892,14 +4041,27 @@ padding: 0px 65px;
             <p class="polaroid-caption">Precisión garantizada</p>
           </div>
         </div>
-      </div>
+
+      </div><!-- fin gallery-row-2 -->
 
       <!-- ========== ROW 3 - 3 FOTOS ========== -->
       <div class="gallery-row-3">
+
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">FALTA ESTA INFO</span>
               <h3>Todos juntos</h3>
@@ -3912,8 +4074,19 @@ padding: 0px 65px;
 
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">Ciudadanía Española</span>
               <h3>Claridad total</h3>
@@ -3926,8 +4099,19 @@ padding: 0px 65px;
 
         <div class="polaroid-item">
           <div class="polaroid-card">
-            <div class="photo-tape tape-top-left"></div>
-            <div class="photo-tape tape-top-right"></div>
+            <div class="photo-tape tape-top-center">
+              <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="22" cy="53" rx="8" ry="2" fill="rgba(0,0,0,0.15)"/>
+                <line x1="22" y1="44" x2="30" y2="54" stroke="url(#pinGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="20" cy="42" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <ellipse cx="20" cy="40" rx="11" ry="5" fill="url(#baseGrad)"/>
+                <rect x="15" y="24" width="10" height="18" rx="4" fill="url(#neckGrad)"/>
+                <circle cx="20" cy="18" r="14" fill="url(#headGrad)"/>
+                <ellipse cx="15" cy="12" rx="5" ry="3.5" fill="rgba(255,255,255,0.3)" transform="rotate(-20,15,12)"/>
+                <circle cx="13" cy="10" r="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="16.5" y="26" width="3" height="12" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+              </svg>
+            </div>
             <div class="polaroid-content">
               <span class="card-badge">DNI</span>
               <h3>Identidad argentina</h3>
@@ -3940,11 +4124,11 @@ padding: 0px 65px;
             <p class="polaroid-caption">Nueva vida, nueva identidad</p>
           </div>
         </div>
-      </div>
+
+      </div><!-- fin gallery-row-3 -->
 
     </div><!-- fin .experiences-gallery -->
 
-    <!-- Dots FUERA del gallery para que no se muevan con el carousel -->
     <div class="carousel-dots">
       <div class="carousel-dot active"></div>
       <div class="carousel-dot"></div>
@@ -4318,141 +4502,187 @@ padding: 0px 65px;
           </p>
         </div>
       </section>
-     <!-- PREGUNTAS FRECUENTES -->
-<section class="faq-section" id="faqs">
-  <header class="faq-header">
-    <h2>Preguntas Frecuentes</h2>
-    <p class="faq-intro">
-      La información es orientativa y busca ayudarte a despejar algunas dudas iniciales. Recordá que cada situación es particular, por lo que ante consultas específicas siempre es recomendable un asesoramiento personalizado. Si no encontrás lo que buscás, podés escribirme a
-      <a href="mailto:dramartinismarina@gmail.com">dramartinismarina@gmail.com</a>
-      o al <a href="tel:+5491166619646">+54 9 1166619646</a>.
-    </p>
-  </header>
+      <!-- PREGUNTAS FRECUENTES -->
+      <section class="faq-section" id="faqs">
+        <header class="faq-header">
+          <h2>Preguntas Frecuentes</h2>
+          <p class="faq-intro">
+            La información es orientativa y busca ayudarte a despejar algunas
+            dudas iniciales. Recordá que cada situación es particular, por lo
+            que ante consultas específicas siempre es recomendable un
+            asesoramiento personalizado. Si no encontrás lo que buscás, podés
+            escribirme a
+            <a href="mailto:dramartinismarina@gmail.com"
+              >dramartinismarina@gmail.com</a
+            >
+            o al <a href="tel:+5491166619646">+54 9 1166619646</a>.
+          </p>
+        </header>
 
-  <div class="faq-container">
+        <div class="faq-container">
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Qué abarca el derecho migratorio y el de extranjería?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                El <strong>Derecho Migratorio</strong> regula el ingreso,
+                permanencia, residencia y egreso de personas, los visados, la
+                regularización, la protección internacional y las medidas y
+                políticas migratorias.
+              </p>
+              <p>
+                El <strong>Derecho de Extranjería</strong> regula el estatus
+                jurídico del extranjero: sus derechos y deberes, el acceso a
+                servicios, las limitaciones legales y los requisitos para la
+                naturalización o ciudadanía, garantizando la igualdad y no
+                discriminación.
+              </p>
+              <p>
+                En conjunto, ambas ramas ordenan el movimiento de personas y su
+                situación legal dentro de un Estado.
+              </p>
+            </div>
+          </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Qué abarca el derecho migratorio y el de extranjería?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          El <strong>Derecho Migratorio</strong> regula el ingreso, permanencia, residencia y egreso de personas, los visados, la regularización, la protección internacional y las medidas y políticas migratorias.
-        </p>
-        <p>
-          El <strong>Derecho de Extranjería</strong> regula el estatus jurídico del extranjero: sus derechos y deberes, el acceso a servicios, las limitaciones legales y los requisitos para la naturalización o ciudadanía, garantizando la igualdad y no discriminación.
-        </p>
-        <p>
-          En conjunto, ambas ramas ordenan el movimiento de personas y su situación legal dentro de un Estado.
-        </p>
-      </div>
-    </details>
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Trabajás con personas de todo el mundo?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Sí, trabajo con personas de todo el mundo de forma 100% online,
+                sin requerir presencialidad. Atiendo casos de diversas
+                nacionalidades con gestión digital de documentación y
+                seguimiento permanente.
+              </p>
+              <p>
+                En situaciones con barreras idiomáticas, es posible trabajar con
+                intérpretes para garantizar una comunicación clara y efectiva.
+              </p>
+              <p>
+                Además, coopero con estudios jurídicos y colegas en distintos
+                países a través de una red internacional de contactos
+                profesionales, lo que permite brindar un servicio coordinado e
+                integral.
+              </p>
+            </div>
+          </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Trabajás con personas de todo el mundo?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          Sí, trabajo con personas de todo el mundo de forma 100% online, sin requerir presencialidad. Atiendo casos de diversas nacionalidades con gestión digital de documentación y seguimiento permanente.
-        </p>
-        <p>
-          En situaciones con barreras idiomáticas, es posible trabajar con intérpretes para garantizar una comunicación clara y efectiva.
-        </p>
-        <p>
-          Además, coopero con estudios jurídicos y colegas en distintos países a través de una red internacional de contactos profesionales, lo que permite brindar un servicio coordinado e integral.
-        </p>
-      </div>
-    </details>
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Con qué países trabajás?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Mis principales países de trabajo son
+                <strong>Argentina, Italia y España</strong>. También brindo
+                asesoramiento en otros países de América (Brasil, Uruguay,
+                Chile, Colombia, Venezuela, Perú, México), Europa y Oceanía,
+                según las necesidades de cada caso.
+              </p>
+              <p>
+                Consultame tu situación: evaluamos juntos la viabilidad según el
+                país involucrado y te explico cómo avanzar.
+              </p>
+            </div>
+          </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Con qué países trabajás?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          Mis principales países de trabajo son <strong>Argentina, Italia y España</strong>. También brindo asesoramiento en otros países de América (Brasil, Uruguay, Chile, Colombia, Venezuela, Perú, México), Europa y Oceanía, según las necesidades de cada caso.
-        </p>
-        <p>
-          Consultame tu situación: evaluamos juntos la viabilidad según el país involucrado y te explico cómo avanzar.
-        </p>
-      </div>
-    </details>
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Cuál es la diferencia de realizar el trámite con una abogada
+              especializada?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                La diferencia está en el enfoque jurídico y profesional. A
+                diferencia de gestores o particulares, mi formación académica y
+                experiencia en derecho migratorio y de extranjería permiten
+                analizar cada caso con criterio legal, evaluar su viabilidad,
+                anticipar observaciones y definir una estrategia adecuada.
+              </p>
+              <p>
+                No solo completo formularios: acompaño todo el proceso con
+                respaldo jurídico profesional, brindando seguridad,
+                transparencia y previsibilidad en cada etapa del trámite.
+              </p>
+            </div>
+          </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Cuál es la diferencia de realizar el trámite con una abogada especializada?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          La diferencia está en el enfoque jurídico y profesional. A diferencia de gestores o particulares, mi formación académica y experiencia en derecho migratorio y de extranjería permiten analizar cada caso con criterio legal, evaluar su viabilidad, anticipar observaciones y definir una estrategia adecuada.
-        </p>
-        <p>
-          No solo completo formularios: acompaño todo el proceso con respaldo jurídico profesional, brindando seguridad, transparencia y previsibilidad en cada etapa del trámite.
-        </p>
-      </div>
-    </details>
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Cuánto tiempo demora el trámite de residencia?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Los plazos varían según el tipo de residencia, el país
+                involucrado y la situación particular de cada caso.
+                Generalmente, el proceso puede tomar entre 3 y 6 meses, aunque
+                algunos trámites pueden resolverse antes o requerir más tiempo.
+              </p>
+              <p>
+                En la primera consulta evaluamos tu caso y te doy una estimación
+                más precisa según tu situación específica.
+              </p>
+            </div>
+          </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Cuánto tiempo demora el trámite de residencia?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          Los plazos varían según el tipo de residencia, el país involucrado y la situación particular de cada caso. Generalmente, el proceso puede tomar entre 3 y 6 meses, aunque algunos trámites pueden resolverse antes o requerir más tiempo.
-        </p>
-        <p>
-          En la primera consulta evaluamos tu caso y te doy una estimación más precisa según tu situación específica.
-        </p>
-      </div>
-    </details>
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Qué documentos necesito para iniciar mi trámite?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                La documentación varía según el tipo de trámite, el país de
+                origen y el destino. En la primera consulta evaluamos tu caso y
+                te proporciono una lista detallada y personalizada para que
+                puedas prepararte correctamente desde el inicio.
+              </p>
+            </div>
+          </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Qué documentos necesito para iniciar mi trámite?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          La documentación varía según el tipo de trámite, el país de origen y el destino. En la primera consulta evaluamos tu caso y te proporciono una lista detallada y personalizada para que puedas prepararte correctamente desde el inicio.
-        </p>
-      </div>
-    </details>
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Puedo trabajar mientras espero la resolución de mi residencia?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                En la mayoría de los casos, una vez iniciado el trámite de
+                residencia, es posible solicitar un permiso de trabajo
+                provisorio que te habilita a trabajar legalmente mientras
+                aguardás la resolución definitiva.
+              </p>
+              <p>
+                Las condiciones exactas dependen del país y del tipo de trámite
+                en curso. Te aseoro sobre las opciones disponibles en tu
+                situación particular.
+              </p>
+            </div>
+          </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Puedo trabajar mientras espero la resolución de mi residencia?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          En la mayoría de los casos, una vez iniciado el trámite de residencia, es posible solicitar un permiso de trabajo provisorio que te habilita a trabajar legalmente mientras aguardás la resolución definitiva.
-        </p>
-        <p>
-          Las condiciones exactas dependen del país y del tipo de trámite en curso. Te aseoro sobre las opciones disponibles en tu situación particular.
-        </p>
-      </div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">
-        ¿Las consultas son virtuales?
-        <span class="faq-arrow">↓</span>
-      </summary>
-      <div class="faq-answer">
-        <p>
-          Sí, todas mis consultas son virtuales a través de distintas plataformas de videollamada. Esto permite mayor flexibilidad horaria, comodidad y alcance internacional, sin importar desde dónde te conectés.
-        </p>
-      </div>
-    </details>
-
-  </div>
-</section>
+          <details class="faq-item">
+            <summary class="faq-question">
+              ¿Las consultas son virtuales?
+              <span class="faq-arrow">↓</span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Sí, todas mis consultas son virtuales a través de distintas
+                plataformas de videollamada. Esto permite mayor flexibilidad
+                horaria, comodidad y alcance internacional, sin importar desde
+                dónde te conectés.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
       <!-- SOBRE MI -->
       <section class="about-editorial" id="sobre-mi">
         <!-- TÍTULO -->
@@ -4531,7 +4761,7 @@ padding: 0px 65px;
           </div>
         </article>
       </section>
-  
+
       <!-- !-- CONTACT SECTION -->
       <section class="contact-section" id="contacto">
         <div class="contact-container">
@@ -4964,655 +5194,987 @@ padding: 0px 65px;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
 
-   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // --- VARIABLES GLOBALES ---
-    const navbar = document.getElementById("navbar");
-    const indicator = document.getElementById("nav-indicator");
-    const navLinks = document.querySelectorAll(".nav-link");
-    const navMenu = document.querySelector(".nav-menu");
-    const body = document.body;
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- VARIABLES GLOBALES ---
+        const navbar = document.getElementById("navbar");
+        const indicator = document.getElementById("nav-indicator");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const navMenu = document.querySelector(".nav-menu");
+        const body = document.body;
 
-    // --- 1. LENIS (SMOOTH SCROLL GLOBAL) ---
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
-    // --- 2. SCROLL & NAVBAR STATE ---
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (window.innerWidth > 768) {
-          if (window.scrollY > 50) {
-            body.classList.add("scrolled");
-          } else {
-            body.classList.remove("scrolled");
-          }
-        }
-        // En móvil no tocamos la clase: el CSS con !important maneja todo
-      },
-      { passive: true }
-    );
-
-    // Estado inicial correcto según viewport
-    if (window.innerWidth <= 768) {
-      body.classList.remove("scrolled");
-    } else if (window.scrollY > 50) {
-      body.classList.add("scrolled");
-    }
-
-    // --- 3. MAGNETIC INDICATOR ---
-    function moveIndicator(el) {
-      const menuRect = navMenu.getBoundingClientRect();
-      const elRect = el.getBoundingClientRect();
-      const menuStyles = getComputedStyle(navMenu);
-      const paddingLeft = parseFloat(menuStyles.paddingLeft);
-      const left = elRect.left - menuRect.left - paddingLeft;
-
-      gsap.to(indicator, {
-        width: elRect.width,
-        x: left,
-        opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    }
-
-    if (navLinks && indicator) {
-      navLinks.forEach((link) => {
-        link.addEventListener("mouseenter", (e) => moveIndicator(e.target));
-      });
-
-      navMenu.addEventListener("mouseleave", () => {
-        gsap.to(indicator, { opacity: 0, duration: 0.3 });
-      });
-    }
-
-    // --- 4. SMOOTH SCROLL PARA ENLACES (con Lenis) ---
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
-      link.addEventListener("click", function (e) {
-        const targetId = this.getAttribute("href");
-        if (targetId !== "#" && document.querySelector(targetId)) {
-          e.preventDefault();
-          const offset = navbar ? navbar.offsetHeight + 20 : 80;
-          lenis.scrollTo(targetId, {
-            offset: -offset,
-            duration: 1.2,
-          });
-        }
-      });
-    });
-
-    // --- 5. FAQ ACCORDION ---
-    function openFaq(item) {
-      item.setAttribute("open", "");
-      gsap.fromTo(
-        item,
-        { height: item.querySelector("summary").offsetHeight },
-        {
-          height: "auto",
-          duration: 0.5,
-          ease: "power2.out",
-          onComplete: () => (item.style.height = "auto"),
-        }
-      );
-    }
-
-    function shrinkFaq(item) {
-      gsap.to(item, {
-        height: item.querySelector("summary").offsetHeight,
-        duration: 0.4,
-        ease: "power2.inOut",
-        onComplete: () => {
-          item.removeAttribute("open");
-          item.style.height = "auto";
-        },
-      });
-    }
-
-    document.querySelectorAll(".faq-item").forEach((item) => {
-      item.addEventListener("click", (e) => {
-        e.preventDefault();
-        const isOpen = item.hasAttribute("open");
-
-        document.querySelectorAll(".faq-item[open]").forEach((openItem) => {
-          if (openItem !== item) shrinkFaq(openItem);
+        // --- 1. LENIS (SMOOTH SCROLL GLOBAL) ---
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
         });
 
-        isOpen ? shrinkFaq(item) : openFaq(item);
-      });
-    });
+        lenis.on("scroll", ScrollTrigger.update);
 
-    // --- 6. FORM VALIDATION & PHONE SELECT ---
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("telefono");
-
-    if (emailInput) {
-      const validateEmail = () => {
-        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-          emailInput.value.trim()
-        );
-        emailInput.classList.toggle(
-          "invalid",
-          !isValid && emailInput.value !== ""
-        );
-        const emailError = document.getElementById("emailError");
-        if (emailError) {
-          emailError.style.display =
-            !isValid && emailInput.value !== "" ? "block" : "none";
-        }
-        return isValid;
-      };
-      emailInput.addEventListener("input", validateEmail);
-    }
-
-    if (phoneInput) {
-      phoneInput.addEventListener("input", (e) => {
-        e.target.value = e.target.value.replace(/[^0-9]/g, "");
-      });
-    }
-
-    const select = document.getElementById("customPhoneSelect");
-    const trigger = document.getElementById("selectTrigger");
-    const hiddenInput = document.getElementById("phoneCode");
-
-    if (trigger && select) {
-      trigger.addEventListener("click", (e) => {
-        e.stopPropagation();
-        select.classList.toggle("open");
-      });
-
-      document.querySelectorAll(".dropdown-option").forEach((opt) => {
-        opt.addEventListener("click", function () {
-          trigger.querySelector(".select-flag").src =
-            `https://flagcdn.com/w40/${this.dataset.flag}.png`;
-          trigger.querySelector(".select-code").textContent = this.dataset.value;
-          if (hiddenInput) hiddenInput.value = this.dataset.value;
-          select.classList.remove("open");
-        });
-      });
-
-      document.addEventListener("click", () =>
-        select.classList.remove("open")
-      );
-    }
-
-    // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
-    const stack = document.querySelector(".hero-photo-stack");
-    if (stack) {
-      const layer1 = stack.querySelector(".photo-layer-1");
-      const layer2 = stack.querySelector(".photo-layer-2");
-      const layer3 = stack.querySelector(".photo-layer-3");
-
-      const isMobile = () => window.innerWidth <= 768;
-      const isSmall = () => window.innerWidth <= 480;
-      let isExpanded = false;
-      let stackTl = null;
-
-      function setBasePositions() {
-        if (isMobile()) {
-          gsap.set(layer3, { rotation: -5, x: -30, y: 15, zIndex: 1, opacity: 0.9 });
-          gsap.set(layer2, { rotation: 2, x: 20, y: -5, zIndex: 2, opacity: 0.95 });
-          gsap.set(layer1, { rotation: -1, x: -10, y: 5, zIndex: 3, opacity: 1 });
-        } else {
-          gsap.set(layer3, { rotation: -8, x: -60, y: 20, zIndex: 1, opacity: 0.9 });
-          gsap.set(layer2, { rotation: 3, x: 40, y: -10, zIndex: 2, opacity: 0.95 });
-          gsap.set(layer1, { rotation: -2, x: -20, y: 10, zIndex: 3, opacity: 1 });
-        }
-      }
-
-      function desktopOpen() {
-        if (stackTl) stackTl.kill();
-        stackTl = gsap.timeline();
-        stackTl
-          .to(layer3, { rotation: -15, x: -120, y: 40, duration: 0.45, ease: "power3.out" }, 0)
-          .to(layer2, { rotation: 8, x: 90, y: -20, duration: 0.45, ease: "power3.out" }, 0)
-          .to(layer1, { rotation: -1, x: -30, y: 5, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0);
-      }
-
-      function desktopClose() {
-        if (stackTl) stackTl.kill();
-        stackTl = gsap.timeline({ onComplete: setBasePositions });
-        stackTl
-          .to(layer3, { rotation: -8, x: -60, y: 20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-          .to(layer2, { rotation: 3, x: 40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-          .to(layer1, { rotation: -2, x: -20, y: 10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
-      }
-
-      function expandStack() {
-        const offset = isSmall() ? 290 : 330;
-        isExpanded = true;
-        stack.classList.add("expanded");
-        if (stackTl) stackTl.kill();
-
-        gsap.to(stack, { height: offset * 2 + 180, duration: 0.7, ease: "power2.out" });
-
-        stackTl = gsap.timeline();
-        stackTl
-          .to(layer2, { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" }, 0)
-          .to(layer3, { rotation: 0, x: 0, y: -offset, duration: 0.65, ease: "power2.out" }, 0.1)
-          .to(layer1, { rotation: 0, x: 0, y: offset, duration: 0.7, ease: "power2.out" }, 0.2);
-      }
-
-      function collapseStack() {
-        isExpanded = false;
-        stack.classList.remove("expanded");
-        if (stackTl) stackTl.kill();
-
-        gsap.to(stack, { height: isSmall() ? "20rem" : "22rem", duration: 0.6, ease: "power2.inOut" });
-
-        stackTl = gsap.timeline({ onComplete: setBasePositions });
-        stackTl
-          .to(layer1, { rotation: -1, x: -10, y: 5, duration: 0.6, ease: "power2.inOut" }, 0)
-          .to(layer2, { rotation: 2, x: 20, y: -5, duration: 0.65, ease: "power2.inOut" }, 0.08)
-          .to(layer3, { rotation: -5, x: -30, y: 15, duration: 0.7, ease: "power2.inOut" }, 0.16);
-      }
-
-      setBasePositions();
-
-      stack.addEventListener("mouseenter", () => { if (!isMobile()) desktopOpen(); });
-      stack.addEventListener("mouseleave", () => { if (!isMobile()) desktopClose(); });
-      stack.addEventListener("click", () => {
-        if (!isMobile()) return;
-        isExpanded ? collapseStack() : expandStack();
-      });
-
-      let lastWidthStack = window.innerWidth;
-      window.addEventListener("resize", () => {
-        const currentWidth = window.innerWidth;
-        if (currentWidth === lastWidthStack) return;
-        lastWidthStack = currentWidth;
-
-        if (stackTl) stackTl.kill();
-        stack.classList.remove("expanded");
-        isExpanded = false;
-        setBasePositions();
-        gsap.set(stack, { height: isMobile() ? (isSmall() ? "20rem" : "22rem") : "34.375rem" });
-      });
-    }
-
-    // --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
-    const polaroidCard = document.querySelector(".polaroid-stack-card");
-    if (polaroidCard) {
-      const p1 = polaroidCard.querySelector(".polaroid-1");
-      const p2 = polaroidCard.querySelector(".polaroid-2");
-      const p3 = polaroidCard.querySelector(".polaroid-3");
-
-      const isMobile = () => window.innerWidth <= 768;
-      let polaroidTl = null;
-      let polaroidExpanded = false;
-
-      function setPolaroidBase() {
-        if (isMobile()) {
-          gsap.set(p1, { rotation: -5, x: -20, y: -10, zIndex: 1 });
-          gsap.set(p2, { rotation: 3, x: 8, y: 8, zIndex: 2 });
-          gsap.set(p3, { rotation: -2, x: 28, y: -6, zIndex: 3 });
-        } else {
-          gsap.set(p1, { rotation: -8, x: -30, y: -20, zIndex: 1 });
-          gsap.set(p2, { rotation: 5, x: 10, y: 10, zIndex: 2 });
-          gsap.set(p3, { rotation: -3, x: 40, y: -10, zIndex: 3 });
-        }
-      }
-
-      function polaroidOpen() {
-        if (polaroidTl) polaroidTl.kill();
-        polaroidTl = gsap.timeline();
-        polaroidTl
-          .to(p1, { rotation: -12, x: -50, y: -30, scale: 1, duration: 0.45, ease: "power3.out" }, 0)
-          .to(p2, { rotation: 8, x: 15, y: 15, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0)
-          .to(p3, { rotation: -5, x: 60, y: -15, scale: 1, duration: 0.45, ease: "power3.out" }, 0);
-      }
-
-      function polaroidClose() {
-        if (polaroidTl) polaroidTl.kill();
-        polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
-        polaroidTl
-          .to(p1, { rotation: -8, x: -30, y: -20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-          .to(p2, { rotation: 5, x: 10, y: 10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-          .to(p3, { rotation: -3, x: 40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
-      }
-
-      function polaroidExpand() {
-        polaroidExpanded = true;
-        if (polaroidTl) polaroidTl.kill();
-
-        const offset = window.innerWidth <= 480 ? 220 : 255;
-        const offset3 = window.innerWidth <= 480 ? 215 : 250;
-
-        gsap.to(polaroidCard, { height: offset * 2 + 140, duration: 0.7, ease: "power2.out" });
-
-        polaroidTl = gsap.timeline();
-        polaroidTl
-          .to(p2, { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" }, 0)
-          .to(p1, { rotation: 0, x: 0, y: -offset, duration: 0.65, ease: "power2.out" }, 0.1)
-          .to(p3, { rotation: 0, x: 0, y: offset3, duration: 0.7, ease: "power2.out" }, 0.2);
-      }
-
-      function polaroidCollapse() {
-        polaroidExpanded = false;
-        if (polaroidTl) polaroidTl.kill();
-
-        const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
-        gsap.to(polaroidCard, { height: baseHeight, duration: 0.6, ease: "power2.inOut" });
-
-        polaroidTl = gsap.timeline();
-        polaroidTl
-          .to(p3, { rotation: -2, x: 28, y: -6, scale: 1, duration: 0.6, ease: "power2.inOut" }, 0)
-          .to(p2, { rotation: 3, x: 8, y: 8, scale: 1, duration: 0.65, ease: "power2.inOut" }, 0.08)
-          .to(p1, { rotation: -5, x: -20, y: -10, scale: 1, duration: 0.7, ease: "power2.inOut" }, 0.16);
-      }
-
-      setPolaroidBase();
-
-      polaroidCard.addEventListener("mouseenter", () => { if (!isMobile()) polaroidOpen(); });
-      polaroidCard.addEventListener("mouseleave", () => { if (!isMobile()) polaroidClose(); });
-      polaroidCard.addEventListener("click", () => {
-        if (!isMobile()) return;
-        polaroidExpanded ? polaroidCollapse() : polaroidExpand();
-      });
-
-      let lastWidthP = window.innerWidth;
-      window.addEventListener("resize", () => {
-        const currentWidth = window.innerWidth;
-        if (currentWidth === lastWidthP) return;
-        lastWidthP = currentWidth;
-
-        if (polaroidTl) polaroidTl.kill();
-        polaroidExpanded = false;
-        polaroidCard.classList.remove("expanded");
-        setPolaroidBase();
-        gsap.set(polaroidCard, {
-          height: isMobile() ? (window.innerWidth <= 480 ? "15rem" : "18rem") : "25rem",
-        });
-      });
-    }
-
-    // --- 9. EXPERIENCES CAROUSEL - Infinito continuo ---
-    const gallery = document.querySelector(".experiences-gallery");
-    if (gallery) {
-      const isMobile = () => window.innerWidth <= 768;
-
-      let xPos = 0;
-      let xVelocity = 0;
-      let speed = 1;
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragStartY = 0;
-      let dragStartPos = 0;
-      let lastDragX = 0;
-      let isPaused = false;
-      let resumeTimeout = null;
-      let rafId = null;
-      let totalWidth = 0;
-      let touchDirLocked = null;
-
-      function getOriginalSlides() {
-        return Array.from(
-          gallery.querySelectorAll(
-            ".polaroid-item:not(.carousel-clone), .center-text-item:not(.carousel-clone)"
-          )
-        );
-      }
-
-      function setupInfinite() {
-        if (!isMobile()) {
-          cancelAnimationFrame(rafId);
-          gsap.set(gallery, { x: 0 });
-          gallery.querySelectorAll(".carousel-clone").forEach((el) => el.remove());
-          gallery.style.flexDirection = "";
-          gallery.style.flexWrap = "";
-          return;
-        }
-
-        gallery.querySelectorAll(".carousel-clone").forEach((el) => el.remove());
-
-        const slides = getOriginalSlides();
-
-        [1, 2].forEach(() => {
-          slides.forEach((slide) => {
-            const clone = slide.cloneNode(true);
-            clone.classList.add("carousel-clone");
-            gallery.appendChild(clone);
-          });
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
         });
 
-        setTimeout(() => {
-          const originals = getOriginalSlides();
-          totalWidth = originals.reduce((acc, el) => {
-            const style = window.getComputedStyle(el);
-            const margin = parseFloat(style.marginRight) || 0;
-            return acc + el.getBoundingClientRect().width + 16 + margin;
-          }, 0);
+        gsap.ticker.lagSmoothing(0);
 
-          xPos = 0;
-          xVelocity = 0;
-          gsap.set(gallery, { x: 0 });
-          startLoop();
-        }, 150);
-      }
-
-      function startLoop() {
-        cancelAnimationFrame(rafId);
-
-        function tick() {
-          if (!isDragging) {
-            if (isPaused) {
-              xVelocity *= 0.88;
-              if (Math.abs(xVelocity) > 0.1) {
-                xPos += xVelocity;
+        // --- 2. SCROLL & NAVBAR STATE ---
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.innerWidth > 768) {
+              if (window.scrollY > 50) {
+                body.classList.add("scrolled");
               } else {
-                xVelocity = 0;
+                body.classList.remove("scrolled");
               }
+            }
+            // En móvil no tocamos la clase: el CSS con !important maneja todo
+          },
+          { passive: true },
+        );
+
+        // Estado inicial correcto según viewport
+        if (window.innerWidth <= 768) {
+          body.classList.remove("scrolled");
+        } else if (window.scrollY > 50) {
+          body.classList.add("scrolled");
+        }
+
+        // --- 3. MAGNETIC INDICATOR ---
+        function moveIndicator(el) {
+          const menuRect = navMenu.getBoundingClientRect();
+          const elRect = el.getBoundingClientRect();
+          const menuStyles = getComputedStyle(navMenu);
+          const paddingLeft = parseFloat(menuStyles.paddingLeft);
+          const left = elRect.left - menuRect.left - paddingLeft;
+
+          gsap.to(indicator, {
+            width: elRect.width,
+            x: left,
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+
+        if (navLinks && indicator) {
+          navLinks.forEach((link) => {
+            link.addEventListener("mouseenter", (e) => moveIndicator(e.target));
+          });
+
+          navMenu.addEventListener("mouseleave", () => {
+            gsap.to(indicator, { opacity: 0, duration: 0.3 });
+          });
+        }
+
+        // --- 4. SMOOTH SCROLL PARA ENLACES (con Lenis) ---
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#" && document.querySelector(targetId)) {
+              e.preventDefault();
+              const offset = navbar ? navbar.offsetHeight + 20 : 80;
+              lenis.scrollTo(targetId, {
+                offset: -offset,
+                duration: 1.2,
+              });
+            }
+          });
+        });
+
+        // --- 5. FAQ ACCORDION ---
+        function openFaq(item) {
+          item.setAttribute("open", "");
+          gsap.fromTo(
+            item,
+            { height: item.querySelector("summary").offsetHeight },
+            {
+              height: "auto",
+              duration: 0.5,
+              ease: "power2.out",
+              onComplete: () => (item.style.height = "auto"),
+            },
+          );
+        }
+
+        function shrinkFaq(item) {
+          gsap.to(item, {
+            height: item.querySelector("summary").offsetHeight,
+            duration: 0.4,
+            ease: "power2.inOut",
+            onComplete: () => {
+              item.removeAttribute("open");
+              item.style.height = "auto";
+            },
+          });
+        }
+
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            const isOpen = item.hasAttribute("open");
+
+            document.querySelectorAll(".faq-item[open]").forEach((openItem) => {
+              if (openItem !== item) shrinkFaq(openItem);
+            });
+
+            isOpen ? shrinkFaq(item) : openFaq(item);
+          });
+        });
+
+        // --- 6. FORM VALIDATION & PHONE SELECT ---
+        const emailInput = document.getElementById("email");
+        const phoneInput = document.getElementById("telefono");
+
+        if (emailInput) {
+          const validateEmail = () => {
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+              emailInput.value.trim(),
+            );
+            emailInput.classList.toggle(
+              "invalid",
+              !isValid && emailInput.value !== "",
+            );
+            const emailError = document.getElementById("emailError");
+            if (emailError) {
+              emailError.style.display =
+                !isValid && emailInput.value !== "" ? "block" : "none";
+            }
+            return isValid;
+          };
+          emailInput.addEventListener("input", validateEmail);
+        }
+
+        if (phoneInput) {
+          phoneInput.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, "");
+          });
+        }
+
+        const select = document.getElementById("customPhoneSelect");
+        const trigger = document.getElementById("selectTrigger");
+        const hiddenInput = document.getElementById("phoneCode");
+
+        if (trigger && select) {
+          trigger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            select.classList.toggle("open");
+          });
+
+          document.querySelectorAll(".dropdown-option").forEach((opt) => {
+            opt.addEventListener("click", function () {
+              trigger.querySelector(".select-flag").src =
+                `https://flagcdn.com/w40/${this.dataset.flag}.png`;
+              trigger.querySelector(".select-code").textContent =
+                this.dataset.value;
+              if (hiddenInput) hiddenInput.value = this.dataset.value;
+              select.classList.remove("open");
+            });
+          });
+
+          document.addEventListener("click", () =>
+            select.classList.remove("open"),
+          );
+        }
+
+        // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
+        const stack = document.querySelector(".hero-photo-stack");
+        if (stack) {
+          const layer1 = stack.querySelector(".photo-layer-1");
+          const layer2 = stack.querySelector(".photo-layer-2");
+          const layer3 = stack.querySelector(".photo-layer-3");
+
+          const isMobile = () => window.innerWidth <= 768;
+          const isSmall = () => window.innerWidth <= 480;
+          let isExpanded = false;
+          let stackTl = null;
+
+          function setBasePositions() {
+            if (isMobile()) {
+              gsap.set(layer3, {
+                rotation: -5,
+                x: -30,
+                y: 15,
+                zIndex: 1,
+                opacity: 0.9,
+              });
+              gsap.set(layer2, {
+                rotation: 2,
+                x: 20,
+                y: -5,
+                zIndex: 2,
+                opacity: 0.95,
+              });
+              gsap.set(layer1, {
+                rotation: -1,
+                x: -10,
+                y: 5,
+                zIndex: 3,
+                opacity: 1,
+              });
             } else {
-              xVelocity *= 0.92;
-              xPos -= speed + Math.max(0, -xVelocity);
+              gsap.set(layer3, {
+                rotation: -8,
+                x: -60,
+                y: 20,
+                zIndex: 1,
+                opacity: 0.9,
+              });
+              gsap.set(layer2, {
+                rotation: 3,
+                x: 40,
+                y: -10,
+                zIndex: 2,
+                opacity: 0.95,
+              });
+              gsap.set(layer1, {
+                rotation: -2,
+                x: -20,
+                y: 10,
+                zIndex: 3,
+                opacity: 1,
+              });
+            }
+          }
+
+          function desktopOpen() {
+            if (stackTl) stackTl.kill();
+            stackTl = gsap.timeline();
+            stackTl
+              .to(
+                layer3,
+                {
+                  rotation: -15,
+                  x: -120,
+                  y: 40,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                layer2,
+                {
+                  rotation: 8,
+                  x: 90,
+                  y: -20,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                layer1,
+                {
+                  rotation: -1,
+                  x: -30,
+                  y: 5,
+                  scale: 1.02,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              );
+          }
+
+          function desktopClose() {
+            if (stackTl) stackTl.kill();
+            stackTl = gsap.timeline({ onComplete: setBasePositions });
+            stackTl
+              .to(
+                layer3,
+                {
+                  rotation: -8,
+                  x: -60,
+                  y: 20,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                layer2,
+                {
+                  rotation: 3,
+                  x: 40,
+                  y: -10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                layer1,
+                {
+                  rotation: -2,
+                  x: -20,
+                  y: 10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              );
+          }
+
+          function expandStack() {
+            const offset = isSmall() ? 290 : 330;
+            isExpanded = true;
+            stack.classList.add("expanded");
+            if (stackTl) stackTl.kill();
+
+            gsap.to(stack, {
+              height: offset * 2 + 180,
+              duration: 0.7,
+              ease: "power2.out",
+            });
+
+            stackTl = gsap.timeline();
+            stackTl
+              .to(
+                layer2,
+                { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" },
+                0,
+              )
+              .to(
+                layer3,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: -offset,
+                  duration: 0.65,
+                  ease: "power2.out",
+                },
+                0.1,
+              )
+              .to(
+                layer1,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: offset,
+                  duration: 0.7,
+                  ease: "power2.out",
+                },
+                0.2,
+              );
+          }
+
+          function collapseStack() {
+            isExpanded = false;
+            stack.classList.remove("expanded");
+            if (stackTl) stackTl.kill();
+
+            gsap.to(stack, {
+              height: isSmall() ? "20rem" : "22rem",
+              duration: 0.6,
+              ease: "power2.inOut",
+            });
+
+            stackTl = gsap.timeline({ onComplete: setBasePositions });
+            stackTl
+              .to(
+                layer1,
+                {
+                  rotation: -1,
+                  x: -10,
+                  y: 5,
+                  duration: 0.6,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                layer2,
+                {
+                  rotation: 2,
+                  x: 20,
+                  y: -5,
+                  duration: 0.65,
+                  ease: "power2.inOut",
+                },
+                0.08,
+              )
+              .to(
+                layer3,
+                {
+                  rotation: -5,
+                  x: -30,
+                  y: 15,
+                  duration: 0.7,
+                  ease: "power2.inOut",
+                },
+                0.16,
+              );
+          }
+
+          setBasePositions();
+
+          stack.addEventListener("mouseenter", () => {
+            if (!isMobile()) desktopOpen();
+          });
+          stack.addEventListener("mouseleave", () => {
+            if (!isMobile()) desktopClose();
+          });
+          stack.addEventListener("click", () => {
+            if (!isMobile()) return;
+            isExpanded ? collapseStack() : expandStack();
+          });
+
+          let lastWidthStack = window.innerWidth;
+          window.addEventListener("resize", () => {
+            const currentWidth = window.innerWidth;
+            if (currentWidth === lastWidthStack) return;
+            lastWidthStack = currentWidth;
+
+            if (stackTl) stackTl.kill();
+            stack.classList.remove("expanded");
+            isExpanded = false;
+            setBasePositions();
+            gsap.set(stack, {
+              height: isMobile()
+                ? isSmall()
+                  ? "20rem"
+                  : "22rem"
+                : "34.375rem",
+            });
+          });
+        }
+
+        // --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
+        const polaroidCard = document.querySelector(".polaroid-stack-card");
+        if (polaroidCard) {
+          const p1 = polaroidCard.querySelector(".polaroid-1");
+          const p2 = polaroidCard.querySelector(".polaroid-2");
+          const p3 = polaroidCard.querySelector(".polaroid-3");
+
+          const isMobile = () => window.innerWidth <= 768;
+          let polaroidTl = null;
+          let polaroidExpanded = false;
+
+          function setPolaroidBase() {
+            if (isMobile()) {
+              gsap.set(p1, { rotation: -5, x: -20, y: -10, zIndex: 1 });
+              gsap.set(p2, { rotation: 3, x: 8, y: 8, zIndex: 2 });
+              gsap.set(p3, { rotation: -2, x: 28, y: -6, zIndex: 3 });
+            } else {
+              gsap.set(p1, { rotation: -8, x: -30, y: -20, zIndex: 1 });
+              gsap.set(p2, { rotation: 5, x: 10, y: 10, zIndex: 2 });
+              gsap.set(p3, { rotation: -3, x: 40, y: -10, zIndex: 3 });
+            }
+          }
+
+          function polaroidOpen() {
+            if (polaroidTl) polaroidTl.kill();
+            polaroidTl = gsap.timeline();
+            polaroidTl
+              .to(
+                p1,
+                {
+                  rotation: -12,
+                  x: -50,
+                  y: -30,
+                  scale: 1,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                p2,
+                {
+                  rotation: 8,
+                  x: 15,
+                  y: 15,
+                  scale: 1.02,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              )
+              .to(
+                p3,
+                {
+                  rotation: -5,
+                  x: 60,
+                  y: -15,
+                  scale: 1,
+                  duration: 0.45,
+                  ease: "power3.out",
+                },
+                0,
+              );
+          }
+
+          function polaroidClose() {
+            if (polaroidTl) polaroidTl.kill();
+            polaroidTl = gsap.timeline({ onComplete: setPolaroidBase });
+            polaroidTl
+              .to(
+                p1,
+                {
+                  rotation: -8,
+                  x: -30,
+                  y: -20,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                p2,
+                {
+                  rotation: 5,
+                  x: 10,
+                  y: 10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                p3,
+                {
+                  rotation: -3,
+                  x: 40,
+                  y: -10,
+                  scale: 1,
+                  duration: 0.4,
+                  ease: "power2.inOut",
+                },
+                0,
+              );
+          }
+
+          function polaroidExpand() {
+            polaroidExpanded = true;
+            if (polaroidTl) polaroidTl.kill();
+
+            const offset = window.innerWidth <= 480 ? 220 : 255;
+            const offset3 = window.innerWidth <= 480 ? 215 : 250;
+
+            gsap.to(polaroidCard, {
+              height: offset * 2 + 140,
+              duration: 0.7,
+              ease: "power2.out",
+            });
+
+            polaroidTl = gsap.timeline();
+            polaroidTl
+              .to(
+                p2,
+                { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" },
+                0,
+              )
+              .to(
+                p1,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: -offset,
+                  duration: 0.65,
+                  ease: "power2.out",
+                },
+                0.1,
+              )
+              .to(
+                p3,
+                {
+                  rotation: 0,
+                  x: 0,
+                  y: offset3,
+                  duration: 0.7,
+                  ease: "power2.out",
+                },
+                0.2,
+              );
+          }
+
+          function polaroidCollapse() {
+            polaroidExpanded = false;
+            if (polaroidTl) polaroidTl.kill();
+
+            const baseHeight = window.innerWidth <= 480 ? "15rem" : "18rem";
+            gsap.to(polaroidCard, {
+              height: baseHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            });
+
+            polaroidTl = gsap.timeline();
+            polaroidTl
+              .to(
+                p3,
+                {
+                  rotation: -2,
+                  x: 28,
+                  y: -6,
+                  scale: 1,
+                  duration: 0.6,
+                  ease: "power2.inOut",
+                },
+                0,
+              )
+              .to(
+                p2,
+                {
+                  rotation: 3,
+                  x: 8,
+                  y: 8,
+                  scale: 1,
+                  duration: 0.65,
+                  ease: "power2.inOut",
+                },
+                0.08,
+              )
+              .to(
+                p1,
+                {
+                  rotation: -5,
+                  x: -20,
+                  y: -10,
+                  scale: 1,
+                  duration: 0.7,
+                  ease: "power2.inOut",
+                },
+                0.16,
+              );
+          }
+
+          setPolaroidBase();
+
+          polaroidCard.addEventListener("mouseenter", () => {
+            if (!isMobile()) polaroidOpen();
+          });
+          polaroidCard.addEventListener("mouseleave", () => {
+            if (!isMobile()) polaroidClose();
+          });
+          polaroidCard.addEventListener("click", () => {
+            if (!isMobile()) return;
+            polaroidExpanded ? polaroidCollapse() : polaroidExpand();
+          });
+
+          let lastWidthP = window.innerWidth;
+          window.addEventListener("resize", () => {
+            const currentWidth = window.innerWidth;
+            if (currentWidth === lastWidthP) return;
+            lastWidthP = currentWidth;
+
+            if (polaroidTl) polaroidTl.kill();
+            polaroidExpanded = false;
+            polaroidCard.classList.remove("expanded");
+            setPolaroidBase();
+            gsap.set(polaroidCard, {
+              height: isMobile()
+                ? window.innerWidth <= 480
+                  ? "15rem"
+                  : "18rem"
+                : "25rem",
+            });
+          });
+        }
+
+        // --- 9. EXPERIENCES CAROUSEL - Infinito continuo ---
+        const gallery = document.querySelector(".experiences-gallery");
+        if (gallery) {
+          const isMobile = () => window.innerWidth <= 768;
+
+          let xPos = 0;
+          let xVelocity = 0;
+          let speed = 1;
+          let isDragging = false;
+          let dragStartX = 0;
+          let dragStartY = 0;
+          let dragStartPos = 0;
+          let lastDragX = 0;
+          let isPaused = false;
+          let resumeTimeout = null;
+          let rafId = null;
+          let totalWidth = 0;
+          let touchDirLocked = null;
+
+          function getOriginalSlides() {
+            return Array.from(
+              gallery.querySelectorAll(
+                ".polaroid-item:not(.carousel-clone), .center-text-item:not(.carousel-clone)",
+              ),
+            );
+          }
+
+          function setupInfinite() {
+            if (!isMobile()) {
+              cancelAnimationFrame(rafId);
+              gsap.set(gallery, { x: 0 });
+              gallery
+                .querySelectorAll(".carousel-clone")
+                .forEach((el) => el.remove());
+              gallery.style.flexDirection = "";
+              gallery.style.flexWrap = "";
+              return;
             }
 
-            if (xPos < -totalWidth) xPos += totalWidth;
-            if (xPos > 0) xPos -= totalWidth;
+            gallery
+              .querySelectorAll(".carousel-clone")
+              .forEach((el) => el.remove());
 
-            gsap.set(gallery, { x: xPos });
+            const slides = getOriginalSlides();
+
+            [1, 2].forEach(() => {
+              slides.forEach((slide) => {
+                const clone = slide.cloneNode(true);
+                clone.classList.add("carousel-clone");
+                gallery.appendChild(clone);
+              });
+            });
+
+            setTimeout(() => {
+              const originals = getOriginalSlides();
+              totalWidth = originals.reduce((acc, el) => {
+                const style = window.getComputedStyle(el);
+                const margin = parseFloat(style.marginRight) || 0;
+                return acc + el.getBoundingClientRect().width + 16 + margin;
+              }, 0);
+
+              xPos = 0;
+              xVelocity = 0;
+              gsap.set(gallery, { x: 0 });
+              startLoop();
+            }, 150);
           }
 
-          rafId = requestAnimationFrame(tick);
-        }
+          function startLoop() {
+            cancelAnimationFrame(rafId);
 
-        rafId = requestAnimationFrame(tick);
-      }
+            function tick() {
+              if (!isDragging) {
+                if (isPaused) {
+                  xVelocity *= 0.88;
+                  if (Math.abs(xVelocity) > 0.1) {
+                    xPos += xVelocity;
+                  } else {
+                    xVelocity = 0;
+                  }
+                } else {
+                  xVelocity *= 0.92;
+                  xPos -= speed + Math.max(0, -xVelocity);
+                }
 
-      function pauseCarousel() {
-        isPaused = true;
-        if (resumeTimeout) clearTimeout(resumeTimeout);
-      }
+                if (xPos < -totalWidth) xPos += totalWidth;
+                if (xPos > 0) xPos -= totalWidth;
 
-      function resumeCarousel() {
-        if (resumeTimeout) clearTimeout(resumeTimeout);
-        resumeTimeout = setTimeout(() => {
-          isPaused = false;
-          xVelocity = 0;
-        }, 2000);
-      }
+                gsap.set(gallery, { x: xPos });
+              }
 
-      gallery.addEventListener("touchstart", (e) => {
-        if (!isMobile()) return;
-        isDragging = false;
-        touchDirLocked = null;
-        dragStartX = e.touches[0].clientX;
-        dragStartY = e.touches[0].clientY;
-        lastDragX = dragStartX;
-        dragStartPos = xPos;
-        xVelocity = 0;
-        pauseCarousel();
-      }, { passive: true });
+              rafId = requestAnimationFrame(tick);
+            }
 
-      gallery.addEventListener("touchmove", (e) => {
-        if (!isMobile()) return;
+            rafId = requestAnimationFrame(tick);
+          }
 
-        const dx = e.touches[0].clientX - dragStartX;
-        const dy = e.touches[0].clientY - dragStartY;
+          function pauseCarousel() {
+            isPaused = true;
+            if (resumeTimeout) clearTimeout(resumeTimeout);
+          }
 
-        if (!touchDirLocked) {
-          if (Math.abs(dx) > Math.abs(dy) + 4) touchDirLocked = "horizontal";
-          else if (Math.abs(dy) > Math.abs(dx) + 4) touchDirLocked = "vertical";
-        }
+          function resumeCarousel() {
+            if (resumeTimeout) clearTimeout(resumeTimeout);
+            resumeTimeout = setTimeout(() => {
+              isPaused = false;
+              xVelocity = 0;
+            }, 2000);
+          }
 
-        if (touchDirLocked === "vertical") return;
+          gallery.addEventListener(
+            "touchstart",
+            (e) => {
+              if (!isMobile()) return;
+              isDragging = false;
+              touchDirLocked = null;
+              dragStartX = e.touches[0].clientX;
+              dragStartY = e.touches[0].clientY;
+              lastDragX = dragStartX;
+              dragStartPos = xPos;
+              xVelocity = 0;
+              pauseCarousel();
+            },
+            { passive: true },
+          );
 
-        if (touchDirLocked === "horizontal") {
-          isDragging = true;
-          xVelocity = (e.touches[0].clientX - lastDragX) * 0.6;
-          lastDragX = e.touches[0].clientX;
-          xPos = dragStartPos + dx;
-          if (xPos < -totalWidth) xPos += totalWidth;
-          if (xPos > 0) xPos -= totalWidth;
-          gsap.set(gallery, { x: xPos });
-        }
-      }, { passive: true });
+          gallery.addEventListener(
+            "touchmove",
+            (e) => {
+              if (!isMobile()) return;
 
-      gallery.addEventListener("touchend", () => {
-        if (!isMobile()) return;
-        isDragging = false;
-        touchDirLocked = null;
-        resumeCarousel();
-      }, { passive: true });
+              const dx = e.touches[0].clientX - dragStartX;
+              const dy = e.touches[0].clientY - dragStartY;
 
-      gallery.addEventListener("mousedown", (e) => {
-        if (!isMobile()) return;
-        isDragging = true;
-        dragStartX = e.clientX;
-        lastDragX = e.clientX;
-        dragStartPos = xPos;
-        xVelocity = 0;
-        pauseCarousel();
-        gallery.style.cursor = "grabbing";
-      });
+              if (!touchDirLocked) {
+                if (Math.abs(dx) > Math.abs(dy) + 4)
+                  touchDirLocked = "horizontal";
+                else if (Math.abs(dy) > Math.abs(dx) + 4)
+                  touchDirLocked = "vertical";
+              }
 
-      window.addEventListener("mousemove", (e) => {
-        if (!isMobile() || !isDragging) return;
-        const dx = e.clientX - dragStartX;
-        xVelocity = (e.clientX - lastDragX) * 0.6;
-        lastDragX = e.clientX;
-        xPos = dragStartPos + dx;
-        if (xPos < -totalWidth) xPos += totalWidth;
-        if (xPos > 0) xPos -= totalWidth;
-        gsap.set(gallery, { x: xPos });
-      });
+              if (touchDirLocked === "vertical") return;
 
-      window.addEventListener("mouseup", () => {
-        if (!isMobile() || !isDragging) return;
-        isDragging = false;
-        gallery.style.cursor = "grab";
-        resumeCarousel();
-      });
+              if (touchDirLocked === "horizontal") {
+                isDragging = true;
+                xVelocity = (e.touches[0].clientX - lastDragX) * 0.6;
+                lastDragX = e.touches[0].clientX;
+                xPos = dragStartPos + dx;
+                if (xPos < -totalWidth) xPos += totalWidth;
+                if (xPos > 0) xPos -= totalWidth;
+                gsap.set(gallery, { x: xPos });
+              }
+            },
+            { passive: true },
+          );
 
-      setupInfinite();
+          gallery.addEventListener(
+            "touchend",
+            () => {
+              if (!isMobile()) return;
+              isDragging = false;
+              touchDirLocked = null;
+              resumeCarousel();
+            },
+            { passive: true },
+          );
 
-      let lastW = window.innerWidth;
-      window.addEventListener("resize", () => {
-        const cw = window.innerWidth;
-        if (cw === lastW) return;
-        lastW = cw;
-        cancelAnimationFrame(rafId);
-        setupInfinite();
-      });
-    }
-
-  // --- 10. MOBILE MENU LOGIC ---
-    const mobileToggle = document.getElementById("mobile-toggle");
-    const closeMenu    = document.getElementById("close-menu");
-    const navOverlay   = document.getElementById("nav-overlay");
-    const mobileLinks  = document.querySelectorAll(".nav-link-mobile");
-
-    if (mobileToggle && navOverlay) {
-
-      // Forzar estado inicial del overlay via GSAP
-      gsap.set(navOverlay, {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-end",
-        bottom: "-100%",
-        visibility: "hidden",
-        pointerEvents: "none",
-      });
-
-      gsap.set(".nav-link-mobile", { opacity: 0, y: 20 });
-
-      const menuTL = gsap.timeline({ paused: true });
-
-      const buildMenuTimeline = () => {
-        menuTL.clear();
-        gsap.set(".nav-link-mobile", { opacity: 0, y: 20 });
-        menuTL
-          .set(navOverlay, { visibility: "visible", pointerEvents: "auto" })
-          .to(navOverlay, { bottom: 0, duration: 0.55, ease: "expo.inOut" })
-          .to(".nav-link-mobile", {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.08,
-            ease: "back.out(1.7)",
+          gallery.addEventListener("mousedown", (e) => {
+            if (!isMobile()) return;
+            isDragging = true;
+            dragStartX = e.clientX;
+            lastDragX = e.clientX;
+            dragStartPos = xPos;
+            xVelocity = 0;
+            pauseCarousel();
+            gallery.style.cursor = "grabbing";
           });
-      };
 
-      buildMenuTimeline();
+          window.addEventListener("mousemove", (e) => {
+            if (!isMobile() || !isDragging) return;
+            const dx = e.clientX - dragStartX;
+            xVelocity = (e.clientX - lastDragX) * 0.6;
+            lastDragX = e.clientX;
+            xPos = dragStartPos + dx;
+            if (xPos < -totalWidth) xPos += totalWidth;
+            if (xPos > 0) xPos -= totalWidth;
+            gsap.set(gallery, { x: xPos });
+          });
 
-      window.addEventListener("resize", () => {
-        if (!menuTL.isActive()) buildMenuTimeline();
-      });
+          window.addEventListener("mouseup", () => {
+            if (!isMobile() || !isDragging) return;
+            isDragging = false;
+            gallery.style.cursor = "grab";
+            resumeCarousel();
+          });
 
-      const closeAll = () => {
-        mobileToggle.setAttribute("aria-expanded", "false");
-        mobileToggle.classList.remove("active");
-        menuTL.reverse().then(() => {
-          gsap.set(navOverlay, { visibility: "hidden", pointerEvents: "none" });
-        });
-        lenis.start();
-      };
+          setupInfinite();
 
-      // Abrir
-      mobileToggle.addEventListener("click", () => {
-        const isOpen = mobileToggle.classList.contains("active");
-        if (isOpen) {
-          closeAll();
-        } else {
-          mobileToggle.setAttribute("aria-expanded", "true");
-          mobileToggle.classList.add("active");
-          menuTL.play();
-          lenis.stop();
+          let lastW = window.innerWidth;
+          window.addEventListener("resize", () => {
+            const cw = window.innerWidth;
+            if (cw === lastW) return;
+            lastW = cw;
+            cancelAnimationFrame(rafId);
+            setupInfinite();
+          });
         }
-      });
 
-      closeMenu.addEventListener("click", closeAll);
+        // --- 10. MOBILE MENU LOGIC ---
+        const mobileToggle = document.getElementById("mobile-toggle");
+        const closeMenu = document.getElementById("close-menu");
+        const navOverlay = document.getElementById("nav-overlay");
+        const mobileLinks = document.querySelectorAll(".nav-link-mobile");
 
-      // Cerrar con Escape
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && menuTL.progress() > 0) closeAll();
-      });
+        if (mobileToggle && navOverlay) {
+          // Forzar estado inicial del overlay via GSAP
+          gsap.set(navOverlay, {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "flex-end",
+            bottom: "-100%",
+            visibility: "hidden",
+            pointerEvents: "none",
+          });
 
-      // Links del overlay → scroll a sección
-      mobileLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute("href");
-          closeAll();
-          setTimeout(() => {
-            lenis.scrollTo(targetId, { offset: -80, duration: 1.5 });
-          }, 700);
-        });
-      });
-    } // fin guarda mobileToggle
-  }); // fin DOMContentLoaded
-</script>
+          gsap.set(".nav-link-mobile", { opacity: 0, y: 20 });
+
+          const menuTL = gsap.timeline({ paused: true });
+
+          const buildMenuTimeline = () => {
+            menuTL.clear();
+            gsap.set(".nav-link-mobile", { opacity: 0, y: 20 });
+            menuTL
+              .set(navOverlay, { visibility: "visible", pointerEvents: "auto" })
+              .to(navOverlay, { bottom: 0, duration: 0.55, ease: "expo.inOut" })
+              .to(".nav-link-mobile", {
+                opacity: 1,
+                y: 0,
+                duration: 0.4,
+                stagger: 0.08,
+                ease: "back.out(1.7)",
+              });
+          };
+
+          buildMenuTimeline();
+
+          window.addEventListener("resize", () => {
+            if (!menuTL.isActive()) buildMenuTimeline();
+          });
+
+          const closeAll = () => {
+            mobileToggle.setAttribute("aria-expanded", "false");
+            mobileToggle.classList.remove("active");
+            menuTL.reverse().then(() => {
+              gsap.set(navOverlay, {
+                visibility: "hidden",
+                pointerEvents: "none",
+              });
+            });
+            lenis.start();
+          };
+
+          // Abrir
+          mobileToggle.addEventListener("click", () => {
+            const isOpen = mobileToggle.classList.contains("active");
+            if (isOpen) {
+              closeAll();
+            } else {
+              mobileToggle.setAttribute("aria-expanded", "true");
+              mobileToggle.classList.add("active");
+              menuTL.play();
+              lenis.stop();
+            }
+          });
+
+          closeMenu.addEventListener("click", closeAll);
+
+          // Cerrar con Escape
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && menuTL.progress() > 0) closeAll();
+          });
+
+          // Links del overlay → scroll a sección
+          mobileLinks.forEach((link) => {
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+              const targetId = link.getAttribute("href");
+              closeAll();
+              setTimeout(() => {
+                lenis.scrollTo(targetId, { offset: -80, duration: 1.5 });
+              }, 700);
+            });
+          });
+        } // fin guarda mobileToggle
+      }); // fin DOMContentLoaded
+    </script>
   </body>
 </html>
