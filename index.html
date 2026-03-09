@@ -2149,249 +2149,424 @@
           font-size: 22px;
         }
       }
-      /* ==========================================
-   SERVICES-----SECTION-----------------------------------------------------------------------------------------------
-   ========================================== */
-      .services-section {
-        margin: 90px auto;
-      }
-      .services-header {
-        text-align: center;
-        margin-bottom: 70px;
-      }
+   /* ==========================================
+     SERVICES SECTION - NUEVO DISEÑO
+  ========================================== */
+  .services-section {
+    margin: 90px auto;
+  }
 
-      .services-header h2 {
-        font-family: "Ananda Black Personal Use", serif;
-        font-size: clamp(2.2rem, 6vw, 3.5rem);
-        line-height: 1.6;
-        padding-top: 0.2em;
-        margin-bottom: 15px;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+  .services-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
 
-      .services-header p {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        font-weight: 500;
-        color: #052857;
-        text-align: left;
-        /* max-width: 700px; */
-        margin: 0 auto;
-        line-height: 1.5;
-      }
+  .services-header h2 {
+    font-family: "Ananda Black Personal Use", serif;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    line-height: 1.6;
+    padding-top: 0.2em;
+    margin-bottom: 15px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-      /* Services Grid */
-      .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-        gap: 30px;
-        margin-bottom: 80px;
-      }
+  .services-header p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 500;
+    color: #052857;
+    text-align: left;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
 
-      .service-card {
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(69, 137, 136, 0.15);
-        border-radius: var(--radius-md);
-        padding: 35px 30px;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
+  /* ---- Services Grid ---- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    margin-bottom: 80px;
+  }
 
-      .service-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: var(--gradient-primary);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s ease;
-      }
+  .service-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(69, 137, 136, 0.18);
+    border-radius: var(--radius-md, 14px);
+    padding: 32px 28px 28px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-      .service-card:hover::before {
-        transform: scaleX(1);
-      }
+  .service-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
 
-      .service-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(5, 40, 87, 0.2);
-        border-color: rgba(69, 137, 136, 0.3);
-      }
+  .service-card:hover::before {
+    transform: scaleX(1);
+  }
 
-      .service-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: linear-gradient(
-          135deg,
-          rgba(5, 40, 87, 0.08) 0%,
-          rgba(69, 137, 136, 0.08) 100%
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 25px;
-        color: #458988;
-        transition: all 0.3s ease;
-      }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 34px rgba(5, 40, 87, 0.18);
+    border-color: rgba(69, 137, 136, 0.32);
+  }
 
-      .service-card:hover .service-icon {
-        background: var(--gradient-primary);
-        color: #f3efe9;
-        transform: rotate(5deg) scale(1.05);
-      }
+  .service-card-flag {
+    width: 52px;
+    height: 38px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    margin-bottom: 18px;
+    display: block;
+  }
 
-      .service-card h3 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+  .service-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(5, 40, 87, 0.08) 0%, rgba(69, 137, 136, 0.08) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    color: #458988;
+    transition: all 0.3s ease;
+  }
 
-      .service-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
+  .service-card:hover .service-icon {
+    background: var(--gradient-primary);
+    color: #f3efe9;
+    transform: rotate(5deg) scale(1.05);
+  }
 
-      .service-list li {
-        font-size: 14px;
-        font-weight: 500;
-        color: #3a3a3a;
-        padding: 10px 0;
-        padding-left: 25px;
-        position: relative;
-        line-height: 1.5;
-        border-bottom: 1px solid rgba(69, 137, 136, 0.1);
-      }
+  .service-card h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-      .service-list li:last-child {
-        border-bottom: none;
-      }
+  /* Preview list (máx 3 ítems) */
+  .service-list-preview {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px;
+  }
 
-      .service-list li::before {
-        content: "→";
-        position: absolute;
-        left: 0;
-        color: #458988;
-        font-weight: 600;
-      }
+  .service-list-preview li {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #3a3a3a;
+    padding: 7px 0 7px 26px;
+    position: relative;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(69, 137, 136, 0.1);
+  }
 
-      .service-description {
-        font-size: 14px;
-        font-weight: 500;
-        color: #3a3a3a;
-        line-height: 1.6;
-        margin-top: 15px;
-      }
+  .service-list-preview li:last-child {
+    border-bottom: none;
+  }
 
-      /* International Network */
+  /* Avioncito Unicode */
+  .service-list-preview li::before {
+    content: "✈";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #458988;
+    font-size: 13px;
+    line-height: 1;
+    width: auto;
+    height: auto;
+    background-image: none;
+  }
 
-      .international-network h3 {
-        font-family: "Ananda Black Personal Use", serif;
-        font-size: 40px;
-        text-align: center;
-        line-height: 1.6;
-        padding-top: 0.2em;
-        margin-bottom: 15px;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+  .service-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #458988;
+    margin-top: 4px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    transition: gap 0.2s ease;
+  }
 
-      .network-intro {
-        color: #052857;
-        margin: 0 auto;
-        line-height: 1.6;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 500;
-        margin-bottom: 40px;
-      }
+  .service-more-btn:hover {
+    gap: 10px;
+  }
 
-      .countries-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 20px;
-        margin-bottom: 35px;
-      }
+  .service-more-btn svg {
+    transition: transform 0.2s ease;
+  }
 
-      .country-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 20px 15px;
-        transition: all 0.3s ease;
-      }
+  .service-more-btn:hover svg {
+    transform: translateX(3px);
+  }
 
-      .country-item:hover {
-        transform: translateY(-3px);
-      }
+  /* ---- MODAL ---- */
+  .service-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 25, 60, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
 
-      .flag-img {
-        width: 48px;
-        height: 36px;
-        border-radius: 4px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        object-fit: cover;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-      }
+  .service-modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+  }
 
-      .globe-icon {
-        color: #458988;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-      }
+  .service-modal {
+    background: #fff;
+    border-radius: 18px;
+    padding: 40px 36px 36px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(22px) scale(0.97);
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.28s ease;
+    opacity: 0;
+    box-shadow: 0 30px 80px rgba(5, 40, 87, 0.22);
+  }
 
-      .country-item.special .flag {
-        font-size: 28px;
-      }
+  .service-modal-overlay.is-open .service-modal {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 
-      .network-footer {
-        color: #052857;
-        margin: 0 auto;
-        line-height: 1.6;
-        text-align: center;
-        font-weight: 500;
-        margin-bottom: 40px;
-      }
+  .modal-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: rgba(5, 40, 87, 0.07);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #052857;
+    transition: background 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        .services-grid {
-          grid-template-columns: 1fr;
-        }
+  .modal-close-btn:hover {
+    background: rgba(5, 40, 87, 0.14);
+  }
 
-        .countries-grid {
-          grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-          gap: 15px;
-        }
-      }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
 
-      @media (max-width: 480px) {
-        .services-header h2 {
-          font-size: 32px;
-        }
+  .modal-flag {
+    width: 46px;
+    height: 34px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.06);
+    flex-shrink: 0;
+  }
 
-        .international-network h3 {
-          font-size: 26px;
-        }
+  .modal-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(5, 40, 87, 0.1), rgba(69, 137, 136, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #458988;
+    flex-shrink: 0;
+  }
 
-        .countries-grid {
-          grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-        }
-      }
+  .modal-header h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+  }
+
+  .modal-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(69,137,136,0.3), transparent);
+    margin-bottom: 20px;
+  }
+
+  .modal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .modal-list li {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2a2a2a;
+    padding: 10px 0 10px 28px;
+    position: relative;
+    line-height: 1.45;
+    border-bottom: 1px solid rgba(69, 137, 136, 0.1);
+  }
+
+  .modal-list li:last-child {
+    border-bottom: none;
+  }
+
+  .modal-list li::before {
+    content: "✈";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #458988;
+    font-size: 14px;
+    line-height: 1;
+    width: auto;
+    height: auto;
+    background-image: none;
+  }
+
+  .modal-note {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 12px 14px;
+    background: rgba(69, 137, 136, 0.06);
+    border-radius: 8px;
+    border-left: 3px solid #458988;
+  }
+
+  /* Scrollbar modal */
+  .service-modal::-webkit-scrollbar { width: 5px; }
+  .service-modal::-webkit-scrollbar-track { background: transparent; }
+  .service-modal::-webkit-scrollbar-thumb { background: rgba(69,137,136,0.3); border-radius: 3px; }
+
+  /* ---- International Network (sin cambios) ---- */
+  .international-network h3 {
+    font-family: "Ananda Black Personal Use", serif;
+    font-size: 40px;
+    text-align: center;
+    line-height: 1.6;
+    padding-top: 0.2em;
+    margin-bottom: 15px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .network-intro {
+    color: #052857;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 40px;
+  }
+
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+
+  .country-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 15px;
+    transition: all 0.3s ease;
+  }
+
+  .country-item:hover { transform: translateY(-3px); }
+
+  .flag-img {
+    width: 48px;
+    height: 36px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .globe-icon { color: #458988; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+
+  .network-footer {
+    color: #052857;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 40px;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .countries-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; }
+    .service-modal { padding: 30px 22px 26px; }
+  }
+
+  @media (max-width: 480px) {
+    .services-header h2 { font-size: 32px; }
+    .international-network h3 { font-size: 26px; }
+    .countries-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+  }
       /* ==========================================================================
    FAQ SECTION - OPTIMIZED SEMANTIC VERSION
    ========================================================================== */
@@ -3777,19 +3952,16 @@
                 </div>
                 <div class="experience-summary">
                   <p>
-                    Especializada en Ciudadanía Europea, Residencias y Visas
+                    Brindo asesoramiento legal integral en derecho migratorio y de extranjería.
                   </p>
                   <p>
-                    Gestión integral de expedientes en consulados y autoridades
-                    migratorias
+                   Gestiono y resuelvo trámites de residencias, ciudadanías, visas y otros procesos migratorios.
                   </p>
                   <p>
-                    Acompañando familias en la reconstrucción de su historia
-                    migratoria
+                   Trabajo con un enfoque profesional y humano, acompañando cada etapa de forma clara y personalizada.
                   </p>
                   <p>
-                    Experiencia en litigios, recursos y trámites administrativos
-                    migratorios
+                   Mi labor se distingue por la empatía y el compromiso, entendiendo que cada trámite implica proyectos de vida
                   </p>
                 </div>
               </div>
@@ -4137,371 +4309,185 @@
 
   </div><!-- fin .hanging-line-container -->
 </section>
-      <!-- ========== SERVICIOS ========== -->
-      <section class="services-section" id="servicios">
-        <div class="services-container">
-          <div class="services-header">
-            <h2>Servicios Profesionales</h2>
-            <p>
-              Comprendo que cada historia es única y que no existen soluciones
-              estándar. Por ello, para cada caso diseño una estrategia de
-              trabajo específica, ajustada a tus objetivos, plazos y
-              particularidades personales y jurídicas. Mi enfoque combina
-              precisión técnica, experiencia profesional y una mirada humana,
-              acompañándote en cada etapa del proceso con información
-              transparente y seguimiento continuo.
-            </p>
-          </div>
+      
+<!-- ========== SERVICIOS ========== -->
+<section class="services-section" id="servicios">
+  <div class="services-container">
+    <div class="services-header">
+      <h2>Servicios Profesionales</h2>
+      <p>
+        Son muchos los servicios que abarcan mis especializaciones. Cada caso es único y requiere una estrategia personalizada. Mi enfoque combina precisión técnica, experiencia profesional y una mirada humana, acompañándote en cada etapa del proceso con información transparente y seguimiento continuo.
+      </p>
+    </div>
 
-          <div class="services-grid">
-            <!-- Derecho Migratorio -->
-            <div class="service-card">
-              <div class="service-icon">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-              </div>
-              <h3>Derecho Migratorio</h3>
-              <ul class="service-list">
-                <li>Asesoramiento personalizado</li>
-                <li>Ciudadanía argentina (vía administrativa y judicial)</li>
-                <li>Residencias temporales y permanentes</li>
-              </ul>
-            </div>
+    <div class="services-grid">
 
-            <!-- Derecho de Extranjería -->
-            <div class="service-card">
-              <div class="service-icon">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  />
-                </svg>
-              </div>
-              <h3>Ciudadanía Italiana</h3>
-              <ul class="service-list">
-                <li>
-                  Ciudadanía por iure sanguinis (administrativa y judicial)
-                </li>
-                <li>Ciudadanía por matrimonio</li>
-                <li>Acompañamiento en Italia para trámites</li>
-                <li>Inscripción de menores</li>
-                <li>Actualización AIRE y fichas consulares</li>
-              </ul>
-            </div>
+      <!-- Argentina -->
+      <div class="service-card" onclick="openModal('argentina')">
+        <img src="https://flagcdn.com/w80/ar.png" alt="Argentina" class="service-card-flag" />
+        <h3>Argentina</h3>
+        <ul class="service-list-preview">
+          <li>Asesoramiento personalizado</li>
+          <li>Ciudadanía argentina (judicial, administrativa y por inversión)</li>
+          <li>Residencias y visados</li>
+        </ul>
+        <button class="service-more-btn" onclick="openModal('argentina'); event.stopPropagation();">
+          Ver todos los servicios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
 
-            <!-- Ciudadanía Española -->
-            <div class="service-card">
-              <div class="service-icon">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path
-                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                  />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                  <polyline points="10 9 9 9 8 9" />
-                </svg>
-              </div>
-              <h3>Ciudadanía Española</h3>
-              <ul class="service-list">
-                <li>Nacionalidad española por residencia</li>
-                <li>Homologación de títulos académicos</li>
-                <li>Reagrupación familiar y asilo</li>
-                <li>Reclamo judicial por demora administrativa</li>
-              </ul>
-            </div>
+      <!-- Italia -->
+      <div class="service-card" onclick="openModal('italia')">
+        <img src="https://flagcdn.com/w80/it.png" alt="Italia" class="service-card-flag" />
+        <h3>Italia</h3>
+        <ul class="service-list-preview">
+          <li>Asesoramiento personalizado</li>
+          <li>Ciudadanía italiana por iure sanguinis</li>
+          <li>Ciudadanía por matrimonio</li>
+        </ul>
+        <button class="service-more-btn" onclick="openModal('italia'); event.stopPropagation();">
+          Ver todos los servicios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
 
-            <!-- Otras Ciudadanías Europeas -->
-            <div class="service-card">
-              <div class="service-icon">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
-              </div>
-              <h3>Ciudadanías Europeas</h3>
-              <ul class="service-list">
-                <li>Visados de diferentes países</li>
-                <li>Trámites migratorios en toda Europa</li>
-                <li>Asesoramiento especializado por país</li>
-              </ul>
-            </div>
+      <!-- España -->
+      <div class="service-card" onclick="openModal('espana')">
+        <img src="https://flagcdn.com/w80/es.png" alt="España" class="service-card-flag" />
+        <h3>España</h3>
+        <ul class="service-list-preview">
+          <li>Asesoramiento personalizado</li>
+          <li>Nacionalidad española (administrativa y judicial)</li>
+          <li>Ciudadanía por residencia</li>
+        </ul>
+        <button class="service-more-btn" onclick="openModal('espana'); event.stopPropagation();">
+          Ver todos los servicios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
 
-            <!-- Servicios Complementarios -->
-            <div class="service-card">
-              <div class="service-icon">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M12 20h9" />
-                  <path
-                    d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                  />
-                </svg>
-              </div>
-              <h3>Servicios Documentales</h3>
-              <ul class="service-list">
-                <li>Genealogía e investigación familiar</li>
-                <li>Búsqueda y solicitud de actas</li>
-                <li>Apostillas y legalizaciones</li>
-                <li>Traducciones públicas</li>
-                <li>Certificado de No Naturalización</li>
-                <li>Rectificación e inscripción de partidas</li>
-              </ul>
-            </div>
-
-            <!-- Otros Servicios -->
-            <div class="service-card">
-              <div class="service-icon">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <circle cx="12" cy="12" r="3" />
-                  <path
-                    d="M12 1v6m0 6v6m6.364-15.364l-4.243 4.243m-4.242 4.242l-4.243 4.243m15.364 0l-4.243-4.243m-4.242-4.242L1.636 1.636"
-                  />
-                </svg>
-              </div>
-              <h3>Consultas Especiales</h3>
-              <p class="service-description">
-                ¿No encontraste el servicio que buscás? Consultanos por tu caso
-                particular a través de nuestros medios de contacto.
-              </p>
-            </div>
-          </div>
-          <!-- International Network -->
-          <div class="international-network">
-            <h3>Red Internacional de Colaboradores</h3>
-            <p class="network-intro">
-              Trabajo en colaboración con colegas y profesionales especializados
-              en distintos paises, ofreciendo un acompañamiento integral:
-            </p>
-
-            <div class="countries-grid">
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/ar.png"
-                  alt="Argentina"
-                  class="flag-img"
-                />
-                <span class="country-name">Argentina</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/it.png"
-                  alt="Italia"
-                  class="flag-img"
-                />
-                <span class="country-name">Italia</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/es.png"
-                  alt="España"
-                  class="flag-img"
-                />
-                <span class="country-name">España</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/uy.png"
-                  alt="Uruguay"
-                  class="flag-img"
-                />
-                <span class="country-name">Uruguay</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/cl.png"
-                  alt="Chile"
-                  class="flag-img"
-                />
-                <span class="country-name">Chile</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/br.png"
-                  alt="Brasil"
-                  class="flag-img"
-                />
-                <span class="country-name">Brasil</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/py.png"
-                  alt="Paraguay"
-                  class="flag-img"
-                />
-                <span class="country-name">Paraguay</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/us.png"
-                  alt="EE.UU."
-                  class="flag-img"
-                />
-                <span class="country-name">EE.UU.</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/de.png"
-                  alt="Alemania"
-                  class="flag-img"
-                />
-                <span class="country-name">Alemania</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/pl.png"
-                  alt="Polonia"
-                  class="flag-img"
-                />
-                <span class="country-name">Polonia</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/fr.png"
-                  alt="Francia"
-                  class="flag-img"
-                />
-                <span class="country-name">Francia</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/gb.png"
-                  alt="Inglaterra"
-                  class="flag-img"
-                />
-                <span class="country-name">Inglaterra</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/ch.png"
-                  alt="Suiza"
-                  class="flag-img"
-                />
-                <span class="country-name">Suiza</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/si.png"
-                  alt="Eslovenia"
-                  class="flag-img"
-                />
-                <span class="country-name">Eslovenia</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/at.png"
-                  alt="Austria"
-                  class="flag-img"
-                />
-                <span class="country-name">Austria</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/pt.png"
-                  alt="Portugal"
-                  class="flag-img"
-                />
-                <span class="country-name">Portugal</span>
-              </div>
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/hr.png"
-                  alt="Croacia"
-                  class="flag-img"
-                />
-                <span class="country-name">Croacia</span>
-              </div>
-              <!-- Australia agregada -->
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/au.png"
-                  alt="Australia"
-                  class="flag-img"
-                />
-                <span class="country-name">Australia</span>
-              </div>
-              <!-- Unión Europea agregada -->
-              <div class="country-item">
-                <img
-                  src="https://flagcdn.com/w80/eu.png"
-                  alt="Europa"
-                  class="flag-img"
-                />
-                <span class="country-name">Europa</span>
-              </div>
-              <!-- Y más -->
-              <div class="country-item special">
-                <svg
-                  class="globe-icon"
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <path
-                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  />
-                </svg>
-                <span class="country-name">¡Y más!</span>
-              </div>
-            </div>
-          </div>
-
-          <p class="network-footer">
-            Si el país por el cual querés consultar no se encuentra detallado,
-            contactanos para coordinar la asistencia necesaria.
-          </p>
+      <!-- Múltiples Países -->
+      <div class="service-card" onclick="openModal('multipaises')">
+        <div class="service-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
         </div>
-      </section>
+        <h3>Múltiples Países</h3>
+        <ul class="service-list-preview">
+          <li>Ciudadanías de América y Europa</li>
+          <li>Genealogía e investigación</li>
+          <li>Búsqueda y solicitud de actas</li>
+        </ul>
+        <button class="service-more-btn" onclick="openModal('multipaises'); event.stopPropagation();">
+          Ver todos los servicios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Derecho Integral -->
+      <div class="service-card" onclick="openModal('derecho')">
+        <div class="service-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h3>Derecho Integral</h3>
+        <ul class="service-list-preview">
+          <li>Sucesiones y contratos</li>
+          <li>Divorcios</li>
+          <li>Derecho civil, comercial y familiar</li>
+        </ul>
+        <button class="service-more-btn" onclick="openModal('derecho'); event.stopPropagation();">
+          Ver todos los servicios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Consultas Especiales -->
+      <div class="service-card" onclick="openModal('especiales')">
+        <div class="service-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6m0 6v6m6.364-15.364l-4.243 4.243m-4.242 4.242l-4.243 4.243m15.364 0l-4.243-4.243m-4.242-4.242L1.636 1.636"/>
+          </svg>
+        </div>
+        <h3>Consultas Especiales</h3>
+        <ul class="service-list-preview">
+          <li>Casos particulares no listados</li>
+          <li>Asesoramiento a medida</li>
+          <li>Evaluación personalizada</li>
+        </ul>
+        <button class="service-more-btn" onclick="openModal('especiales'); event.stopPropagation();">
+          Más información
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- International Network -->
+    <div class="international-network">
+      <h3>Red Internacional de Colaboradores</h3>
+      <p class="network-intro">
+        Trabajo en colaboración con colegas y profesionales especializados en distintos países, ofreciendo un acompañamiento integral:
+      </p>
+      <div class="countries-grid">
+        <div class="country-item"><img src="https://flagcdn.com/w80/ar.png" alt="Argentina" class="flag-img"/><span class="country-name">Argentina</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/it.png" alt="Italia" class="flag-img"/><span class="country-name">Italia</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/es.png" alt="España" class="flag-img"/><span class="country-name">España</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/uy.png" alt="Uruguay" class="flag-img"/><span class="country-name">Uruguay</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/cl.png" alt="Chile" class="flag-img"/><span class="country-name">Chile</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/br.png" alt="Brasil" class="flag-img"/><span class="country-name">Brasil</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/py.png" alt="Paraguay" class="flag-img"/><span class="country-name">Paraguay</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/us.png" alt="EE.UU." class="flag-img"/><span class="country-name">EE.UU.</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/de.png" alt="Alemania" class="flag-img"/><span class="country-name">Alemania</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/pl.png" alt="Polonia" class="flag-img"/><span class="country-name">Polonia</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/fr.png" alt="Francia" class="flag-img"/><span class="country-name">Francia</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/gb.png" alt="Inglaterra" class="flag-img"/><span class="country-name">Inglaterra</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/ch.png" alt="Suiza" class="flag-img"/><span class="country-name">Suiza</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/si.png" alt="Eslovenia" class="flag-img"/><span class="country-name">Eslovenia</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/at.png" alt="Austria" class="flag-img"/><span class="country-name">Austria</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/pt.png" alt="Portugal" class="flag-img"/><span class="country-name">Portugal</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/hr.png" alt="Croacia" class="flag-img"/><span class="country-name">Croacia</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/au.png" alt="Australia" class="flag-img"/><span class="country-name">Australia</span></div>
+        <div class="country-item"><img src="https://flagcdn.com/w80/eu.png" alt="Europa" class="flag-img"/><span class="country-name">Europa</span></div>
+        <div class="country-item special">
+          <svg class="globe-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span class="country-name">¡Y más!</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="network-footer">
+      Si el país por el cual querés consultar no se encuentra detallado, contactanos para coordinar la asistencia necesaria.
+    </p>
+  </div>
+</section>
+
+<!-- ========== MODALES ========== -->
+<div class="service-modal-overlay" id="serviceModalOverlay" onclick="closeModalOnOverlay(event)">
+  <div class="service-modal" id="serviceModal">
+    <button class="modal-close-btn" onclick="closeModal()" aria-label="Cerrar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-divider"></div>
+    <ul class="modal-list" id="modalList"></ul>
+    <p class="modal-note" id="modalNote" style="display:none;"></p>
+  </div>
+</div>
+
       <!-- PREGUNTAS FRECUENTES -->
       <section class="faq-section" id="faqs">
         <header class="faq-header">
@@ -5283,21 +5269,230 @@
           });
         });
 
-        // --- 5. FAQ ACCORDION ---
-        function openFaq(item) {
-          item.setAttribute("open", "");
-          gsap.fromTo(
-            item,
-            { height: item.querySelector("summary").offsetHeight },
-            {
-              height: "auto",
-              duration: 0.5,
-              ease: "power2.out",
-              onComplete: () => (item.style.height = "auto"),
-            },
-          );
-        }
+        // --- 4. SERVICES SECTION FUNCTION---
+const MODAL_DATA = {
+    argentina: {
+      title: 'Argentina',
+      flag: 'https://flagcdn.com/w80/ar.png',
+      items: [
+        'Asesoramiento personalizado',
+        'Ciudadanía argentina: vía judicial, administrativa y por inversión',
+        'Residencias temporales y permanentes',
+        'Visados',
+        'Búsqueda de actas y partidas',
+        'Legalizaciones y apostillas',
+        'Certificado de no naturalización o naturalización',
+        'Traducciones públicas de documentación argentina a diversos idiomas',
+        'Genealogía e investigaciones documentales',
+        'Gestión de antecedentes penales',
+        'Rectificación de partidas',
+        'Información sumaria de auto identidad',
+        'Presunción de fallecimiento',
+        'Desarchivo de expedientes administrativos y judiciales',
+        'Inscripciones de sentencias judiciales',
+        'Vista de expedientes judiciales',
+        'Otros servicios',
+      ],
+    },
+    italia: {
+      title: 'Italia',
+      flag: 'https://flagcdn.com/w80/it.png',
+      items: [
+        'Asesoramiento personalizado',
+        'Ciudadanía italiana por iure sanguinis: vía administrativa consular, acompañamiento en comuna en Italia y vía judicial',
+        'Ciudadanía por matrimonio',
+        'Búsqueda y solicitud de actas',
+        'Legalizaciones y apostillas',
+        'Traducciones públicas (italiano y latín)',
+        'Control de carpetas ya armadas',
+        'Rectificaciones de partidas',
+        'Gestión de alojamientos para fijar residencia en Italia',
+        'Actualizaciones sistema AIRE: ficha consular y cambio de domicilio, inscripción de matrimonio, inscripción de hijos menores',
+        'Genealogía e investigaciones',
+        'Subsanación de observaciones consulares o judiciales',
+        'Renuncia y recuperación de ciudadanía',
+        'Visados y permisos en Italia',
+        'Otros servicios',
+      ],
+    },
+    espana: {
+      title: 'España',
+      flag: 'https://flagcdn.com/w80/es.png',
+      items: [
+        'Asesoramiento personalizado',
+        'Nacionalidad española: vía administrativa y vía judicial',
+        'Ciudadanía española por residencia',
+        'Visados',
+        'Gestión de homologación de títulos secundarios y académicos',
+        'Reagrupación familiar',
+        'Regularización extraordinaria de inmigrantes',
+        'Búsqueda y solicitud de actas',
+        'Legalizaciones y apostillas',
+        'Genealogía',
+      ],
+    },
+    multipaises: {
+      title: 'Múltiples Países',
+      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+      items: [
+        'Ciudadanías de países de América y Europa',
+        'Genealogía e investigación',
+        'Búsqueda y solicitud de actas',
+        'Apostillas y legalizaciones nacionales',
+        'Traducciones públicas',
+        'Otros servicios',
+      ],
+      note: 'Si el país por el cual querés consultar no está listado, contactanos para evaluar tu caso.',
+    },
+    derecho: {
+      title: 'Derecho Integral',
+      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+      items: [
+        'Sucesiones',
+        'Contratos',
+        'Divorcios',
+        'Colaboración profesional con colegas en derecho civil y comercial',
+        'Derecho de familia',
+        'Derecho laboral',
+        'Derecho penal',
+        'Derecho previsional',
+        'Defensa del consumidor',
+        'Entre otras ramas del derecho',
+      ],
+    },
+    especiales: {
+      title: 'Consultas Especiales',
+      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m6.364-15.364l-4.243 4.243m-4.242 4.242l-4.243 4.243m15.364 0l-4.243-4.243m-4.242-4.242L1.636 1.636"/></svg>`,
+      items: [],
+      note: '¿No encontraste el servicio que buscás? Contactanos a través de nuestros medios de comunicación y evaluamos tu caso particular. No hay consulta demasiado específica.',
+    },
+  };
 
+  window.openModal = function openModal(key) {
+    const data = MODAL_DATA[key];
+    if (!data) return;
+
+    const header = document.getElementById('modalHeader');
+    const list = document.getElementById('modalList');
+    const note = document.getElementById('modalNote');
+
+    let headerHTML = '';
+    if (data.flag) {
+      headerHTML += `<img src="${data.flag}" alt="${data.title}" class="modal-flag" />`;
+    } else if (data.icon) {
+      headerHTML += `<div class="modal-icon">${data.icon}</div>`;
+    }
+    headerHTML += `<h3>${data.title}</h3>`;
+    header.innerHTML = headerHTML;
+
+    list.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
+
+    if (data.note) {
+      note.textContent = data.note;
+      note.style.display = 'block';
+    } else {
+      note.style.display = 'none';
+    }
+
+    const overlay = document.getElementById('serviceModalOverlay');
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeModal = function closeModal() {
+    const overlay = document.getElementById('serviceModalOverlay');
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  window.closeModalOnOverlay = function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('serviceModalOverlay')) {
+      window.closeModal();
+    }
+  };
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') window.closeModal();
+  });
+
+  // ========== GSAP ScrollTrigger Animations ==========
+  (function initServicesAnimations() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', runAnimations);
+    } else {
+      runAnimations();
+    }
+
+    function runAnimations() {
+      gsap.set('.services-header h2, .services-header p', { autoAlpha: 0, y: 30 });
+      gsap.set('.service-card', { autoAlpha: 0, y: 40 });
+      gsap.set('.international-network h3, .network-intro', { autoAlpha: 0, y: 24 });
+      gsap.set('.country-item', { autoAlpha: 0, y: 16, scale: 0.92 });
+      gsap.set('.network-footer', { autoAlpha: 0 });
+
+      // Header
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.services-header',
+          start: 'top 82%',
+          once: true,
+        }
+      })
+      .to('.services-header h2', { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+      .to('.services-header p',  { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.35');
+
+      // Cards stagger
+      gsap.to('.service-card', {
+        autoAlpha: 1, y: 0,
+        duration: 0.55,
+        ease: 'power2.out',
+        stagger: { each: 0.1, from: 'start' },
+        scrollTrigger: {
+          trigger: '.services-grid',
+          start: 'top 80%',
+          once: true,
+        }
+      });
+
+      // Red internacional header
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.international-network',
+          start: 'top 82%',
+          once: true,
+        }
+      })
+      .to('.international-network h3', { autoAlpha: 1, y: 0, duration: 0.65, ease: 'power3.out' })
+      .to('.network-intro',            { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '-=0.3');
+
+      // Banderas
+      gsap.to('.country-item', {
+        autoAlpha: 1, y: 0, scale: 1,
+        duration: 0.4,
+        ease: 'back.out(1.4)',
+        stagger: { each: 0.04, from: 'start' },
+        scrollTrigger: {
+          trigger: '.countries-grid',
+          start: 'top 82%',
+          once: true,
+        }
+      });
+
+      // Footer
+      gsap.to('.network-footer', {
+        autoAlpha: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.network-footer',
+          start: 'top 90%',
+          once: true,
+        }
+      });
+    }
+  })();
+ 
+        // ----faq funtions ----
         function shrinkFaq(item) {
           gsap.to(item, {
             height: item.querySelector("summary").offsetHeight,
