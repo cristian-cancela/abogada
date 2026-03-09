@@ -734,45 +734,36 @@
         padding: 0 32px;
       }
 
-      .nav-link-mobile {
-        color: white;
-        text-decoration: none;
-        font-weight: 700;
-        line-height: 1;
-        opacity: 0;
-        transform: translateY(20px);
-      }
+   .nav-link-mobile {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 28px;
+}
 
-      .nav-link-mobile:nth-child(1) {
-        font-size: 2.8rem;
-        margin-bottom: 28px;
-        align-self: flex-start;
-        padding-left: 8px;
-      }
-      .nav-link-mobile:nth-child(2) {
-        font-size: 2.2rem;
-        margin-bottom: 20px;
-        align-self: flex-end;
-        padding-right: 24px;
-      }
-      .nav-link-mobile:nth-child(3) {
-        font-size: 3rem;
-        margin-bottom: 32px;
-        align-self: center;
-        padding-left: 40px;
-      }
-      .nav-link-mobile:nth-child(4) {
-        font-size: 2rem;
-        margin-bottom: 22px;
-        align-self: flex-start;
-        padding-left: 20px;
-      }
-      .nav-link-mobile:nth-child(5) {
-        font-size: 1.6rem;
-        margin-bottom: 0;
-        align-self: flex-end;
-        padding-right: 16px;
-      }
+.nav-link-mobile:last-child {
+  margin-bottom: 0;
+}
+
+/* Eliminar los nth-child con distintos tamaños */
+.nav-link-mobile:nth-child(1),
+.nav-link-mobile:nth-child(2),
+.nav-link-mobile:nth-child(3),
+.nav-link-mobile:nth-child(4),
+.nav-link-mobile:nth-child(5) {
+  font-size: 2.4rem;
+  margin-bottom: 37px;
+  align-self: center;
+  padding: 0;
+}
 
       .close-menu {
         position: absolute;
