@@ -2149,8 +2149,8 @@
           font-size: 22px;
         }
       }
-   /* ==========================================
-     SERVICES SECTION - NUEVO DISEÑO
+  /* ==========================================
+     SERVICES SECTION
   ========================================== */
   .services-section {
     margin: 90px auto;
@@ -2267,7 +2267,7 @@
     background-clip: text;
   }
 
-  /* Preview list (máx 3 ítems) */
+  /* Preview list */
   .service-list-preview {
     list-style: none;
     padding: 0;
@@ -2288,7 +2288,6 @@
     border-bottom: none;
   }
 
-  /* Avioncito Unicode */
   .service-list-preview li::before {
     content: "✈";
     position: absolute;
@@ -2488,12 +2487,11 @@
     border-left: 3px solid #458988;
   }
 
-  /* Scrollbar modal */
   .service-modal::-webkit-scrollbar { width: 5px; }
   .service-modal::-webkit-scrollbar-track { background: transparent; }
   .service-modal::-webkit-scrollbar-thumb { background: rgba(69,137,136,0.3); border-radius: 3px; }
 
-  /* ---- International Network (sin cambios) ---- */
+  /* ---- International Network ---- */
   .international-network h3 {
     font-family: "Ananda Black Personal Use", serif;
     font-size: 40px;
@@ -4310,9 +4308,11 @@
   </div><!-- fin .hanging-line-container -->
 </section>
       
+
 <!-- ========== SERVICIOS ========== -->
 <section class="services-section" id="servicios">
   <div class="services-container">
+
     <div class="services-header">
       <h2>Servicios Profesionales</h2>
       <p>
@@ -4472,6 +4472,7 @@
     <p class="network-footer">
       Si el país por el cual querés consultar no se encuentra detallado, contactanos para coordinar la asistencia necesaria.
     </p>
+
   </div>
 </section>
 
@@ -5269,113 +5270,110 @@
           });
         });
 
-        // --- 4. SERVICES SECTION FUNCTION---
-const MODAL_DATA = {
-    argentina: {
-      title: 'Argentina',
-      flag: 'https://flagcdn.com/w80/ar.png',
-      items: [
-        'Asesoramiento personalizado',
-        'Ciudadanía argentina: vía judicial, administrativa y por inversión',
-        'Residencias temporales y permanentes',
-        'Visados',
-        'Búsqueda de actas y partidas',
-        'Legalizaciones y apostillas',
-        'Certificado de no naturalización o naturalización',
-        'Traducciones públicas de documentación argentina a diversos idiomas',
-        'Genealogía e investigaciones documentales',
-        'Gestión de antecedentes penales',
-        'Rectificación de partidas',
-        'Información sumaria de auto identidad',
-        'Presunción de fallecimiento',
-        'Desarchivo de expedientes administrativos y judiciales',
-        'Inscripciones de sentencias judiciales',
-        'Vista de expedientes judiciales',
-        'Otros servicios',
-      ],
-    },
-    italia: {
-      title: 'Italia',
-      flag: 'https://flagcdn.com/w80/it.png',
-      items: [
-        'Asesoramiento personalizado',
-        'Ciudadanía italiana por iure sanguinis: vía administrativa consular, acompañamiento en comuna en Italia y vía judicial',
-        'Ciudadanía por matrimonio',
-        'Búsqueda y solicitud de actas',
-        'Legalizaciones y apostillas',
-        'Traducciones públicas (italiano y latín)',
-        'Control de carpetas ya armadas',
-        'Rectificaciones de partidas',
-        'Gestión de alojamientos para fijar residencia en Italia',
-        'Actualizaciones sistema AIRE: ficha consular y cambio de domicilio, inscripción de matrimonio, inscripción de hijos menores',
-        'Genealogía e investigaciones',
-        'Subsanación de observaciones consulares o judiciales',
-        'Renuncia y recuperación de ciudadanía',
-        'Visados y permisos en Italia',
-        'Otros servicios',
-      ],
-    },
-    espana: {
-      title: 'España',
-      flag: 'https://flagcdn.com/w80/es.png',
-      items: [
-        'Asesoramiento personalizado',
-        'Nacionalidad española: vía administrativa y vía judicial',
-        'Ciudadanía española por residencia',
-        'Visados',
-        'Gestión de homologación de títulos secundarios y académicos',
-        'Reagrupación familiar',
-        'Regularización extraordinaria de inmigrantes',
-        'Búsqueda y solicitud de actas',
-        'Legalizaciones y apostillas',
-        'Genealogía',
-      ],
-    },
-    multipaises: {
-      title: 'Múltiples Países',
-      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
-      items: [
-        'Ciudadanías de países de América y Europa',
-        'Genealogía e investigación',
-        'Búsqueda y solicitud de actas',
-        'Apostillas y legalizaciones nacionales',
-        'Traducciones públicas',
-        'Otros servicios',
-      ],
-      note: 'Si el país por el cual querés consultar no está listado, contactanos para evaluar tu caso.',
-    },
-    derecho: {
-      title: 'Derecho Integral',
-      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
-      items: [
-        'Sucesiones',
-        'Contratos',
-        'Divorcios',
-        'Colaboración profesional con colegas en derecho civil y comercial',
-        'Derecho de familia',
-        'Derecho laboral',
-        'Derecho penal',
-        'Derecho previsional',
-        'Defensa del consumidor',
-        'Entre otras ramas del derecho',
-      ],
-    },
-    especiales: {
-      title: 'Consultas Especiales',
-      icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m6.364-15.364l-4.243 4.243m-4.242 4.242l-4.243 4.243m15.364 0l-4.243-4.243m-4.242-4.242L1.636 1.636"/></svg>`,
-      items: [],
-      note: '¿No encontraste el servicio que buscás? Contactanos a través de nuestros medios de comunicación y evaluamos tu caso particular. No hay consulta demasiado específica.',
-    },
-  };
+window.openModal = function(key) {
+    const MODAL_DATA = {
+      argentina: {
+        title: 'Argentina',
+        flag: 'https://flagcdn.com/w80/ar.png',
+        items: [
+          'Asesoramiento personalizado',
+          'Ciudadanía argentina: vía judicial, administrativa y por inversión',
+          'Residencias temporales y permanentes',
+          'Visados',
+          'Búsqueda de actas y partidas',
+          'Legalizaciones y apostillas',
+          'Certificado de no naturalización o naturalización',
+          'Traducciones públicas de documentación argentina a diversos idiomas',
+          'Genealogía e investigaciones documentales',
+          'Gestión de antecedentes penales',
+          'Rectificación de partidas',
+          'Información sumaria de auto identidad',
+          'Presunción de fallecimiento',
+          'Desarchivo de expedientes administrativos y judiciales',
+          'Inscripciones de sentencias judiciales',
+          'Vista de expedientes judiciales',
+          'Otros servicios',
+        ],
+      },
+      italia: {
+        title: 'Italia',
+        flag: 'https://flagcdn.com/w80/it.png',
+        items: [
+          'Asesoramiento personalizado',
+          'Ciudadanía italiana por iure sanguinis: vía administrativa consular, acompañamiento en comuna en Italia y vía judicial',
+          'Ciudadanía por matrimonio',
+          'Búsqueda y solicitud de actas',
+          'Legalizaciones y apostillas',
+          'Traducciones públicas (italiano y latín)',
+          'Control de carpetas ya armadas',
+          'Rectificaciones de partidas',
+          'Gestión de alojamientos para fijar residencia en Italia',
+          'Actualizaciones sistema AIRE: ficha consular y cambio de domicilio, inscripción de matrimonio, inscripción de hijos menores',
+          'Genealogía e investigaciones',
+          'Subsanación de observaciones consulares o judiciales',
+          'Renuncia y recuperación de ciudadanía',
+          'Visados y permisos en Italia',
+          'Otros servicios',
+        ],
+      },
+      espana: {
+        title: 'España',
+        flag: 'https://flagcdn.com/w80/es.png',
+        items: [
+          'Asesoramiento personalizado',
+          'Nacionalidad española: vía administrativa y vía judicial',
+          'Ciudadanía española por residencia',
+          'Visados',
+          'Gestión de homologación de títulos secundarios y académicos',
+          'Reagrupación familiar',
+          'Regularización extraordinaria de inmigrantes',
+          'Búsqueda y solicitud de actas',
+          'Legalizaciones y apostillas',
+          'Genealogía',
+        ],
+      },
+      multipaises: {
+        title: 'Múltiples Países',
+        icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+        items: [
+          'Ciudadanías de países de América y Europa',
+          'Genealogía e investigación',
+          'Búsqueda y solicitud de actas',
+          'Apostillas y legalizaciones nacionales',
+          'Traducciones públicas',
+          'Otros servicios',
+        ],
+        note: 'Si el país por el cual querés consultar no está listado, contactanos para evaluar tu caso.',
+      },
+      derecho: {
+        title: 'Derecho Integral',
+        icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+        items: [
+          'Sucesiones',
+          'Contratos',
+          'Divorcios',
+          'Colaboración profesional con colegas en derecho civil y comercial',
+          'Derecho de familia',
+          'Derecho laboral',
+          'Derecho penal',
+          'Derecho previsional',
+          'Defensa del consumidor',
+          'Entre otras ramas del derecho',
+        ],
+      },
+      especiales: {
+        title: 'Consultas Especiales',
+        icon: `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m6.364-15.364l-4.243 4.243m-4.242 4.242l-4.243 4.243m15.364 0l-4.243-4.243m-4.242-4.242L1.636 1.636"/></svg>`,
+        items: [],
+        note: '¿No encontraste el servicio que buscás? Contactanos a través de nuestros medios de comunicación y evaluamos tu caso particular. No hay consulta demasiado específica.',
+      },
+    };
 
-  window.openModal = function openModal(key) {
     const data = MODAL_DATA[key];
     if (!data) return;
-
     const header = document.getElementById('modalHeader');
-    const list = document.getElementById('modalList');
-    const note = document.getElementById('modalNote');
-
+    const list   = document.getElementById('modalList');
+    const note   = document.getElementById('modalNote');
     let headerHTML = '';
     if (data.flag) {
       headerHTML += `<img src="${data.flag}" alt="${data.title}" class="modal-flag" />`;
@@ -5384,126 +5382,59 @@ const MODAL_DATA = {
     }
     headerHTML += `<h3>${data.title}</h3>`;
     header.innerHTML = headerHTML;
-
     list.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
-
     if (data.note) {
       note.textContent = data.note;
       note.style.display = 'block';
     } else {
       note.style.display = 'none';
     }
-
-    const overlay = document.getElementById('serviceModalOverlay');
-    overlay.classList.add('is-open');
+    document.getElementById('serviceModalOverlay').classList.add('is-open');
     document.body.style.overflow = 'hidden';
   };
 
-  window.closeModal = function closeModal() {
-    const overlay = document.getElementById('serviceModalOverlay');
-    overlay.classList.remove('is-open');
+  window.closeModal = function() {
+    document.getElementById('serviceModalOverlay').classList.remove('is-open');
     document.body.style.overflow = '';
   };
 
-  window.closeModalOnOverlay = function closeModalOnOverlay(e) {
-    if (e.target === document.getElementById('serviceModalOverlay')) {
-      window.closeModal();
-    }
+  window.closeModalOnOverlay = function(e) {
+    if (e.target === document.getElementById('serviceModalOverlay')) window.closeModal();
   };
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') window.closeModal();
   });
-
-  // ========== GSAP ScrollTrigger Animations ==========
-  (function initServicesAnimations() {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', runAnimations);
-    } else {
-      runAnimations();
-    }
-
-    function runAnimations() {
-      gsap.set('.services-header h2, .services-header p', { autoAlpha: 0, y: 30 });
-      gsap.set('.service-card', { autoAlpha: 0, y: 40 });
-      gsap.set('.international-network h3, .network-intro', { autoAlpha: 0, y: 24 });
-      gsap.set('.country-item', { autoAlpha: 0, y: 16, scale: 0.92 });
-      gsap.set('.network-footer', { autoAlpha: 0 });
-
-      // Header
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: '.services-header',
-          start: 'top 82%',
-          once: true,
-        }
-      })
-      .to('.services-header h2', { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out' })
-      .to('.services-header p',  { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.35');
-
-      // Cards stagger
-      gsap.to('.service-card', {
-        autoAlpha: 1, y: 0,
-        duration: 0.55,
-        ease: 'power2.out',
-        stagger: { each: 0.1, from: 'start' },
-        scrollTrigger: {
-          trigger: '.services-grid',
-          start: 'top 80%',
-          once: true,
-        }
-      });
-
-      // Red internacional header
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: '.international-network',
-          start: 'top 82%',
-          once: true,
-        }
-      })
-      .to('.international-network h3', { autoAlpha: 1, y: 0, duration: 0.65, ease: 'power3.out' })
-      .to('.network-intro',            { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }, '-=0.3');
-
-      // Banderas
-      gsap.to('.country-item', {
-        autoAlpha: 1, y: 0, scale: 1,
-        duration: 0.4,
-        ease: 'back.out(1.4)',
-        stagger: { each: 0.04, from: 'start' },
-        scrollTrigger: {
-          trigger: '.countries-grid',
-          start: 'top 82%',
-          once: true,
-        }
-      });
-
-      // Footer
-      gsap.to('.network-footer', {
-        autoAlpha: 1,
-        duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.network-footer',
-          start: 'top 90%',
-          once: true,
-        }
-      });
-    }
-  })();
  
         // ----faq funtions ----
-        function shrinkFaq(item) {
-          gsap.to(item, {
-            height: item.querySelector("summary").offsetHeight,
-            duration: 0.4,
-            ease: "power2.inOut",
-            onComplete: () => {
-              item.removeAttribute("open");
-              item.style.height = "auto";
-            },
-          });
-        }
+  // ---- faq functions ----
+function openFaq(item) {
+  item.setAttribute("open", "");
+  const summary = item.querySelector("summary");
+  const answer = item.querySelector(".faq-answer");
+  const targetHeight = summary.offsetHeight + answer.scrollHeight + 40;
+  gsap.fromTo(item,
+    { height: summary.offsetHeight },
+    {
+      height: targetHeight,
+      duration: 0.45,
+      ease: "power2.out",
+      onComplete: () => { item.style.height = "auto"; }
+    }
+  );
+}
+
+function shrinkFaq(item) {
+  gsap.to(item, {
+    height: item.querySelector("summary").offsetHeight,
+    duration: 0.4,
+    ease: "power2.inOut",
+    onComplete: () => {
+      item.removeAttribute("open");
+      item.style.height = "auto";
+    },
+  });
+}
 
         document.querySelectorAll(".faq-item").forEach((item) => {
           item.addEventListener("click", (e) => {
