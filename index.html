@@ -1555,10 +1555,20 @@
           margin-bottom: 3rem;
         }
 
-        .hero-photo-stack {
-          height: 22rem;
-          cursor: pointer;
-        }
+     .hero-photo-stack {
+    height: auto;
+    cursor: default;
+  }
+
+  .photo-layer-2,
+  .photo-layer-3 {
+    display: none !important;
+  }
+
+  .photo-layer-1 {
+    position: relative;
+    transform: none !important;
+  }
 
         /* Desactivar hover desktop en móvil */
         .hero-photo-stack:hover .photo-layer-3,
@@ -1583,7 +1593,7 @@
         /* ==========================================
      HINT VISUAL — unificado para ambos stacks
      ========================================== */
-        .hero-photo-stack::after,
+       
         .polaroid-stack-card::after {
           content: "Toca para ver las fotos";
           position: absolute;
@@ -1600,7 +1610,6 @@
           transition: opacity 0.3s ease;
         }
 
-        .hero-photo-stack.expanded::after,
         .polaroid-stack-card.expanded::after {
           content: "Toca para cerrar";
         }
@@ -5171,6 +5180,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init("x-ws3TFN_A-xqOo8W");</script>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -5397,7 +5408,7 @@ window.openModal = function(key) {
     if (e.key === 'Escape') window.closeModal();
   });
  
-        // ----faq funtions ----
+      
   // ---- faq functions ----
 function openFaq(item) {
   item.setAttribute("open", "");
@@ -5441,326 +5452,167 @@ function shrinkFaq(item) {
         });
 
         // --- 6. FORM VALIDATION & PHONE SELECT ---
-        const emailInput = document.getElementById("email");
-        const phoneInput = document.getElementById("telefono");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("telefono");
 
-        if (emailInput) {
-          const validateEmail = () => {
-            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-              emailInput.value.trim(),
-            );
-            emailInput.classList.toggle(
-              "invalid",
-              !isValid && emailInput.value !== "",
-            );
-            const emailError = document.getElementById("emailError");
-            if (emailError) {
-              emailError.style.display =
-                !isValid && emailInput.value !== "" ? "block" : "none";
-            }
-            return isValid;
-          };
-          emailInput.addEventListener("input", validateEmail);
-        }
+if (emailInput) {
+  const validateEmail = () => {
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    emailInput.classList.toggle("invalid", !isValid && emailInput.value !== "");
+    const emailError = document.getElementById("emailError");
+    if (emailError) {
+      emailError.style.display = !isValid && emailInput.value !== "" ? "block" : "none";
+    }
+    return isValid;
+  };
+  emailInput.addEventListener("input", validateEmail);
+}
 
-        if (phoneInput) {
-          phoneInput.addEventListener("input", (e) => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, "");
-          });
-        }
+if (phoneInput) {
+  phoneInput.addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+  });
+}
 
-        const select = document.getElementById("customPhoneSelect");
-        const trigger = document.getElementById("selectTrigger");
-        const hiddenInput = document.getElementById("phoneCode");
+const select = document.getElementById("customPhoneSelect");
+const trigger = document.getElementById("selectTrigger");
+const hiddenInput = document.getElementById("phoneCode");
 
-        if (trigger && select) {
-          trigger.addEventListener("click", (e) => {
-            e.stopPropagation();
-            select.classList.toggle("open");
-          });
+if (trigger && select) {
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    select.classList.toggle("open");
+  });
 
-          document.querySelectorAll(".dropdown-option").forEach((opt) => {
-            opt.addEventListener("click", function () {
-              trigger.querySelector(".select-flag").src =
-                `https://flagcdn.com/w40/${this.dataset.flag}.png`;
-              trigger.querySelector(".select-code").textContent =
-                this.dataset.value;
-              if (hiddenInput) hiddenInput.value = this.dataset.value;
-              select.classList.remove("open");
-            });
-          });
+  document.querySelectorAll(".dropdown-option").forEach((opt) => {
+    opt.addEventListener("click", function () {
+      trigger.querySelector(".select-flag").src =
+        `https://flagcdn.com/w40/${this.dataset.flag}.png`;
+      trigger.querySelector(".select-code").textContent = this.dataset.value;
+      if (hiddenInput) hiddenInput.value = this.dataset.value;
+      select.classList.remove("open");
+    });
+  });
 
-          document.addEventListener("click", () =>
-            select.classList.remove("open"),
-          );
-        }
+  document.addEventListener("click", () => select.classList.remove("open"));
+}
 
-        // --- 7. HERO PHOTO STACK (GSAP desktop hover + móvil click) ---
-        const stack = document.querySelector(".hero-photo-stack");
-        if (stack) {
-          const layer1 = stack.querySelector(".photo-layer-1");
-          const layer2 = stack.querySelector(".photo-layer-2");
-          const layer3 = stack.querySelector(".photo-layer-3");
+// --- EmailJS Form Submit ---
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-          const isMobile = () => window.innerWidth <= 768;
-          const isSmall = () => window.innerWidth <= 480;
-          let isExpanded = false;
-          let stackTl = null;
+    const submitBtn = contactForm.querySelector(".form-submit");
+    const originalText = submitBtn.textContent;
 
-          function setBasePositions() {
-            if (isMobile()) {
-              gsap.set(layer3, {
-                rotation: -5,
-                x: -30,
-                y: 15,
-                zIndex: 1,
-                opacity: 0.9,
-              });
-              gsap.set(layer2, {
-                rotation: 2,
-                x: 20,
-                y: -5,
-                zIndex: 2,
-                opacity: 0.95,
-              });
-              gsap.set(layer1, {
-                rotation: -1,
-                x: -10,
-                y: 5,
-                zIndex: 3,
-                opacity: 1,
-              });
-            } else {
-              gsap.set(layer3, {
-                rotation: -8,
-                x: -60,
-                y: 20,
-                zIndex: 1,
-                opacity: 0.9,
-              });
-              gsap.set(layer2, {
-                rotation: 3,
-                x: 40,
-                y: -10,
-                zIndex: 2,
-                opacity: 0.95,
-              });
-              gsap.set(layer1, {
-                rotation: -2,
-                x: -20,
-                y: 10,
-                zIndex: 3,
-                opacity: 1,
-              });
-            }
-          }
+    // Validar email antes de enviar
+    const emailVal = document.getElementById("email").value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+    if (!emailOk) {
+      const emailError = document.getElementById("emailError");
+      if (emailError) emailError.style.display = "block";
+      return;
+    }
 
-          function desktopOpen() {
-            if (stackTl) stackTl.kill();
-            stackTl = gsap.timeline();
-            stackTl
-              .to(
-                layer3,
-                {
-                  rotation: -15,
-                  x: -120,
-                  y: 40,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              )
-              .to(
-                layer2,
-                {
-                  rotation: 8,
-                  x: 90,
-                  y: -20,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              )
-              .to(
-                layer1,
-                {
-                  rotation: -1,
-                  x: -30,
-                  y: 5,
-                  scale: 1.02,
-                  duration: 0.45,
-                  ease: "power3.out",
-                },
-                0,
-              );
-          }
+    // Estado cargando
+    submitBtn.textContent = "Enviando...";
+    submitBtn.disabled = true;
 
-          function desktopClose() {
-            if (stackTl) stackTl.kill();
-            stackTl = gsap.timeline({ onComplete: setBasePositions });
-            stackTl
-              .to(
-                layer3,
-                {
-                  rotation: -8,
-                  x: -60,
-                  y: 20,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                layer2,
-                {
-                  rotation: 3,
-                  x: 40,
-                  y: -10,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                layer1,
-                {
-                  rotation: -2,
-                  x: -20,
-                  y: 10,
-                  scale: 1,
-                  duration: 0.4,
-                  ease: "power2.inOut",
-                },
-                0,
-              );
-          }
+    const templateParams = {
+      nombre:    document.getElementById("nombre").value.trim(),
+      apellido:  document.getElementById("apellido").value.trim(),
+      email:     emailVal,
+      phoneCode: document.getElementById("phoneCode").value,
+      telefono:  document.getElementById("telefono").value.trim(),
+      mensaje:   document.getElementById("mensaje").value.trim(),
+    };
 
-          function expandStack() {
-            const offset = isSmall() ? 290 : 330;
-            isExpanded = true;
-            stack.classList.add("expanded");
-            if (stackTl) stackTl.kill();
+    emailjs.send("service_prueba", "template_d1vssai", templateParams)
+      .then(() => {
+        submitBtn.textContent = "¡Mensaje enviado!";
+        submitBtn.style.background = "#458988";
+        contactForm.reset();
+        // Restaurar después de 4 segundos
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.style.background = "";
+          submitBtn.disabled = false;
+        }, 4000);
+      })
+      .catch((err) => {
+        console.error("EmailJS error:", err);
+        submitBtn.textContent = "Error al enviar. Intentá de nuevo.";
+        submitBtn.style.background = "#c0392b";
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.style.background = "";
+          submitBtn.disabled = false;
+        }, 4000);
+      });
+  });
+}
 
-            gsap.to(stack, {
-              height: offset * 2 + 180,
-              duration: 0.7,
-              ease: "power2.out",
-            });
+   // --- 7. HERO PHOTO STACK (GSAP desktop hover only) ---
+const stack = document.querySelector(".hero-photo-stack");
+if (stack) {
+  const layer1 = stack.querySelector(".photo-layer-1");
+  const layer2 = stack.querySelector(".photo-layer-2");
+  const layer3 = stack.querySelector(".photo-layer-3");
 
-            stackTl = gsap.timeline();
-            stackTl
-              .to(
-                layer2,
-                { rotation: 0, x: 0, y: 0, duration: 0.6, ease: "power2.out" },
-                0,
-              )
-              .to(
-                layer3,
-                {
-                  rotation: 0,
-                  x: 0,
-                  y: -offset,
-                  duration: 0.65,
-                  ease: "power2.out",
-                },
-                0.1,
-              )
-              .to(
-                layer1,
-                {
-                  rotation: 0,
-                  x: 0,
-                  y: offset,
-                  duration: 0.7,
-                  ease: "power2.out",
-                },
-                0.2,
-              );
-          }
+  const isMobile = () => window.innerWidth <= 768;
+  let stackTl = null;
 
-          function collapseStack() {
-            isExpanded = false;
-            stack.classList.remove("expanded");
-            if (stackTl) stackTl.kill();
+  function setBasePositions() {
+    if (isMobile()) {
+      gsap.set(layer1, { rotation: 0, x: 0, y: 0, zIndex: 3, opacity: 1 });
+    } else {
+      gsap.set(layer3, { rotation: -8, x: -60, y: 20, zIndex: 1, opacity: 0.9 });
+      gsap.set(layer2, { rotation: 3, x: 40, y: -10, zIndex: 2, opacity: 0.95 });
+      gsap.set(layer1, { rotation: -2, x: -20, y: 10, zIndex: 3, opacity: 1 });
+    }
+  }
 
-            gsap.to(stack, {
-              height: isSmall() ? "20rem" : "22rem",
-              duration: 0.6,
-              ease: "power2.inOut",
-            });
+  function desktopOpen() {
+    if (stackTl) stackTl.kill();
+    stackTl = gsap.timeline();
+    stackTl
+      .to(layer3, { rotation: -15, x: -120, y: 40, duration: 0.45, ease: "power3.out" }, 0)
+      .to(layer2, { rotation: 8, x: 90, y: -20, duration: 0.45, ease: "power3.out" }, 0)
+      .to(layer1, { rotation: -1, x: -30, y: 5, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0);
+  }
 
-            stackTl = gsap.timeline({ onComplete: setBasePositions });
-            stackTl
-              .to(
-                layer1,
-                {
-                  rotation: -1,
-                  x: -10,
-                  y: 5,
-                  duration: 0.6,
-                  ease: "power2.inOut",
-                },
-                0,
-              )
-              .to(
-                layer2,
-                {
-                  rotation: 2,
-                  x: 20,
-                  y: -5,
-                  duration: 0.65,
-                  ease: "power2.inOut",
-                },
-                0.08,
-              )
-              .to(
-                layer3,
-                {
-                  rotation: -5,
-                  x: -30,
-                  y: 15,
-                  duration: 0.7,
-                  ease: "power2.inOut",
-                },
-                0.16,
-              );
-          }
+  function desktopClose() {
+    if (stackTl) stackTl.kill();
+    stackTl = gsap.timeline({ onComplete: setBasePositions });
+    stackTl
+      .to(layer3, { rotation: -8, x: -60, y: 20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+      .to(layer2, { rotation: 3, x: 40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+      .to(layer1, { rotation: -2, x: -20, y: 10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
+  }
 
-          setBasePositions();
+  setBasePositions();
 
-          stack.addEventListener("mouseenter", () => {
-            if (!isMobile()) desktopOpen();
-          });
-          stack.addEventListener("mouseleave", () => {
-            if (!isMobile()) desktopClose();
-          });
-          stack.addEventListener("click", () => {
-            if (!isMobile()) return;
-            isExpanded ? collapseStack() : expandStack();
-          });
+  stack.addEventListener("mouseenter", () => {
+    if (!isMobile()) desktopOpen();
+  });
+  stack.addEventListener("mouseleave", () => {
+    if (!isMobile()) desktopClose();
+  });
 
-          let lastWidthStack = window.innerWidth;
-          window.addEventListener("resize", () => {
-            const currentWidth = window.innerWidth;
-            if (currentWidth === lastWidthStack) return;
-            lastWidthStack = currentWidth;
+  let lastWidthStack = window.innerWidth;
+  window.addEventListener("resize", () => {
+    const currentWidth = window.innerWidth;
+    if (currentWidth === lastWidthStack) return;
+    lastWidthStack = currentWidth;
 
-            if (stackTl) stackTl.kill();
-            stack.classList.remove("expanded");
-            isExpanded = false;
-            setBasePositions();
-            gsap.set(stack, {
-              height: isMobile()
-                ? isSmall()
-                  ? "20rem"
-                  : "22rem"
-                : "34.375rem",
-            });
-          });
-        }
-
+    if (stackTl) stackTl.kill();
+    setBasePositions();
+    gsap.set(stack, {
+      height: isMobile() ? "auto" : "34.375rem",
+    });
+  });
+}
         // --- 8. POLAROID STACK (GSAP desktop hover + móvil click) ---
         const polaroidCard = document.querySelector(".polaroid-stack-card");
         if (polaroidCard) {
