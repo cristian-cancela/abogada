@@ -747,6 +747,8 @@
   width: 100%;
   padding: 0;
   margin-bottom: 28px;
+   -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .nav-link-mobile:last-child {
@@ -795,12 +797,17 @@
    ========================================== */
 
       .hero-photo-stack,
-      .polaroid-stack-card,
-      .hero-photo-stack *,
-      .polaroid-stack-card * {
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-      }
+.polaroid-stack-card,
+.hero-photo-stack *,
+.polaroid-stack-card *,
+.nav-link-mobile,
+.close-menu,
+.mobile-toggle,
+.btn-icon-circle,
+.btn-premium {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
 
       .hero-photo-stack:focus,
       .hero-photo-stack:focus-visible,
