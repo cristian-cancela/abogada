@@ -5571,32 +5571,32 @@ if (stack) {
   let stackTl = null;
 
   function setBasePositions() {
-    if (isMobile()) {
-      gsap.set(layer1, { rotation: 0, x: 0, y: 0, zIndex: 3, opacity: 1 });
-    } else {
-      gsap.set(layer3, { rotation: -8, x: -60, y: 20, zIndex: 1, opacity: 0.9 });
-      gsap.set(layer2, { rotation: 3, x: 40, y: -10, zIndex: 2, opacity: 0.95 });
-      gsap.set(layer1, { rotation: -2, x: -20, y: 10, zIndex: 3, opacity: 1 });
-    }
+  if (isMobile()) {
+    gsap.set(layer1, { rotation: 0, x: 0, y: 0, zIndex: 3, opacity: 1 });
+  } else {
+    gsap.set(layer3, { rotation: -5, x: -30, y: 10, zIndex: 1, opacity: 0.9 });
+    gsap.set(layer2, { rotation: 2, x: 20, y: -5, zIndex: 2, opacity: 0.95 });
+    gsap.set(layer1, { rotation: -1, x: -10, y: 5, zIndex: 3, opacity: 1 });
   }
+}
 
-  function desktopOpen() {
-    if (stackTl) stackTl.kill();
-    stackTl = gsap.timeline();
-    stackTl
-      .to(layer3, { rotation: -15, x: -120, y: 40, duration: 0.45, ease: "power3.out" }, 0)
-      .to(layer2, { rotation: 8, x: 90, y: -20, duration: 0.45, ease: "power3.out" }, 0)
-      .to(layer1, { rotation: -1, x: -30, y: 5, scale: 1.02, duration: 0.45, ease: "power3.out" }, 0);
-  }
+function desktopOpen() {
+  if (stackTl) stackTl.kill();
+  stackTl = gsap.timeline();
+  stackTl
+    .to(layer3, { rotation: -8, x: -55, y: 20, duration: 0.45, ease: "power3.out" }, 0)
+    .to(layer2, { rotation: 5, x: 45, y: -10, duration: 0.45, ease: "power3.out" }, 0)
+    .to(layer1, { rotation: -1, x: -10, y: 5, scale: 1.01, duration: 0.45, ease: "power3.out" }, 0);
+}
 
   function desktopClose() {
-    if (stackTl) stackTl.kill();
-    stackTl = gsap.timeline({ onComplete: setBasePositions });
-    stackTl
-      .to(layer3, { rotation: -8, x: -60, y: 20, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-      .to(layer2, { rotation: 3, x: 40, y: -10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
-      .to(layer1, { rotation: -2, x: -20, y: 10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
-  }
+  if (stackTl) stackTl.kill();
+  stackTl = gsap.timeline({ onComplete: setBasePositions });
+  stackTl
+    .to(layer3, { rotation: -5, x: -30, y: 10, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+    .to(layer2, { rotation: 2, x: 20, y: -5, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0)
+    .to(layer1, { rotation: -1, x: -10, y: 5, scale: 1, duration: 0.4, ease: "power2.inOut" }, 0);
+}
 
   setBasePositions();
 
