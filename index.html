@@ -2251,9 +2251,7 @@
   width: 56px;
   height: 40px;
   border-radius: 6px;
-  object-fit: cover;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  object-fit: contain;
   flex-shrink: 0;
 }
 
@@ -2308,9 +2306,17 @@
 .service-card-body-inner {
   padding: 20px 24px 24px;
 }
-
+.flag-img.is-globe {
+  object-fit: contain;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
 /* Personal advisory note */
 .service-advisory-note {
+display: none;
   font-size: 13.5px;
   color: #444;
   line-height: 1.6;
@@ -4072,7 +4078,7 @@
               </svg>
             </div>
             <div class="polaroid-content">
-              <span class="card-badge">FALTA ESTA INFO</span>
+              <span class="card-badge">Ciudadanía Italiana</span>
               <h3>Sin barreras de idioma</h3>
               <p>"Conocí sus servicios a través de una pareja que tuve y desde el primer momento la experiencia fue excelente. Siempre trabajó con la mejor actitud, rapidez y profesionalismo. Es una persona súper responsable con su carrera y muy confiable. De hecho, ya recomendé sus servicios a varios amigos sin dudarlo. Sin dudas, la recomiendo siempre."</p>
               <cite class="polaroid-author"><strong>Mauro.</strong></cite>
@@ -4298,7 +4304,11 @@
       <div class="service-card" id="card-otros">
         <div class="service-card-header" onclick="toggleCard('otros')">
           <div class="service-icon">
-          <img src="https://flagcdn.com/w80/un.png" alt="Mundial" class="service-card-flag" />
+            <img
+              src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30e/512.png"
+              alt="Mundial"
+              class="service-card-flag"
+            />
           </div>
           <span class="service-card-title">Más Servicios</span>
           <svg class="service-card-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -4316,7 +4326,7 @@
         </div>
       </div>
 
-    </div>
+    </div> <!-- cierre services-grid -->
 
     <!-- International Network -->
     <div class="international-network">
@@ -4345,11 +4355,11 @@
         <div class="country-item"><img src="https://flagcdn.com/w80/au.png" alt="Australia" class="flag-img"/><span class="country-name">Australia</span></div>
         <div class="country-item"><img src="https://flagcdn.com/w80/eu.png" alt="Europa" class="flag-img"/><span class="country-name">Europa</span></div>
         <div class="country-item special">
-          <svg class="globe-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
+          <img
+            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30e/512.png"
+            alt="Y más"
+            class="flag-img is-globe"
+          />
           <span class="country-name">¡Y más!</span>
         </div>
       </div>
