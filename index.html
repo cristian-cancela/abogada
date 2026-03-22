@@ -1040,17 +1040,24 @@
       }
 
       .hero-stack-photo {
-        position: absolute;
-        background: var(--bg-white);
-        padding: 0.9375rem;
-        box-shadow:
-          0 4px 12px rgba(0, 0, 0, 0.1),
-          0 1px 3px rgba(0, 0, 0, 0.06);
-        /* Sin transition CSS — GSAP lo controla todo */
-        max-width: 100%;
-        will-change: transform;
-      }
+  position: absolute;
+  background: var(--bg-white);
+  padding: 0.9375rem 0.9375rem 3rem 0.9375rem; /* ← más padding abajo para el caption */
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+  will-change: transform;
+}
 
+/* Agregá esto nuevo */
+.hero-stack-caption {
+  text-align: center;
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  color: #052857;
+  margin-top: 0.625rem;
+}
       .hero-stack-photo img {
         width: clamp(200px, 28vw, 380px);
         height: clamp(260px, 36vw, 480px);
@@ -3774,15 +3781,15 @@ display: none;
             <figure class="hero-photo-stack">
               <div class="hero-stack-photo photo-layer-1">
                 <img
-                  src="./imagenes/foto-perfil-abogada.jpg"
+                  src="https://i.postimg.cc/52BVCwFR/foto-perfil-abogada.webp"
                   alt="Marina Martinis sosteniendo pasaporte"
                   itemprop="image"
                 />
               </div>
               <div class="hero-stack-photo photo-layer-2">
                 <img
-                  src="./imagenes/foto-07-abogada-panoramica-puertas-fondo.jpg"
-                  alt="Marina Martinis en ceremonia de graduación"
+                  src="https://i.postimg.cc/RCpsgNBf/foto-07-abogada-panoramica-puertas-fondo.webp"
+                  alt="Marina en una imagen panoramica con puertas de fondo"
                 />
               </div>
               <div class="hero-stack-photo photo-layer-3">
@@ -3839,31 +3846,30 @@ display: none;
                 </div>
               </div>
             </article>
-
             <figure
               class="polaroid-stack-card"
               aria-label="Valores profesionales"
             >
               <div class="polaroid polaroid-1">
                 <img
-                  src="./imagenes/foto-abogada-mirando-paisaje.jpg"
+                  src="./imagenes/foto-02-abogada-posando.jpg"
                   alt="Compromiso profesional de Marina Martinis"
                 />
-                <figcaption class="polaroid-caption">Compromiso</figcaption>
+                <figcaption class="polaroid-caption">Calidad profesional</figcaption>
               </div>
               <div class="polaroid polaroid-2">
                 <img
-                  src="./imagenes/foto-abogada-subiendo-escaleras.jpg"
+                  src="./imagenes/foto-abogada-sosteniendo-pasaporte.PNG"
                   alt="Dedicación profesional de Marina Martinis"
                 />
-                <figcaption class="polaroid-caption">Dedicación</figcaption>
+                <figcaption class="polaroid-caption">Calidez humana</figcaption>
               </div>
               <div class="polaroid polaroid-3">
                 <img
-                  src="./imagenes/foto-08-abogada-fondo-coliseo.jpg"
+                  src="https://i.postimg.cc/HW9vXBSW/foto-08-abogada-fondo-coliseo.webp"
                   alt="Excelencia profesional de Marina Martinis"
                 />
-                <figcaption class="polaroid-caption">Excelencia</figcaption>
+                <figcaption class="polaroid-caption">Visión y perspectiva</figcaption>
               </div>
             </figure>
 
@@ -4018,10 +4024,8 @@ display: none;
             <div class="polaroid-content">
               <span class="card-badge">Obtención de mi ciudadanía italiana en Italia con mi familia.</span>
               <h3>Todo en orden</h3>
-              <p>"He conocido a la Dra. Martinis por unas publicaciones en redes sociales que me llamaron la atención por lo claras y precisas que eran."</p>
-              <p>"¡¡¡Absolutamente SÍ la recomiendo!!! Por el compromiso, la claridad, la paciencia y porque constantemente está en formación para actualizar sus conocimientos y leyes."</p>
-              <p>"Desde que contacté a la Dra. Martinis, su atención fue constante. Cada duda que me surgía me la supo responder con conocimiento y su acompañamiento fue permanente sin estar persiguiéndome con información que no era trascendente. Jamás dejó de atender mis dudas y todo el proceso fue exitoso. Es evidente la formación y el conocimiento que tiene."</p>
-              <cite class="polaroid-author"><strong>Alicia.</strong></cite>
+              <p>"Agradezco que Marina me haya ayudado a iniciar mi carpeta. Su acompañamiento en su camino fue fundamental ya que me guío en todo momento. Su profesionalismo hizo que todo lo acordado llegue en tiempo y forma. El servicio que brinda, además de ser muy bueno, es transparente y confiable. Recomiendo."</p>
+              <cite class="polaroid-author"><strong>Carlos.</strong></cite>
             </div>
             <p class="polaroid-caption">Eficiencia y confianza</p>
           </div>
@@ -4132,10 +4136,10 @@ display: none;
               </svg>
             </div>
             <div class="polaroid-content">
-              <span class="card-badge">Ciudadanía Española</span>
+              <span class="card-badge"> Nacionalidad Española</span>
               <h3>Claridad total</h3>
-              <p>"Fui su alumna y siempre estuve en contacto con ella a través de mi papá. Mi experiencia fue muy positiva: destaco su compromiso, el asesoramiento constante, el acompañamiento y la eficiencia en cada etapa. Siempre estuvo atenta a mis consultas e inquietudes, respondió rápidamente y me mantuvo informada sobre cada avance. Sin dudas, la recomiendo por su dedicación y profesionalismo."</p>
-              <cite class="polaroid-author"><strong>Nelida.</strong></cite>
+              <p>"Fue muy positiva. Siempre acompañando y brindando asesoramiento en mí beneficio. Atenta a cada consulta e inquietud. Respondiendo a la brevedad mensajes. Siempre manteniéndome informada sobre el avance de mí trámite. La recomendaría por el compromiso, asesoramiento, acompañamiento y eficiencia. Siempre atenta y respondiendo inquietudes."</p>
+              <cite class="polaroid-author"><strong>Nora.</strong></cite>
             </div>
             <p class="polaroid-caption">Información es poder</p>
           </div>
@@ -4568,7 +4572,7 @@ display: none;
           <div class="experience-stack">
             <figure class="experience-photo photo-back">
               <img
-                src="./imagenes/foto-07-abogada-panoramica-puertas-fondo.jpg"
+                src="https://i.postimg.cc/RCpsgNBf/foto-07-abogada-panoramica-puertas-fondo.webp"
                 alt="Marina recibida"
               />
             </figure>
