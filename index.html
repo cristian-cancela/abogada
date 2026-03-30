@@ -2697,319 +2697,359 @@ display: none;
         }
       }
 
-      /* ==========================================================================
-          SOBRE MI ---- SECTION
+     /* ==========================================================================
+   SOBRE MI ---- SECTION
    ========================================================================== */
 
-      .about-editorial {
-        margin: 0 auto 160px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        gap: 40px;
-      }
+.about-editorial {
+  margin: 0 auto 100px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 40px;
+}
 
-      /* ---------- TÍTULO ---------- */
+/* ---------- TÍTULO ---------- */
 
-      .about-title h2 {
-        font-family: "Ananda Black Personal Use", serif;
-        font-size: clamp(2.2rem, 6vw, 3.5rem);
-        text-align: center;
-        line-height: 1.5;
-        padding-top: 0.2em;
-        margin: 15px 0px;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+.about-title h2 {
+  font-family: "Ananda Black Personal Use", serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  text-align: center;
+  line-height: 1.5;
+  padding-top: 0.2em;
+  margin: 15px 0px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-      .about-paragraph-header {
-        /* Espacio para que la foto de atrás (-67px) no lo pise en desktop */
-        margin-bottom: 80px;
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        font-weight: 500;
-        color: #052857;
-        text-align: left;
-        line-height: 1.5;
-      }
+.about-paragraph-header {
+  margin-bottom: 80px;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  color: #052857;
+  text-align: left;
+  line-height: 1.5;
+}
 
-      /* ===========================
-    EXPERIENCIA COLLAGE
+/* ===========================
+   EXPERIENCIA COLLAGE
 =========================== */
 
-      .about-experience {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        margin-bottom: 550px;
-        /* Margen superior base */
-        margin-top: 40px;
-      }
+.about-experience {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 550px;
+  margin-top: 40px;
+}
 
-      .experience-stack {
-        position: relative;
-        width: 520px;
-        height: 420px;
-      }
+.experience-stack {
+  position: relative;
+  width: 520px;
+  height: 420px;
+}
 
-      /* Fotos superpuestas */
-      .experience-photo {
-        position: absolute;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        transition: transform 0.6s ease;
-      }
+.experience-photo {
+  position: absolute;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  transition: transform 0.6s ease;
+}
 
-      .experience-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
+.experience-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-      /* Foto de atrás */
-      .photo-back {
-        width: 270px;
-        height: 360px;
-        transform: translateX(-140px) translateY(-67px);
-        z-index: 1;
-      }
+.photo-back {
+  width: 270px;
+  height: 360px;
+  transform: translateX(-140px) translateY(-101px);
+  z-index: 1;
+}
 
-      /* Foto principal */
-      .photo-front {
-        width: 450px;
-        transform: translateX(306px);
-        z-index: 2;
-        border: none;
-      }
+.photo-front {
+  width: 450px;
+  transform: translateX(306px);
+  z-index: 2;
+  border: none;
+}
 
-      /* Caja experiencia */
-      .experience-text {
-        display: flex;
-        position: absolute;
-        bottom: -421px;
-        left: -220px;
-        background: linear-gradient(180deg, #f3efe9 0%, #e6ded2 100%);
-        padding: 40px;
-        max-width: 670px;
-        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.15);
-        backdrop-filter: blur(3px);
-        z-index: 3;
-        color: #052857;
-        font-weight: 500;
-        font-size: 16px;
-        margin-bottom: 16px;
-        letter-spacing: 0.01em;
-        flex-direction: column;
-        align-items: center;
-      }
+.experience-text {
+  display: flex;
+  position: absolute;
+  bottom: -421px;
+  left: -220px;
+  background: linear-gradient(180deg, #f3efe9 0%, #e6ded2 100%);
+  padding: 40px;
+  max-width: 670px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(3px);
+  z-index: 3;
+  color: #052857;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
+  flex-direction: column;
+  align-items: center;
+}
 
-      .experience-text p {
-        font-size: 15px;
-        color: #052857;
-        line-height: 1.7;
-      }
+.experience-text p {
+  font-size: 15px;
+  color: #052857;
+  line-height: 1.7;
+}
 
-      /* ===========================
-    TRAVELS / RECORRIDO
+/* ===========================
+   TRAVELS / RECORRIDO
 =========================== */
 
-      .about-travels {
-        position: relative;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 40px;
-      }
+.about-travels {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 550px;
+  margin-top: 40px;
+}
 
-      /* Imagen base */
-      .travels-image img {
-        width: 100%;
-        object-fit: cover;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-      }
+.travels-stack {
+  position: relative;
+  width: 520px;
+  height: 420px;
+}
 
-      /* Caja editorial flotante */
-      .travels-text-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        right: 80px;
-        background: linear-gradient(180deg, #f3efe9 0%, #e6ded2 100%);
-        padding: 45px;
-        max-width: 670px;
-        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.15);
-        transform: translateY(60px);
-        backdrop-filter: blur(3px);
-        color: #1a3a54;
-        font-weight: 500;
-        font-size: 16px;
-        margin-bottom: 16px;
-        letter-spacing: 0.01em;
-      }
+.travels-photo {
+  position: absolute;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  transition: transform 0.6s ease;
+}
 
-      .travels-text-box p {
-        font-size: 15px;
-        color: #052857;
-        line-height: 1.7;
-      }
+.travels-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-      /* ===========================
-    FONDO EDITORIAL REVISTA
+/* Foto grande — izquierda (espejo de photo-front) */
+.travels-front {
+  width: 450px;
+  height: 420px;
+  transform: translateX(-306px);
+  z-index: 2;
+}
+
+/* Foto chica — derecha (espejo de photo-back) */
+.travels-back {
+ 
+  height: 600px;
+  transform: translateX(310px) translateY(-101px);
+  z-index: 1;
+}
+
+.travels-text-box {
+  display: flex;
+  position: absolute;
+  bottom: -421px;
+  right: -220px;
+  background: linear-gradient(180deg, #f3efe9 0%, #e6ded2 100%);
+  padding: 40px;
+  max-width: 670px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(3px);
+  z-index: 3;
+  color: #052857;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
+  flex-direction: column;
+  align-items: center;
+}
+
+.travels-text-box p {
+  font-size: 15px;
+  color: #052857;
+  line-height: 1.7;
+}
+
+/* ===========================
+   FONDO EDITORIAL REVISTA
 =========================== */
 
-      .about-editorial::before {
-        content: "";
-        position: absolute;
-        top: 49%;
-        left: 247px;
-        width: 65%;
-        height: 320px;
-        background: #f1ede6;
-        z-index: -1;
-      }
+.about-editorial::before {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 247px;
+  width: 66%;
+  height: 821px;
+  background: #f1ede6;
+  z-index: -1;
+}
 
-      /* ===========================
-    RESPONSIVE
+/* ===========================
+   RESPONSIVE
 =========================== */
 
-      @media (max-width: 900px) {
-        .about-editorial {
-          gap: 40px;
-          margin-bottom: 100px;
-          overflow: hidden;
-        }
+@media (max-width: 900px) {
+  .about-editorial {
+    gap: 40px;
+    margin-bottom: 100px;
+   overflow: clip;
+  }
 
-        .about-paragraph-header {
-          padding: 0 40px;
-          /* Generamos espacio para que el translateY(-30px) no lo tape */
-          margin-bottom: 60px;
-        }
+  .about-paragraph-header {
+    padding: 0 40px;
+    margin-bottom: 200px;
+  }
 
-        /* EXPERIENCIA - Mobile */
-        .about-experience {
-          margin-bottom: 0;
-          padding: 0;
-          min-height: 400px;
-          margin-top: 20px;
-        }
+  /* EXPERIENCIA - Mobile */
+  .about-experience {
+    margin-bottom: 0;
+    padding: 0;
+    min-height: 400px;
+    margin-top: 20px;
+  }
 
-        .experience-stack {
-          width: 100%;
-          height: 350px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-            .experience-text {
-        position: relative;
-        left: 0;
-         bottom: -120px;
-        margin: 40px 20px 0;
-        padding: 35px 30px;
-        max-width: calc(100% - 40px);
-        width: auto;
-    }
-        .about-paragraph-header {
-        padding: 0 40px;
-        margin-bottom: 200px;
-    }
+  .experience-stack {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-        .photo-back {
-          width: 240px;
-          height: 320px;
-          transform: translateX(-177px) translateY(-243px);
-        }
+  .experience-text {
+    position: relative;
+    left: 0;
+    bottom: -120px;
+    margin: 40px 20px 0;
+    padding: 35px 30px;
+    max-width: calc(100% - 40px);
+    width: auto;
+  }
 
-        .photo-front {
-          width: 350px;
-         transform: translateX(190px) translateY(-185px);
-        }
+  .photo-back {
+    width: 240px;
+    height: 320px;
+    transform: translateX(-177px) translateY(-243px);
+  }
 
+  .photo-front {
+    width: 350px;
+    transform: translateX(190px) translateY(-185px);
+  }
 
-        .experience-text p {
-          text-align: left;
-        }
+  .experience-text p {
+    text-align: left;
+  }
 
-        /* TRAVELS - Mobile */
-        .about-travels {
-          grid-template-columns: 1fr;
-          gap: 0;
-          padding: 0;
-          overflow: hidden;
-          min-height: 400px;
-        }
+  /* TRAVELS - Mobile */
+  .about-travels {
+    margin-bottom: 130px;
+    padding: 0;
+    min-height: 400px;
+    margin-top: 20px;
+  }
 
-        .travels-image {
-          position: relative;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
+  .travels-stack {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-        .travels-image img {
-          height: 350px;
-          width: 100%;
-          object-fit: cover;
-        }
+  .travels-front {
+    width: 350px;
+    height: 350px;
+    transform: translateX(-190px) translateY(-185px);
+  }
 
-        .travels-text-box {
-          position: relative;
-          right: 0;
-          transform: none;
-          margin: 40px 20px 0;
-          padding: 35px 30px;
-          max-width: calc(100% - 40px);
-          width: auto;
-        }
+  .travels-back {
+    width: 240px;
+    height: 320px;
+    transform: translateX(177px) translateY(-243px);
+  }
 
-        .travels-text-box p {
-          font-size: 15px;
-          text-align: left;
-        }
+  .travels-text-box {
+    position: relative;
+    right: 0;
+    bottom: -120px;
+    margin: 40px 20px 0;
+    padding: 35px 30px;
+    max-width: calc(100% - 40px);
+    width: auto;
+  }
 
-        /* Fondo editorial */
-        .about-editorial::before {
-          display: none;
-        }
-      }
+  .travels-text-box p {
+    font-size: 15px;
+    text-align: left;
+  }
 
-      @media (max-width: 480px) {
-        .about-paragraph-header {
-          /* Reducimos padding para que no se vea tan angosto en móviles chicos */
-          padding: 0 20px;
-          /* Agregamos margen inferior para no ser tapado por el translateY(-600px) */
-          margin-bottom: 40px;
-        }
+  /* Fondo editorial */
+  .about-editorial::before {
+    display: none;
+  }
+}
 
-        .about-experience {
-          margin-top: 620px;
-          height: auto;
-        }
+@media (max-width: 480px) {
+  .about-paragraph-header {
+    padding: 0 20px;
+    margin-bottom: 40px;
+  }
 
-        .experience-stack {
-          height: 300px;
-        }
+  .about-experience {
+    margin-top: 620px;
+    height: auto;
+  }
 
-        .photo-back {
-          width: 200px;
-          height: 270px;
-          /* Mantengo tus valores exactos */
-          transform: translateX(-170px) translateY(-524px);
-        }
+  .experience-stack {
+    height: 300px;
+  }
 
-        .photo-front {
-          /* Mantengo tus valores exactos */
-          transform: translateX(70px) translateY(-541px);
-        }
+  .photo-back {
+    width: 200px;
+    height: 270px;
+    transform: translateX(-170px) translateY(-524px);
+  }
 
-        .experience-text,
-        .travels-text-box {
-          padding: 30px 25px;
-          bottom: 0;
-        }
-      }
+  .photo-front {
+    transform: translateX(70px) translateY(-541px);
+  }
+
+  .about-travels {
+    margin-top: 620px;
+    height: auto;
+  }
+
+  .travels-stack {
+    height: 300px;
+  }
+
+  .travels-front {
+    width: 200px;
+    height: 270px;
+    transform:  translateX(-70px) translateY(-434px);
+  }
+
+  .travels-back {
+    width: 200px;
+    height: 270px;
+    transform: translateX(79px) translateY(-562px);
+  }
+
+  .experience-text,
+  .travels-text-box {
+    padding: 30px 25px;
+    bottom: 0;
+  }
+}
 
       /* ==========================================================================
                                     CONTACT SECTION - ------------------------------------------------------------------------
@@ -4561,84 +4601,94 @@ display: none;
           </details>
         </div>
       </section>
-      <!-- SOBRE MI -->
-      <section class="about-editorial" id="sobre-mi">
-        <!-- TÍTULO -->
-        <header class="about-title">
-          <h2>Sobre mí</h2>
-          <p class="about-paragraph-header">
-            Creo en un derecho que simplifica vidas. Con una trayectoria
-            cimentada en la excelencia académica y la experiencia en terreno, te
-            invito a que me conozcas
-          </p>
-        </header>
-        <!-- BLOQUE EXPERIENCIA -->
-        <article class="about-experience">
-          <div class="experience-stack">
-            <figure class="experience-photo photo-back">
-              <img
-                src="imagenes/foto-04-abogada-panoramica.jpg"
-                alt="Marina recibida"
-              />
-            </figure>
+    <!-- SOBRE MI -->
+<section class="about-editorial" id="sobre-mi">
+  <!-- TÍTULO -->
+  <header class="about-title">
+    <h2>Sobre mí</h2>
+    <p class="about-paragraph-header">
+      Creo en un derecho que simplifica vidas. Con una trayectoria
+      cimentada en la excelencia académica y la experiencia en terreno, te
+      invito a que me conozcas
+    </p>
+  </header>
 
-            <figure class="experience-photo photo-front">
-              <img
-                src="./imagenes/abogada-fontana-roma.jpg"
-                alt="Marina Martinis - Abogada"
-              />
-            </figure>
+  <!-- BLOQUE EXPERIENCIA -->
+  <article class="about-experience">
+    <div class="experience-stack">
+      <figure class="experience-photo photo-back">
+        <img
+          src="imagenes/foto-04-abogada-panoramica.jpg"
+          alt="Marina recibida"
+        />
+      </figure>
 
-            <div class="experience-text">
-              <span class="card-badge">Mi historia y propósito</span>
-              <p>
-                Soy una persona apasionada del derecho, la justicia y la
-                historia. Mi nombre es Marina Martinis, soy argentina y abogada
-                independiente. Una persona que también vivió personalmente el
-                desafío y la transformación que implica emigrar: viajé a Italia
-                para realizar mi ciudadanía italiana y residí allí durante casi
-                un año. Esa vivencia marcó profundamente mi mirada profesional y
-                humana sobre los procesos migratorios, ya conmovida por mi
-                propia historia familiar, atravesada por la migración: 8 de mis
-                bisabuelos también fueron emigrantes italianos. Creo en el
-                derecho como una herramienta de acceso a la justicia y de
-                conexión entre personas y países, y por ello acompaño procesos
-                migratorios con compromiso, empatía y una mirada integral, con
-                respeto por cada historia que llega a mis manos.
-              </p>
-            </div>
-          </div>
-        </article>
+      <figure class="experience-photo photo-front">
+        <img
+          src="./imagenes/abogada-fontana-roma.jpg"
+          alt="Marina Martinis - Abogada"
+        />
+      </figure>
 
-        <!-- BLOQUE TRAVELS / RECORRIDO -->
-        <article class="about-travels">
-          <figure class="travels-image">
-            <img
-              src="./imagenes/foto-09-abogada-fondo-fuente-italia.jpg"
-              alt="Recorrido profesional"
-            />
-          </figure>
+      <div class="experience-text">
+        <span class="card-badge">Mi historia y propósito</span>
+        <p>
+          Soy una persona apasionada del derecho, la justicia y la
+          historia. Mi nombre es Marina Martinis, soy argentina y abogada
+          independiente. Una persona que también vivió personalmente el
+          desafío y la transformación que implica emigrar: viajé a Italia
+          para realizar mi ciudadanía italiana y residí allí durante casi
+          un año. Esa vivencia marcó profundamente mi mirada profesional y
+          humana sobre los procesos migratorios, ya conmovida por mi
+          propia historia familiar, atravesada por la migración: 8 de mis
+          bisabuelos también fueron emigrantes italianos. Creo en el
+          derecho como una herramienta de acceso a la justicia y de
+          conexión entre personas y países, y por ello acompaño procesos
+          migratorios con compromiso, empatía y una mirada integral, con
+          respeto por cada historia que llega a mis manos.
+        </p>
+      </div>
+    </div>
+  </article>
 
-          <div class="travels-text-box">
-            <span class="card-badge">Experiencia profesional</span>
-            <p>
-              Hace más de 12 años inicié mi camino en el derecho, pero fue hace
-              aproximadamente seis años cuando decidí especializarme de manera
-              definitiva en Derecho Migratorio y de Extranjería. Lo hice luego
-              de un recorrido profesional sostenido, complementando mi ejercicio
-              como abogada con estudios específicos, diplomaturas y posgrados
-              orientados a la materia. A lo largo de estos años he acompañado a
-              numerosas personas y familias en sus procesos migratorios y de
-              reconocimiento de ciudadanías, visas, compartiendo no solo
-              trámites y expedientes, sino también historias personales,
-              recorridos familiares y relatos ancestrales. Cada caso implica
-              volver sobre las raíces, reconstruir orígenes y comprender la
-              identidad personal como un derecho que trasciende lo meramente
-              jurídico.
-            </p>
-          </div>
-        </article>
-      </section>
+  <!-- BLOQUE TRAVELS / RECORRIDO -->
+  <article class="about-travels">
+    <div class="travels-stack">
+      <figure class="travels-photo travels-front">
+        <img
+          src="./imagenes/foto-09-abogada-fondo-fuente-italia.jpg"
+          alt="Recorrido profesional"
+        />
+      </figure>
+
+      <figure class="travels-photo travels-back">
+        <img
+          src="./imagenes/foto-abogada-subiendo-escaleras.jpg"
+          alt="Marina Martinis - escaleras"
+        />
+      </figure>
+
+      <div class="travels-text-box">
+        <span class="card-badge">Experiencia profesional</span>
+        <p>
+          Hace más de 12 años inicié mi camino en el derecho, pero fue hace
+          aproximadamente seis años cuando decidí especializarme de manera
+          definitiva en Derecho Migratorio y de Extranjería. Lo hice luego
+          de un recorrido profesional sostenido, complementando mi ejercicio
+          como abogada con estudios específicos, diplomaturas y posgrados
+          orientados a la materia. A lo largo de estos años he acompañado a
+          numerosas personas y familias en sus procesos migratorios y de
+          reconocimiento de ciudadanías, visas, compartiendo no solo
+          trámites y expedientes, sino también historias personales,
+          recorridos familiares y relatos ancestrales. Cada caso implica
+          volver sobre las raíces, reconstruir orígenes y comprender la
+          identidad personal como un derecho que trasciende lo meramente
+          jurídico.
+        </p>
+      </div>
+    </div>
+  </article>
+</section>
 
       <!-- !-- CONTACT SECTION -->
       <section class="contact-section" id="contacto">
