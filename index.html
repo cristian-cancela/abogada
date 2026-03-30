@@ -1353,7 +1353,27 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
       }
+      .polaroid-stack-card::after {
+          content: "Toca para ver las fotos";
+          position: absolute;
+          bottom: -1.75rem;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: rgba(5, 40, 87, 0.45);
+          letter-spacing: 0.05em;
+          white-space: nowrap;
+          pointer-events: none;
+          font-family: var(--font-primary);
+          transition: opacity 0.3s ease;
+        }
+
+        .polaroid-stack-card.expanded::after {
+          content: "Toca para cerrar";
+        }
 
       .polaroid {
         position: absolute;
@@ -1607,26 +1627,6 @@
         /* ==========================================
      HINT VISUAL — unificado para ambos stacks
      ========================================== */
-       
-        .polaroid-stack-card::after {
-          content: "Toca para ver las fotos";
-          position: absolute;
-          bottom: -1.75rem;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.75rem;
-          font-weight: 500;
-          color: rgba(5, 40, 87, 0.45);
-          letter-spacing: 0.05em;
-          white-space: nowrap;
-          pointer-events: none;
-          font-family: var(--font-primary);
-          transition: opacity 0.3s ease;
-        }
-
-        .polaroid-stack-card.expanded::after {
-          content: "Toca para cerrar";
-        }
 
         .hero-quote-card {
           padding: 2rem 1.5rem;
@@ -5650,16 +5650,13 @@ function desktopOpen() {
 
           setPolaroidBase();
 
-          polaroidCard.addEventListener("mouseenter", () => {
-            if (!isMobile()) polaroidOpen();
-          });
-          polaroidCard.addEventListener("mouseleave", () => {
-            if (!isMobile()) polaroidClose();
-          });
-          polaroidCard.addEventListener("click", () => {
-            if (!isMobile()) return;
-            polaroidExpanded ? polaroidCollapse() : polaroidExpand();
-          });
+         polaroidCard.addEventListener("click", () => {
+  if (isMobile()) {
+    polaroidExpanded ? polaroidCollapse() : polaroidExpand();
+  } else {
+    polaroidExpanded ? polaroidCollapse() : polaroidExpand();
+  }
+});
 
           let lastWidthP = window.innerWidth;
           window.addEventListener("resize", () => {
@@ -5680,7 +5677,7 @@ function desktopOpen() {
             });
           });
         }
-
+      
         // --- 9. EXPERIENCES CAROUSEL - Infinito continuo ---
         const gallery = document.querySelector(".experiences-gallery");
         if (gallery) {
