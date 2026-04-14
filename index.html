@@ -130,6 +130,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcvzbUsAAAAAGtPmCP4saMyVRGgTy0JSLtsIgT7"></script>
+  </head>
   </head>
   <body>
     <header class="header" id="inicio">
@@ -2286,382 +2288,77 @@
       </section>
 
       <!-- CONTACT SECTION -->
-      <section
-        class="contact-section"
-        id="contacto"
-        itemscope
-        itemtype="https://schema.org/ContactPage"
-      >
-        <div class="contact-container">
-          <div class="contact-header">
-            <h2>Transforma tu proyecto en realidad</h2>
-            <p>
-              AVANCEMOS JUNTOS: Completá el formulario y me comunicaré con vos a
-              la brevedad para que comencemos tu proceso
-            </p>
-          </div>
+      <section class="contact-section" id="contacto" itemscope itemtype="https://schema.org/ContactPage">
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2>Transforma tu proyecto en realidad</h2>
+      <p>AVANCEMOS JUNTOS: Completá el formulario y me comunicaré con vos a la brevedad para que comencemos tu proceso</p>
+    </div>
 
-          <form class="contact-form" id="contactForm" novalidate>
-            <!-- Fila 1: Nombre + Apellido -->
-            <div class="form-row">
-              <div class="form-group">
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  placeholder="Nombre"
-                  autocomplete="given-name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  id="apellido"
-                  name="apellido"
-                  placeholder="Apellido"
-                  autocomplete="family-name"
-                  required
-                />
-              </div>
-            </div>
-
-            <!-- Fila 2: Email + Teléfono con código de país -->
-            <div class="form-row">
-              <div class="form-group">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  autocomplete="email"
-                  placeholder="Email"
-                  required
-                />
-                <span id="emailError" class="error-message">
-                  Por favor, ingresá un correo válido
-                </span>
-              </div>
-
-              <div class="form-group">
-                <div class="phone-wrapper">
-                  <div class="custom-phone-select" id="customPhoneSelect">
-                    <div class="custom-select-trigger" id="selectTrigger">
-                      <img
-                        src="https://flagcdn.com/w40/ar.png"
-                        alt="Argentina"
-                        class="select-flag"
-                      />
-                      <span class="select-code">+54</span>
-                      <svg
-                        class="select-arrow"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#000000"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-
-                    <!-- Dropdown -->
-                    <div class="custom-select-dropdown" id="selectDropdown">
-                      <div
-                        class="dropdown-option"
-                        data-value="+54"
-                        data-flag="ar"
-                        data-name="Argentina"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/ar.png"
-                          alt="Argentina"
-                        />
-                        <span class="option-code">+54</span>
-                        <span class="option-name">Argentina</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+61"
-                        data-flag="au"
-                        data-name="Australia"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/au.png"
-                          alt="Australia"
-                        />
-                        <span class="option-code">+61</span>
-                        <span class="option-name">Australia</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+43"
-                        data-flag="at"
-                        data-name="Austria"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/at.png"
-                          alt="Austria"
-                        />
-                        <span class="option-code">+43</span>
-                        <span class="option-name">Austria</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+55"
-                        data-flag="br"
-                        data-name="Brasil"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/br.png"
-                          alt="Brasil"
-                        />
-                        <span class="option-code">+55</span>
-                        <span class="option-name">Brasil</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+56"
-                        data-flag="cl"
-                        data-name="Chile"
-                      >
-                        <img src="https://flagcdn.com/w40/cl.png" alt="Chile" />
-                        <span class="option-code">+56</span>
-                        <span class="option-name">Chile</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+385"
-                        data-flag="hr"
-                        data-name="Croacia"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/hr.png"
-                          alt="Croacia"
-                        />
-                        <span class="option-code">+385</span>
-                        <span class="option-name">Croacia</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+386"
-                        data-flag="si"
-                        data-name="Eslovenia"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/si.png"
-                          alt="Eslovenia"
-                        />
-                        <span class="option-code">+386</span>
-                        <span class="option-name">Eslovenia</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+34"
-                        data-flag="es"
-                        data-name="España"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/es.png"
-                          alt="España"
-                        />
-                        <span class="option-code">+34</span>
-                        <span class="option-name">España</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+1"
-                        data-flag="us"
-                        data-name="EE.UU."
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/us.png"
-                          alt="EE.UU."
-                        />
-                        <span class="option-code">+1</span>
-                        <span class="option-name">EE.UU.</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+33"
-                        data-flag="fr"
-                        data-name="Francia"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/fr.png"
-                          alt="Francia"
-                        />
-                        <span class="option-code">+33</span>
-                        <span class="option-name">Francia</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+44"
-                        data-flag="gb"
-                        data-name="Inglaterra"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/gb.png"
-                          alt="Inglaterra"
-                        />
-                        <span class="option-code">+44</span>
-                        <span class="option-name">Inglaterra</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+39"
-                        data-flag="it"
-                        data-name="Italia"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/it.png"
-                          alt="Italia"
-                        />
-                        <span class="option-code">+39</span>
-                        <span class="option-name">Italia</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+595"
-                        data-flag="py"
-                        data-name="Paraguay"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/py.png"
-                          alt="Paraguay"
-                        />
-                        <span class="option-code">+595</span>
-                        <span class="option-name">Paraguay</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+48"
-                        data-flag="pl"
-                        data-name="Polonia"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/pl.png"
-                          alt="Polonia"
-                        />
-                        <span class="option-code">+48</span>
-                        <span class="option-name">Polonia</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+351"
-                        data-flag="pt"
-                        data-name="Portugal"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/pt.png"
-                          alt="Portugal"
-                        />
-                        <span class="option-code">+351</span>
-                        <span class="option-name">Portugal</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+41"
-                        data-flag="ch"
-                        data-name="Suiza"
-                      >
-                        <img src="https://flagcdn.com/w40/ch.png" alt="Suiza" />
-                        <span class="option-code">+41</span>
-                        <span class="option-name">Suiza</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+598"
-                        data-flag="uy"
-                        data-name="Uruguay"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/uy.png"
-                          alt="Uruguay"
-                        />
-                        <span class="option-code">+598</span>
-                        <span class="option-name">Uruguay</span>
-                      </div>
-                      <div
-                        class="dropdown-option"
-                        data-value="+49"
-                        data-flag="de"
-                        data-name="Alemania"
-                      >
-                        <img
-                          src="https://flagcdn.com/w40/de.png"
-                          alt="Alemania"
-                        />
-                        <span class="option-code">+49</span>
-                        <span class="option-name">Alemania</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <input
-                    type="hidden"
-                    id="phoneCode"
-                    name="phoneCode"
-                    value="+54"
-                  />
-
-                  <input
-                    type="tel"
-                    id="telefono"
-                    name="telefono"
-                    placeholder="Teléfono"
-                    autocomplete="tel"
-                    required
-                  />
-                </div>
-                <span class="error-message" id="phoneError"
-                  >Solo se permiten números</span
-                >
-              </div>
-            </div>
-
-            <!-- Mensaje -->
-            <div class="form-group">
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                placeholder="Contame brevemente tu caso..."
-                rows="6"
-                required
-              ></textarea>
-            </div>
-
-            <button type="submit" class="form-submit">Enviar</button>
-          </form>
-
-          <div
-            class="contact-info-footer"
-            itemscope
-            itemtype="https://schema.org/ContactPoint"
-          >
-            <meta itemprop="contactType" content="customer support" />
-            <div class="info-item">
-              <p>
-                <a href="mailto:dramartinismarina@gmail.com" itemprop="email">
-                  dramartinismarina@gmail.com
-                </a>
-              </p>
-            </div>
-            <div class="info-item">
-              <p>
-                <a href="tel:+5491166619646" itemprop="telephone">
-                  +54 9 11 6661 9646
-                </a>
-              </p>
-            </div>
-          </div>
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" id="nombre" name="nombre" placeholder="Nombre" autocomplete="given-name" required />
         </div>
-      </section>
+        <div class="form-group">
+          <input type="text" id="apellido" name="apellido" placeholder="Apellido" autocomplete="family-name" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="Email" required />
+          <span id="emailError" class="error-message">Por favor, ingresá un correo válido</span>
+        </div>
+
+        <div class="form-group">
+          <div class="phone-wrapper">
+            <div class="custom-phone-select" id="customPhoneSelect">
+              <div class="custom-select-trigger" id="selectTrigger">
+                <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="select-flag" />
+                <span class="select-code">+54</span>
+                <svg class="select-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                  <path d="M1 1L5 5L9 1" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="custom-select-dropdown" id="selectDropdown">
+                <div class="dropdown-option" data-value="+54" data-flag="ar" data-name="Argentina">
+                  <img src="https://flagcdn.com/w40/ar.png" alt="Ar" /> <span class="option-code">+54</span> <span class="option-name">Argentina</span>
+                </div>
+                <div class="dropdown-option" data-value="+34" data-flag="es" data-name="España">
+                  <img src="https://flagcdn.com/w40/es.png" alt="Es" /> <span class="option-code">+34</span> <span class="option-name">España</span>
+                </div>
+                </div>
+            </div>
+            <input type="hidden" id="phoneCode" name="phoneCode" value="+54" />
+            <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" autocomplete="tel" required />
+          </div>
+          <span class="error-message" id="phoneError">Solo se permiten números</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <textarea id="mensaje" name="mensaje" placeholder="Contame brevemente tu caso..." rows="6" required></textarea>
+      </div>
+
+      <div style="display:none !important;">
+        <input type="text" name="anti_bot_security" id="anti_bot_security" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button type="submit" class="form-submit">Enviar</button>
+    </form>
+
+    <div class="contact-info-footer" itemscope itemtype="https://schema.org/ContactPoint">
+      <meta itemprop="contactType" content="customer support" />
+      <div class="info-item">
+        <p><a href="mailto:dramartinismarina@gmail.com" itemprop="email">dramartinismarina@gmail.com</a></p>
+      </div>
+      <div class="info-item">
+        <p><a href="tel:+5491166619646" itemprop="telephone">+54 9 11 6661 9646</a></p>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
 
     <!-- FOOTER CARD -->

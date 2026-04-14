@@ -193,131 +193,112 @@ document.querySelectorAll(".faq-item").forEach((item) => {
   });
 });
 
-        // --- 6. FORM VALIDATION & PHONE SELECT ---
-        const emailInput = document.getElementById("email");
-        const phoneInput = document.getElementById("telefono");
-
-        if (emailInput) {
-          const validateEmail = () => {
-            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-              emailInput.value.trim(),
-            );
-            emailInput.classList.toggle(
-              "invalid",
-              !isValid && emailInput.value !== "",
-            );
-            const emailError = document.getElementById("emailError");
-            if (emailError) {
-              emailError.style.display =
-                !isValid && emailInput.value !== "" ? "block" : "none";
-            }
-            return isValid;
-          };
-          emailInput.addEventListener("input", validateEmail);
-        }
-
-        if (phoneInput) {
-          phoneInput.addEventListener("input", (e) => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, "");
-          });
-        }
-
-        const select = document.getElementById("customPhoneSelect");
-        const trigger = document.getElementById("selectTrigger");
-        const hiddenInput = document.getElementById("phoneCode");
-
-        if (trigger && select) {
-          trigger.addEventListener("click", (e) => {
-            e.stopPropagation();
-            select.classList.toggle("open");
-          });
-
-          document.querySelectorAll(".dropdown-option").forEach((opt) => {
-            opt.addEventListener("click", function () {
-              trigger.querySelector(".select-flag").src =
-                `https://flagcdn.com/w40/${this.dataset.flag}.png`;
-              trigger.querySelector(".select-code").textContent =
-                this.dataset.value;
-              if (hiddenInput) hiddenInput.value = this.dataset.value;
-              select.classList.remove("open");
-            });
-          });
-
-          document.addEventListener("click", () =>
-            select.classList.remove("open"),
-          );
-        }
-
-   // --- EmailJS Form Submit ---
+      // --- VALIDACIÓN Y ENVÍO (Versión reCAPTCHA v3) ---
 const contactForm = document.getElementById("contactForm");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("telefono");
+const emailError = document.getElementById("emailError");
+
+// Validar Email mientras escriben (Mantiene tu CSS)
+if (emailInput) {
+    emailInput.addEventListener("input", () => {
+        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+        emailInput.classList.toggle("invalid", !isValid && emailInput.value !== "");
+        if (emailError) {
+            emailError.style.display = !isValid && emailInput.value !== "" ? "block" : "none";
+        }
+    });
+}
+
+// Solo números en el teléfono
+if (phoneInput) {
+    phoneInput.addEventListener("input", (e) => {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "");
+    });
+}
+
+// Manejo del Envío
 if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+    contactForm.addEventListener("submit", function (e) {
+        // Bloqueo total de la recarga
+        e.preventDefault();
 
-    const submitBtn = contactForm.querySelector(".form-submit");
-    const originalText = submitBtn.textContent;
+        const submitBtn = this.querySelector(".form-submit");
+        const originalText = "Enviar";
+        const honey = document.getElementById("anti_bot_security")?.value;
 
-    // Validar campos vacíos
-    const nombre = document.getElementById("nombre").value.trim();
-    const apellido = document.getElementById("apellido").value.trim();
-    const emailVal = document.getElementById("email").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-    const mensaje = document.getElementById("mensaje").value.trim();
+        // 1. Seguridad Anti-Bot (Honeypot)
+        if (honey && honey !== "") return; 
 
-    if (!nombre || !apellido || !telefono || !mensaje) {
-      submitBtn.textContent = "Completá todos los campos";
-      submitBtn.style.background = "#c0392b";
-      setTimeout(() => {
+        // 2. Captura de datos
+        const params = {
+            nombre: document.getElementById("nombre").value.trim(),
+            apellido: document.getElementById("apellido").value.trim(),
+            email: emailInput.value.trim(),
+            phoneCode: document.getElementById("phoneCode").value,
+            telefono: phoneInput.value.trim(),
+            mensaje: document.getElementById("mensaje").value.trim()
+        };
+
+        // 3. Validación de vacíos
+        if (!params.nombre || !params.apellido || !params.telefono || !params.mensaje) {
+            submitBtn.textContent = "Completá todos los campos";
+            submitBtn.style.background = "#c0392b";
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = "";
+            }, 3000);
+            return;
+        }
+
+        // 4. Validación final de email
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(params.email);
+        if (!emailOk) {
+            if (emailError) emailError.style.display = "block";
+            return;
+        }
+
+        // --- 5. EJECUCIÓN DE reCAPTCHA V3 + ENVÍO ---
+        submitBtn.textContent = "Verificando...";
+        submitBtn.disabled = true;
+
+        grecaptcha.ready(function() {
+            // Reemplazá TU_SITE_KEY por tu clave de sitio
+            grecaptcha.execute('6LcvzbUsAAAAAGtPmCP4saMyVRGgTy0JSLtsIgT7', {action: 'submit'}).then(function(token) {
+                
+                // Añadimos el token a los parámetros para que EmailJS lo valide
+              params["g-recaptcha-response"] = token;
+
+                submitBtn.textContent = "Procesando...";
+
+                emailjs.send("service_prueba", "template_d1vssai", params)
+                    .then(() => {
+                        // ÉXITO
+                        submitBtn.textContent = "¡Marina recibió tu mensaje!"; 
+                        submitBtn.style.background = "#458988";
+                        
+                        contactForm.reset();
+
+                        setTimeout(() => {
+                            submitBtn.textContent = originalText;
+                            submitBtn.style.background = "";
+                            submitBtn.disabled = false;
+                        }, 6000);
+                    })
+                   .catch((err) => {
+    console.error("Error EmailJS completo:", JSON.stringify(err));
+    submitBtn.textContent = "Error al enviar";
+    submitBtn.style.background = "#c0392b";
+    
+    setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.style.background = "";
-      }, 3000);
-      return;
-    }
-
-    // Validar email
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
-    if (!emailOk) {
-      const emailError = document.getElementById("emailError");
-      if (emailError) emailError.style.display = "block";
-      return;
-    }
-
-    // Estado cargando
-    submitBtn.textContent = "Enviando...";
-    submitBtn.disabled = true;
-
-    const templateParams = {
-      nombre,
-      apellido,
-      email: emailVal,
-      phoneCode: document.getElementById("phoneCode").value,
-      telefono,
-      mensaje,
-    };
-
-    emailjs
-      .send("service_prueba", "template_d1vssai", templateParams)
-      .then(() => {
-        submitBtn.textContent = "¡Mensaje enviado!";
-        submitBtn.style.background = "#458988";
-        contactForm.reset();
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = "";
-          submitBtn.disabled = false;
-        }, 4000);
-      })
-      .catch((err) => {
-        console.error("EmailJS error:", err);
-        submitBtn.textContent = "Error al enviar. Intentá de nuevo.";
-        submitBtn.style.background = "#c0392b";
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = "";
-          submitBtn.disabled = false;
-        }, 4000);
-      });
-  });
+        submitBtn.disabled = false;
+    }, 4000);
+                    });
+            });
+        });
+    });
 }
 
         // --- 7. HERO PHOTO STACK (GSAP desktop hover only) ---
