@@ -267,7 +267,7 @@ if (contactForm) {
             grecaptcha.execute('6LcvzbUsAAAAAGtPmCP4saMyVRGgTy0JSLtsIgT7', {action: 'submit'}).then(function(token) {
                 
                 // Añadimos el token a los parámetros para que EmailJS lo valide
-              
+              params["g-recaptcha-response"] = token;
 
                 submitBtn.textContent = "Procesando...";
 
