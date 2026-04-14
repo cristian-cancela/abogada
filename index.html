@@ -130,7 +130,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcvzbUsAAAAAGtPmCP4saMyVRGgTy0JSLtsIgT7"></script>
+   <script src="https://www.google.com/recaptcha/api.js"></script>
   </head>
   </head>
   <body>
@@ -2287,8 +2287,8 @@
         </article>
       </section>
 
-      <!-- CONTACT SECTION -->
-      <section class="contact-section" id="contacto" itemscope itemtype="https://schema.org/ContactPage">
+    <!-- CONTACT SECTION -->
+<section class="contact-section" id="contacto" itemscope itemtype="https://schema.org/ContactPage">
   <div class="contact-container">
     <div class="contact-header">
       <h2>Transforma tu proyecto en realidad</h2>
@@ -2328,7 +2328,7 @@
                 <div class="dropdown-option" data-value="+34" data-flag="es" data-name="España">
                   <img src="https://flagcdn.com/w40/es.png" alt="Es" /> <span class="option-code">+34</span> <span class="option-name">España</span>
                 </div>
-                </div>
+              </div>
             </div>
             <input type="hidden" id="phoneCode" name="phoneCode" value="+54" />
             <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" autocomplete="tel" required />
@@ -2340,6 +2340,9 @@
       <div class="form-group">
         <textarea id="mensaje" name="mensaje" placeholder="Contame brevemente tu caso..." rows="6" required></textarea>
       </div>
+
+      <!-- reCAPTCHA v2 -->
+      <div class="g-recaptcha" data-sitekey="TU_NUEVA_SITE_KEY_V2"></div>
 
       <div style="display:none !important;">
         <input type="text" name="anti_bot_security" id="anti_bot_security" tabindex="-1" autocomplete="off">

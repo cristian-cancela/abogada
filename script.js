@@ -258,46 +258,52 @@ if (contactForm) {
             return;
         }
 
-        // --- 5. EJECUCIÓN DE reCAPTCHA V3 + ENVÍO ---
+       // --- 5. VALIDACIÓN reCAPTCHA V2 + ENVÍO ---
         submitBtn.textContent = "Verificando...";
         submitBtn.disabled = true;
 
-        grecaptcha.ready(function() {
-            // Reemplazá TU_SITE_KEY por tu clave de sitio
-            grecaptcha.execute('6LcvzbUsAAAAAGtPmCP4saMyVRGgTy0JSLtsIgT7', {action: 'submit'}).then(function(token) {
-                
-                // Añadimos el token a los parámetros para que EmailJS lo valide
-              params["g-recaptcha-response"] = token;
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (!recaptchaResponse) {
+            submitBtn.textContent = "Verificá el captcha";
+            submitBtn.style.background = "#c0392b";
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = "";
+                submitBtn.disabled = false;
+            }, 3000);
+            return;
+        }
 
-                submitBtn.textContent = "Procesando...";
+        params["g-recaptcha-response"] = recaptchaResponse;
 
-                emailjs.send("service_prueba", "template_d1vssai", params)
-                    .then(() => {
-                        // ÉXITO
-                        submitBtn.textContent = "¡Marina recibió tu mensaje!"; 
-                        submitBtn.style.background = "#458988";
-                        
-                        contactForm.reset();
+        submitBtn.textContent = "Procesando...";
 
-                        setTimeout(() => {
-                            submitBtn.textContent = originalText;
-                            submitBtn.style.background = "";
-                            submitBtn.disabled = false;
-                        }, 6000);
-                    })
-                   .catch((err) => {
-    console.error("Error EmailJS completo:", JSON.stringify(err));
-    submitBtn.textContent = "Error al enviar";
-    submitBtn.style.background = "#c0392b";
-    
-    setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.style.background = "";
-        submitBtn.disabled = false;
-    }, 4000);
-                    });
+        emailjs.send("service_prueba", "template_d1vssai", params)
+            .then(() => {
+                // ÉXITO
+                submitBtn.textContent = "¡Marina recibió tu mensaje!";
+                submitBtn.style.background = "#458988";
+
+                contactForm.reset();
+                grecaptcha.reset();
+
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = "";
+                    submitBtn.disabled = false;
+                }, 6000);
+            })
+            .catch((err) => {
+                console.error("Error EmailJS completo:", JSON.stringify(err));
+                submitBtn.textContent = "Error al enviar";
+                submitBtn.style.background = "#c0392b";
+
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = "";
+                    submitBtn.disabled = false;
+                }, 4000);
             });
-        });
     });
 }
 
